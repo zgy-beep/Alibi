@@ -16,3 +16,6 @@
 graphify-out/
 local.properties
 key.properties
+*.jks
+*.keystore
+*.p12
