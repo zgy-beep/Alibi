@@ -47,6 +47,7 @@ import androidx.lifecycle.LifecycleService
 import app.myzel394.alibi.MainActivity
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.R
+import app.myzel394.alibi.BuildConfig
 import app.myzel394.alibi.db.PhotoAspectRatio
 import app.myzel394.alibi.db.PhotoCaptureSettings
 import app.myzel394.alibi.db.PhotoCaptureStrategy
@@ -1393,9 +1394,9 @@ class PhotoCaptureService : LifecycleService() {
 
     companion object {
         private const val TAG = "PhotoCaptureService"
-        const val ACTION_START = "app.myzel394.alibi.photo.START"
-        const val ACTION_CAPTURE = "app.myzel394.alibi.photo.CAPTURE"
-        const val ACTION_STOP = "app.myzel394.alibi.photo.STOP"
+        val ACTION_START = "${BuildConfig.APPLICATION_ID}.photo.START"
+        val ACTION_CAPTURE = "${BuildConfig.APPLICATION_ID}.photo.CAPTURE"
+        val ACTION_STOP = "${BuildConfig.APPLICATION_ID}.photo.STOP"
         const val EXTRA_MODE = "mode"
         const val EXTRA_LENS_FACING = "lensFacing"
         const val EXTRA_SAVE_FOLDER = "saveFolder"

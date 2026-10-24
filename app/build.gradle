@@ -35,11 +35,11 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "app.myzel394.alibi"
+        applicationId "com.zgybeep.alibi"
         minSdk 24
         targetSdk 34
-        versionCode 17
-        versionName "0.6.0"
+        versionCode 18
+        versionName "0.6.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

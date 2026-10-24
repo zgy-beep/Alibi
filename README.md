@@ -19,8 +19,11 @@ shutter while you use another app. Photos stay on the device.
 
 # Download
 
-[<img src="readme_content/google-play-badge.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=app.myzel394.alibi)
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/app.myzel394.alibi)
+Download the latest signed universal APK from
+[GitHub Releases](https://github.com/zgy-beep/Alibi/releases/latest).
+
+This fork uses the independent Android application ID `com.zgybeep.alibi`.
+It can be installed alongside an upstream Alibi release.
 [<img src="readme_content/github-badge.webp" alt="Get it on GitHub" height="80">](https://github.com/Myzel394/Alibi/releases)
 
 # Supporting Alibi

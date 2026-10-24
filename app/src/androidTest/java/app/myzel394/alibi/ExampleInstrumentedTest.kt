@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("app.myzel394.alibi", appContext.packageName)
+        assertEquals("com.zgybeep.alibi.debug", appContext.packageName)
     }
 }
