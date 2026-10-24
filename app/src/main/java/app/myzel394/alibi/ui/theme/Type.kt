@@ -6,29 +6,47 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
-val Typography = Typography(
+private val defaultTypography = Typography()
+
+val Typography = defaultTypography.copy(
+    displaySmall = defaultTypography.displaySmall.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    headlineLarge = defaultTypography.headlineLarge.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    headlineMedium = defaultTypography.headlineMedium.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    headlineSmall = defaultTypography.headlineSmall.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    titleLarge = defaultTypography.titleLarge.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    titleMedium = defaultTypography.titleMedium.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+    ),
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        letterSpacing = 0.sp,
     ),
-    labelSmall = TextStyle(
+    bodyMedium = defaultTypography.bodyMedium.copy(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+        letterSpacing = 0.sp,
+    ),
+    labelLarge = defaultTypography.labelLarge.copy(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        letterSpacing = 0.sp,
+    ),
 )

@@ -32,14 +32,21 @@ import androidx.compose.ui.res.stringResource
 import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
+import app.myzel394.alibi.ui.utils.FileSaveResult
 import app.myzel394.alibi.ui.utils.rememberFileSaverDialog
 import app.myzel394.alibi.ui.utils.rememberFileSelectorDialog
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.io.File
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun ImportExport(
     snackbarHostState: SnackbarHostState,
+    enabled: Boolean = true,
 ) {
     val context = LocalContext.current
 
@@ -51,17 +58,28 @@ fun ImportExport(
         .value
 
     var settingsToBeImported by remember { mutableStateOf<AppSettings?>(null) }
+    val importFailureMessage = stringResource(R.string.settings_import_failed)
+    val exportFailureMessage = stringResource(R.string.file_export_failed)
 
-    val saveFile = rememberFileSaverDialog("application/json")
-    val openFile = rememberFileSelectorDialog { uri ->
-        val file = File.createTempFile("alibi_settings", ".json")
-
-        context.contentResolver.openInputStream(uri)!!.use {
-            it.copyTo(file.outputStream())
+    val saveFile = rememberFileSaverDialog("application/json") { result ->
+        if (result is FileSaveResult.Failure) {
+            scope.launch { snackbarHostState.showSnackbar(exportFailureMessage) }
         }
-        val rawContent = file.readText()
-
-        settingsToBeImported = AppSettings.fromExportedString(rawContent)
+    }
+    val openFile = rememberFileSelectorDialog { uri ->
+        scope.launch {
+            try {
+                settingsToBeImported = withContext(Dispatchers.IO) {
+                    val rawContent = context.contentResolver.openInputStream(uri)?.use { input ->
+                        input.readLimitedText(MAX_SETTINGS_BYTES)
+                    } ?: throw IllegalStateException("Could not open the settings file")
+                    AppSettings.fromExportedString(rawContent)
+                }
+            } catch (error: Exception) {
+                settingsToBeImported = null
+                snackbarHostState.showSnackbar(importFailureMessage)
+            }
+        }
     }
 
     if (settingsToBeImported != null) {
@@ -86,9 +104,13 @@ fun ImportExport(
             confirmButton = {
                 Button(
                     onClick = {
+                        if (!enabled) {
+                            return@Button
+                        }
+                        val importedSettings = settingsToBeImported ?: return@Button
                         scope.launch {
                             dataStore.updateData {
-                                settingsToBeImported!!
+                                importedSettings
                             }
                             settingsToBeImported = null
 
@@ -99,6 +121,7 @@ fun ImportExport(
                             )
                         }
                     },
+                    enabled = enabled,
                     contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
                 ) {
                     Icon(
@@ -131,6 +154,7 @@ fun ImportExport(
             onClick = {
                 openFile("application/json")
             },
+            enabled = enabled,
             contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
         ) {
             Icon(
@@ -143,13 +167,17 @@ fun ImportExport(
         }
         FilledTonalButton(
             onClick = {
-                val rawContent = settings.exportToString()
-
-                val tempFile = File.createTempFile("alibi_settings", ".json")
-                tempFile.writeText(rawContent)
-
-                saveFile(tempFile, "alibi_settings.json")
+                val settingsToExport = settings
+                scope.launch {
+                    val tempFile = withContext(Dispatchers.IO) {
+                        File.createTempFile("alibi_settings", ".json").also {
+                            it.writeText(settingsToExport.exportToString())
+                        }
+                    }
+                    saveFile(tempFile, "alibi_settings.json")
+                }
             },
+            enabled = enabled,
             contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
         ) {
             Icon(
@@ -162,3 +190,23 @@ fun ImportExport(
         }
     }
 }
+
+private fun InputStream.readLimitedText(maxBytes: Int): String {
+    val output = ByteArrayOutputStream()
+    val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+    var total = 0
+    while (true) {
+        val read = read(buffer)
+        if (read < 0) {
+            break
+        }
+        total += read
+        if (total > maxBytes) {
+            throw IllegalArgumentException("The settings file is too large")
+        }
+        output.write(buffer, 0, read)
+    }
+    return output.toString(StandardCharsets.UTF_8.name())
+}
+
+private const val MAX_SETTINGS_BYTES = 1024 * 1024

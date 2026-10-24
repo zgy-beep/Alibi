@@ -30,12 +30,12 @@ import app.myzel394.alibi.ui.models.AudioRecorderModel
 import app.myzel394.alibi.ui.models.BaseRecorderModel
 import app.myzel394.alibi.ui.models.VideoRecorderModel
 import app.myzel394.alibi.ui.utils.rememberFileSaverDialog
+import app.myzel394.alibi.ui.utils.FileSaveResult
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.util.Timer
-import kotlin.concurrent.schedule
-import kotlin.concurrent.thread
+import kotlinx.coroutines.withContext
 
 typealias RecorderModel = BaseRecorderModel<
         RecordingInformation,
@@ -60,35 +60,43 @@ fun RecorderEventsHandler(
 
     var processingProgress by remember { mutableStateOf<Float?>(null) }
 
-    val saveAudioFile = rememberFileSaverDialog(settings.audioRecorderSettings.getMimeType()) {
-        if (settings.deleteRecordingsImmediately) {
-            runCatching {
-                audioRecorder.batchesFolder?.deleteRecordings()
-            }
-        }
+    val exportFailureMessage = stringResource(R.string.file_export_failed)
 
-        if (audioRecorder.batchesFolder?.hasRecordingsAvailable() == false) {
-            scope.launch {
-                dataStore.updateData {
-                    it.setLastRecording(null)
+    fun handleExportResult(
+        result: FileSaveResult,
+        recorder: RecorderModel,
+    ) {
+        when (result) {
+            is FileSaveResult.Success -> {
+                scope.launch {
+                    val hasRecordings = withContext(Dispatchers.IO) {
+                        if (settings.deleteRecordingsImmediately) {
+                            runCatching { recorder.batchesFolder?.deleteRecordings() }
+                        }
+                        recorder.batchesFolder?.hasRecordingsAvailable() == true
+                    }
+                    if (!hasRecordings) {
+                        dataStore.updateData { it.setLastRecording(null) }
+                    }
                 }
             }
+
+            is FileSaveResult.Failure -> {
+                Log.e("RecorderEventsHandler", "Could not export recording", result.error)
+                scope.launch {
+                    snackbarHostState.showSnackbar(exportFailureMessage)
+                }
+            }
+
+            FileSaveResult.Cancelled -> Unit
         }
     }
-    val saveVideoFile = rememberFileSaverDialog(settings.videoRecorderSettings.getMimeType()) {
-        if (settings.deleteRecordingsImmediately) {
-            runCatching {
-                videoRecorder.batchesFolder?.deleteRecordings()
-            }
-        }
 
-        if (videoRecorder.batchesFolder?.hasRecordingsAvailable() == false) {
-            scope.launch {
-                dataStore.updateData {
-                    it.setLastRecording(null)
-                }
-            }
-        }
+    val saveAudioFile = rememberFileSaverDialog(settings.audioRecorderSettings.getMimeType()) {
+        handleExportResult(it, audioRecorder as RecorderModel)
+    }
+    val saveVideoFile = rememberFileSaverDialog(settings.videoRecorderSettings.getMimeType()) {
+        handleExportResult(it, videoRecorder as RecorderModel)
     }
 
     suspend fun saveAsLastRecording(
@@ -144,98 +152,93 @@ fun RecorderEventsHandler(
     ): CompletableDeferred<Unit> {
         val completer = CompletableDeferred<Unit>()
 
-        // If processing takes this short, don't show the processing dialog
-        val timer = Timer().schedule(250L) {
-            isProcessing = true
-        }
+        scope.launch {
+            val processingTimer = launch {
+                delay(250)
+                isProcessing = true
+            }
 
-        thread {
-            runBlocking {
-                try {
-                    if (recorder.isCurrentlyActivelyRecording) {
-                        recorder.recorderService?.lockFiles()
-                    }
+            try {
+                if (recorder.isCurrentlyActivelyRecording) {
+                    recorder.recorderService?.lockFiles()
+                }
 
+                val result = withContext(Dispatchers.IO) {
                     val recording =
-                        // When new recording created
                         recorder.recorderService?.getRecordingInformation()
-                        // When recording is loaded from lastRecording
                             ?: settings.lastRecording
                             ?: throw Exception("No recording information available")
-
                     val batchesFolder = when (recorder.javaClass) {
                         AudioRecorderModel::class.java -> AudioBatchesFolder.importFromFolder(
                             recording.folderPath,
-                            context
+                            context,
                         )
 
                         VideoRecorderModel::class.java -> VideoBatchesFolder.importFromFolder(
                             recording.folderPath,
-                            context
+                            context,
                         )
 
                         else -> throw Exception("Unknown recorder type")
                     }
-
                     val fileName = batchesFolder.getName(
                         recording.recordingStart,
                         recording.fileExtension,
                     )
-
                     batchesFolder.concatenate(
                         recording,
                         filenameFormat = settings.filenameFormat,
                         fileName = fileName,
                         onProgress = { percentage ->
-                            processingProgress = percentage
-                        }
+                            scope.launch { processingProgress = percentage }
+                        },
                     )
-
-                    // Save file
-                    when (batchesFolder.type) {
-                        BatchesFolder.BatchType.INTERNAL -> {
-                            when (batchesFolder) {
-                                is AudioBatchesFolder -> {
-                                    saveAudioFile(
-                                        batchesFolder.asInternalGetOutputFile(fileName), fileName
-                                    )
-                                }
-
-                                is VideoBatchesFolder -> {
-                                    saveVideoFile(
-                                        batchesFolder.asInternalGetOutputFile(fileName), fileName
-                                    )
-                                }
-                            }
-                        }
-
-                        BatchesFolder.BatchType.CUSTOM -> {
-                            showSnackbar(batchesFolder.customFolder!!.uri)
-
-                            if (settings.deleteRecordingsImmediately) {
-                                batchesFolder.deleteRecordings()
-                            }
-                        }
-
-                        BatchesFolder.BatchType.MEDIA -> {
-                            showSnackbar()
-
-                            if (settings.deleteRecordingsImmediately) {
-                                batchesFolder.deleteRecordings()
-                            }
-                        }
-                    }
-                } catch (error: Exception) {
-                    Log.getStackTraceString(error)
-                } finally {
-                    if (recorder.isCurrentlyActivelyRecording) {
-                        recorder.recorderService?.unlockFiles(cleanupOldFiles)
-                    }
-                    timer.cancel()
-                    isProcessing = false
-                    processingProgress = null
-                    completer.complete(Unit)
+                    batchesFolder to fileName
                 }
+
+                val (batchesFolder, fileName) = result
+                when (batchesFolder.type) {
+                    BatchesFolder.BatchType.INTERNAL -> when (batchesFolder) {
+                        is AudioBatchesFolder -> {
+                            saveAudioFile(
+                                batchesFolder.asInternalGetOutputFile(fileName),
+                                fileName,
+                            )
+                        }
+
+                        is VideoBatchesFolder -> {
+                            saveVideoFile(
+                                batchesFolder.asInternalGetOutputFile(fileName),
+                                fileName,
+                            )
+                        }
+                    }
+
+                    BatchesFolder.BatchType.CUSTOM -> {
+                        showSnackbar(batchesFolder.customFolder!!.uri)
+                        if (settings.deleteRecordingsImmediately) {
+                            withContext(Dispatchers.IO) { batchesFolder.deleteRecordings() }
+                        }
+                    }
+
+                    BatchesFolder.BatchType.MEDIA -> {
+                        showSnackbar()
+                        if (settings.deleteRecordingsImmediately) {
+                            withContext(Dispatchers.IO) { batchesFolder.deleteRecordings() }
+                        }
+                    }
+                }
+            } catch (error: Exception) {
+                Log.e("RecorderEventsHandler", "Could not save recording", error)
+                snackbarHostState.showSnackbar(exportFailureMessage)
+            } finally {
+                if (recorder.isCurrentlyActivelyRecording) {
+                    recorder.recorderService?.unlockFiles(cleanupOldFiles)
+                }
+                processingTimer.cancel()
+                isProcessing = false
+                processingProgress = null
+                completer.complete(Unit)
             }
         }
 

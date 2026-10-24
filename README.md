@@ -14,6 +14,9 @@
 Alibi keeps recording audio/video in the background and saves the last 30 minutes at your request.
 Everything is completely configurable. No internet connection required.
 
+Alibi can also take still photos from a dark touch screen or from a small floating
+shutter while you use another app. Photos stay on the device.
+
 # Download
 
 [<img src="readme_content/google-play-badge.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=app.myzel394.alibi)

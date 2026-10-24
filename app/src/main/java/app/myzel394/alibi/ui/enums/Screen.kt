@@ -6,6 +6,10 @@ sealed class Screen(val route: String) {
     data object Welcome : Screen("welcome")
     data object CustomRecordingNotifications : Screen("custom-recording-notifications")
     data object About : Screen("about")
+    data object PhotoCapture : Screen("photo-capture")
+    data object PhotoCaptureSettings : Screen("photo-capture-settings")
+    data object BlackPhoto : Screen("black-photo")
+    data object RecentPhotos : Screen("recent-photos")
 
     fun withArgs(vararg args: String): String {
         return buildString {

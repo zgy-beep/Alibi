@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Notification
 import android.content.Intent
 import android.os.Binder
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleService
 import app.myzel394.alibi.NotificationHelper
@@ -23,7 +25,8 @@ abstract class RecorderService : LifecycleService() {
     private var isPaused: Boolean = false
     lateinit var recordingStart: LocalDateTime
         private set
-    private lateinit var recordingTimeTimer: ScheduledExecutorService
+    private var recordingTimeTimer: ScheduledExecutorService? = null
+    private val mainHandler = Handler(Looper.getMainLooper())
     private var notificationDetails: RecorderNotificationHelper.NotificationDetails? = null
 
     var state = RecorderState.IDLE
@@ -43,7 +46,7 @@ abstract class RecorderService : LifecycleService() {
     protected open fun pause() {
         isPaused = true
 
-        recordingTimeTimer.shutdown()
+        stopRecordingTimeTimer()
     }
 
     protected open fun resume() {
@@ -51,7 +54,7 @@ abstract class RecorderService : LifecycleService() {
     }
 
     protected open suspend fun stop() {
-        recordingTimeTimer.shutdown()
+        stopRecordingTimeTimer()
     }
 
     protected abstract fun startForegroundService()
@@ -87,6 +90,7 @@ abstract class RecorderService : LifecycleService() {
     }
 
     fun destroy() {
+        stopRecordingTimeTimer()
         NotificationManagerCompat.from(this)
             .cancel(NotificationHelper.RECORDER_CHANNEL_NOTIFICATION_ID)
         stopForeground(STOP_FOREGROUND_REMOVE)
@@ -96,6 +100,12 @@ abstract class RecorderService : LifecycleService() {
     override fun onBind(intent: Intent): IBinder? {
         super.onBind(intent)
         return binder
+    }
+
+    override fun onDestroy() {
+        stopRecordingTimeTimer()
+        mainHandler.removeCallbacksAndMessages(null)
+        super.onDestroy()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -125,17 +135,26 @@ abstract class RecorderService : LifecycleService() {
     }
 
     private fun createRecordingTimeTimer() {
+        stopRecordingTimeTimer()
         recordingTimeTimer = Executors.newSingleThreadScheduledExecutor().also {
-            it.scheduleAtFixedRate(
+            it.scheduleWithFixedDelay(
                 {
                     recordingTime += 1
-                    onRecordingTimeChange?.invoke(recordingTime)
+                    val currentTime = recordingTime
+                    mainHandler.post {
+                        onRecordingTimeChange?.invoke(currentTime)
+                    }
                 },
                 0,
                 1,
                 TimeUnit.SECONDS
             )
         }
+    }
+
+    private fun stopRecordingTimeTimer() {
+        recordingTimeTimer?.shutdownNow()
+        recordingTimeTimer = null
     }
 
     // Used to change the state of the service

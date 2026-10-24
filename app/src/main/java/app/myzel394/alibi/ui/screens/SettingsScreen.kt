@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -60,6 +61,7 @@ import app.myzel394.alibi.ui.components.atoms.MessageBox
 import app.myzel394.alibi.ui.components.atoms.MessageType
 import app.myzel394.alibi.ui.effects.rememberSettings
 import app.myzel394.alibi.ui.models.AudioRecorderModel
+import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import app.myzel394.alibi.ui.models.VideoRecorderModel
 import kotlinx.coroutines.launch
 
@@ -69,8 +71,10 @@ fun SettingsScreen(
     onBackNavigate: () -> Unit,
     onNavigateToCustomRecordingNotifications: () -> Unit,
     onNavigateToAboutScreen: () -> Unit,
+    onNavigateToPhotoCaptureSettings: () -> Unit,
     audioRecorder: AudioRecorderModel,
     videoRecorder: VideoRecorderModel,
+    photoCapture: PhotoCaptureModel,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
@@ -125,7 +129,9 @@ fun SettingsScreen(
             val settings = rememberSettings()
 
             // Show alert
-            if (audioRecorder.isInRecording || videoRecorder.isInRecording) {
+            if (audioRecorder.isInRecording || videoRecorder.isInRecording ||
+                photoCapture.isInSession
+            ) {
                 Box(
                     modifier = Modifier
                         .padding(16.dp)
@@ -137,9 +143,7 @@ fun SettingsScreen(
                     )
                 }
             }
-            if (!SUPPORTS_DARK_MODE_NATIVELY) {
-                ThemeSelector()
-            }
+            ThemeSelector()
             MaxDurationTile(settings = settings)
             IntervalDurationTile(settings = settings)
             InAppLanguagePicker()
@@ -150,6 +154,7 @@ fun SettingsScreen(
             SaveFolderTile(
                 settings = settings,
                 snackbarHostState = snackbarHostState,
+                enabled = !photoCapture.isInSession,
             )
             GlobalSwitch(
                 label = stringResource(R.string.ui_settings_advancedSettings_label),
@@ -187,12 +192,35 @@ fun SettingsScreen(
                         VideoRecorderQualityTile(settings = settings)
                         VideoRecorderBitrateTile(settings = settings)
                         VideoRecorderFrameRateTile(settings = settings)
+                        DividerTitle(
+                            title = stringResource(R.string.photo_settings_section_title),
+                            description = stringResource(
+                                R.string.photo_settings_section_description
+                            ),
+                        )
+                        Text(
+                            stringResource(
+                                R.string.photo_settings_section_summary
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                        )
+                        FilledTonalButton(
+                            onClick = onNavigateToPhotoCaptureSettings,
+                            modifier = Modifier.padding(16.dp),
+                        ) {
+                            Text(stringResource(R.string.photo_settings_open))
+                        }
                     }
                     HorizontalDivider(
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
                     )
-                    ImportExport(snackbarHostState = snackbarHostState)
+                    ImportExport(
+                        snackbarHostState = snackbarHostState,
+                        enabled = !photoCapture.isInSession,
+                    )
                 }
             }
             AboutTile(onNavigateToAboutScreen)

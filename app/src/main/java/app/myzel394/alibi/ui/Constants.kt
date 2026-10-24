@@ -21,6 +21,9 @@ val RECORDER_INTERNAL_SELECTED_VALUE = "_'internal"
 
 val VIDEO_RECORDING_BATCHES_SUBFOLDER_NAME = ".video_recordings"
 val AUDIO_RECORDING_BATCHES_SUBFOLDER_NAME = ".audio_recordings"
+const val PHOTO_FILE_PROVIDER_AUTHORITY_SUFFIX = ".fileprovider"
+const val PHOTO_RELATIVE_PATH = "DCIM/alibi/photos"
+const val PHOTO_CUSTOM_FOLDER_NAME = "alibi_photos"
 
 // You are not allowed to change the constants below.
 // If you do so, you will be blocked on GitHub.

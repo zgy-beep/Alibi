@@ -10,9 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import app.myzel394.alibi.ui.theme.LocalReduceMotion
 
 @Composable
 fun Pulsating(content: @Composable () -> Unit) {
+    if (LocalReduceMotion.current) {
+        Box(content = { content() })
+        return
+    }
+
     val infiniteTransition = rememberInfiniteTransition()
 
     val alpha by infiniteTransition.animateFloat(

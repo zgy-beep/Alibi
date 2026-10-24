@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.media.MediaRecorder
 import android.os.Build
+import androidx.camera.core.CameraSelector
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import app.myzel394.alibi.R
@@ -21,12 +22,15 @@ import java.time.LocalDateTime
 data class AppSettings(
     val audioRecorderSettings: AudioRecorderSettings = AudioRecorderSettings.getDefaultInstance(),
     val videoRecorderSettings: VideoRecorderSettings = VideoRecorderSettings.getDefaultInstance(),
+    val photoCaptureSettings: PhotoCaptureSettings = PhotoCaptureSettings.getDefaultInstance(),
 
     val appLockSettings: AppLockSettings? = null,
 
     val hasSeenOnboarding: Boolean = false,
     val showAdvancedSettings: Boolean = false,
     val theme: Theme = Theme.SYSTEM,
+    val dynamicColorsEnabled: Boolean = true,
+    val reduceMotionEnabled: Boolean = false,
     val lastRecording: RecordingInformation? = null,
 
     val filenameFormat: FilenameFormat = FilenameFormat.DATETIME_RELATIVE_START,
@@ -53,6 +57,10 @@ data class AppSettings(
         return copy(videoRecorderSettings = videoRecorderSettings)
     }
 
+    fun setPhotoCaptureSettings(photoCaptureSettings: PhotoCaptureSettings): AppSettings {
+        return copy(photoCaptureSettings = photoCaptureSettings)
+    }
+
     fun setNotificationSettings(notificationSettings: NotificationSettings?): AppSettings {
         return copy(notificationSettings = notificationSettings)
     }
@@ -63,6 +71,14 @@ data class AppSettings(
 
     fun setTheme(theme: Theme): AppSettings {
         return copy(theme = theme)
+    }
+
+    fun setDynamicColorsEnabled(enabled: Boolean): AppSettings {
+        return copy(dynamicColorsEnabled = enabled)
+    }
+
+    fun setReduceMotionEnabled(enabled: Boolean): AppSettings {
+        return copy(reduceMotionEnabled = enabled)
     }
 
     fun setLastRecording(lastRecording: RecordingInformation?): AppSettings {
@@ -150,10 +166,51 @@ data class AppSettings(
         fun getDefaultInstance(): AppSettings = AppSettings()
 
         fun fromExportedString(data: String): AppSettings {
-            return Json.decodeFromString(
+            val settings = Json.decodeFromString(
                 serializer(),
                 data,
             )
+            require(settings.maxDuration in 60_000L..(10L * 24 * 60 * 60 * 1000)) {
+                "Invalid maximum duration"
+            }
+            require(settings.intervalDuration in 10_000L..(60L * 60 * 1000)) {
+                "Invalid interval duration"
+            }
+            require(settings.intervalDuration <= settings.maxDuration) {
+                "Interval duration exceeds maximum duration"
+            }
+            require(settings.audioRecorderSettings.bitRate in 1_000..320_000) {
+                "Invalid audio bit rate"
+            }
+            val samplingRate = settings.audioRecorderSettings.samplingRate
+            require(samplingRate == null || samplingRate >= 1_000) {
+                "Invalid audio sampling rate"
+            }
+            require(
+                settings.photoCaptureSettings.lensFacing == CameraSelector.LENS_FACING_BACK ||
+                    settings.photoCaptureSettings.lensFacing == CameraSelector.LENS_FACING_FRONT
+            ) {
+                "Invalid camera lens"
+            }
+            require(
+                settings.photoCaptureSettings.overlayOpacity in
+                    PhotoCaptureSettings.MIN_OVERLAY_OPACITY..1f
+            ) {
+                "Invalid overlay opacity"
+            }
+            require(
+                settings.photoCaptureSettings.lastZoomRatio in
+                    1f..PhotoCaptureSettings.MAX_ZOOM_RATIO
+            ) {
+                "Invalid zoom ratio"
+            }
+            require(settings.notificationSettings?.title?.length?.let { it <= 500 } != false) {
+                "Notification title is too long"
+            }
+            require(settings.notificationSettings?.message?.length?.let { it <= 2_000 } != false) {
+                "Notification message is too long"
+            }
+            return settings
         }
     }
 }
@@ -530,6 +587,172 @@ data class VideoRecorderSettings(
             null,
         ) + AVAILABLE_QUALITIES
     }
+}
+
+@Serializable
+data class PhotoCaptureSettings(
+    val feedbackEnabled: Boolean = true,
+    val fastCaptureEnabled: Boolean = true,
+    val lensFacing: Int = CameraSelector.LENS_FACING_BACK,
+    val captureStrategy: PhotoCaptureStrategy = PhotoCaptureStrategy.FAST,
+    val hapticFeedback: PhotoHapticFeedback = PhotoHapticFeedback.STANDARD,
+    val resolutionPreference: PhotoResolutionPreference =
+        PhotoResolutionPreference.RECOMMENDED,
+    val aspectRatio: PhotoAspectRatio = PhotoAspectRatio.FOUR_THREE,
+    val flashMode: PhotoFlashMode = PhotoFlashMode.OFF,
+    val opticalStabilizationEnabled: Boolean = true,
+    val continuousAutoFocusEnabled: Boolean = true,
+    val gridLinesEnabled: Boolean = false,
+    val mirrorFrontCamera: Boolean = true,
+    val showPreviewOnLaunch: Boolean = false,
+    val overlayOpacity: Float = 0.9f,
+    val rememberZoom: Boolean = false,
+    val lastZoomRatio: Float = 1f,
+) {
+    fun setFeedbackEnabled(enabled: Boolean): PhotoCaptureSettings {
+        return copy(
+            feedbackEnabled = enabled,
+            hapticFeedback = if (enabled) {
+                hapticFeedback.takeUnless { it == PhotoHapticFeedback.OFF }
+                    ?: PhotoHapticFeedback.STANDARD
+            } else {
+                PhotoHapticFeedback.OFF
+            },
+        )
+    }
+
+    fun setFastCaptureEnabled(enabled: Boolean): PhotoCaptureSettings {
+        return copy(
+            fastCaptureEnabled = enabled,
+            captureStrategy = if (enabled) {
+                PhotoCaptureStrategy.FAST
+            } else {
+                PhotoCaptureStrategy.BALANCED
+            },
+        )
+    }
+
+    fun setLensFacing(lensFacing: Int): PhotoCaptureSettings {
+        require(
+            lensFacing == CameraSelector.LENS_FACING_BACK ||
+                lensFacing == CameraSelector.LENS_FACING_FRONT
+        ) {
+            "Unsupported camera lens"
+        }
+
+        return copy(lensFacing = lensFacing)
+    }
+
+    fun setCaptureStrategy(strategy: PhotoCaptureStrategy): PhotoCaptureSettings {
+        return copy(
+            captureStrategy = strategy,
+            fastCaptureEnabled = strategy != PhotoCaptureStrategy.BALANCED,
+        )
+    }
+
+    fun setHapticFeedback(feedback: PhotoHapticFeedback): PhotoCaptureSettings {
+        return copy(
+            feedbackEnabled = feedback != PhotoHapticFeedback.OFF,
+            hapticFeedback = feedback,
+        )
+    }
+
+    fun setResolutionPreference(preference: PhotoResolutionPreference): PhotoCaptureSettings {
+        return copy(resolutionPreference = preference)
+    }
+
+    fun setAspectRatio(aspectRatio: PhotoAspectRatio): PhotoCaptureSettings {
+        return copy(aspectRatio = aspectRatio)
+    }
+
+    fun setFlashMode(flashMode: PhotoFlashMode): PhotoCaptureSettings {
+        return copy(flashMode = flashMode)
+    }
+
+    fun setOpticalStabilizationEnabled(enabled: Boolean): PhotoCaptureSettings {
+        return copy(opticalStabilizationEnabled = enabled)
+    }
+
+    fun setContinuousAutoFocusEnabled(enabled: Boolean): PhotoCaptureSettings {
+        return copy(continuousAutoFocusEnabled = enabled)
+    }
+
+    fun setGridLinesEnabled(enabled: Boolean): PhotoCaptureSettings {
+        return copy(gridLinesEnabled = enabled)
+    }
+
+    fun setMirrorFrontCamera(enabled: Boolean): PhotoCaptureSettings {
+        return copy(mirrorFrontCamera = enabled)
+    }
+
+    fun setShowPreviewOnLaunch(enabled: Boolean): PhotoCaptureSettings {
+        return copy(showPreviewOnLaunch = enabled)
+    }
+
+    fun setOverlayOpacity(opacity: Float): PhotoCaptureSettings {
+        return copy(overlayOpacity = opacity.coerceIn(MIN_OVERLAY_OPACITY, 1f))
+    }
+
+    fun setRememberZoom(enabled: Boolean): PhotoCaptureSettings {
+        return copy(rememberZoom = enabled)
+    }
+
+    fun setLastZoomRatio(zoomRatio: Float): PhotoCaptureSettings {
+        return copy(lastZoomRatio = zoomRatio.coerceIn(1f, MAX_ZOOM_RATIO))
+    }
+
+    fun getEffectiveCaptureStrategy(): PhotoCaptureStrategy {
+        return if (!fastCaptureEnabled && captureStrategy == PhotoCaptureStrategy.FAST) {
+            PhotoCaptureStrategy.BALANCED
+        } else {
+            captureStrategy
+        }
+    }
+
+    fun getEffectiveHapticFeedback(): PhotoHapticFeedback {
+        return if (feedbackEnabled) hapticFeedback else PhotoHapticFeedback.OFF
+    }
+
+    companion object {
+        fun getDefaultInstance() = PhotoCaptureSettings()
+
+        const val MIN_OVERLAY_OPACITY = 0.45f
+        const val MAX_ZOOM_RATIO = 20f
+    }
+}
+
+@Serializable
+enum class PhotoCaptureStrategy {
+    BALANCED,
+    FAST,
+    MOTION,
+}
+
+@Serializable
+enum class PhotoHapticFeedback {
+    OFF,
+    LIGHT,
+    STANDARD,
+}
+
+@Serializable
+enum class PhotoResolutionPreference {
+    SPEED,
+    RECOMMENDED,
+    QUALITY,
+}
+
+@Serializable
+enum class PhotoAspectRatio {
+    FOUR_THREE,
+    SIXTEEN_NINE,
+}
+
+@Serializable
+enum class PhotoFlashMode {
+    OFF,
+    AUTO,
+    ON,
 }
 
 @Serializable

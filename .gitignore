@@ -13,5 +13,6 @@
 /captures
 .externalNativeBuild
 .cxx
+graphify-out/
 local.properties
 key.properties

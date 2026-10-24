@@ -1,10 +1,9 @@
 package app.myzel394.alibi.ui.components.RecorderScreen.molecules
 
 import android.Manifest
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.InsertDriveFile
-import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +11,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import app.myzel394.alibi.R
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.ui.components.RecorderScreen.atoms.BigButton
@@ -19,7 +19,6 @@ import app.myzel394.alibi.ui.components.atoms.PermissionRequester
 import app.myzel394.alibi.ui.models.VideoRecorderModel
 import app.myzel394.alibi.ui.utils.PermissionHelper
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun VideoRecordingStart(
     videoRecorder: VideoRecorderModel,
@@ -27,7 +26,8 @@ fun VideoRecordingStart(
     onHideAudioRecording: () -> Unit,
     onShowAudioRecording: () -> Unit,
     showPreview: Boolean,
-    useLargeButtons: Boolean? = null,
+    buttonSize: Dp,
+    compactLayout: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -58,9 +58,10 @@ fun VideoRecordingStart(
         }
     ) { triggerExternalStorage ->
         BigButton(
-            label = stringResource(R.string.ui_videoRecorder_action_start_label),
-            description = stringResource(R.string.ui_videoRecorder_action_configure_label),
-            icon = Icons.Default.CameraAlt,
+            label = stringResource(R.string.recorder_home_video_label),
+            description = stringResource(R.string.recorder_home_video_subtitle),
+            accessibilityLabel = stringResource(R.string.ui_videoRecorder_action_start_label),
+            icon = Icons.Default.Videocam,
             onLongClick = {
                 if (appSettings.requiresExternalStoragePermission(context)) {
                     triggerExternalStorage()
@@ -88,7 +89,10 @@ fun VideoRecordingStart(
                     showSheet = true
                 }
             },
-            isBig = useLargeButtons,
+            widthOverride = buttonSize,
+            heightOverride = buttonSize * 1.36f,
+            primary = true,
+            compactLayout = compactLayout,
         )
     }
 }

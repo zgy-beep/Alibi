@@ -15,10 +15,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import app.myzel394.alibi.ui.theme.AlibiMotion
+import app.myzel394.alibi.ui.theme.LocalReduceMotion
 
 @Composable
 fun GlobalSwitch(
@@ -26,30 +27,33 @@ fun GlobalSwitch(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
 ) {
+    val reduceMotion = LocalReduceMotion.current
     val backgroundColor by animateColorAsState(
         targetValue = if (checked) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.secondaryContainer.copy(
             alpha = 0.2f
         ),
-        label = "backgroundColor"
+        animationSpec = AlibiMotion.state(reduceMotion),
+        label = "backgroundColor",
     )
 
     Row(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
-            .clip(MaterialTheme.shapes.extraLarge)
+            .clip(MaterialTheme.shapes.large)
             .background(
                 backgroundColor
             )
+            .semantics(mergeDescendants = true) { contentDescription = label }
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             label,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.W500,
+            style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.weight(1f),
         )
         Switch(
             colors = SwitchDefaults.colors(),

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-24T15:51:42" hostname="CHINAMI-5L2AH8O" time="0.057">
+  <properties/>
+  <testcase name="settingsWithoutPhotoSectionUseSafeDefaults" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.048"/>
+  <testcase name="fastCaptureSettingPersistsWhenDisabled" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

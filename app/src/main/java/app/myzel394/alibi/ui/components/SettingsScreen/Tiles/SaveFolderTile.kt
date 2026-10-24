@@ -2,7 +2,9 @@ package app.myzel394.alibi.ui.components.SettingsScreen.Tiles
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.DocumentsContract
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -63,6 +65,7 @@ import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.helpers.AudioBatchesFolder
 import app.myzel394.alibi.helpers.BatchesFolder
+import app.myzel394.alibi.helpers.PhotoRepository
 import app.myzel394.alibi.helpers.VideoBatchesFolder
 import app.myzel394.alibi.ui.AUDIO_RECORDING_BATCHES_SUBFOLDER_NAME
 import app.myzel394.alibi.ui.MEDIA_SUBFOLDER_NAME
@@ -79,7 +82,9 @@ import app.myzel394.alibi.ui.components.atoms.SettingsTile
 import app.myzel394.alibi.ui.effects.rememberOpenUri
 import app.myzel394.alibi.ui.utils.PermissionHelper
 import app.myzel394.alibi.ui.utils.rememberFolderSelectorDialog
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.net.URLDecoder
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,6 +92,7 @@ import java.net.URLDecoder
 fun SaveFolderTile(
     settings: AppSettings,
     snackbarHostState: SnackbarHostState,
+    enabled: Boolean = true,
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -96,43 +102,53 @@ fun SaveFolderTile(
 
     val successMessage = stringResource(R.string.ui_settings_option_saveFolder_success)
     fun updateValue(path: String?) {
-        if (path != null && path != RECORDER_MEDIA_SELECTED_VALUE) {
-            context.contentResolver.takePersistableUriPermission(
-                path.toUri(),
-                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-
-            if (!BatchesFolder.canAccessFolder(context, path.toUri())) {
-                showError = true
-
-                runCatching {
-                    context.contentResolver.releasePersistableUriPermission(
+        scope.launch {
+            if (path != null && path != RECORDER_MEDIA_SELECTED_VALUE) {
+                val canAccess = withContext(Dispatchers.IO) {
+                    context.contentResolver.takePersistableUriPermission(
                         path.toUri(),
                         Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                     )
-                }
-                return
-            }
-        }
-
-        runCatching {
-            // Clean up
-            val grantedURIs = context.contentResolver.persistedUriPermissions;
-
-            grantedURIs.forEach { permission ->
-                if (permission.uri == path?.toUri()) {
-                    return@forEach
+                    BatchesFolder.canAccessFolder(context, path.toUri())
                 }
 
-                context.contentResolver.releasePersistableUriPermission(
-                    permission.uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
-            }
-        }
+                if (!canAccess) {
+                    showError = true
 
-        scope.launch {
+                    withContext(Dispatchers.IO) {
+                        runCatching {
+                            context.contentResolver.releasePersistableUriPermission(
+                                path.toUri(),
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                            )
+                        }
+                    }
+                    return@launch
+                }
+            }
+
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    val grantedURIs = context.contentResolver.persistedUriPermissions
+
+                    grantedURIs.forEach { permission ->
+                        if (permission.uri == path?.toUri()) {
+                            return@forEach
+                        }
+                        if (isFolderUsedByPhotoHistory(context, permission.uri)) {
+                            return@forEach
+                        }
+
+                        context.contentResolver.releasePersistableUriPermission(
+                            permission.uri,
+                            Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                                Intent.FLAG_GRANT_WRITE_URI_PERMISSION,
+                        )
+                    }
+                }
+            }
+
             dataStore.updateData {
                 it.setSaveFolder(path)
             }
@@ -239,6 +255,7 @@ fun SaveFolderTile(
                         selectionVisible = true
                     }
                 },
+                enabled = enabled,
                 colors = ButtonDefaults.filledTonalButtonColors(
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 ),
@@ -691,4 +708,19 @@ fun splitPath(path: String): List<String> {
     } catch (e: Exception) {
         listOf(path)
     }
+}
+
+private suspend fun isFolderUsedByPhotoHistory(
+    context: android.content.Context,
+    treeUri: Uri,
+): Boolean {
+    return runCatching {
+        val treeDocumentId = DocumentsContract.getTreeDocumentId(treeUri)
+        PhotoRepository(context).records().any { record ->
+            val documentId = runCatching {
+                DocumentsContract.getDocumentId(record.uri.toUri())
+            }.getOrNull() ?: return@any false
+            documentId == treeDocumentId || documentId.startsWith("$treeDocumentId/")
+        }
+    }.getOrDefault(false)
 }

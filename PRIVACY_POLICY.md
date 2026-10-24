@@ -6,7 +6,7 @@ This Privacy Policy governs the use of the application ("Alibi"). Please read th
 
 2. DATA COLLECTION AND USE
 
-Currently, the App does not collect any personal data because it does not have a network connection. However, this may change in the future. If we decide to collect data, we will update this Privacy Policy accordingly and it is your responsibility to review this Privacy Policy periodically.
+Currently, the App does not collect any personal data because it does not have a network connection. Audio recordings, video recordings, and photos are stored locally on the device in the location selected by the user. However, this may change in the future. If we decide to collect data, we will update this Privacy Policy accordingly and it is your responsibility to review this Privacy Policy periodically.
 
 3. LOG DATA
 

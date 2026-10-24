@@ -1,0 +1,89 @@
+Configuration on demand is an incubating feature.
+
+> Task :app:dependencyInsight
+androidx.compose.material3:material3:1.3.0
+  Variant releaseRuntimeElements-published:
+    | Attribute Name                                  | Provided     | Requested    |
+    |-------------------------------------------------|--------------|--------------|
+    | org.gradle.status                               | release      |              |
+    | org.gradle.category                             | library      | library      |
+    | org.gradle.usage                                | java-runtime | java-runtime |
+    | org.jetbrains.kotlin.platform.type              | androidJvm   | androidJvm   |
+    | com.android.build.api.attributes.AgpVersionAttr |              | 8.3.0        |
+    | com.android.build.api.attributes.BuildTypeAttr  |              | debug        |
+    | org.gradle.jvm.environment                      |              | android      |
+   Selection reasons:
+      - By constraint
+      - By conflict resolution: between versions 1.3.0 and 1.2.1
+
+androidx.compose.material3:material3:1.3.0
+\--- androidx.compose:compose-bom:2024.09.00
+     +--- debugRuntimeClasspath
+     +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+     |    \--- debugRuntimeClasspath
+     +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+     |    \--- debugRuntimeClasspath
+     +--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+     |    \--- debugRuntimeClasspath
+     \--- com.maxkeppeler.sheets-compose-dialogs:core:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+          +--- debugRuntimeClasspath
+          +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (*)
+          +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (*)
+          \--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (*)
+
+androidx.compose.material3:material3 -> 1.3.0
++--- com.maxkeppeler.sheets-compose-dialogs:core:1.2.0
+|    +--- debugRuntimeClasspath
+|    +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0
+|    |    \--- debugRuntimeClasspath
+|    +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0
+|    |    \--- debugRuntimeClasspath
+|    \--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0
+|         \--- debugRuntimeClasspath
++--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (*)
++--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (*)
+\--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (*)
+
+androidx.compose.material3:material3:1.2.1 -> 1.3.0
+\--- debugRuntimeClasspath
+
+androidx.compose.material3:material3-android:1.3.0 (by constraint)
+  Variant releaseRuntimeElements-published:
+    | Attribute Name                                  | Provided     | Requested    |
+    |-------------------------------------------------|--------------|--------------|
+    | org.gradle.status                               | release      |              |
+    | org.gradle.category                             | library      | library      |
+    | org.gradle.usage                                | java-runtime | java-runtime |
+    | org.jetbrains.kotlin.platform.type              | androidJvm   | androidJvm   |
+    | com.android.build.api.attributes.AgpVersionAttr |              | 8.3.0        |
+    | com.android.build.api.attributes.BuildTypeAttr  |              | debug        |
+    | org.gradle.jvm.environment                      |              | android      |
+
+androidx.compose.material3:material3-android:1.3.0
++--- androidx.compose:compose-bom:2024.09.00
+|    +--- debugRuntimeClasspath
+|    +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+|    |    \--- debugRuntimeClasspath
+|    +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+|    |    \--- debugRuntimeClasspath
+|    +--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+|    |    \--- debugRuntimeClasspath
+|    \--- com.maxkeppeler.sheets-compose-dialogs:core:1.2.0 (requested androidx.compose:compose-bom:2023.05.01)
+|         +--- debugRuntimeClasspath
+|         +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (*)
+|         +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (*)
+|         \--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (*)
+\--- androidx.compose.material3:material3:1.3.0
+     +--- debugRuntimeClasspath (requested androidx.compose.material3:material3:1.2.1)
+     +--- com.maxkeppeler.sheets-compose-dialogs:duration:1.2.0 (requested androidx.compose.material3:material3) (*)
+     +--- com.maxkeppeler.sheets-compose-dialogs:list:1.2.0 (requested androidx.compose.material3:material3) (*)
+     +--- com.maxkeppeler.sheets-compose-dialogs:input:1.2.0 (requested androidx.compose.material3:material3) (*)
+     +--- com.maxkeppeler.sheets-compose-dialogs:core:1.2.0 (requested androidx.compose.material3:material3) (*)
+     \--- androidx.compose:compose-bom:2024.09.00 (*)
+
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 executed

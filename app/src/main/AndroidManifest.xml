@@ -19,11 +19,12 @@
         android:maxSdkVersion="30" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
@@ -74,6 +75,20 @@
         <service
             android:name=".services.VideoRecorderService"
             android:foregroundServiceType="camera|microphone" />
+        <service
+            android:name=".services.PhotoCaptureService"
+            android:exported="false"
+            android:foregroundServiceType="camera" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/photo_file_paths" />
+        </provider>
 
         <!-- Change locale for Android <= 12 -->
         <service

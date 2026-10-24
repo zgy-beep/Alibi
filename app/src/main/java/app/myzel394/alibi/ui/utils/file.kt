@@ -6,36 +6,60 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
+
+sealed interface FileSaveResult {
+    data class Success(val uri: Uri) : FileSaveResult
+    data object Cancelled : FileSaveResult
+    data class Failure(val error: Throwable) : FileSaveResult
+}
 
 @Composable
 fun rememberFileSaverDialog(
     mimeType: String,
-    callback: (Uri?) -> Unit = {},
+    callback: (FileSaveResult) -> Unit = {},
 ): ((File, String) -> Unit) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     var file = remember { mutableStateOf<File?>(null) }
 
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument(mimeType)) {
-            it?.let {
-                context.contentResolver.openOutputStream(it)?.use { outputStream ->
-                    file.value!!.inputStream().use { inputStream ->
-                        inputStream.copyTo(outputStream)
-                    }
-                }
-            }
-
+            val source = file.value
             file.value = null
 
-            callback(it)
+            when {
+                it == null -> callback(FileSaveResult.Cancelled)
+                source == null -> callback(
+                    FileSaveResult.Failure(IllegalStateException("Export source is unavailable"))
+                )
+
+                else -> scope.launch {
+                    val result = withContext(Dispatchers.IO) {
+                        try {
+                            context.contentResolver.openOutputStream(it)?.use { outputStream ->
+                                source.inputStream().use { inputStream ->
+                                    inputStream.copyTo(outputStream)
+                                }
+                            } ?: throw IllegalStateException("Could not open the export destination")
+                            FileSaveResult.Success(it)
+                        } catch (error: Exception) {
+                            FileSaveResult.Failure(error)
+                        }
+                    }
+                    callback(result)
+                }
+            }
         }
 
     return { it, name ->

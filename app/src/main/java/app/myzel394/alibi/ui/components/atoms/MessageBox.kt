@@ -17,9 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import app.myzel394.alibi.ui.utils.rememberIsInDarkMode
+import app.myzel394.alibi.ui.theme.LocalAlibiExtendedColors
 
 
 @Composable
@@ -30,40 +29,23 @@ fun MessageBox(
     title: String? = null,
     density: VisualDensity = VisualDensity.COMFORTABLE,
 ) {
-    val isDark = rememberIsInDarkMode()
-    val containerColorDarkMode = when (type) {
+    val extendedColors = LocalAlibiExtendedColors.current
+    val backgroundColor = when (type) {
         MessageType.ERROR -> MaterialTheme.colorScheme.errorContainer
         MessageType.INFO -> MaterialTheme.colorScheme.tertiaryContainer
-        MessageType.SUCCESS -> Color.Green.copy(alpha = 0.3f)
-        MessageType.WARNING -> Color.Yellow.copy(alpha = 0.3f)
+        MessageType.SUCCESS -> extendedColors.successContainer
+        MessageType.WARNING -> extendedColors.warningContainer
         MessageType.SURFACE -> MaterialTheme.colorScheme.surfaceVariant
     }
-    val onContainerColorDarkMode = when (type) {
+    val textColor = when (type) {
         MessageType.ERROR -> MaterialTheme.colorScheme.onErrorContainer
         MessageType.INFO -> MaterialTheme.colorScheme.onTertiaryContainer
-        MessageType.SUCCESS -> Color.Green
-        MessageType.WARNING -> Color.Yellow
+        MessageType.SUCCESS -> extendedColors.onSuccessContainer
+        MessageType.WARNING -> extendedColors.onWarningContainer
         MessageType.SURFACE -> MaterialTheme.colorScheme.onSurfaceVariant
     }
-    val containerColorLightMode = when (type) {
-        MessageType.ERROR -> MaterialTheme.colorScheme.errorContainer
-        MessageType.INFO -> MaterialTheme.colorScheme.tertiaryContainer
-        MessageType.SUCCESS -> Color.Green
-        MessageType.WARNING -> Color.Yellow
-        MessageType.SURFACE -> MaterialTheme.colorScheme.onSurfaceVariant
-    }
-    val onContainerColorLightMode = when (type) {
-        MessageType.ERROR -> MaterialTheme.colorScheme.onErrorContainer
-        MessageType.INFO -> MaterialTheme.colorScheme.onTertiaryContainer
-        MessageType.SUCCESS -> MaterialTheme.colorScheme.onSurface
-        MessageType.WARNING -> MaterialTheme.colorScheme.onSurface
-        MessageType.SURFACE -> MaterialTheme.colorScheme.surfaceVariant
-    }
-    val textColor = if (isDark) onContainerColorDarkMode else onContainerColorLightMode
-    val backgroundColor = if (isDark) containerColorDarkMode else containerColorLightMode
 
     Row(
-        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .clip(MaterialTheme.shapes.medium)
             .background(backgroundColor)
@@ -74,7 +56,8 @@ fun MessageBox(
                     VisualDensity.COMPACT -> it.padding(8.dp)
                 }
             }
-            .then(modifier)
+            .then(modifier),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         if (density == VisualDensity.COMFORTABLE || density == VisualDensity.DENSE) {
             Icon(

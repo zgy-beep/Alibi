@@ -12,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import app.myzel394.alibi.R
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.ui.components.RecorderScreen.atoms.BigButton
@@ -22,7 +23,8 @@ import app.myzel394.alibi.ui.models.AudioRecorderModel
 fun AudioRecordingStart(
     audioRecorder: AudioRecorderModel,
     appSettings: AppSettings,
-    useLargeButtons: Boolean? = null,
+    buttonSize: Dp,
+    compactLayout: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -57,10 +59,14 @@ fun AudioRecordingStart(
             }
         ) { triggerRecordAudio ->
             BigButton(
-                label = stringResource(R.string.ui_audioRecorder_action_start_label),
+                label = stringResource(R.string.recorder_home_audio_label),
+                description = stringResource(R.string.recorder_home_audio_subtitle),
+                accessibilityLabel = stringResource(R.string.ui_audioRecorder_action_start_label),
                 icon = Icons.Default.Mic,
                 onClick = triggerRecordAudio,
-                isBig = useLargeButtons,
+                widthOverride = buttonSize,
+                heightOverride = buttonSize * 1.36f,
+                compactLayout = compactLayout,
             )
         }
     }

@@ -31,6 +31,9 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
@@ -49,11 +52,13 @@ class VideoRecorderService :
     private var activeRecording: Recording? = null
 
     // Used to listen and check if the camera is available
-    private var _cameraAvailableListener = CompletableDeferred<Unit>()
-    private lateinit var _videoFinalizerListener: CompletableDeferred<Unit>;
+    private val _cameraAvailableListener = CompletableDeferred<Unit>()
+    private var _videoFinalizerListener: CompletableDeferred<Unit>? = null
+    private var cameraReady = false
+    private var pendingCycleStart = false
 
     // Absolute last completer that can be awaited to ensure that the camera is closed
-    private var _cameraCloserListener = CompletableDeferred<Unit>()
+    private var _cameraCloserListener: CompletableDeferred<Unit>? = null
 
     private lateinit var selectedCamera: CameraSelector
     private var enableAudio by Delegates.notNull<Boolean>()
@@ -88,14 +93,14 @@ class VideoRecorderService :
         stopActiveRecording()
 
         // Camera can only be closed after the recording has been finalized
-        withTimeoutOrNull(CAMERA_CLOSE_TIMEOUT) {
-            _videoFinalizerListener.await()
+        _videoFinalizerListener?.let { finalizer ->
+            withTimeoutOrNull(CAMERA_CLOSE_TIMEOUT) { finalizer.await() }
         }
 
         closeCamera()
 
-        withTimeoutOrNull(CAMERA_CLOSE_TIMEOUT) {
-            _cameraCloserListener.await()
+        _cameraCloserListener?.let { closer ->
+            withTimeoutOrNull(CAMERA_CLOSE_TIMEOUT) { closer.await() }
         }
     }
 
@@ -123,31 +128,36 @@ class VideoRecorderService :
 
     @SuppressLint("MissingPermission")
     override fun startNewCycle() {
+        if (!cameraReady) {
+            pendingCycleStart = true
+            return
+        }
+
         super.startNewCycle()
 
         fun action() {
-            stopActiveRecording()
-            val newRecording = prepareVideoRecording()
+            try {
+                stopActiveRecording()
+                val newRecording = prepareVideoRecording()
+                val finalizer = CompletableDeferred<Unit>()
+                _videoFinalizerListener = finalizer
 
-            _videoFinalizerListener = CompletableDeferred()
-
-            activeRecording = newRecording.start(ContextCompat.getMainExecutor(this)) { event ->
-                if (event is VideoRecordEvent.Finalize && (this@VideoRecorderService.state == RecorderState.STOPPED || this@VideoRecorderService.state == RecorderState.PAUSED)) {
-                    _videoFinalizerListener.complete(Unit)
+                activeRecording = newRecording.start(ContextCompat.getMainExecutor(this)) { event ->
+                    if (event is VideoRecordEvent.Finalize &&
+                        (
+                            this@VideoRecorderService.state == RecorderState.STOPPED ||
+                                this@VideoRecorderService.state == RecorderState.PAUSED
+                            )
+                    ) {
+                        finalizer.complete(Unit)
+                    }
                 }
+            } catch (error: Exception) {
+                onError()
             }
         }
 
-        if (_cameraAvailableListener.isCompleted) {
-            action()
-        } else {
-            // Race condition of `startNewCycle` being called before `invokeOnCompletion`
-            // has been called can be ignored, as the camera usually opens within 5 seconds
-            // and the interval can't be set shorter than 10 seconds.
-            _cameraAvailableListener.invokeOnCompletion {
-                action()
-            }
-        }
+        action()
     }
 
 
@@ -183,30 +193,50 @@ class VideoRecorderService :
     // Used to open it for a longer time, shouldn't be called when pausing / resuming.
     // This should only be called when starting a recording.
     private suspend fun openCamera() {
-        cameraProvider = withContext(Dispatchers.IO) {
-            ProcessCameraProvider.getInstance(this@VideoRecorderService).get()
-        }
-
-        val recorder = buildRecorder()
-        videoCapture = buildVideoCapture(recorder)
-
-        runOnMain {
-            try {
-                camera = cameraProvider!!.bindToLifecycle(
-                    this,
-                    selectedCamera,
-                    videoCapture
-                )
-
-                cameraControl = CameraControl(camera!!).also {
-                    it.init()
-                }
-                onCameraControlAvailable()
-
-                _cameraAvailableListener.complete(Unit)
-            } catch (error: IllegalArgumentException) {
-                onError()
+        try {
+            val provider = withContext(Dispatchers.IO) {
+                ProcessCameraProvider.getInstance(this@VideoRecorderService).get()
             }
+            currentCoroutineContext().ensureActive()
+            if (state == RecorderState.STOPPED) {
+                return
+            }
+            cameraProvider = provider
+            val recorder = buildRecorder()
+            val capture = buildVideoCapture(recorder)
+            videoCapture = capture
+
+            runOnMain {
+                if (state == RecorderState.STOPPED || cameraProvider == null) {
+                    return@runOnMain
+                }
+                try {
+                    _cameraCloserListener = CompletableDeferred()
+                    camera = cameraProvider!!.bindToLifecycle(
+                        this,
+                        selectedCamera,
+                        capture,
+                    )
+
+                    cameraControl = CameraControl(camera!!).also {
+                        it.init()
+                    }
+                    cameraReady = true
+                    onCameraControlAvailable()
+
+                    if (!_cameraAvailableListener.isCompleted) {
+                        _cameraAvailableListener.complete(Unit)
+                    }
+                    if (pendingCycleStart) {
+                        pendingCycleStart = false
+                        startNewCycle()
+                    }
+                } catch (error: Exception) {
+                    onError()
+                }
+            }
+        } catch (error: Exception) {
+            onError()
         }
     }
 
@@ -215,10 +245,14 @@ class VideoRecorderService :
     // This should only be called after recording has finished.
     private fun closeCamera() {
         runOnMain {
+            val capture = videoCapture
             runCatching {
-                cameraProvider?.unbindAll()
+                if (capture != null) {
+                    cameraProvider?.unbind(capture)
+                }
             }
-            _cameraCloserListener.complete(Unit)
+            _cameraCloserListener?.complete(Unit)
+            _cameraCloserListener = null
 
             // Doesn't need to run on main thread, but
             // if it runs outside `runOnMain`, `cameraProvider` is already null
@@ -226,7 +260,17 @@ class VideoRecorderService :
             cameraProvider = null
             videoCapture = null
             camera = null
+            cameraReady = false
+            pendingCycleStart = false
         }
+    }
+
+    override fun onDestroy() {
+        stopActiveRecording()
+        _videoFinalizerListener?.complete(Unit)
+        _cameraCloserListener?.complete(Unit)
+        scope.cancel()
+        super.onDestroy()
     }
 
     // `resume` override not needed as `startNewCycle` is called by `IntervalRecorderService`

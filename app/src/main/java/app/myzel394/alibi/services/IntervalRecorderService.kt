@@ -16,7 +16,7 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
 
     lateinit var settings: AppSettings
 
-    private lateinit var cycleTimer: ScheduledExecutorService
+    private var cycleTimer: ScheduledExecutorService? = null
 
     abstract var batchesFolder: B
 
@@ -48,8 +48,9 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
     }
 
     private fun createTimer() {
+        cycleTimer?.shutdownNow()
         cycleTimer = Executors.newSingleThreadScheduledExecutor().also {
-            it.scheduleAtFixedRate(
+            it.scheduleWithFixedDelay(
                 ::startNewCycle,
                 0,
                 settings.intervalDuration,
@@ -74,7 +75,7 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
 
     override fun pause() {
         super.pause()
-        cycleTimer.shutdown()
+        stopCycleTimer()
     }
 
     override fun resume() {
@@ -83,9 +84,19 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
     }
 
     override suspend fun stop() {
-        cycleTimer.shutdown()
+        stopCycleTimer()
         batchesFolder.cleanup()
         super.stop()
+    }
+
+    override fun onDestroy() {
+        stopCycleTimer()
+        super.onDestroy()
+    }
+
+    private fun stopCycleTimer() {
+        cycleTimer?.shutdownNow()
+        cycleTimer = null
     }
 
     fun clearAllRecordings() {
