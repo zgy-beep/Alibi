@@ -1,48 +1,141 @@
-![Alibi, Witness every moment](readme_content/banner.webp)
+![Alibi, witness every moment](readme_content/banner.webp)
 
 # Alibi
 
-<p float="left" align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.webp" width="30%" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.webp" width="30%" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.webp" width="30%" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.webp" width="30%" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.webp" width="30%" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.webp" width="30%" />
-</p>
+[![Latest release](https://img.shields.io/github/v/release/zgy-beep/Alibi?label=latest%20release)](https://github.com/zgy-beep/Alibi/releases/latest)
+![Android 7.0+](https://img.shields.io/badge/Android-7.0%2B-3DDC84)
+![License GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)
 
-Alibi keeps recording audio/video in the background and saves the last 30 minutes at your request.
-Everything is completely configurable. No internet connection required.
+Alibi is a local-first audio, video, and photo recorder for Android. It can keep
+recording in the background and save the last configured time window at your
+request. New photo capture modes work from a dark screen or a floating shutter
+while another app is open.
 
-Alibi can also take still photos from a dark touch screen or from a small floating
-shutter while you use another app. Photos stay on the device.
+The app has no internet permission. Recordings, photos, settings, and indexes
+remain on the device.
 
-# Download
+## Current interface
+
+| Home | Photo capture settings |
+| --- | --- |
+| <img src="docs/evidence/home-api36.png" alt="Alibi home screen" width="100%" /> | <img src="docs/evidence/fast-capture-setup-api36.png" alt="Alibi camera settings" width="100%" /> |
+
+| Black screen shutter | Partial camera reveal |
+| --- | --- |
+| <img src="docs/evidence/black-screen-api36.png" alt="Alibi black screen shutter" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
+
+## Features
+
+### Background recording
+
+- Continuous audio and video recording
+- Configurable rolling duration and segment interval
+- Save the last recording window on demand
+- Background foreground-service notifications
+- Custom save locations and filename formats
+
+### Photo capture
+
+- Black screen shutter with tap-to-capture
+- Floating shutter over other apps
+- Continuous tapping with a bounded capture queue
+- Capture only after the camera is ready
+- Successful-capture vibration with short feedback profiles
+- Recent photos, open, share, and storage recovery
+
+### Camera controls
+
+- Balanced, fast, and motion capture strategies
+- Zero shutter lag, optical stabilization, and continuous autofocus when the
+  device supports them
+- Speed, recommended, and quality resolution preferences
+- 4:3 and 16:9 frames
+- Flash, rule-of-thirds grid, launch preview, zoom memory, and front-camera
+  mirroring
+- Floating shutter opacity
+
+### Interface
+
+- Material 3 theming with dynamic color
+- System, light, and dark appearance
+- Reduced-motion support
+- Responsive layouts for compact screens
+
+## Download
 
 Download the latest signed universal APK from
 [GitHub Releases](https://github.com/zgy-beep/Alibi/releases/latest).
 
-This fork uses the independent Android application ID `com.zgybeep.alibi`.
-It can be installed alongside an upstream Alibi release.
-[<img src="readme_content/github-badge.webp" alt="Get it on GitHub" height="80">](https://github.com/Myzel394/Alibi/releases)
+The package ID of this fork is:
 
-# Supporting Alibi
+```text
+com.zgybeep.alibi
+```
 
-You can support Alibi in various ways:
+Debug builds use `com.zgybeep.alibi.debug`. The fork can be installed alongside
+the upstream `app.myzel394.alibi` application and does not share its private app
+data.
 
-## Contribute to the project
+To install:
 
-Add a new feature or fix bugs.
+1. Download `app-universal-release.apk` from the latest GitHub Release.
+2. Allow installation from the browser or file manager when Android asks.
+3. Open Alibi and grant the permissions needed for the features you use.
 
-## Add translations
+Supported ABIs: `arm64-v8a`, `armeabi-v7a`, `x86`, and `x86_64`.
 
-[Translate Alibi into your language using Crowdin](https://crowdin.com/project/alibi), so that other
-people can use it more easily.
+## Updates and compatibility
 
-## Donate
+- Release APKs are signed with the dedicated Alibi Release certificate.
+- Future releases must use the same signing certificate to update an installed
+  fork build.
+- Debug and release packages have different application IDs and can be
+  installed independently.
+- The fork does not replace or upgrade an upstream Alibi installation.
+- Removing the app may delete app-private recordings. Export important files
+  before uninstalling or clearing app data.
 
-It might sound crazy, but if you would just donate $ 1, it would totally mean the world to me, since
-it's a really small amount and if everyone did that, I could focus on Alibi and my other open
-source projects. :)
+## Build from source
 
-You can donate via [GitHub Sponsors](https://github.com/sponsors/Myzel394) or via [crypto currencies](https://github.com/Myzel394/contact-me?tab=readme-ov-file#donations).
+Requirements:
+
+- JDK 17 or newer
+- Android SDK 36
+- Build Tools 36.1.0
+
+Build the debug APK:
+
+```powershell
+.\gradlew.bat :app:assembleDebug
+```
+
+Build a release APK:
+
+```powershell
+.\gradlew.bat :app:assembleRelease
+```
+
+Release signing is configured through the ignored `key.properties` file. The
+keystore and passwords must never be committed to this repository.
+
+Run the JVM tests:
+
+```powershell
+.\gradlew.bat :app:testDebugUnitTest
+```
+
+## Privacy
+
+Alibi does not declare the Android internet permission. Media and indexes are
+stored locally at the locations you choose. Read the complete
+[privacy policy](PRIVACY_POLICY.md).
+
+## License and upstream
+
+Alibi is licensed under the
+[GNU General Public License v3.0](LICENSE). This repository is an independent
+fork of [Myzel394/Alibi](https://github.com/Myzel394/Alibi).
+
+Translations can be contributed through
+[Crowdin](https://crowdin.com/project/alibi). Upstream development can be
+supported through [GitHub Sponsors](https://github.com/sponsors/Myzel394).
