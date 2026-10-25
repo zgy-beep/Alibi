@@ -36,6 +36,8 @@ import app.myzel394.alibi.db.NotificationSettings
 import app.myzel394.alibi.ui.components.CustomRecordingNotificationsScreen.atoms.LandingElement
 import app.myzel394.alibi.ui.components.CustomRecordingNotificationsScreen.organisms.NotificationEditor
 import app.myzel394.alibi.ui.components.atoms.RotateDeviceToPortrait
+import app.myzel394.alibi.ui.components.atoms.TitleWithRunningStatus
+import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,10 +45,6 @@ import kotlinx.coroutines.launch
 fun CustomRecordingNotificationsScreen(
     onBackNavigate: () -> Unit
 ) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
-        rememberTopAppBarState()
-    )
-
     val dataStore = LocalContext.current.dataStore
     val settings = dataStore
         .data
@@ -65,24 +63,11 @@ fun CustomRecordingNotificationsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(stringResource(R.string.ui_settings_option_customNotification_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackNavigate) {
-                        val label = stringResource(R.string.goBack)
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = label,
-                        )
-                    }
-                },
-                scrollBehavior = scrollBehavior,
+            AlibiTopAppBar(
+                title = stringResource(R.string.ui_settings_option_customNotification_title),
+                onBack = onBackNavigate,
             )
         },
-        modifier = Modifier
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { padding ->
         val orientation = LocalConfiguration.current.orientation
 

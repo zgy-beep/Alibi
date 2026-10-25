@@ -18,11 +18,11 @@ remain on the device.
 
 | Home | Photo capture settings |
 | --- | --- |
-| <img src="docs/evidence/home-api36.png" alt="Alibi home screen" width="100%" /> | <img src="docs/evidence/fast-capture-setup-api36.png" alt="Alibi camera settings" width="100%" /> |
+| <img src="docs/evidence/ui-rework-2026-10-25/home-final.png" alt="Alibi home screen" width="100%" /> | <img src="docs/evidence/ui-rework-2026-10-25/photo-setup.png" alt="Alibi camera setup" width="100%" /> |
 
 | Black screen shutter | Partial camera reveal |
 | --- | --- |
-| <img src="docs/evidence/black-screen-api36.png" alt="Alibi black screen shutter" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
+| <img src="docs/evidence/ui-rework-2026-10-25/black-capture.png" alt="Alibi black screen shutter" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
 
 ## Features
 
@@ -42,6 +42,8 @@ remain on the device.
 - Capture only after the camera is ready
 - Successful-capture vibration with short feedback profiles
 - Recent photos, open, share, and storage recovery
+- Launcher shortcuts for immediate background audio recording and floating
+  photo capture
 
 ### Camera controls
 
@@ -56,10 +58,12 @@ remain on the device.
 
 ### Interface
 
-- Material 3 theming with dynamic color
+- Material 3 Expressive direction with dynamic color and shared surface tokens
 - System, light, and dark appearance
 - Reduced-motion support
-- Responsive layouts for compact screens
+- Full-width vertical home actions on compact and wide screens
+- Green running indicator in app title bars whenever recording or photo capture
+  is active
 
 ## Download
 

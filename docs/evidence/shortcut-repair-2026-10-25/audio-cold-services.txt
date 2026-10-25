@@ -1,0 +1,41 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 0 active services:
+  * ServiceRecord{5bc5af7 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService c:com.zgybeep.alibi.debug}
+    intent={act=init cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService}
+    packageName=com.zgybeep.alibi.debug
+    processName=com.zgybeep.alibi.debug
+    targetSdkVersion=34
+    baseDir=/data/app/~~WXE1nhquBtS1KRTJoonwGQ==/com.zgybeep.alibi.debug-yNkS1tqRDZ6UBJmK4iSzLw==/base.apk
+    dataDir=/data/user/0/com.zgybeep.alibi.debug
+    app=ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=com.zgybeep.alibi.debug
+    recentCallingUid=10220
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: com.zgybeep.alibi.debug; callingUid: 10220; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=0x00000080 foregroundNoti=Notification(channel=recorder shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|ONLY_ALERT_ONCE|NO_CLEAR|FOREGROUND_SERVICE|SILENT color=0x00000000 category=service actions=1 vis=PRIVATE)
+    createTime=-4s526ms startingBgTimeout=--
+    lastActivity=-4s182ms restartTime=-4s525ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
+ startCommandResult=1
+    Bindings:
+    * IntentBindRecord{6c902f9}:
+      intent={act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService}
+      binder=android.os.BinderProxy@814523e
+      requested=true received=true hasBound=false doRebind=false

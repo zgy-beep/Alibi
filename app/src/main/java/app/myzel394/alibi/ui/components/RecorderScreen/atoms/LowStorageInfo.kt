@@ -55,18 +55,20 @@ fun LowStorageInfo(
         appSettings.maxDuration,
     ) {
         value = withContext(Dispatchers.IO) {
-            val availableBytes = VideoBatchesFolder
-                .importFromFolder(appSettings.saveFolder, context)
-                .getAvailableBytes()
-                ?: return@withContext null
-            val requiredBytes =
-                appSettings.maxDuration / 1000 / 60 *
-                    BatchesFolder.requiredBytesForOneMinuteOfRecording(appSettings)
+            runCatching {
+                val availableBytes = VideoBatchesFolder
+                    .importFromFolder(appSettings.saveFolder, context)
+                    .getAvailableBytes()
+                    ?: return@runCatching null
+                val requiredBytes =
+                    appSettings.maxDuration / 1000 / 60 *
+                        BatchesFolder.requiredBytesForOneMinuteOfRecording(appSettings)
 
-            StorageWarningState(
-                isLow = availableBytes < requiredBytes * 1.1,
-                usesInternalFolder = appSettings.saveFolder == null,
-            )
+                StorageWarningState(
+                    isLow = availableBytes < requiredBytes * 1.1,
+                    usesInternalFolder = appSettings.saveFolder == null,
+                )
+            }.getOrNull()
         }
     }
 

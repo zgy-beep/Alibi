@@ -1,0 +1,24 @@
+files:
+total 48
+drwxrwx--x 5 u0_a217 u0_a217 4096 2026-10-25 01:52 .
+drwx------ 6 u0_a217 u0_a217 4096 2026-10-25 01:51 ..
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:52 .audio_recordings
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:51 photo_pending
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:51 photos
+-rw------- 1 u0_a217 u0_a217   24 2026-10-25 01:51 profileInstalled
+
+files/.audio_recordings:
+total 128
+drwx------ 2 u0_a217 u0_a217   4096 2026-10-25 01:52 .
+drwxrwx--x 5 u0_a217 u0_a217   4096 2026-10-25 01:52 ..
+-rw------- 1 u0_a217 u0_a217 106779 2026-10-25 01:53 1.aac
+
+files/photo_pending:
+total 16
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:51 .
+drwxrwx--x 5 u0_a217 u0_a217 4096 2026-10-25 01:52 ..
+
+files/photos:
+total 16
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:51 .
+drwxrwx--x 5 u0_a217 u0_a217 4096 2026-10-25 01:52 ..

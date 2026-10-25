@@ -1,0 +1,7 @@
+Starting: Intent { act=com.zgybeep.alibi.debug.shortcut.TAKE_PHOTO flg=0x1000c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity
+TotalTime: 2810
+WaitTime: 2817
+Complete

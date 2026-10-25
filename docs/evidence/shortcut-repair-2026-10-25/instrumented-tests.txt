@@ -1,0 +1,8 @@
+
+app.myzel394.alibi.ExampleInstrumentedTest:...
+
+Time: 3.977
+
+OK (3 tests)
+
+

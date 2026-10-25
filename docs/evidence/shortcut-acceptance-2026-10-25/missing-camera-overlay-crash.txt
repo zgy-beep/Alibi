@@ -1,0 +1,40 @@
+--------- beginning of crash
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: FATAL EXCEPTION: main
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: Process: com.zgybeep.alibi.debug, PID: 4727
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: java.lang.RuntimeException: Unable to start activity ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity}: java.lang.IllegalArgumentException: Manifest shortcut ID=background_photo_capture may not be manipulated via APIs
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:4280)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4467)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:222)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2823)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:338)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: Caused by: java.lang.IllegalArgumentException: Manifest shortcut ID=background_photo_capture may not be manipulated via APIs
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3344)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Parcel.createException(Parcel.java:3324)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Parcel.readException(Parcel.java:3307)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.os.Parcel.readException(Parcel.java:3249)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.content.pm.IShortcutService$Stub$Proxy.setDynamicShortcuts(IShortcutService.java:599)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.content.pm.ShortcutManager.setDynamicShortcuts(ShortcutManager.java:149)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at androidx.core.content.pm.ShortcutManagerCompat.setDynamicShortcuts(ShortcutManagerCompat.java:474)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at app.myzel394.alibi.AppShortcuts.update(AppShortcuts.kt:35)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at app.myzel394.alibi.MainActivity.onCreate(MainActivity.kt:35)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.Activity.performCreate(Activity.java:9155)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.Activity.performCreate(Activity.java:9133)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1521)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:4262)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	... 13 more
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: Caused by: android.os.RemoteException: Remote stack trace:
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.server.pm.ShortcutPackage.ensureNotImmutable(ShortcutPackage.java:264)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.server.pm.ShortcutPackage.ensureNotImmutable(ShortcutPackage.java:270)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.server.pm.ShortcutPackage.ensureImmutableShortcutsNotIncluded(ShortcutPackage.java:283)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at com.android.server.pm.ShortcutService.setDynamicShortcuts(ShortcutService.java:2047)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 	at android.content.pm.IShortcutService$Stub.onTransact(IShortcutService.java:271)
+10-25 01:52:46.373  4727  4727 E AndroidRuntime: 

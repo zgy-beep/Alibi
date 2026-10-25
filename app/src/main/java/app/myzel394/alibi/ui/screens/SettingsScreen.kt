@@ -59,6 +59,7 @@ import app.myzel394.alibi.ui.components.SettingsScreen.atoms.ThemeSelector
 import app.myzel394.alibi.ui.components.atoms.GlobalSwitch
 import app.myzel394.alibi.ui.components.atoms.MessageBox
 import app.myzel394.alibi.ui.components.atoms.MessageType
+import app.myzel394.alibi.ui.components.atoms.TitleWithRunningStatus
 import app.myzel394.alibi.ui.effects.rememberSettings
 import app.myzel394.alibi.ui.models.AudioRecorderModel
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
@@ -100,7 +101,7 @@ fun SettingsScreen(
         topBar = {
             LargeTopAppBar(
                 title = {
-                    Text(stringResource(R.string.ui_settings_title))
+                    TitleWithRunningStatus(stringResource(R.string.ui_settings_title))
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackNavigate) {

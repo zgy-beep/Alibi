@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="app.myzel394.alibi.ExampleUnitTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T06:03:10" hostname="CHINAMI-5L2AH8O" time="0.001">
+  <properties/>
+  <testcase name="debugApplicationIdentityIsIndependent" classname="app.myzel394.alibi.ExampleUnitTest" time="0.0"/>
+  <testcase name="shortcutActionsUseTheCurrentApplicationIdentity" classname="app.myzel394.alibi.ExampleUnitTest" time="0.001"/>
+  <testcase name="addition_isCorrect" classname="app.myzel394.alibi.ExampleUnitTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

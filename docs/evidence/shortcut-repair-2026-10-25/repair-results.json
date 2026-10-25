@@ -1,0 +1,67 @@
+[
+  {
+    "case": "install-debug",
+    "passed": true,
+    "details": "Performing Streamed Install\r\nSuccess"
+  },
+  {
+    "case": "debug-main-launches-without-shortcut-conflict",
+    "passed": true,
+    "details": "MainActivity launched"
+  },
+  {
+    "case": "missing-microphone-opens-main-without-crash",
+    "passed": true,
+    "details": "Permission fallback reached MainActivity"
+  },
+  {
+    "case": "missing-camera-overlay-opens-main-without-crash",
+    "passed": true,
+    "details": "Permission fallback reached MainActivity"
+  },
+  {
+    "case": "authorized-audio-starts-without-main",
+    "passed": true,
+    "details": "Foreground audio service and AAC file present"
+  },
+  {
+    "case": "audio-running-green-indicator",
+    "passed": true,
+    "details": "Running status semantics found"
+  },
+  {
+    "case": "repeat-audio-shortcut-is-safe",
+    "passed": true,
+    "details": "Existing audio session remained foreground"
+  },
+  {
+    "case": "audio-stopped-green-indicator-hidden",
+    "passed": true,
+    "details": "Running status semantics absent after force stop"
+  },
+  {
+    "case": "authorized-photo-starts-floating",
+    "passed": true,
+    "details": "Floating foreground photo capture service present"
+  },
+  {
+    "case": "photo-running-green-indicator",
+    "passed": true,
+    "details": "Running status semantics found"
+  },
+  {
+    "case": "floating-button-saves-photo",
+    "passed": true,
+    "details": "JPEG saved from floating trigger"
+  },
+  {
+    "case": "invalid-folder-recovers-without-crash",
+    "passed": true,
+    "details": "Invalid folder opened MainActivity without crash"
+  },
+  {
+    "case": "release-main-launches-without-shortcut-conflict",
+    "passed": true,
+    "details": "Release MainActivity launched"
+  }
+]

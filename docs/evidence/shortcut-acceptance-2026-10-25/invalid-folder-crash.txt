@@ -1,0 +1,19 @@
+--------- beginning of crash
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: FATAL EXCEPTION: main
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: Process: com.zgybeep.alibi.debug, PID: 5405
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: java.lang.IllegalArgumentException: Invalid URI: not-a-tree-uri
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.provider.DocumentsContract.getTreeDocumentId(DocumentsContract.java:1289)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at androidx.documentfile.provider.DocumentFile.fromTreeUri(DocumentFile.java:136)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at app.myzel394.alibi.ShortcutActivity.createAudioFolder(ShortcutActivity.kt:178)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at app.myzel394.alibi.ShortcutActivity.access$createAudioFolder(ShortcutActivity.kt:32)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at app.myzel394.alibi.ShortcutActivity$startAudioRecording$serviceConnection$1.onServiceConnected(ShortcutActivity.kt:110)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.app.LoadedApk$ServiceDispatcher.doConnected(LoadedApk.java:2235)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.app.LoadedApk$ServiceDispatcher$RunConnection.run(LoadedApk.java:2268)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:995)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:103)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:338)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 01:54:47.441  5405  5405 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)

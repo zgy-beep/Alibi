@@ -46,6 +46,9 @@ import app.myzel394.alibi.db.PhotoFlashMode
 import app.myzel394.alibi.db.PhotoHapticFeedback
 import app.myzel394.alibi.db.PhotoResolutionPreference
 import app.myzel394.alibi.ui.effects.rememberSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiSectionHeader
+import app.myzel394.alibi.ui.components.atoms.AlibiSectionPanel
+import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -74,16 +77,9 @@ fun PhotoCaptureSettingsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.photo_settings_page_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackNavigate) {
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.goBack),
-                        )
-                    }
-                },
+            AlibiTopAppBar(
+                title = stringResource(R.string.photo_settings_page_title),
+                onBack = onBackNavigate,
             )
         },
     ) { padding ->
@@ -92,12 +88,12 @@ fun PhotoCaptureSettingsScreen(
                 .fillMaxSize()
                 .padding(padding),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(
-                start = 16.dp,
-                end = 16.dp,
-                top = 8.dp,
+                start = 20.dp,
+                end = 20.dp,
+                top = 12.dp,
                 bottom = 32.dp,
             ),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item {
                 Text(
@@ -122,7 +118,7 @@ fun PhotoCaptureSettingsScreen(
             }
 
             item {
-                SettingsSectionTitle(
+                AlibiSectionHeader(
                     title = stringResource(R.string.photo_settings_capture_section),
                     description = stringResource(
                         R.string.photo_settings_capture_section_description
@@ -130,7 +126,7 @@ fun PhotoCaptureSettingsScreen(
                 )
             }
             item {
-                SettingsPanel {
+                AlibiSectionPanel {
                     ChoiceSetting(
                         title = stringResource(R.string.photo_settings_lens_title),
                         description = stringResource(R.string.photo_settings_lens_description),
@@ -245,7 +241,7 @@ fun PhotoCaptureSettingsScreen(
             }
 
             item {
-                SettingsSectionTitle(
+                AlibiSectionHeader(
                     title = stringResource(R.string.photo_settings_focus_section),
                     description = stringResource(
                         R.string.photo_settings_focus_section_description
@@ -253,7 +249,7 @@ fun PhotoCaptureSettingsScreen(
                 )
             }
             item {
-                SettingsPanel {
+                AlibiSectionPanel {
                     SwitchSetting(
                         title = stringResource(R.string.photo_settings_ois_title),
                         description = stringResource(R.string.photo_settings_ois_description),
@@ -277,7 +273,7 @@ fun PhotoCaptureSettingsScreen(
             }
 
             item {
-                SettingsSectionTitle(
+                AlibiSectionHeader(
                     title = stringResource(R.string.photo_settings_feedback_section),
                     description = stringResource(
                         R.string.photo_settings_feedback_section_description
@@ -285,7 +281,7 @@ fun PhotoCaptureSettingsScreen(
                 )
             }
             item {
-                SettingsPanel {
+                AlibiSectionPanel {
                     ChoiceSetting(
                         title = stringResource(R.string.photo_settings_feedback_title_new),
                         description = stringResource(
@@ -312,7 +308,7 @@ fun PhotoCaptureSettingsScreen(
             }
 
             item {
-                SettingsSectionTitle(
+                AlibiSectionHeader(
                     title = stringResource(R.string.photo_settings_interface_section),
                     description = stringResource(
                         R.string.photo_settings_interface_section_description
@@ -320,7 +316,7 @@ fun PhotoCaptureSettingsScreen(
                 )
             }
             item {
-                SettingsPanel {
+                AlibiSectionPanel {
                     SwitchSetting(
                         title = stringResource(R.string.photo_settings_grid_title),
                         description = stringResource(R.string.photo_settings_grid_description),
@@ -402,32 +398,6 @@ fun PhotoCaptureSettingsScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun SettingsSectionTitle(title: String, description: String) {
-    Column(
-        modifier = Modifier.padding(top = 12.dp, start = 4.dp, end = 4.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        Text(title, style = MaterialTheme.typography.titleLarge)
-        Text(
-            description,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-}
-
-@Composable
-private fun SettingsPanel(content: @Composable () -> Unit) {
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = MaterialTheme.shapes.large,
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
-    ) {
-        Column(content = { content() })
     }
 }
 

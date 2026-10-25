@@ -1,0 +1,684 @@
+--------- beginning of system
+10-25 01:52:50.768   671  1783 W ActivityTaskManager: callingPackage for (uid=2000, pid=4809) has no WPC
+--------- beginning of main
+10-25 01:52:50.769   671  1783 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@87d26927 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 01:52:50.769   671  1783 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+10-25 01:52:50.769   671  1783 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+10-25 01:52:50.770   671  1783 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+10-25 01:52:50.770   671  1783 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 01:52:50.773   671  1783 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+10-25 01:52:50.773   532   548 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:52:50.776   671  1783 I ActivityTaskManager: START u0 {act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1000c000 xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-25 01:52:50.776   917   987 V WindowManagerShell: Transition requested (#36): android.os.BinderProxy@47bc168 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=27 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=272689 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@c0f3981} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{c6fa26 app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 36 }
+10-25 01:52:50.777   917   987 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+10-25 01:52:50.777  1061  1061 W SplitSelectStateCtor: Missing session instanceIds
+10-25 01:52:50.778  1061  1061 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-25 01:52:50.781   671   903 I AppsFilter: interaction: PackageSetting{eaaac67 com.android.microdroid.empty_payload/10204} -> PackageSetting{347c5c com.zgybeep.alibi.debug/10217} BLOCKED
+10-25 01:52:50.781   917   987 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=527
+10-25 01:52:50.783   671   697 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@87d26927 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 01:52:50.793   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:50.795   532   532 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:52:50.805   459   459 D Zygote  : Forked child process 4812
+10-25 01:52:50.806   671   704 I ActivityManager: Start proc 4812:com.zgybeep.alibi.debug/u0a217 for next-top-activity {com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}
+10-25 01:52:50.806   671   704 I ActivityManager: ProcessObserver broadcast disabled
+10-25 01:52:50.840  4812  4812 I eep.alibi.debug: Late-enabling -Xcheck:jni
+10-25 01:52:50.888  4812  4812 I eep.alibi.debug: Using CollectorTypeCMC GC.
+10-25 01:52:50.890  4812  4812 W eep.alibi.debug: Unexpected CPU variant for x86: x86_64.
+10-25 01:52:50.890  4812  4812 W eep.alibi.debug: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-25 01:52:50.892   671  1337 W HWUI    : Image decoding logging dropped!
+10-25 01:52:50.893   540   557 I adbd    : jdwp connection from 4812
+10-25 01:52:50.905  4812  4812 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-25 01:52:50.915   671  1606 W ActivityTaskManager: takeTaskSnapshot: taskId=27 not found or not visible
+10-25 01:52:50.920   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:50.931  4812  4812 D CompatChangeReporter: Compat change id reported: 242716250; UID 10217; state: ENABLED
+10-25 01:52:50.986   671   760 D ActivityManager: sync unfroze 1634 com.google.android.apps.photos for 6
+10-25 01:52:51.611  4812  4812 D nativeloader: Configuring clns-9 for other apk /data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/lib/x86_64:/data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.zgybeep.alibi.debug
+10-25 01:52:51.618  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158070c58) locale list changing from [] to [zh-Hans-CN]
+10-25 01:52:51.626  4812  4812 V GraphicsEnvironment: Currently set values for:
+10-25 01:52:51.626  4812  4812 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-25 01:52:51.626  4812  4812 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-25 01:52:51.626  4812  4812 V GraphicsEnvironment: com.zgybeep.alibi.debug is not listed in per-application setting
+10-25 01:52:51.627  4812  4812 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-25 01:52:51.627  4812  4812 V GraphicsEnvironment: com.zgybeep.alibi.debug is not listed in ANGLE allowlist or settings, returning default
+10-25 01:52:51.627  4812  4812 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-25 01:52:51.690   671  1606 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+10-25 01:52:51.695   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:51.695   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:51.696  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158071bf8) locale list changing from [zh-Hans-CN] to [zh-Hans-CN,en-US]
+10-25 01:52:51.696  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158071bf8) default locale changing from '' to 'en-US'
+10-25 01:52:51.696  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158070c58) locale list changing from [zh-Hans-CN] to [zh-Hans-CN,en-US]
+10-25 01:52:51.696  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158070c58) default locale changing from '' to 'en-US'
+10-25 01:52:51.697  4812  4826 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+10-25 01:52:51.700  4812  4812 V Resources: Updating configuration, with default locale en-US and selected locales [zh-Hans-CN, en-US]
+10-25 01:52:51.700  4812  4812 I eep.alibi.debug: AssetManager2(0x73e15806f998) locale list changing from [] to [zh-Hans-CN,en-US]
+10-25 01:52:51.700  4812  4812 I eep.alibi.debug: AssetManager2(0x73e15806f998) default locale changing from '' to 'en-US'
+10-25 01:52:51.832  4812  4826 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-25 01:52:51.841  4812  4826 I EGL_emulation: Opening libGLESv2_emulation.so
+10-25 01:52:51.854  4812  4812 V Resources: Updating configuration, with default locale en-US and selected locales [zh-Hans-CN, en-US]
+10-25 01:52:51.854  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158071298) locale list changing from [] to [zh-Hans-CN,en-US]
+10-25 01:52:51.854  4812  4812 I eep.alibi.debug: AssetManager2(0x73e158071298) default locale changing from '' to 'en-US'
+10-25 01:52:51.860  4812  4826 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-25 01:52:51.866  4812  4812 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+10-25 01:52:51.975   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:52.240  4812  4812 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-25 01:52:52.270  4812  4812 I eep.alibi.debug: hiddenapi: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app) using reflection: allowed
+10-25 01:52:52.284  4812  4812 W HWUI    : Unknown dataspace 0
+10-25 01:52:52.377   671  1606 I ActivityManager: Background started FGS: Allowed [callingPackage: com.zgybeep.alibi.debug; callingUid: 10217; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+10-25 01:52:52.387   671  1606 D CompatChangeReporter: Compat change id reported: 261072174; UID 10217; state: ENABLED
+10-25 01:52:52.395   671  1606 D CoreBackPreview: Window{18668ec u0 com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a535e16, mPriority=0, mIsAnimationCallback=false, mOverrideBehavior=0}
+10-25 01:52:52.530   917  4752 V WindowManagerShell: onTransitionReady(transaction=2881923056533)
+10-25 01:52:52.530   917   987 V WindowManagerShell: onTransitionReady (#36) android.os.BinderProxy@47bc168: {id=36 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:52:52.530   917   987 V WindowManagerShell:         {m=OPEN f=TRANSLUCENT leash=Surface(name=Task=27)/@0x4544667 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:52:52.530   917   987 V WindowManagerShell:     ]}
+10-25 01:52:52.534   917   987 V WindowManagerShell: Playing animation for (#36) android.os.BinderProxy@47bc168@0
+10-25 01:52:52.535   917   987 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-25 01:52:52.535   917   987 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=36 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=TRANSLUCENT leash=Surface(name=Task=27)/@0x4544667 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:52:52.535   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@b4fa873 windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@22ff330, appThread = android.app.IApplicationThread$Stub$Proxy@1a35ba9, debugName = overlayBackTransition }}
+10-25 01:52:52.536   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631b52e, appThread = android.app.IApplicationThread$Stub$Proxy@7f258cf, debugName = LauncherToDream }}
+10-25 01:52:52.536   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@859125c, appThread = android.app.IApplicationThread$Stub$Proxy@ad0965, debugName = QuickstepLaunchHome }}
+10-25 01:52:52.536   917   987 V WindowManagerShell:  Delegate animation for (#36) to null
+10-25 01:52:52.536   917   987 V WindowManagerShell: start default transition animation, info = {id=36 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=TRANSLUCENT leash=Surface(name=Task=27)/@0x4544667 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:52:52.539   917   987 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@a9892b2 animAttr=0x4 type=OPEN isEntrance=true
+10-25 01:52:52.544   917   987 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d2246b
+10-25 01:52:52.558   671   694 I ActivityTaskManager: Displayed com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity for user 0: +1s758ms
+10-25 01:52:52.559   671   694 V WindowManager: Sent Transition (#36) createdAt=10-25 01:52:50.770 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=27 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=272689 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{f1719f0 Task{bbd5da9 #27 type=standard I=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{65d5b69 app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 36 }
+10-25 01:52:52.559   671   694 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-25 01:52:52.560   671   694 V WindowManager:     info={id=36 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:52:52.560   671   694 V WindowManager:         {WCT{RemoteToken{f1719f0 Task{bbd5da9 #27 type=standard I=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}}} m=OPEN f=TRANSLUCENT leash=Surface(name=Task=27)/@0xdcbd56d sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:52:52.560   671   694 V WindowManager:     ]}
+10-25 01:52:52.602   671   785 I ImeTracker: com.zgybeep.alibi.debug:c0321b8b: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-25 01:52:52.619  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+10-25 01:52:52.623   671  1606 I ImeTracker: system_server:b54db5ad: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-25 01:52:52.624   671   697 I ImeTracker: system_server:b54db5ad: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-25 01:52:52.624  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-25 01:52:52.626  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.zgybeep.alibi.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-25 01:52:52.629  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at asx.p(PG:6)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at axb.b(PG:13)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at nco.v(PG:13)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 01:52:52.630  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 01:52:52.632   671  1606 W PackageConfigPersister: App-specific configuration not found for packageName: com.zgybeep.alibi.debug and userId: 0
+10-25 01:52:52.720   671  1606 I ActivityManager: Background started FGS: Allowed [callingPackage: com.zgybeep.alibi.debug; callingUid: 10217; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+10-25 01:52:52.736   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:52.825  4812  4812 D AudioSystem: onNewService: media.audio_policy service obtained 0x73e2080fca10
+10-25 01:52:52.826   599  2511 W StagefrightRecorder: stop while neither recording nor paused
+10-25 01:52:52.829  4812  4812 D AudioSystem: getService: checking for service media.audio_policy: 0x73e2080fca10
+10-25 01:52:52.834   526  3712 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.845   526  3712 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.851   226   226 I hwservicemanager: getTransport: Cannot find entry android.hardware.media.omx@1.0::IOmx/default in either framework or device VINTF manifest.
+10-25 01:52:52.851   917   987 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#36) android.os.BinderProxy@47bc168@0
+10-25 01:52:52.855   526  3712 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.856   599   630 D MediaRecorderService: OMX service is not available
+10-25 01:52:52.856   526   560 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.857   917   987 V WindowManagerShell: Track 0 became idle
+10-25 01:52:52.857   671   694 V WindowManager: Finish Transition (#36): created at 10-25 01:52:50.770 collect-started=0.047ms request-sent=5.74ms started=7.665ms ready=921.754ms sent=1758.225ms commit=18.944ms finished=2084.552ms
+10-25 01:52:52.857   917   987 V WindowManagerShell: All active transition animations finished
+10-25 01:52:52.858  4812  4812 D InsetsController: hide(ime(), fromIme=false)
+10-25 01:52:52.858  4812  4812 I ImeTracker: com.zgybeep.alibi.debug:c0321b8b: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 01:52:52.914  1194  1295 I FontLog : (REDACTED) Received query %s, URI %s
+10-25 01:52:52.914  1194  1295 I FontLog : (REDACTED) Query [%s] resolved to %s
+10-25 01:52:52.923   599   630 W StagefrightRecorder: Intended audio encoding bit rate (320000) is too large and will be set to (96000)
+10-25 01:52:52.923   599   630 W StagefrightRecorder: Intended audio sample rate (96000) is too large and will be set to (48000)
+10-25 01:52:52.929  1194  1295 I FontLog : (REDACTED) Fetch %s end status %s
+10-25 01:52:52.930   526   560 D NativePermissionController: checkPermission: missing 8 for 10217
+10-25 01:52:52.940   526  4849 I AudioFlinger: AudioFlinger's thread 0x78baa08b3a88 tid=4849 ready to run
+10-25 01:52:52.940   526   560 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:52.940   526   560 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:52.942  1194  1295 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+10-25 01:52:52.945   526   626 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:52.950   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.952   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.956  1194  1295 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+10-25 01:52:52.960   599   630 W AudioRecord: createRecord_l(19): Server adjusted notificationFrames from 1024 to 768 for frameCount 2304
+10-25 01:52:52.962   526  3712 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.963   671   671 E system_server: No package ID 7f found for resource ID 0x7f120000.
+10-25 01:52:52.964   671   671 W LocaleConfig: The resource file pointed to by the given resource ID isn't found.
+10-25 01:52:52.964   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:52.967   671   671 W NotificationHistory: Attempted to add notif for locked/gone/disabled user 0
+10-25 01:52:52.968   526   560 W AudioFlinger: acquireAudioSessionId() unknown client 4812 for session 137
+10-25 01:52:52.969   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:52.979   599   630 D MediaCodecList: codecHandlesFormat: no format, so no extra checks
+10-25 01:52:52.980  1470  2018 W AiAiEcho: LyftNotificationParser Ridesharing ETA not enabled
+10-25 01:52:52.980  1470  2018 I AiAiEcho: SmartspaceNotificationPredictor no parser can handle this notification or notification is invalid
+10-25 01:52:52.982  1061  1061 I NotificationListener: received notification posted event - com.zgybeep.alibi.debug#UserHandle{0},category=-1
+10-25 01:52:52.985   599  4850 D CCodec  : allocate(c2.android.aac.encoder)
+10-25 01:52:52.986   599  4850 I CCodec  : setting up 'default' as default (vendor) store
+10-25 01:52:52.995  1061  1061 I NotificationListener: received notification posted event - com.zgybeep.alibi.debug#UserHandle{0},category=-1
+10-25 01:52:53.000  1470  2018 W AiAiEcho: LyftNotificationParser Ridesharing ETA not enabled
+10-25 01:52:53.000  1470  2018 I AiAiEcho: SmartspaceNotificationPredictor no parser can handle this notification or notification is invalid
+10-25 01:52:53.001   599  4850 I CCodec  : Created component [c2.android.aac.encoder] for [c2.android.aac.encoder]
+10-25 01:52:53.002   599  4850 D CCodecConfig: read media type: audio/mp4a-latm
+10-25 01:52:53.002   917   917 W ResourceType: Bad XML block: header size 8822 or total size 775234106 is larger than data size 51115
+10-25 01:52:53.002   917   917 W LocaleConfig: The resource file pointed to by the given resource ID isn't found.
+10-25 01:52:53.003   599  4215 D BufferPoolAccessor2.0: bufferpool2 0x7929de834a98 : 0(0 size) total buffers - 0(0 size) used buffers - 603/608 (recycle/alloc) - 5/1206 (fetch/transfer)
+10-25 01:52:53.003   599  4215 D BufferPoolAccessor2.0: Destruction - bufferpool2 0x7929de834a98 cached: 0/0M, 0/0% in use; allocs: 608, 99% recycled; transfers: 1206, 100% unfetched
+10-25 01:52:53.009   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.max-count.values
+10-25 01:52:53.009   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: output.subscribed-indices.values
+10-25 01:52:53.009   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: input.buffers.allocator-ids.values
+10-25 01:52:53.010   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.allocator-ids.values
+10-25 01:52:53.010   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.allocator-ids.values
+10-25 01:52:53.010   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.pool-ids.values
+10-25 01:52:53.011   599  4850 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.pool-ids.values
+10-25 01:52:53.015   599  4850 I CCodecConfig: query failed after returning 10 values (BAD_INDEX)
+10-25 01:52:53.015   599  4850 D CCodecConfig: c2 config diff is Dict {
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 coded.bitrate.value = 64000
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 coded.pl.level = 0
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 coded.pl.profile = 8192
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 coding.aac-sbr-mode.value = 3
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 input.buffers.max-size.value = 2048
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 input.delay.value = 0
+10-25 01:52:53.015   599  4850 D CCodecConfig:   string input.media-type.value = "audio/raw"
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 output.large-frame.max-size = 0
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 output.large-frame.threshold-size = 0
+10-25 01:52:53.015   599  4850 D CCodecConfig:   string output.media-type.value = "audio/mp4a-latm"
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 raw.channel-count.value = 1
+10-25 01:52:53.015   599  4850 D CCodecConfig:   c2::u32 raw.sample-rate.value = 44100
+10-25 01:52:53.015   599  4850 D CCodecConfig: }
+10-25 01:52:53.017   599  4850 I MediaCodec: MediaCodec will operate in async mode
+10-25 01:52:53.023   917  1415 W ResourceType: Bad XML block: header size 8822 or total size 775234106 is larger than data size 51115
+10-25 01:52:53.024   917  1415 W LocaleConfig: The resource file pointed to by the given resource ID isn't found.
+10-25 01:52:53.027   599   630 W ServiceManagerCppClient: Failed to get isDeclared for media_quality: Status(-1, EX_SECURITY): 'SELinux denied for service.'
+10-25 01:52:53.027   599   630 E MediaCodec: Media Quality Service not found.
+10-25 01:52:53.027   599   630 D MediaCodec: shapeMediaFormat: deltas(0): AMessage(what = 0x00000000) = {
+10-25 01:52:53.027   599   630 D MediaCodec:   }
+10-25 01:52:53.028   599  4850 D CCodec  : [c2.android.aac.encoder] buffers are bound to CCodec for this session
+10-25 01:52:53.028   599  4850 D CCodecConfig: no c2 equivalents for flags
+10-25 01:52:53.028   599  4850 D CCodecConfig: no c2 equivalents for encoder
+10-25 01:52:53.028   599  4850 D CCodecConfig: c2 config diff is   c2::u32 coded.bitrate.value = 96000
+10-25 01:52:53.028   599  4850 D CCodecConfig:   c2::u32 raw.sample-rate.value = 48000
+10-25 01:52:53.029   599  4850 W Codec2Client: query -- param skipped: index = 1107298332.
+10-25 01:52:53.029   599  4850 D CCodec  : encoding statistics level = 0
+10-25 01:52:53.029   599  4850 D CCodec  : setup formats input: AMessage(what = 0x00000000) = {
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t sample-rate = 48000
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t channel-count = 1
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t max-input-size = 2048
+10-25 01:52:53.029   599  4850 D CCodec  :   string mime = "audio/raw"
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t android._config-pcm-encoding = 2
+10-25 01:52:53.029   599  4850 D CCodec  : }
+10-25 01:52:53.029   599  4850 D CCodec  : setup formats output: AMessage(what = 0x00000000) = {
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t sample-rate = 48000
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t bitrate = 96000
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t buffer-batch-max-output-size = 0
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t buffer-batch-threshold-output-size = 0
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t channel-count = 1
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t level = 0
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t max-bitrate = 96000
+10-25 01:52:53.029   599  4850 D CCodec  :   string mime = "audio/mp4a-latm"
+10-25 01:52:53.029   599  4850 D CCodec  :   int32_t profile = 2
+10-25 01:52:53.029   599  4850 D CCodec  : }
+10-25 01:52:53.029   599  4850 I CCodecConfig: query failed after returning 10 values (BAD_INDEX)
+10-25 01:52:53.030   599  4850 E mediaserver: Failed to query component interface for required system resources: 6
+10-25 01:52:53.030   599   630 D MediaCodec: keep callback message for reclaim
+10-25 01:52:53.034   599  4850 W Codec2Client: query -- param skipped: index = 1342179345.
+10-25 01:52:53.034   599  4850 W Codec2Client: query -- param skipped: index = 2415921170.
+10-25 01:52:53.034   599  4850 W Codec2Client: query -- param skipped: index = 3254792206.
+10-25 01:52:53.034   599  4850 W Codec2Client: query -- param skipped: index = 3254792194.
+10-25 01:52:53.035   599  4850 D CCodecBufferChannel: [c2.android.aac.encoder#672] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+10-25 01:52:53.035   602   662 D BufferPoolAccessor2.0: bufferpool2 0x79e1aafb3788 : 0(0 size) total buffers - 0(0 size) used buffers - 801/804 (recycle/alloc) - 4/402 (fetch/transfer)
+10-25 01:52:53.035   602   662 D BufferPoolAccessor2.0: Destruction - bufferpool2 0x79e1aafb3788 cached: 0/0M, 0/0% in use; allocs: 804, 100% recycled; transfers: 402, 99% unfetched
+10-25 01:52:53.037   599  4850 I CCodecBufferChannel: [c2.android.aac.encoder#672] Created output block pool with allocatorID 16 => poolID 38 - OK
+10-25 01:52:53.037   599  4850 D CCodecBufferChannel: [c2.android.aac.encoder#672] Configured output block pool ids 38 => OK
+10-25 01:52:53.037   602   661 E Codec2-ComponentInterface: We have a failed config
+10-25 01:52:53.038  4812  4816 I eep.alibi.debug: Compiler allocated 5042KB to compile void android.view.ViewRootImpl.performTraversals()
+10-25 01:52:53.039   602  4851 D SimpleC2Component: Using output block pool with poolID 38 => got 38 - 0
+10-25 01:52:53.040   599  4846 I MediaCodecSource: MediaCodecSource (audio) starting
+10-25 01:52:53.048   526  4849 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:53.048   526  4849 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:53.048   470   508 E android.hardware.audio@7.1-impl.ranchu: updateSinkMetadata:387 failure: Result::NOT_SUPPORTED
+10-25 01:52:53.056   526   626 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:52:53.058   526  3712 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:53.059   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:53.060   599  4846 I MediaCodecSource: MediaCodecSource (audio) started
+10-25 01:52:53.062   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:53.064   526   526 D NativePermissionController: checkPermission: missing 13 for 10217
+10-25 01:52:53.088   917  1415 D LocalImageResolver: Couldn't use ImageDecoder for drawable, falling back to non-resized load.
+10-25 01:52:53.099   917  1415 D LocalImageResolver: Couldn't use ImageDecoder for drawable, falling back to non-resized load.
+10-25 01:52:53.107   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:53.349   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:53.545   917   987 V WindowManagerShell: Transition requested (#37): android.os.BinderProxy@5d34de5 TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=27 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=273604 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d220ba} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{94ccb6b app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 37 }
+10-25 01:52:53.556   532   586 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:52:53.562   671  1783 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+10-25 01:52:53.578   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:53.578   532   532 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:52:53.626   917  1779 V WindowManagerShell: onTransitionReady(transaction=2881923056550)
+10-25 01:52:53.630   917   987 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=true, height=527
+10-25 01:52:53.631   917   987 V WindowManagerShell: onTransitionReady (#37) android.os.BinderProxy@5d34de5: {id=37 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:52:53.631   917   987 V WindowManagerShell:         {m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xb6f66c8 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 01:52:53.631   917   987 V WindowManagerShell:         {m=CLOSE f=TRANSLUCENT leash=Surface(name=Task=27)/@0x66fe361 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:52:53.631   917   987 V WindowManagerShell:     ]}
+10-25 01:52:53.631   917   987 V WindowManagerShell: Playing animation for (#37) android.os.BinderProxy@5d34de5@0
+10-25 01:52:53.631   917   987 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-25 01:52:53.631   917   987 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=37 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xb6f66c8 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=CLOSE f=TRANSLUCENT leash=Surface(name=Task=27)/@0x66fe361 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:52:53.632   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@b4fa873 windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@22ff330, appThread = android.app.IApplicationThread$Stub$Proxy@1a35ba9, debugName = overlayBackTransition }}
+10-25 01:52:53.632   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631b52e, appThread = android.app.IApplicationThread$Stub$Proxy@7f258cf, debugName = LauncherToDream }}
+10-25 01:52:53.632   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@859125c, appThread = android.app.IApplicationThread$Stub$Proxy@ad0965, debugName = QuickstepLaunchHome }}
+10-25 01:52:53.632   917   987 V WindowManagerShell:  Delegate animation for (#37) to null
+10-25 01:52:53.632   917   987 V WindowManagerShell: start default transition animation, info = {id=37 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xb6f66c8 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=CLOSE f=TRANSLUCENT leash=Surface(name=Task=27)/@0x66fe361 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:52:53.632   917   987 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@7e6549d animAttr=0x7 type=CLOSE isEntrance=false
+10-25 01:52:53.633   917   987 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d2246b
+10-25 01:52:53.638  1061  1061 D StatsLog: LAUNCHER_ONRESUME
+10-25 01:52:53.678  1061  1108 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-25 01:52:53.680   671   694 V WindowManager: Sent Transition (#37) createdAt=10-25 01:52:53.540 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=27 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=273604 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{f1719f0 Task{bbd5da9 #27 type=standard I=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{65d5b69 app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 37 }
+10-25 01:52:53.680   671   694 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-25 01:52:53.680   671   694 V WindowManager:     info={id=37 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:52:53.680   671   694 V WindowManager:         {WCT{RemoteToken{bb7d778 Task{2539710 #1 type=home}}} m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xaece8a0 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 01:52:53.680   671   694 V WindowManager:         {WCT{RemoteToken{f1719f0 Task{bbd5da9 #27 type=standard I=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}}} m=CLOSE f=TRANSLUCENT leash=Surface(name=Task=27)/@0xdcbd56d sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:52:53.680   671   694 V WindowManager:     ]}
+10-25 01:52:53.699  1061  1061 I NotificationListener: Handling notification state refresh for com.zgybeep.alibi.debug#0
+10-25 01:52:53.699  1061  1061 I NotificationListener: Handling notification state refresh for android#0
+10-25 01:52:53.699   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:53.704   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:53.728   671   785 I ImeTracker: com.google.android.apps.nexuslauncher:ab2209b0: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-25 01:52:53.756  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+10-25 01:52:53.756  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-25 01:52:53.758  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-25 01:52:53.761  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at asx.p(PG:6)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at axb.b(PG:13)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at nco.v(PG:13)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 01:52:53.762  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 01:52:53.766   671   689 I ImeTracker: system_server:2298e1b6: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-25 01:52:53.766   671   690 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+10-25 01:52:53.768   671   697 I ImeTracker: system_server:2298e1b6: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-25 01:52:53.791  1470  1790 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 01:52:53.792  1470  1790 I AiAiEcho: EchoTargets: 
+10-25 01:52:53.792  1470  1790 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 01:52:53.792  1470  1790 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 01:52:53.792  1061  1061 D InsetsController: hide(ime(), fromIme=false)
+10-25 01:52:53.794  1061  1061 I ImeTracker: com.google.android.apps.nexuslauncher:ab2209b0: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 01:52:53.866  1470  1790 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 01:52:53.871  1470  1790 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 01:52:53.878   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:53.890   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:53.890   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:53.896   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:53.929   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:53.935   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:53.999   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:53.999   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.017  1061  1061 D SsBaseTemplateCard: No text view can be set up
+10-25 01:52:54.017  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:52:54.017  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:52:54.017  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:52:54.017  1061  1061 I SsBaseTemplateCard: Secondary card pane is null
+10-25 01:52:54.024   917   987 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#37) android.os.BinderProxy@5d34de5@0
+10-25 01:52:54.037   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.041   671   694 V WindowManager: Finish Transition (#37): created at 10-25 01:52:53.540 collect-started=0.067ms request-sent=0.223ms started=28.93ms ready=49.079ms sent=84.442ms commit=54.634ms finished=485.764ms
+10-25 01:52:54.041   917   987 V WindowManagerShell: Track 0 became idle
+10-25 01:52:54.042   917   987 V WindowManagerShell: All active transition animations finished
+10-25 01:52:54.044   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.084   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.085  4812  4812 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda13@437d1f
+10-25 01:52:54.090   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.086   671   689 D CoreBackPreview: Window{18668ec u0 com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}: Setting back callback null
+10-25 01:52:54.098   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.117   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.117   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.117   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.120   671  1086 W HWUI    : Image decoding logging dropped!
+10-25 01:52:54.122   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.132  4812  4812 D ViewRootImpl: Skipping stats log for color mode
+10-25 01:52:54.133   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:54.136   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.139   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:54.139   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.140   599  4848 W AudioSource: AudioRecord reported overrun!
+10-25 01:52:54.145   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.149   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.153   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.157   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.161  1061  1061 D RecentsView: onTaskRemoved: 27, not handling task stack changes
+10-25 01:52:54.161  1061  1061 D RecentsView: onTaskRemoved: 27, not handling task stack changes
+10-25 01:52:54.162   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.178   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.181   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.185   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.195   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.211   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:52:54.211   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.223   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.223   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.227   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.244   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.259   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.275   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.291   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.301   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.302   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.302   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.302   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.302   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.303   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.303   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.303   917   924 W System  : A resource failed to call release. 
+10-25 01:52:54.307   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.327   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.327   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.328   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.339   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.356   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.372   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.387   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.403   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.419   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.431   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.431   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.435   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.451   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.467   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.483   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.499   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.515   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.531   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.535   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.535   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.547   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.563   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.579   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.595   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.611   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.627   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.639   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.639   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.643   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.659   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.675   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.691   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.707   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.723   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.739   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.743   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.743   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.755   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.771   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.787   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.803   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.819   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.835   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.847   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.847   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.851   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.867   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.883   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.899   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.915   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.931   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.947   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.951   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:54.951   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:54.963   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.979   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:54.995   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.011   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.027   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.043   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.055   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.055   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.059   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.075   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.091   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.107   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.123   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.139   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.155   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.159   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.159   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.171   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.187   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.203   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.219   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.235   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.251   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.263   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.263   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.267   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.283   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.299   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.315   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.331   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.347   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.363   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.367   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.367   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.379   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.395   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.411   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.427   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.443   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.459   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.471   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.471   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.475   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.491   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.507   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.523   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.539   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.555   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.571   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.575   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.575   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.587   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.603   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.619   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.635   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.651   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.667   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.679   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.679   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.683   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.699   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.715   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.731   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.747   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.763   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.779   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.783   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.783   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.795   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.811   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.827   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.843   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.859   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.875   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.887   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.887   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:55.891   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.907   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.923   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.939   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.955   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.971   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.987   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:55.991   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:55.991   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.003   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.019   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.035   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.049   671   819 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+10-25 01:52:56.049   671   819 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+10-25 01:52:56.049   671   819 D InetDiagMessage: Destroyed live tcp sockets for uids={10169} in 1ms
+10-25 01:52:56.050   671   819 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+10-25 01:52:56.050   671   819 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+10-25 01:52:56.050   671   819 D InetDiagMessage: Destroyed live tcp sockets for uids={20169} in 1ms
+10-25 01:52:56.051   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.067   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.083   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.095   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.095   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.099   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.115   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.131   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.147   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.163   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.179   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.195   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.199   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.199   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.211   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.227   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.243   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.259   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.275   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.291   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.303   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.303   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.307   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.323   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.339   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.355   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.371   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.387   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.403   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.407   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.407   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.419   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.435   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.451   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.467   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.483   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.499   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.511   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.511   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.515   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.531   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.547   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.563   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.579   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.595   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.611   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.615   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.615   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.627   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.643   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.659   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.675   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.691   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.707   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.719   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.719   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.723   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.739   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.755   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.771   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.787   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.793  4812  4857 D ProfileInstaller: Installing profile for com.zgybeep.alibi.debug
+10-25 01:52:56.803   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.819   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.823   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.823   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.835   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.851   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.867   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.883   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.899   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.915   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.927   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:56.927   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:56.933   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.947   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.963   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.979   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:56.995   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.011   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.027   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.032   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.032   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.043   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.059   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.075   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.091   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.107   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.124   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.139   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.139   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.139   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.155   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.171   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.187   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.203   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.219   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.235   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.243   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.244   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.251   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.267   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.283   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.299   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.315   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.331   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.347   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.347   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.347   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.363   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.379   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.395   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.411   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.427   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.443   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.451   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.451   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.459   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.475   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.491   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.507   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.523   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.539   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.555   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.555   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.555   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.571   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.587   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.603   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.619   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.635   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.651   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.659   470  4855 W android.hardware.audio@7.1-impl.ranchu: pcmRead:221 pcm_readi failed with 'cannot read/write stream data: I/O error' (-1)
+10-25 01:52:57.659   470  4855 E android.hardware.audio@7.1-impl.ranchu: pcmRead:222 failure: -1
+10-25 01:52:57.667   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence
+10-25 01:52:57.683   470  4853 D android.hardware.audio@7.1-impl.ranchu: TinyalsaSource::read:148 pcm_readi was late delivering frames, inserting 16000 us of silence

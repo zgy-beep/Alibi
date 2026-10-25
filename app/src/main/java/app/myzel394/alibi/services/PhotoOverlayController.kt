@@ -20,6 +20,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.myzel394.alibi.R
+import app.myzel394.alibi.ui.theme.AlibiOverlayStyle
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -43,7 +44,7 @@ class PhotoOverlayController(
     private val preferences =
         context.getSharedPreferences(OVERLAY_PREFERENCES, Context.MODE_PRIVATE)
     private val touchSlop = ViewConfiguration.get(context).scaledTouchSlop
-    private val buttonSize = dp(56)
+    private val buttonSize = dp(AlibiOverlayStyle.SHUTTER_SIZE_DP)
     private var root: FrameLayout? = null
     private var shutter: TextView? = null
     private var actionPanel: LinearLayout? = null
@@ -82,7 +83,7 @@ class PhotoOverlayController(
         val container = FrameLayout(context)
         val button = TextView(context).apply {
             text = "\u25CF"
-            textSize = 24f
+            textSize = AlibiOverlayStyle.ICON_TEXT_SIZE_SP
             setTextColor(Color.WHITE)
             contentDescription = context.getString(R.string.photo_overlay_take_photo)
             importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_YES
@@ -136,7 +137,10 @@ class PhotoOverlayController(
             orientation = LinearLayout.VERTICAL
             visibility = View.GONE
             setPadding(dp(6), dp(6), dp(6), dp(6))
-            background = roundedBackground(Color.argb(235, 20, 20, 20), dp(16).toFloat())
+            background = roundedBackground(
+                AlibiOverlayStyle.PANEL_COLOR,
+                dp(AlibiOverlayStyle.PANEL_CORNER_DP).toFloat(),
+            )
         }
         panel.addView(actionButton(R.string.photo_overlay_open_app, onOpenApp))
         panel.addView(actionButton(R.string.photo_overlay_stop, onStop))
@@ -217,7 +221,7 @@ class PhotoOverlayController(
             button.animate()
                 .scaleX(targetScale)
                 .scaleY(targetScale)
-                .setDuration(140L)
+                .setDuration(animationDuration(AlibiOverlayStyle.STATE_ANIMATION_MILLIS))
                 .start()
         } else {
             button.scaleX = targetScale
@@ -325,7 +329,10 @@ class PhotoOverlayController(
             minHeight = dp(48)
             minimumHeight = dp(48)
             setTextColor(Color.WHITE)
-            background = roundedBackground(Color.rgb(52, 52, 52), dp(12).toFloat())
+            background = roundedBackground(
+                AlibiOverlayStyle.ACTION_COLOR,
+                dp(AlibiOverlayStyle.ACTION_CORNER_DP).toFloat(),
+            )
             setOnClickListener { action() }
         }
     }
@@ -381,6 +388,17 @@ class PhotoOverlayController(
     private fun dp(value: Int): Int =
         (value * context.resources.displayMetrics.density).toInt()
 
+    private fun animationDuration(duration: Long): Long {
+        val scale = runCatching {
+            Settings.Global.getFloat(
+                context.contentResolver,
+                Settings.Global.ANIMATOR_DURATION_SCALE,
+                1f,
+            )
+        }.getOrDefault(1f)
+        return if (scale == 0f) 0L else duration
+    }
+
     private companion object {
         const val OVERLAY_PREFERENCES = "photo_overlay"
         const val PREF_X = "x"
@@ -389,10 +407,10 @@ class PhotoOverlayController(
         const val ACTION_STOP_SESSION = 0x01020002
 
         val STATUS_COLORS = mapOf(
-            Status.STARTING to Color.rgb(100, 100, 100),
-            Status.READY to Color.rgb(0, 120, 105),
-            Status.BUSY to Color.rgb(28, 120, 200),
-            Status.ERROR to Color.rgb(180, 48, 48),
+            Status.STARTING to AlibiOverlayStyle.STARTING_COLOR,
+            Status.READY to AlibiOverlayStyle.READY_COLOR,
+            Status.BUSY to AlibiOverlayStyle.BUSY_COLOR,
+            Status.ERROR to AlibiOverlayStyle.ERROR_COLOR,
         )
     }
 }

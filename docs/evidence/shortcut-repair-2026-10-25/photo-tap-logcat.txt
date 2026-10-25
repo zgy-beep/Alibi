@@ -1,0 +1,1527 @@
+--------- beginning of main
+10-25 14:07:34.466  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:34.466  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.500  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:34.500  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.534  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:34.534  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.568  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:34.568  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.603  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:34.603  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.636  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:34.636  6086  6139 W Gralloc5: unlock failed with error 2
+--------- beginning of system
+10-25 14:07:34.637   672  1649 W ActivityTaskManager: callingPackage for (uid=2000, pid=6158) has no WPC
+10-25 14:07:34.638   672  1649 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@b11f3d8a does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 14:07:34.638   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+10-25 14:07:34.638   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+10-25 14:07:34.639   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+10-25 14:07:34.639   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 14:07:34.642   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+10-25 14:07:34.642   672  1649 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 14:07:34.643   531  1135 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 14:07:34.645   920  1051 W ResourceType: Bad XML block: header size 8822 or total size 775234106 is larger than data size 51115
+10-25 14:07:34.646   920  1051 W LocaleConfig: The resource file pointed to by the given resource ID isn't found.
+10-25 14:07:34.647   920   981 V WindowManagerShell: Transition requested (#40): android.os.BinderProxy@df9cdd4 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=111 effectiveUid=10220 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} numActivities=1 lastActiveTime=907384 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@60b6b7d} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{d4b0a72 app.myzel394.alibi.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 40 }
+10-25 14:07:34.656   920   981 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+10-25 14:07:34.656   672  1649 I ActivityTaskManager: START u0 {flg=0x10000000 xflg=0x5 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-25 14:07:34.665   602   668 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.667  1058  1058 W SplitSelectStateCtor: Missing session instanceIds
+10-25 14:07:34.669  1058  1058 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-25 14:07:34.670   920   981 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=527
+10-25 14:07:34.672   531   531 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 14:07:34.681   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:34.682   672  1870 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+10-25 14:07:34.683  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:34.683  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.695   672  1856 D CoreBackPreview: Window{7f4959b u0 Splash Screen com.zgybeep.alibi.debug}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@17ec276, mPriority=0, mIsAnimationCallback=false, mOverrideBehavior=0}
+10-25 14:07:34.707   602  4225 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.707   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:34.719   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:34.721   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:34.751   672   698 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.751   672   698 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.752   672   698 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.752   672   698 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.752   672   698 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:34.864   672   695 V WindowManager: Sent Transition (#40) createdAt=10-25 14:07:34.640 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=111 effectiveUid=10220 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity} numActivities=1 lastActiveTime=907384 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{50c9002 Task{6cf707f #111 type=standard A=10220:com.zgybeep.alibi.debug}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{dc61d13 app.myzel394.alibi.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 40 }
+10-25 14:07:34.865   672   695 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-25 14:07:34.865   672   695 V WindowManager:     info={id=40 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 14:07:34.865   672   695 V WindowManager:         {WCT{RemoteToken{50c9002 Task{6cf707f #111 type=standard A=10220:com.zgybeep.alibi.debug}}} m=OPEN f=NONE leash=Surface(name=Task=111)/@0xc80d4e4 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:34.865   672   695 V WindowManager:         {WCT{RemoteToken{8d408ea Task{1341a31 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xb813419 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:34.865   672   695 V WindowManager:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x5552760 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}
+10-25 14:07:34.865   672   695 V WindowManager:     ]}
+10-25 14:07:34.866   920  4429 V WindowManagerShell: onTransitionReady(transaction=2886218024372)
+10-25 14:07:34.866   920   981 V WindowManagerShell: onTransitionReady (#40) android.os.BinderProxy@df9cdd4: {id=40 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 14:07:34.866   920   981 V WindowManagerShell:         {m=OPEN f=NONE leash=Surface(name=Task=111)/@0xe747eb3 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:34.866   920   981 V WindowManagerShell:         {m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x7a6ac70 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:34.866   920   981 V WindowManagerShell:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x921bbe9 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}
+10-25 14:07:34.866   920   981 V WindowManagerShell:     ]}
+10-25 14:07:34.867   920   981 V WindowManagerShell: Playing animation for (#40) android.os.BinderProxy@df9cdd4@0
+10-25 14:07:34.867   920   981 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-25 14:07:34.867   672  1091 W ActivityTaskManager: takeTaskSnapshot: taskId=97 not found or not visible
+10-25 14:07:34.868   920   981 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=40 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=111)/@0xe747eb3 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x7a6ac70 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x921bbe9 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}]}
+10-25 14:07:34.868   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@72d7a1a windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@3ad194b, appThread = android.app.IApplicationThread$Stub$Proxy@96acf28, debugName = overlayBackTransition }}
+10-25 14:07:34.868   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@e889441, appThread = android.app.IApplicationThread$Stub$Proxy@8991de6, debugName = LauncherToDream }}
+10-25 14:07:34.869   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631ff27, appThread = android.app.IApplicationThread$Stub$Proxy@e31b5d4, debugName = QuickstepLaunchHome }}
+10-25 14:07:34.869   920   981 V WindowManagerShell:  Delegate animation for (#40) to null
+10-25 14:07:34.869   920   981 V WindowManagerShell: start default transition animation, info = {id=40 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=111)/@0xe747eb3 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x7a6ac70 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x921bbe9 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}]}
+10-25 14:07:34.869   920   981 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@2a21f9c animAttr=0x13 type=OPEN isEntrance=false
+10-25 14:07:34.870   920   981 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@67f9988 animAttr=0x12 type=OPEN isEntrance=true
+10-25 14:07:34.871   920   981 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@5978753
+10-25 14:07:34.883   920   981 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#40) android.os.BinderProxy@df9cdd4@0
+10-25 14:07:34.891   920   981 V WindowManagerShell: Track 0 became idle
+10-25 14:07:34.891   920   981 V WindowManagerShell: All active transition animations finished
+10-25 14:07:34.893   672   695 V WindowManager: Finish Transition (#40): created at 10-25 14:07:34.640 collect-started=0.062ms request-sent=6.82ms started=25.169ms ready=68.241ms sent=214.644ms finished=244.853ms
+10-25 14:07:34.894  1058  1058 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-25 14:07:34.896  1058  1058 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-25 14:07:34.949  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:34.949  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.949  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:34.949  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.949  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:34.950  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.950  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:34.950  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.950  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:34.950  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.950  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:34.950  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:34.951  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:34.951  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:34.951  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:34.951  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:34.951  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.563   672  1091 D CoreBackPreview: Window{3a17149 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@16b776f, mPriority=0, mIsAnimationCallback=false, mOverrideBehavior=0}
+10-25 14:07:35.627  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:35.627  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.628  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:35.628  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.628  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.629  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:35.629  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.639   672   695 I ActivityTaskManager: Displayed com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity for user 0: +994ms
+10-25 14:07:35.640  6086  6086 I Choreographer: Skipped 35 frames!  The application may be doing too much work on its main thread.
+10-25 14:07:35.663   920  1051 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda13@e50ea58
+10-25 14:07:35.663   672  1091 D CoreBackPreview: Window{7f4959b u0 Splash Screen com.zgybeep.alibi.debug EXITING}: Setting back callback null
+10-25 14:07:35.673  1058  1058 D BaseDepthController: setSurface:
+10-25 14:07:35.673  1058  1058 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-25 14:07:35.673  1058  1058 D BaseDepthController: 	mBaseSurface: null
+10-25 14:07:35.674  1058  1058 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-25 14:07:35.674  1058  1058 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-25 14:07:35.674  1058  1058 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:4)
+10-25 14:07:35.674  1058  1058 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:1)
+10-25 14:07:35.674  1058  1058 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:34)
+10-25 14:07:35.675  1058  1058 D StatsLog: LAUNCHER_ONSTOP
+10-25 14:07:35.680  1058  1058 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-25 14:07:35.697   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.697   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.698   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.699   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.700   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.703   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.704   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.704   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.704   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.704   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.704   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.705   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.705   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.706   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.706   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.706   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.707   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.707   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.707   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.707   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.707   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.708   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.708   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.708   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.708   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.708   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.709   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.709   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.710   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.710   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.710   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.710   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.714   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.714   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.714   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.715   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.715   672  1649 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.715   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:35.730   602   668 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:35.766  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:35.766  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.766  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:35.766  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.766  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:35.766  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.766  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:35.766  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.766  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:35.767  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.767  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:35.767  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.768  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:35.768  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.768  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:35.768  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.768  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.768  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.768  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:35.768  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.768  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:35.768  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.768  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:35.768  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.779   672   790 I ImeTracker: com.zgybeep.alibi.debug:fd1d05a8: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-25 14:07:35.797  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:35.797  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:35.797  1366  1366 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+10-25 14:07:35.798  1366  1366 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-25 14:07:35.799   672  1870 I ImeTracker: system_server:b2fffde1: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-25 14:07:35.799  1366  1366 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.zgybeep.alibi.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-25 14:07:35.800   672   698 I ImeTracker: system_server:b2fffde1: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at asx.p(PG:6)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at axb.b(PG:13)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at nco.v(PG:13)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 14:07:35.800  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 14:07:35.800  1366  1366 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-25 14:07:35.801   672  1870 W PackageConfigPersister: App-specific configuration not found for packageName: com.zgybeep.alibi.debug and userId: 0
+10-25 14:07:35.901  1366  1375 I putmethod.latin: JIT allocated 52KB for compiled code of boolean fdo.b(lbg, java.lang.Object[])
+10-25 14:07:35.901  1366  1375 I putmethod.latin: Compiler allocated 4394KB to compile boolean fdo.b(lbg, java.lang.Object[])
+10-25 14:07:36.017   672   745 D CompatChangeReporter: Compat change id reported: 261072174; UID 10220; state: ENABLED
+10-25 14:07:36.020  6086  6086 I Alibi   : ===== Registering videoRecorder events app.myzel394.alibi.ui.models.VideoRecorderModel@1266dda
+10-25 14:07:36.400  6086  6086 D InsetsController: hide(ime(), fromIme=false)
+10-25 14:07:36.400  6086  6086 I ImeTracker: com.zgybeep.alibi.debug:fd1d05a8: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 14:07:36.407  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:36.410  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.414  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:36.414  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.418  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:36.419  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.419  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:36.422  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.422  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:36.424   672  1870 D StorageManagerService: UID 10220 is actively using camera; letting them defy reserved cached data
+10-25 14:07:36.429  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.429  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:36.429  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.430  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.430  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.430  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.430  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.430  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.430  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:36.430  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.665  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:36.666  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.666  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:36.666  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.666  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:36.666  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.666  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:36.666  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.666  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:36.667  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.667  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.669  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.697  6086  6136 I HWUI    : Davey! duration=900ms; Flags=0, FrameTimelineVsyncId=22042, IntendedVsync=908516914912, Vsync=908516914912, InputEventId=0, HandleInputStart=908525449400, AnimationStart=908525484700, PerformTraversalsStart=908762080300, DrawStart=909119793500, FrameDeadline=908533581578, FrameStartTime=908525433800, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=909137919400, SyncStart=909138047300, IssueDrawCommandsStart=909138143000, SwapBuffers=909330138100, FrameCompleted=909417783800, DequeueBufferDuration=24400, QueueBufferDuration=2527100, GpuCompleted=909417783800, SwapBuffersCompleted=909402432300, DisplayPresentTime=-69624284627558846, CommandSubmissionCompleted=909330138100, 
+10-25 14:07:36.808  6086  6086 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda13@a8186e7
+10-25 14:07:36.808   672  1870 D CoreBackPreview: Window{3acbc7 u0 com.zgybeep.alibi.debug}: Setting back callback null
+10-25 14:07:36.808  6086  6139 D MetadataImageReader: Skip to acquire the next image because the acquired image count has reached the max images count.
+10-25 14:07:36.808  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:36.808  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.808  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:36.808  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.808  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:36.808  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.808  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:36.809  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.809  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:36.809  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.809  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:36.809  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.809  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.810  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:36.810  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.810  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:36.810  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.810  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:36.811  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.811  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:36.811  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.811  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:36.816   672   698 W NotificationHistory: Attempted to remove channel for locked/gone/disabled user 0
+10-25 14:07:36.823  1058  1058 I NotificationListener: received notification removed event - android#UserHandle{0},category=-1
+10-25 14:07:36.828  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:36.828  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.830  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:36.830  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.873  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:36.873  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.896  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:36.896  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.927  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:36.927  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.960  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:36.960  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:36.994  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:36.994  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.028  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:37.028  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.061  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:37.061  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.095  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:37.095  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.129  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:37.129  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.163  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:37.163  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.197  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:37.197  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.231  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:37.231  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.264  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:37.265  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.298  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:37.298  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.332  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:37.332  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.367  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:37.367  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.401  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:37.401  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.434  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:37.434  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.468  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:37.468  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.502  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:37.502  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.536  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:37.536  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.570  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:37.570  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.604  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:37.604  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.637  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:37.637  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.671  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:37.671  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.705  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:37.705  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.738  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:37.738  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.773  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:37.773  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.806  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:37.806  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.840  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:37.840  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.875  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:37.875  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.900  6166  6166 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-25 14:07:37.907  6166  6166 I AndroidRuntime: Using default boot image
+10-25 14:07:37.907  6166  6166 I AndroidRuntime: Leaving lock profiling enabled
+10-25 14:07:37.908  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:37.908  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.911  6166  6166 I app_process: Using CollectorTypeCMC GC.
+10-25 14:07:37.943  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:37.943  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:37.976  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:37.976  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.010  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:38.010  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.037  6166  6166 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+10-25 14:07:38.045  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:38.045  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.049  6166  6166 D nativeloader: Load libicu_jni.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-25 14:07:38.050  6166  6166 D app_process: u_setTimeZoneFilesDirectory("/apex/com.android.tzdata/etc/tz/versioned/9/icu") succeeded. 
+10-25 14:07:38.050  6166  6166 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt76l.dat
+10-25 14:07:38.051  6166  6166 D nativeloader: Load libjavacore.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-25 14:07:38.052  6166  6166 D nativeloader: Load libopenjdk.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-25 14:07:38.054  6166  6166 W app_process: Unexpected CPU variant for x86: x86_64.
+10-25 14:07:38.054  6166  6166 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-25 14:07:38.056  6166  6166 W app_process: ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*2789897741]#PCL[/system/framework/android.test.mock.jar*3361312393]} | PCL[])
+10-25 14:07:38.057  6166  6166 W app_process: ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*895143020]#PCL[/system/framework/android.test.base.jar*2789897741]} | PCL[/system/framework/android.test.runner.jar*895143020])
+10-25 14:07:38.081  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:38.081  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.090  6166  6166 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-25 14:07:38.090  6166  6166 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-25 14:07:38.095  6166  6166 I AconfigPackage: android.media.swcodec.flags is mapped to com.android.media.swcodec
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.settings.simplemode.flags is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.systemui is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.apps.nexuslauncher is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.settings.accessibility is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.settings.flags is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.apps.miphone.aiai.matchmaker.overview.ui is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.settings.flags is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.launcher3 is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.wallpaper is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.settings.media_drm is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.systemui.accessibility.accessibilitymenu is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.settings.keyboard is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.server.policy.feature.flags is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.android.settings.factory_reset is mapped to system_ext
+10-25 14:07:38.095  6166  6166 I AconfigPackage: com.google.android.haptics.flags is mapped to system_ext
+10-25 14:07:38.096  6166  6166 I AconfigPackage: com.android.permission.flags is mapped to com.android.permission
+10-25 14:07:38.096  6166  6166 I AconfigPackage: com.android.icu is mapped to com.android.i18n
+10-25 14:07:38.096  6166  6166 I AconfigPackage: com.android.appsearch.flags is mapped to com.android.appsearch
+10-25 14:07:38.096  6166  6166 I AconfigPackage: android.uprobestats.mainline.flags is mapped to com.android.uprobestats
+10-25 14:07:38.097  6166  6166 I AconfigPackage: android.provider.flags is mapped to com.android.configinfrastructure
+10-25 14:07:38.097  6166  6166 I AconfigPackage: com.android.server.deviceconfig is mapped to com.android.configinfrastructure
+10-25 14:07:38.097  6166  6166 I AconfigPackage: com.android.nfc.flags is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: android.app.admin.flags is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: android.database.sqlite is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: com.android.providers.calendar is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: com.android.server.power.feature.flags is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: com.android.media.performance.flags is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: android.app.contextualsearch.flags is mapped to system
+10-25 14:07:38.097  6166  6166 I AconfigPackage: android.app.ondeviceintelligence.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.media.projection.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.companion is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.service.controls.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.text.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.providers.contactkeys.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.intentresolver is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.companion.virtualdevice.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.uprobestats.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.net.thread.platform.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.view.contentprotection.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.dreams is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.graphics.surfaceflinger.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.hardware.input is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.sdk is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.input.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.tracing is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.biometrics is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.view.contentcapture.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.job is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.content.res is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.net.platform.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.aconfig.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.graphics.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.server.app is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.speech.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.stats is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.hardware.biometrics is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.car.feature is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.adpf is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.location.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.settingslib.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.managedprovisioning.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.assist.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.net is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.settingslib.widget.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.internal.camera.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.hardware.libsensor.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.internal.jank is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.providers.settings is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.multiuser is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.power.optimization is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.calllogbackup is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.media.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.graphics.libvulkan.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.appfunctions.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.smartspace.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.providers.contacts.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.shell.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.media.aaudio is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.hardware.radio is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.google.wear.services.infra.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: suspend_service.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.media.midi is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.libcore.readonly is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.settingslib.widget.selectorwithwidgetpreference.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.service.notification is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.systemui.shared is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.jank is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.wearable is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.media.audio is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.service.chooser is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.compat is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.alarm is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.apex.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.service.quickaccesswallet is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.usage is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.accessibility is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.app.supervision.flags is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: com.android.server.utils is mapped to system
+10-25 14:07:38.098  6166  6166 I AconfigPackage: android.chre.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.content.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.media.codec is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.internal.os is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.nfc.nci.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.app is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.security.keystore2 is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.crashrecovery.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.tradeinmode.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.hardware.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.telecom.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.settingslib.media.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.policy is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.media.audiopolicy is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.egg.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.internal.compat.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.security is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.service.autofill is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.example.android.aconfig.demo.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.view.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.companion.virtual.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.aconfig_new_storage is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.feature.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.systemui is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.power.batterysaver is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.widget.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.media.editing.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.media.codec.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.powerstats is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.graphics.egl.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.media.audioserver is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.deviceidle is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.nfc is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.permission.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.service.voice.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.content.pm is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.power.hint is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.os is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.service.dreams is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.graphics.libgui.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.hardware.usb.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.provider is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.job is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.internal.foldables.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.internal.telephony.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.webkit is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.credentials.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.display.feature.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.notification is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.appwidget.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.frameworks.sensorservice.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.printspooler.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.window.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.adaptiveauth is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.net.wifi.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.media.tv.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.usb.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.os.vibrator is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.hardware.devicestate.feature.flags is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.server.usage is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: android.server is mapped to system
+10-25 14:07:38.099  6166  6166 I AconfigPackage: com.android.wm.shell is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: android.view.inputmethod is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.graphics.hwui.flags is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.server.backup is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.internal.pm.pkg.component.flags is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: android.view.accessibility is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.google.wear.sdk is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: android.media.audio is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.server.am is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.media.playback.flags is mapped to system
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.art.flags is mapped to com.android.art
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.libcore is mapped to com.android.art
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.media.extractor.flags is mapped to com.android.media
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.media.mainline.flags is mapped to com.android.media
+10-25 14:07:38.100  6166  6166 I AconfigPackage: com.android.wifi.flags is mapped to com.android.wifi
+10-25 14:07:38.101  6166  6166 I AconfigPackage: com.android.org.conscrypt.flags is mapped to com.android.conscrypt
+10-25 14:07:38.101  6166  6166 I AconfigPackage: com.android.healthfitness.flags is mapped to com.android.healthfitness
+10-25 14:07:38.101  6166  6166 I AconfigPackage: com.google.android.input.twoshay.flags is mapped to vendor
+10-25 14:07:38.101  6166  6166 I AconfigPackage: libgooglecamerahal.flags is mapped to vendor
+10-25 14:07:38.101  6166  6166 I AconfigPackage: com.android.ipsec.flags is mapped to com.android.ipsec
+10-25 14:07:38.101  6166  6166 I AconfigPackage: com.android.nfc.module.flags is mapped to com.android.nfcservices
+10-25 14:07:38.102  6166  6166 I AconfigPackage: com.android.adservices.ondevicepersonalization.flags is mapped to com.android.ondevicepersonalization
+10-25 14:07:38.102  6166  6166 I AconfigPackage: com.android.bluetooth.flags is mapped to com.android.bt
+10-25 14:07:38.102  6166  6166 I AconfigPackage: com.android.devicelock.flags is mapped to com.android.devicelock
+10-25 14:07:38.102  6166  6166 I AconfigPackage: android.os.profiling is mapped to com.android.profiling
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.os.statsd.flags is mapped to com.android.os.statsd
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.cellbroadcastreceiver.flags is mapped to com.android.cellbroadcast
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.adservices.flags is mapped to com.android.adservices
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.sdksandbox.flags is mapped to com.android.adservices
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.uwb.flags is mapped to com.android.uwb
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.ranging.flags is mapped to com.android.uwb
+10-25 14:07:38.103  6166  6166 I AconfigPackage: android.graphics.pdf.flags is mapped to com.android.mediaprovider
+10-25 14:07:38.103  6166  6166 I AconfigPackage: com.android.providers.media.flags is mapped to com.android.mediaprovider
+10-25 14:07:38.103  6166  6166 I AconfigPackage: android.graphics.pdf.flags.readonly is mapped to com.android.mediaprovider
+10-25 14:07:38.104  6166  6166 I AconfigPackage: com.android.net.ct.flags is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: com.android.net.flags is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: android.net.vcn is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: com.android.nearby.flags is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: android.net.http is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: com.android.net.thread.flags is mapped to com.android.tethering
+10-25 14:07:38.104  6166  6166 I AconfigPackage: com.android.system.virtualmachine.flags is mapped to com.android.virt
+10-25 14:07:38.104  6166  6166 E FeatureFlagsImplExport: android.os.flagging.AconfigStorageReadException: ERROR_PACKAGE_NOT_FOUND: package android.xr cannot be found on the device
+10-25 14:07:38.106  6166  6166 D UiAutomationConnection: Created on user UserHandle{0}
+10-25 14:07:38.106  6166  6166 I UiAutomation: Initialized for user 0 on display 0
+10-25 14:07:38.106  6166  6166 W UiAutomation: Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+10-25 14:07:38.107   672  1091 D AccessibilityManagerService: changeCurrentUserForTestAutomationIfNeededLocked(0): ignoring because device doesn't support visible background users
+10-25 14:07:38.108   672  1091 I UiAutomationManager: Registering UiTestAutomationService (id=com.android.server.accessibility/UiAutomation, flags=0x0) when called by user 0
+10-25 14:07:38.108   672  1091 V AccessibilityManagerService: onUserStateChangedLocked for userId: 0, forceUpdate: false
+10-25 14:07:38.109  1466  1505 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+10-25 14:07:38.111   672  1091 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-25 14:07:38.111  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:38.112  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:38.112  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.112  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:38.112  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:38.112  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:38.112  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:38.112  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:38.112  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:38.112  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:38.112  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:38.113  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:38.113   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.113   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.113   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.114   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.114   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.114   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.114   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.114   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.115   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.115   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.115  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 14:07:38.115   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.115   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.116   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.116  1058  1058 D SsBaseTemplateCard: No text view can be set up
+10-25 14:07:38.116   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.117   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.117   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.117  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-25 14:07:38.117   672  1091 V AccessibilityManagerService: onUserStateChangedLocked for userId: 0, forceUpdate: false
+10-25 14:07:38.117  1206  1206 I A11yMonitor: (REDACTED) Accessibility state change detected by AccessibilityStateChangeListener: %b
+10-25 14:07:38.117   672  1091 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-25 14:07:38.117   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.118   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.118  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.118  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.118  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.118  1058  1058 I SsBaseTemplateCard: Secondary card pane is null
+10-25 14:07:38.118   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.118   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.118   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.119   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.120   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.121   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:38.122   672   672 D BatterySaverPolicy: accessibility changed to true, updating policy.
+10-25 14:07:38.123  1206  1206 I A11yMonitor: Accessibility services change detected by AccessibilityServicesStateChangeListener. [CONTEXT service_id=435 ]
+10-25 14:07:38.126  1206  5442 E A11yServicesReader: Accessibility services setting read as null while services may be on [CONTEXT service_id=435 ]
+10-25 14:07:38.127  1206  5442 I BankWarningLogger: (REDACTED) Log event sent to clearcut: %s with session id: %s and isTestingPopulation: %s
+10-25 14:07:38.127  1206  5442 E A11yServicesReader: Accessibility services setting read as null while services may be on [CONTEXT service_id=435 ]
+10-25 14:07:38.129  1466  1505 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+10-25 14:07:38.129  1206  5442 I BankWarningLogger: (REDACTED) Log event sent to clearcut: %s with session id: %s and isTestingPopulation: %s
+10-25 14:07:38.130  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:38.130  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:38.130  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:38.130  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:38.132  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:38.134   920   920 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-25 14:07:38.136  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:38.139  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:38.139  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:38.139  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:38.139  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:38.140  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 14:07:38.142  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-25 14:07:38.164   920   920 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-25 14:07:38.167  1058  1058 D SsBaseTemplateCard: No text view can be set up
+10-25 14:07:38.167  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.167  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.167  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:38.167  1058  1058 I SsBaseTemplateCard: Secondary card pane is null
+10-25 14:07:38.169  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:38.169  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.182  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:38.182  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.213  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:38.214  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.248  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:38.248  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.282  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:38.282  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.316  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:38.316  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.348  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:38.348  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.377   672   767 D CompatChangeReporter: Compat change id reported: 262645982; UID 10220; state: ENABLED
+10-25 14:07:38.381  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:38.381  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.416  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:38.416  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.450  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:38.450  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.484  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:38.484  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.517  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:38.517  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.550  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:38.550  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.585  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:38.585  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.619  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:38.619  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.652   672  1532 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+10-25 14:07:38.653  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:38.653  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.687  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:38.687  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.722  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:38.722  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.754  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:38.754  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.788  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:38.788  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.821  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:38.821  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.855  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:38.855  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.889  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:38.889  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.923  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:38.923  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.957  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:38.957  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:38.991  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:38.991  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.026  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:39.026  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.059  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:39.059  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.093  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:39.093  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.142  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:39.142  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.160  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:39.160  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.181  6166  6166 W AccessibilityNodeInfoDumper: Fetch time: 53ms
+10-25 14:07:39.182   672  1856 V AccessibilityManagerService: onUserStateChangedLocked for userId: 0, forceUpdate: false
+10-25 14:07:39.183   672  1856 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-25 14:07:39.183   672  1856 D AccessibilityManagerService: restoreCurrentUserForTestAutomationIfNeededLocked(): ignoring because device doesn't support visible background users
+10-25 14:07:39.183  1466  1505 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+10-25 14:07:39.183   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.183   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.183  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:39.183   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.183  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:39.183  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:39.183  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:39.183   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184  6166  6176 W IPCThreadState: call to talkWithDriver in joinThreadPool returned error: -9 (Bad file descriptor), FD: -1
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:39.184  6166  6179 W IPCThreadState: call to talkWithDriver in joinThreadPool returned error: -9 (Bad file descriptor), FD: -1
+10-25 14:07:39.184  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:39.184  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:39.184  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184  6166  6175 W IPCThreadState: call to talkWithDriver in joinThreadPool returned error: -9 (Bad file descriptor), FD: -1
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.184   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.185  6166  6166 D AndroidRuntime: Shutting down VM
+10-25 14:07:39.185   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.185   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.185   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.185   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.185   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.186  1206  1206 I A11yMonitor: (REDACTED) Accessibility state change detected by AccessibilityStateChangeListener: %b
+10-25 14:07:39.186   672   672 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.187   672   672 D BatterySaverPolicy: accessibility changed to false, updating policy.
+10-25 14:07:39.187  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 14:07:39.188  1206  5442 I A11yMonitor: Updating accessibility services baseline [CONTEXT service_id=435 ]
+10-25 14:07:39.190  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-25 14:07:39.191  1058  1058 D SsBaseTemplateCard: No text view can be set up
+10-25 14:07:39.191  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:39.191  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:39.191  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:39.191  1058  1058 I SsBaseTemplateCard: Secondary card pane is null
+10-25 14:07:39.192   920   920 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-25 14:07:39.193  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:39.193  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.229  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:39.229  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.261  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:39.261  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.294  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:39.294  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.328  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:39.328  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.362  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:39.362  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.395  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:39.395  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.429  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:39.429  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.463  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:39.463  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.497  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:39.497  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.530  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:39.530  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.564  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:39.564  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.598  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:39.598  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.631  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:39.631  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.665  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:39.665  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.699  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:39.699  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.733  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:39.733  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.767  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:39.767  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.800  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:39.800  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.835  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:39.835  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.868  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:39.868  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.902  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:39.902  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.922   672   703 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:39.935  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:39.935  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:39.969  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:39.969  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.003  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:40.003  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.037  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:40.037  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.070  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:40.070  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.104  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:40.104  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.138  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:40.138  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.172  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:40.173  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.205  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:40.205  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.223  6183  6183 W screencap: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: SurfaceFlingerAIDL
+10-25 14:07:40.223  6183  6183 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-25 14:07:40.223  6183  6183 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-25 14:07:40.225   531   543 E HwcComposer: getLuts failed Status(-8, EX_SERVICE_SPECIFIC): '8: '
+10-25 14:07:40.225   531   543 E HWComposer: getLuts: getLuts failed for display 4619827259835644672: UNSUPPORTED (8)
+10-25 14:07:40.241  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:40.241  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.299  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:40.299  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.315  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:40.315  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.348  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:40.348  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.354  1206  1206 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS xflg=0x4 pkg=com.google.android.gms }
+10-25 14:07:40.383  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:40.383  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.415  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:40.415  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.451  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:40.451  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.482  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:40.482  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.516  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:40.516  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.550  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:40.550  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.584  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:40.585  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.619  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:40.619  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.655  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:40.655  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.671   672   696 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+10-25 14:07:40.672   672   696 W ActivityStartInterceptor: Starting home with component specified, uid=0
+10-25 14:07:40.674   920   920 I vol.VolumeDialogImpl: mDialog.dismiss() reason: volume_controller from: com.android.systemui.volume.VolumeDialogImpl$7.onDismissRequested:3
+10-25 14:07:40.674   672   696 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+10-25 14:07:40.674   672   696 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+10-25 14:07:40.674   672   696 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+10-25 14:07:40.674   672   696 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 14:07:40.675   672   696 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@704715f0 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 14:07:40.689  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:40.689  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.689   920   981 V WindowManagerShell: Transition requested (#41): android.os.BinderProxy@5e1f291 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=2 effectiveUid=10182 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity } baseActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} origActivity=null realActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} numActivities=1 lastActiveTime=913421 supportsMultiWindow=true resizeMode=2 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@642a5f6} topActivityType=2 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{b35cdf7 com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=false isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2424) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 41 }
+10-25 14:07:40.690   920   981 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+10-25 14:07:40.691   672   696 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras)} with LAUNCH_SINGLE_TASK from uid 0 (BAL_ALLOW_ALLOWLISTED_UID) result code=2
+10-25 14:07:40.693  1058  1058 D ViewRootImpl: Skipping stats log for color mode
+10-25 14:07:40.697  1058  1058 D TFOManager: playPanelCloseAnimation() duration=200 traceTag=LauncherOverlay-hide isHomeButtonTap=true
+10-25 14:07:40.698  1058  1058 D TFOManager: Skipped creating panel close animation because -1 is invisible.
+10-25 14:07:40.698  1058  1058 D OverviewCommandHelper: clearing pending commands: []
+10-25 14:07:40.699   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:40.700   920   981 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=true, height=527
+10-25 14:07:40.702   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:40.703  1058  1058 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+10-25 14:07:40.709   920   981 D WindowManagerShell: onActivityRestartAttempt: topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}, wasVisible=false
+10-25 14:07:40.713   531   531 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 14:07:40.731  1058  1058 D BaseDepthController: setSurface:
+10-25 14:07:40.731  1058  1058 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-25 14:07:40.731  1058  1058 D BaseDepthController: 	mBaseSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0xf8954b3
+10-25 14:07:40.733   531   531 I RefreshRateSelector: Display 4619827259835644672 policy changed
+10-25 14:07:40.733   531   531 I RefreshRateSelector: Previous: {defaultModeId=0, allowGroupSwitching=false, primaryRanges={physical=[60.00 Hz, inf Hz], render=[60.00 Hz, 60.00 Hz]}, appRequestRanges={physical=[60.00 Hz, inf Hz], render=[60.00 Hz, 60.00 Hz]} idleScreenConfig=nullptr}
+10-25 14:07:40.733   531   531 I RefreshRateSelector: Current:  DisplayManagerPolicy{defaultModeId=0, allowGroupSwitching=false, primaryRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, 60.00 Hz]}, appRequestRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, inf Hz]} idleScreenConfig=nullptr}
+10-25 14:07:40.733   531   531 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+10-25 14:07:40.733   531   531 D DisplayModeController: setDesiredMode 4619827259835644672 {mode={fps=60.00 Hz, modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, force=false}
+10-25 14:07:40.751   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:40.758  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:40.758  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.774  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:40.774  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.775   531   543 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 14:07:40.775  1058  1058 D ActivityAllAppsContainerView: rebindAdapters: force: false
+10-25 14:07:40.775  1058  1058 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+10-25 14:07:40.776  1058  1058 D StatsLog: LAUNCHER_ONRESUME
+10-25 14:07:40.778   920  4429 V WindowManagerShell: onTransitionReady(transaction=2886218024432)
+10-25 14:07:40.779   920   981 V WindowManagerShell: onTransitionReady (#41) android.os.BinderProxy@5e1f291: {id=41 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 14:07:40.779   920   981 V WindowManagerShell:         {m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xeb42464 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:40.779   920   981 V WindowManagerShell:         {m=TO_BACK f=NONE leash=Surface(name=Task=111)/@0xf2226cd sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:40.779   920   981 V WindowManagerShell:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x8eb2b82 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}
+10-25 14:07:40.779   920   981 V WindowManagerShell:     ]}
+10-25 14:07:40.781   920   981 V WindowManagerShell: Playing animation for (#41) android.os.BinderProxy@5e1f291@0
+10-25 14:07:40.781   920   981 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-25 14:07:40.781   920   981 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=41 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xeb42464 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_BACK f=NONE leash=Surface(name=Task=111)/@0xf2226cd sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},{m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x8eb2b82 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}]}
+10-25 14:07:40.781   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@72d7a1a windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@3ad194b, appThread = android.app.IApplicationThread$Stub$Proxy@96acf28, debugName = overlayBackTransition }}
+10-25 14:07:40.781   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@e889441, appThread = android.app.IApplicationThread$Stub$Proxy@8991de6, debugName = LauncherToDream }}
+10-25 14:07:40.781   920   981 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631ff27, appThread = android.app.IApplicationThread$Stub$Proxy@e31b5d4, debugName = QuickstepLaunchHome }}
+10-25 14:07:40.781   920   981 D RemoteTransitionHandler: Found filterPair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631ff27, appThread = android.app.IApplicationThread$Stub$Proxy@e31b5d4, debugName = QuickstepLaunchHome }}
+10-25 14:07:40.784   920   981 V WindowManagerShell:  Delegate animation for (#41) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631ff27, appThread = android.app.IApplicationThread$Stub$Proxy@e31b5d4, debugName = QuickstepLaunchHome }
+10-25 14:07:40.792  1058  1058 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+10-25 14:07:40.792  1058  1058 D StateManager: 	at com.android.quickstep.util.ScalingWorkspaceRevealAnim.<init>(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:39)
+10-25 14:07:40.792  1058  1058 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:168)
+10-25 14:07:40.792  1058  1058 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager$WallpaperOpenLauncherAnimationRunner.onAnimationStart(go/retraceme 72a59688580715d19f0e415c69e80376c2f062d1648c80db6730905005a27c20:17)
+10-25 14:07:40.794  1058  1058 D b/311077782: LauncherAnimationRunner.setAnimation
+10-25 14:07:40.797  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:40.797  1058  1058 D ScalingWorkspaceRevealAnim: alpha of workspace at the end of animation: 1.0
+10-25 14:07:40.797  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:40.814   920   981 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@59f5bd2
+10-25 14:07:40.828   920   981 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#41) android.os.BinderProxy@5e1f291@0
+10-25 14:07:40.841   672   695 V WindowManager: Sent Transition (#41) createdAt=10-25 14:07:40.675 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=2 effectiveUid=10182 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity } baseActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} origActivity=null realActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} numActivities=1 lastActiveTime=913421 supportsMultiWindow=true resizeMode=2 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{a4e0f09 Task{aa3f42a #2 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}}} topActivityType=2 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{5c7550e com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=false isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2424) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 41 }
+10-25 14:07:40.841   672   695 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-25 14:07:40.842   672   695 V WindowManager:     info={id=41 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 14:07:40.842   672   695 V WindowManager:         {WCT{RemoteToken{8d408ea Task{1341a31 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xb813419 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:40.842   672   695 V WindowManager:         {WCT{RemoteToken{50c9002 Task{6cf707f #111 type=standard A=10220:com.zgybeep.alibi.debug}}} m=TO_BACK f=NONE leash=Surface(name=Task=111)/@0xc80d4e4 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1},
+10-25 14:07:40.842   672   695 V WindowManager:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{25b02e showWhenLocked=false})/@0x5552760 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0}
+10-25 14:07:40.842   672   695 V WindowManager:     ]}
+10-25 14:07:40.848   672   695 V WindowManager: Finish Transition (#41): created at 10-25 14:07:40.675 collect-started=0.139ms request-sent=10.611ms started=15.437ms ready=25.914ms sent=101.413ms commit=53.87ms finished=172.088ms
+10-25 14:07:40.857   672   790 I ImeTracker: com.google.android.apps.nexuslauncher:2a14c994: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-25 14:07:40.857   920   981 V WindowManagerShell: Track 0 became idle
+10-25 14:07:40.858   920   981 V WindowManagerShell: All active transition animations finished
+10-25 14:07:40.867  1058  1058 D InsetsController: hide(ime(), fromIme=false)
+10-25 14:07:40.873  1058  1058 I ImeTracker: com.google.android.apps.nexuslauncher:2a14c994: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 14:07:40.878   602  1248 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:40.891  1366  1366 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+10-25 14:07:40.893  1366  1366 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-25 14:07:40.894   672  1859 I ImeTracker: system_server:f7448a82: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-25 14:07:40.905   672   698 I ImeTracker: system_server:f7448a82: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-25 14:07:40.907  1366  1366 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at asx.p(PG:6)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at axb.b(PG:13)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at nco.v(PG:13)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 14:07:40.909  1366  1366 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 14:07:40.914  1366  1366 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-25 14:07:40.922   672  1649 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+10-25 14:07:40.943  1058  1058 I NotificationListener: Handling notification state refresh for android#0
+10-25 14:07:40.956  1058  1100 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-25 14:07:40.974  1466  1717 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 14:07:40.975  1466  1717 I AiAiEcho: EchoTargets: 
+10-25 14:07:40.975  1466  1717 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 14:07:40.975  1466  1717 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 14:07:40.975  1466  1717 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 14:07:40.984  1466  1717 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 14:07:40.995  1058  1058 D SsBaseTemplateCard: No text view can be set up
+10-25 14:07:40.998  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:40.998  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:40.998  1058  1058 D SsBaseTemplateCard: Passed-in item info is null
+10-25 14:07:40.998  1058  1058 I SsBaseTemplateCard: Secondary card pane is null
+10-25 14:07:41.027  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:41.027  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.027  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:41.027  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.028  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.028  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.028  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:41.028  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.029  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:41.029  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.041   672   691 D CoreBackPreview: Window{94a1fd4 u0 com.zgybeep.alibi.debug}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d9bcc79, mPriority=0, mIsAnimationCallback=false, mOverrideBehavior=0}
+10-25 14:07:41.098   531   531 I RefreshRateSelector: Display 4619827259835644672 policy changed
+10-25 14:07:41.098   531   531 I RefreshRateSelector: Previous: {defaultModeId=0, allowGroupSwitching=false, primaryRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, 60.00 Hz]}, appRequestRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, inf Hz]} idleScreenConfig=nullptr}
+10-25 14:07:41.098   531   531 I RefreshRateSelector: Current:  DisplayManagerPolicy{defaultModeId=0, allowGroupSwitching=false, primaryRanges={physical=[60.00 Hz, inf Hz], render=[60.00 Hz, 60.00 Hz]}, appRequestRanges={physical=[60.00 Hz, inf Hz], render=[60.00 Hz, 60.00 Hz]} idleScreenConfig=nullptr}
+10-25 14:07:41.098   531   531 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+10-25 14:07:41.098   531   531 D DisplayModeController: setDesiredMode 4619827259835644672 {mode={fps=60.00 Hz, modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, force=false}
+10-25 14:07:41.116   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:41.117  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:41.117  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.118  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:41.118  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.118  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:41.118  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.118  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:41.118  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.118  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:41.118  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.118  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.119  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.119  6086  6140 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.119  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:41.158  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:41.158  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.179  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:41.179  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.208  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:41.208  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.242  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:41.243  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.277  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:41.277  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.289   672   686 I system_server: NativeAlloc concurrent mark compact GC freed 16MB AllocSpace bytes, 37(740KB) LOS objects, 43% free, 30MB/54MB, paused 1.738ms,1.733ms total 279.994ms
+10-25 14:07:41.322  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:41.322  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.322   672   688 W System  : A resource failed to call release. 
+10-25 14:07:41.322   672   688 W System  : A resource failed to call release. 
+10-25 14:07:41.325   672   688 W System  : A resource failed to call release. 
+10-25 14:07:41.325   672   688 W System  : A resource failed to call release. 
+10-25 14:07:41.325   672   688 W System  : A resource failed to call release. 
+10-25 14:07:41.346  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:41.346  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.357   672   876 D BackgroundInstallControlService: Package event received: 0
+10-25 14:07:41.357   672   672 W NotificationHistory: Attempted to add notif for locked/gone/disabled user 0
+10-25 14:07:41.360  1466  2166 W AiAiEcho: LyftNotificationParser Ridesharing ETA not enabled
+10-25 14:07:41.360  1466  2166 I AiAiEcho: SmartspaceNotificationPredictor no parser can handle this notification or notification is invalid
+10-25 14:07:41.362  1058  1058 I NotificationListener: received notification posted event - android#UserHandle{0},category=-1
+10-25 14:07:41.382  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:41.382  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.397   920  1385 D LocalImageResolver: Couldn't use ImageDecoder for drawable, falling back to non-resized load.
+10-25 14:07:41.405   920  1385 D LocalImageResolver: Couldn't use ImageDecoder for drawable, falling back to non-resized load.
+10-25 14:07:41.414  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:41.414  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.447  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:41.447  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.481  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:41.481  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.515  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:41.515  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.549  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:41.549  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.583  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:41.583  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.617  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:41.617  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.650  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:41.650  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.684  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:41.684  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.717  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:41.718  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.751  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:41.751  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.785  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:41.785  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.818  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:41.818  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.853  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:41.853  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.886  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:41.886  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.920  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:41.920  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.954  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:41.954  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:41.988  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:41.988  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.021  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:42.021  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.055  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:42.055  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.089  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:42.089  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.123  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:42.123  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.157  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:42.157  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.190  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:42.191  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.224  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:42.224  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.258  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:42.258  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.292  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:42.292  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.325  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:42.325  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.359  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:42.359  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.393  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:42.393  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.427  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:42.427  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.462  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:42.462  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.495  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:42.495  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.528  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:42.528  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.562  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:42.562  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.596  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:42.596  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.630  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:42.630  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.664  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:42.664  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.697  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:42.697  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.731  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:42.732  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.765  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:42.765  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.798  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:42.798  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.800  1058  1058 W InteractionJankMonitor: CUJ cancelled due to timeout, CUJ=LAUNCHER_APP_CLOSE_TO_HOME
+10-25 14:07:42.832  6200  6200 W screencap: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: SurfaceFlingerAIDL
+10-25 14:07:42.832  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:42.832  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.832  6200  6200 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-25 14:07:42.833  6200  6200 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-25 14:07:42.836   531  1135 E HwcComposer: getLuts failed Status(-8, EX_SERVICE_SPECIFIC): '8: '
+10-25 14:07:42.836   531  1135 E HWComposer: getLuts: getLuts failed for display 4619827259835644672: UNSUPPORTED (8)
+10-25 14:07:42.897  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:42.898  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.921  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:42.922  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.956  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:42.956  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:42.988  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:42.988  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.026  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:43.026  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.061  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:43.062  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.092  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:43.092  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.125  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:43.125  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.158  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:43.158  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.191  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:43.192  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.226  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:43.226  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.258  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:43.258  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.291  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:43.291  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.327  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:43.328  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.359  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:43.359  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.395  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:43.395  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.427  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:43.427  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.456  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:43.457  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.491  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:43.491  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.524  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:43.524  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.558  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:43.558  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.592  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:43.592  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.625  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:43.625  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.659  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:43.659  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.693  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:43.693  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.721  6203  6203 W dumpsys : Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: window
+10-25 14:07:43.731  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:43.732  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.760  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:43.760  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.794  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:43.794  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.828  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:43.828  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.866  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:43.866  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:43.880   672  1091 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 18
+10-25 14:07:43.885   527   635 D AudioFlinger: mixer(0x7488ed06f770) throttle end: throttle time(44)
+10-25 14:07:44.059  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:44.059  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.059  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:44.059  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.085  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:44.085  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.085  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:44.085  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.086  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:44.086  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.086  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:44.086  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.086  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:44.086  6086  6139 E ZslControlImpl: Failed to acquire latest image IllegalStateException = Maximum image number reached.
+10-25 14:07:44.101  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:44.101  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.105  6086  6086 D ImageCapture: takePictureInternal
+10-25 14:07:44.107  6086  6086 D CameraOrientationUtil: getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=90, isOppositeFacing=true, result=90
+10-25 14:07:44.109  6086  6086 D TakePictureManager: Issue the next TakePictureRequest.
+10-25 14:07:44.115  6086  6116 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=257
+10-25 14:07:44.115  6086  6116 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.119  6086  6116 D Camera2CameraImpl: {Camera@6ba86bb[id=1]} Issue capture request
+10-25 14:07:44.119  6086  6116 D CaptureSession: Issuing capture request.
+10-25 14:07:44.120  6086  6116 D Camera2CaptureRequestBuilder: createReprocessCaptureRequest
+10-25 14:07:44.133   472   472 I GCH_AidlCameraDeviceSession: processCaptureRequest: reprocess_frame 402 request received
+10-25 14:07:44.169  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:44.169  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.202  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:44.202  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.237  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:44.237  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.270  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:44.270  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.300   472  6122 I EmulatedRequestState: InitializeSensorSettings: Device supports manual flash strength control
+10-25 14:07:44.304  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:44.305  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.341   472  6132 I GCH_AidlCameraDeviceSession: ProcessBatchCaptureResult: reprocess_frame 402 image complete
+10-25 14:07:44.348  6086  6086 D TakePictureManager: Issue the next TakePictureRequest.
+10-25 14:07:44.348  6086  6086 D TakePictureManager: No new request.
+10-25 14:07:44.371  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:44.371  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.385  6086  6086 I PhotoCaptureService: Photo captured: request=1 latencyMs=512 queued=0
+10-25 14:07:44.406  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:44.406  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.412  6086  6086 I PhotoCaptureService: Photo saved: request=1 saveMs=23
+10-25 14:07:44.458  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:44.458  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.491  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:44.491  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.524  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:44.525  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.558  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:44.558  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.592  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:44.592  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.625  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:44.625  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.659  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:44.659  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.693  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:44.693  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.727  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:44.727  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.761  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:44.761  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.795  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:44.795  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.829  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:44.829  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.863  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:44.863  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.897  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:44.897  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.930  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:44.930  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.964  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:44.964  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:44.997  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:44.997  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.030  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:45.031  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.065  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:45.065  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.098  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:45.098  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.132  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:45.132  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.166  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:45.166  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.199  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:45.199  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.233  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:45.233  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.268  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:45.268  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.302  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:45.302  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.336  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:45.336  6086  6139 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.370  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:45.370  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.404  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:45.404  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.438  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:45.438  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.472  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:45.472  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.506  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:45.506  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.540  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:45.540  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.574  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:45.574  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.607  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:45.607  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.641  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:45.641  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.675  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:45.675  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.708  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:45.708  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.742  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:45.742  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.776  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:45.777  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.810  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:45.810  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.844  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:45.844  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.879  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:45.879  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.912  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:45.912  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.946  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:45.946  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:45.979  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:45.979  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.013  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:46.013  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.047  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:46.047  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.081  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:46.081  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.115  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:46.115  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.149  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:46.149  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.182  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:46.182  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.216  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:46.216  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.250  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:46.250  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.283  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:46.283  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.317  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:46.317  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.351  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:46.351  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.385  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:46.385  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.419  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:46.419  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.453  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:46.453  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.487  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:46.487  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.520  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:46.520  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.554  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:46.554  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.588  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:46.588  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.623  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:46.623  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.655  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:46.655  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.690  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:46.690  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.723  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:46.723  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.758  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:46.758  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.791  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:46.791  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.825  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:46.825  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.859  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:46.859  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.892  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:46.892  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.923   469  5314 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 299200
+10-25 14:07:46.923   469  5314 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: joining consumeThread
+10-25 14:07:46.926  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:46.926  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.941   469  6212 D android.hardware.audio@7.1-impl.ranchu: consumeThread: exiting
+10-25 14:07:46.941   469  5314 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: stopping PCM stream
+10-25 14:07:46.960  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:46.960  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:46.993  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:46.993  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.027  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:47.027  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.061  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:47.061  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.095  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:47.095  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.129  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:47.129  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.163  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:47.163  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.197  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:47.197  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.231  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:47.231  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.265  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:47.265  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.298  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:47.298  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.332  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:47.332  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.366  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:47.366  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.400  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:47.400  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.435  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:47.435  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.467  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:47.467  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.501  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:47.501  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.534  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:47.534  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.568  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:47.568  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.602  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:47.602  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.636  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=277
+10-25 14:07:47.636  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.669  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=283
+10-25 14:07:47.669  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.703  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=263
+10-25 14:07:47.703  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.737  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=285
+10-25 14:07:47.737  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.770  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=289
+10-25 14:07:47.770  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.804  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=274
+10-25 14:07:47.804  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.838  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=273
+10-25 14:07:47.838  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.872  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=290
+10-25 14:07:47.872  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.905  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=267
+10-25 14:07:47.906  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.939  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=265
+10-25 14:07:47.939  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:47.974  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=275
+10-25 14:07:47.974  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:48.007  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=261
+10-25 14:07:48.007  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:48.046  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=276
+10-25 14:07:48.046  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:48.075  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=271
+10-25 14:07:48.075  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:48.109  6086  6140 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=269
+10-25 14:07:48.109  6086  6140 W Gralloc5: unlock failed with error 2
+10-25 14:07:48.146   672   703 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:48.146   672   703 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 14:07:48.147  6086  6139 E mapper.ranchu: unlock:539 failure: BAD_BUFFER(lockedUsage): id=259
+10-25 14:07:48.147  6086  6139 W Gralloc5: unlock failed with error 2

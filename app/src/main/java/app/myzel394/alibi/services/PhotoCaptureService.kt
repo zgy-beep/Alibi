@@ -48,6 +48,7 @@ import app.myzel394.alibi.MainActivity
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.R
 import app.myzel394.alibi.BuildConfig
+import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.db.PhotoAspectRatio
 import app.myzel394.alibi.db.PhotoCaptureSettings
 import app.myzel394.alibi.db.PhotoCaptureStrategy
@@ -238,7 +239,13 @@ class PhotoCaptureService : LifecycleService() {
     fun setMode(mode: PhotoCaptureMode) {
         val currentSession = session ?: return
 
-        if (state.status != PhotoCaptureStatus.READY) {
+        if (state.status !in listOf(
+                PhotoCaptureStatus.STARTING,
+                PhotoCaptureStatus.READY,
+                PhotoCaptureStatus.CAPTURING,
+                PhotoCaptureStatus.SAVING,
+            )
+        ) {
             return
         }
 
@@ -620,15 +627,19 @@ class PhotoCaptureService : LifecycleService() {
     }
 
     private fun startSession(intent: Intent) {
-        if (session != null || state.isActive) {
-            return
-        }
-
         val mode = runCatching {
             PhotoCaptureMode.valueOf(
                 intent.getStringExtra(EXTRA_MODE) ?: PhotoCaptureMode.BLACK_SCREEN.name
             )
         }.getOrDefault(PhotoCaptureMode.BLACK_SCREEN)
+        if (intent.getBooleanExtra(EXTRA_START_IN_BACKGROUND, false)) {
+            appVisible = false
+        }
+        if (session != null || state.isActive) {
+            setMode(mode)
+            updateOverlay()
+            return
+        }
         val sessionConfig = SessionConfig(
             id = UUID.randomUUID().toString(),
             mode = mode,
@@ -884,7 +895,7 @@ class PhotoCaptureService : LifecycleService() {
                 publish(
                     state.copy(
                         status = PhotoCaptureStatus.READY,
-                        mode = sessionConfig.mode,
+                        mode = session?.mode ?: sessionConfig.mode,
                         error = null,
                         zoomRatio = initialZoom,
                     )
@@ -1413,11 +1424,79 @@ class PhotoCaptureService : LifecycleService() {
         const val EXTRA_SHOW_PREVIEW_ON_LAUNCH = "showPreviewOnLaunch"
         const val EXTRA_OVERLAY_OPACITY = "overlayOpacity"
         const val EXTRA_INITIAL_ZOOM = "initialZoom"
+        const val EXTRA_START_IN_BACKGROUND = "startInBackground"
         private const val REQUEST_STOP = 41
         private const val REQUEST_OPEN = 42
         private const val STOP_TIMEOUT_MILLIS = 5_000L
         private const val RECOVERY_REQUEST_ID = -1L
         private const val MIN_FAST_CAPTURE_FPS = 30
         private const val MOTION_CAPTURE_FPS = 60
+
+        fun createStartIntent(
+            context: Context,
+            settings: AppSettings,
+            mode: PhotoCaptureMode,
+            startInBackground: Boolean = false,
+        ): Intent {
+            return Intent(context, PhotoCaptureService::class.java).apply {
+                action = ACTION_START
+                putExtra(EXTRA_MODE, mode.name)
+                putExtra(EXTRA_LENS_FACING, settings.photoCaptureSettings.lensFacing)
+                putExtra(
+                    EXTRA_FEEDBACK_ENABLED,
+                    settings.photoCaptureSettings.feedbackEnabled,
+                )
+                putExtra(
+                    EXTRA_FAST_CAPTURE_ENABLED,
+                    settings.photoCaptureSettings.fastCaptureEnabled,
+                )
+                putExtra(
+                    EXTRA_CAPTURE_STRATEGY,
+                    settings.photoCaptureSettings.getEffectiveCaptureStrategy().name,
+                )
+                putExtra(
+                    EXTRA_HAPTIC_FEEDBACK,
+                    settings.photoCaptureSettings.getEffectiveHapticFeedback().name,
+                )
+                putExtra(
+                    EXTRA_RESOLUTION_PREFERENCE,
+                    settings.photoCaptureSettings.resolutionPreference.name,
+                )
+                putExtra(EXTRA_ASPECT_RATIO, settings.photoCaptureSettings.aspectRatio.name)
+                putExtra(EXTRA_FLASH_MODE, settings.photoCaptureSettings.flashMode.name)
+                putExtra(
+                    EXTRA_OPTICAL_STABILIZATION,
+                    settings.photoCaptureSettings.opticalStabilizationEnabled,
+                )
+                putExtra(
+                    EXTRA_CONTINUOUS_AUTO_FOCUS,
+                    settings.photoCaptureSettings.continuousAutoFocusEnabled,
+                )
+                putExtra(
+                    EXTRA_MIRROR_FRONT_CAMERA,
+                    settings.photoCaptureSettings.mirrorFrontCamera,
+                )
+                putExtra(
+                    EXTRA_SHOW_PREVIEW_ON_LAUNCH,
+                    settings.photoCaptureSettings.showPreviewOnLaunch,
+                )
+                putExtra(
+                    EXTRA_OVERLAY_OPACITY,
+                    settings.photoCaptureSettings.overlayOpacity,
+                )
+                putExtra(
+                    EXTRA_INITIAL_ZOOM,
+                    if (settings.photoCaptureSettings.rememberZoom) {
+                        settings.photoCaptureSettings.lastZoomRatio
+                    } else {
+                        1f
+                    },
+                )
+                putExtra(EXTRA_START_IN_BACKGROUND, startInBackground)
+                settings.saveFolder?.let {
+                    putExtra(EXTRA_SAVE_FOLDER, it)
+                }
+            }
+        }
     }
 }

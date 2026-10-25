@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="app.myzel394.alibi.PhotoCaptureSessionStateTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-25T01:51:17" hostname="CHINAMI-5L2AH8O" time="0.003">
+  <properties/>
+  <testcase name="stoppedStateIsNotActive" classname="app.myzel394.alibi.PhotoCaptureSessionStateTest" time="0.001"/>
+  <testcase name="fullRequestBudgetRejectsNewCaptures" classname="app.myzel394.alibi.PhotoCaptureSessionStateTest" time="0.0"/>
+  <testcase name="requestBudgetTracksTemporaryBytesUntilFinished" classname="app.myzel394.alibi.PhotoCaptureSessionStateTest" time="0.001"/>
+  <testcase name="activeReadyAndBusyStatesAcceptCapture" classname="app.myzel394.alibi.PhotoCaptureSessionStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

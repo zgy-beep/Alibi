@@ -86,77 +86,11 @@ class PhotoCaptureModel : ViewModel() {
             return true
         }
 
-        val intent = Intent(appContext, PhotoCaptureService::class.java).apply {
-            action = PhotoCaptureService.ACTION_START
-            putExtra(PhotoCaptureService.EXTRA_MODE, mode.name)
-            putExtra(
-                PhotoCaptureService.EXTRA_LENS_FACING,
-                settings.photoCaptureSettings.lensFacing,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_FEEDBACK_ENABLED,
-                settings.photoCaptureSettings.feedbackEnabled,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_FAST_CAPTURE_ENABLED,
-                settings.photoCaptureSettings.fastCaptureEnabled,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_CAPTURE_STRATEGY,
-                settings.photoCaptureSettings
-                    .getEffectiveCaptureStrategy()
-                    .name,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_HAPTIC_FEEDBACK,
-                settings.photoCaptureSettings
-                    .getEffectiveHapticFeedback()
-                    .name,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_RESOLUTION_PREFERENCE,
-                settings.photoCaptureSettings.resolutionPreference.name,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_ASPECT_RATIO,
-                settings.photoCaptureSettings.aspectRatio.name,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_FLASH_MODE,
-                settings.photoCaptureSettings.flashMode.name,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_OPTICAL_STABILIZATION,
-                settings.photoCaptureSettings.opticalStabilizationEnabled,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_CONTINUOUS_AUTO_FOCUS,
-                settings.photoCaptureSettings.continuousAutoFocusEnabled,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_MIRROR_FRONT_CAMERA,
-                settings.photoCaptureSettings.mirrorFrontCamera,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_SHOW_PREVIEW_ON_LAUNCH,
-                settings.photoCaptureSettings.showPreviewOnLaunch,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_OVERLAY_OPACITY,
-                settings.photoCaptureSettings.overlayOpacity,
-            )
-            putExtra(
-                PhotoCaptureService.EXTRA_INITIAL_ZOOM,
-                if (settings.photoCaptureSettings.rememberZoom) {
-                    settings.photoCaptureSettings.lastZoomRatio
-                } else {
-                    1f
-                },
-            )
-            settings.saveFolder?.let {
-                putExtra(PhotoCaptureService.EXTRA_SAVE_FOLDER, it)
-            }
-        }
+        val intent = PhotoCaptureService.createStartIntent(
+            context = appContext,
+            settings = settings,
+            mode = mode,
+        )
 
         return try {
             ContextCompat.startForegroundService(appContext, intent)

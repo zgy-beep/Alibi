@@ -1,0 +1,7 @@
+Starting: Intent { act=com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO flg=0x1000c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity
+TotalTime: 1669
+WaitTime: 1712
+Complete

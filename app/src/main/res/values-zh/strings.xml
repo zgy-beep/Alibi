@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Alibi</string>
+    <string name="shortcut_record_audio_short">开始录音</string>
+    <string name="shortcut_record_audio_long">后台开始音频录制</string>
+    <string name="shortcut_take_photo_short">快速拍照</string>
+    <string name="shortcut_take_photo_long">后台启动悬浮拍照</string>
+    <string name="shortcut_permission_required">需要权限，请打开 Alibi 完成授权。</string>
+    <string name="ui_runtime_status_description">Alibi 正在运行</string>
+    <string name="ui_runtime_starting_description">Alibi 正在准备</string>
+    <string name="ui_runtime_paused_description">Alibi 已暂停</string>
     <string name="dialog_close_cancel_label">取消</string>
     <string name="dialog_close_neutral_label">确定</string>
     <string name="continue_label">继续</string>
@@ -148,7 +156,6 @@
     <string name="recorder_home_video_label">录像</string>
     <string name="recorder_home_video_subtitle">保存视频</string>
     <string name="recorder_home_photo_subtitle">快速抓拍</string>
-    <string name="ui_home_local_status">本地模式</string>
     <string name="ui_home_storage_warning_title">存储空间严重不足</string>
     <string name="ui_home_storage_warning_message">请更换保存目录或释放空间后再录制。</string>
     <string name="ui_home_storage_warning_internal">当前缓存时长对内部存储来说过大。</string>
@@ -265,11 +272,13 @@
     <string name="photo_lens_back">后置相机</string>
     <string name="photo_lens_front">前置相机</string>
     <string name="photo_mode_black_title">黑屏快门</string>
+    <string name="photo_setup_mode_title">拍摄方式</string>
+    <string name="photo_setup_start_black">进入黑屏</string>
+    <string name="photo_setup_start_floating">开启悬浮拍照</string>
     <string name="photo_mode_black_description">点击黑色屏幕拍照。长按返回首页，离开页面会停止拍照。</string>
     <string name="photo_mode_floating_title">悬浮快门</string>
     <string name="photo_mode_floating_description">切换到其他应用后点击小悬浮按钮拍照。长按可显示操作。</string>
     <string name="photo_action_open_gallery">最近照片</string>
-    <string name="photo_action_start">开始</string>
     <string name="photo_action_manage">管理拍照</string>
     <string name="photo_active_title">拍照功能正在运行</string>
     <string name="photo_active_description">相机会保持可用，以响应当前快门模式。</string>
@@ -358,6 +367,5 @@
     <string name="photo_settings_section_summary">拍摄策略、画质、闪光灯、对焦、震动和黑屏控制均在相机设置页面管理。</string>
     <string name="photo_action_stop">停止拍照</string>
     <string name="photo_action_open_black">打开黑屏页面</string>
-    <string name="photo_action_use_floating">使用悬浮快门</string>
     <string name="photo_mode_active_hint">按 Home 键，然后在其他应用中点击悬浮按钮拍照。</string>
 </resources>

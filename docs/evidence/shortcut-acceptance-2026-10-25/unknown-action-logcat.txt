@@ -1,0 +1,179 @@
+--------- beginning of system
+10-25 01:53:22.513   671  1337 W ActivityTaskManager: callingPackage for (uid=2000, pid=5053) has no WPC
+--------- beginning of main
+10-25 01:53:22.524   671  1337 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@87d26927 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 01:53:22.525   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+10-25 01:53:22.525   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+10-25 01:53:22.525   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+10-25 01:53:22.525   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 01:53:22.530   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+10-25 01:53:22.531   671  1337 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+10-25 01:53:22.542   532   609 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:53:22.556   917   987 V WindowManagerShell: Transition requested (#44): android.os.BinderProxy@7eb38ab TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=31 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.UNKNOWN flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=304467 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@9ad6b08} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{5a332a1 app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 44 }
+10-25 01:53:22.556   917   987 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+10-25 01:53:22.556   671  1337 I ActivityTaskManager: START u0 {act=com.zgybeep.alibi.debug.shortcut.UNKNOWN flg=0x1000c000 xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-25 01:53:22.559  1061  1061 W SplitSelectStateCtor: Missing session instanceIds
+10-25 01:53:22.559  1061  1061 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-25 01:53:22.560   917   987 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=527
+10-25 01:53:22.561   671  1154 I AppsFilter: interaction: PackageSetting{eaaac67 com.android.microdroid.empty_payload/10204} -> PackageSetting{f3e00b3 com.zgybeep.alibi.debug/10217} BLOCKED
+10-25 01:53:22.562   532   532 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-25 01:53:22.581   671   697 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@87d26927 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-25 01:53:22.590   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:22.628   459   459 D Zygote  : Forked child process 5057
+10-25 01:53:22.629   671   704 I ActivityManager: Start proc 5057:com.zgybeep.alibi.debug/u0a217 for next-top-activity {com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}
+10-25 01:53:22.630   671   704 I ActivityManager: ProcessObserver broadcast disabled
+10-25 01:53:22.675  5057  5057 I eep.alibi.debug: Late-enabling -Xcheck:jni
+10-25 01:53:22.708   671  1154 W ActivityTaskManager: takeTaskSnapshot: taskId=31 not found or not visible
+10-25 01:53:22.730  5057  5057 I eep.alibi.debug: Using CollectorTypeCMC GC.
+10-25 01:53:22.732  5057  5057 W eep.alibi.debug: Unexpected CPU variant for x86: x86_64.
+10-25 01:53:22.732  5057  5057 W eep.alibi.debug: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-25 01:53:22.745   540   557 I adbd    : jdwp connection from 5057
+10-25 01:53:22.755  5057  5057 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-25 01:53:22.772   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:22.797  5057  5057 D CompatChangeReporter: Compat change id reported: 242716250; UID 10217; state: ENABLED
+10-25 01:53:23.526  5057  5057 D nativeloader: Configuring clns-9 for other apk /data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/lib/x86_64:/data/app/~~La-Nxvi-vQ-PcwgQ-Qawpw==/com.zgybeep.alibi.debug-ygBdw5lKv1zIIGwLbppUxA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.zgybeep.alibi.debug
+10-25 01:53:23.536  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158070c58) locale list changing from [] to [zh-Hans-CN]
+10-25 01:53:23.546  5057  5057 V GraphicsEnvironment: Currently set values for:
+10-25 01:53:23.546  5057  5057 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-25 01:53:23.546  5057  5057 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-25 01:53:23.546  5057  5057 V GraphicsEnvironment: com.zgybeep.alibi.debug is not listed in per-application setting
+10-25 01:53:23.547  5057  5057 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-25 01:53:23.547  5057  5057 V GraphicsEnvironment: com.zgybeep.alibi.debug is not listed in ANGLE allowlist or settings, returning default
+10-25 01:53:23.547  5057  5057 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-25 01:53:23.617   671  1782 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+10-25 01:53:23.624  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158071bf8) locale list changing from [zh-Hans-CN] to [zh-Hans-CN,en-US]
+10-25 01:53:23.624  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158071bf8) default locale changing from '' to 'en-US'
+10-25 01:53:23.624  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158070c58) locale list changing from [zh-Hans-CN] to [zh-Hans-CN,en-US]
+10-25 01:53:23.624  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158070c58) default locale changing from '' to 'en-US'
+10-25 01:53:23.626  5057  5071 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+10-25 01:53:23.626   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.627   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.629  5057  5057 V Resources: Updating configuration, with default locale en-US and selected locales [zh-Hans-CN, en-US]
+10-25 01:53:23.629  5057  5057 I eep.alibi.debug: AssetManager2(0x73e1580734f8) locale list changing from [] to [zh-Hans-CN,en-US]
+10-25 01:53:23.629  5057  5057 I eep.alibi.debug: AssetManager2(0x73e1580734f8) default locale changing from '' to 'en-US'
+10-25 01:53:23.715  5057  5071 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-25 01:53:23.715  5057  5071 I EGL_emulation: Opening libGLESv2_emulation.so
+10-25 01:53:23.746  5057  5057 V Resources: Updating configuration, with default locale en-US and selected locales [zh-Hans-CN, en-US]
+10-25 01:53:23.748  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158071298) locale list changing from [] to [zh-Hans-CN,en-US]
+10-25 01:53:23.748  5057  5057 I eep.alibi.debug: AssetManager2(0x73e158071298) default locale changing from '' to 'en-US'
+10-25 01:53:23.762  5057  5057 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+10-25 01:53:23.764  5057  5071 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-25 01:53:23.874  5057  5057 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-25 01:53:23.897  1061  1061 D StatsLog: LAUNCHER_ONRESUME
+10-25 01:53:23.898   917  1055 V WindowManagerShell: onTransitionReady(transaction=2881923056674)
+10-25 01:53:23.898   671   694 V WindowManager: Sent Transition (#44) createdAt=10-25 01:53:22.525 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=31 effectiveUid=10217 displayId=0 isRunning=true baseIntent=Intent { act=com.zgybeep.alibi.debug.shortcut.UNKNOWN flg=0x1080c000 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity } baseActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} topActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} origActivity=null realActivity=ComponentInfo{com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity} numActivities=1 lastActiveTime=304467 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{23d0491 Task{5cd0e04 #31 type=standard I=com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 142 - 0, 0) topActivityInfo=ActivityInfo{4854ff6 app.myzel394.alibi.ShortcutActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(278, 711 - 803, 1791) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 142 - 1080, 2361) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 44 }
+10-25 01:53:23.898   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.898   917   987 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=true, height=527
+10-25 01:53:23.899   671   694 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-25 01:53:23.899   671   694 V WindowManager:     info={id=44 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:53:23.899   671   694 V WindowManager:         {WCT{RemoteToken{bb7d778 Task{2539710 #1 type=home}}} m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xaece8a0 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:53:23.899   671   694 V WindowManager:     ]}
+10-25 01:53:23.899   917   987 V WindowManagerShell: onTransitionReady (#44) android.os.BinderProxy@7eb38ab: {id=44 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+10-25 01:53:23.899   917   987 V WindowManagerShell:         {m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x96fccc6 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}
+10-25 01:53:23.899   917   987 V WindowManagerShell:     ]}
+10-25 01:53:23.899   917   987 V WindowManagerShell: Playing animation for (#44) android.os.BinderProxy@7eb38ab@0
+10-25 01:53:23.899   917   987 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-25 01:53:23.899   917   987 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=44 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x96fccc6 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:53:23.899   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@b4fa873 windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@22ff330, appThread = android.app.IApplicationThread$Stub$Proxy@1a35ba9, debugName = overlayBackTransition }}
+10-25 01:53:23.899   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@631b52e, appThread = android.app.IApplicationThread$Stub$Proxy@7f258cf, debugName = LauncherToDream }}
+10-25 01:53:23.899   917   987 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@859125c, appThread = android.app.IApplicationThread$Stub$Proxy@ad0965, debugName = QuickstepLaunchHome }}
+10-25 01:53:23.899   917   987 V WindowManagerShell:  Delegate animation for (#44) to null
+10-25 01:53:23.899   917   987 V WindowManagerShell: start default transition animation, info = {id=44 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=CHANGE f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x96fccc6 sb=Rect(0, 0 - 1080, 2424) eb=Rect(0, 0 - 1080, 2424) epz=Point(1080, 2424) d=0 taskParent=-1}]}
+10-25 01:53:23.902   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.902   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.903   917   987 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#44) android.os.BinderProxy@7eb38ab@0
+10-25 01:53:23.904   671   694 V WindowManager: Finish Transition (#44): created at 10-25 01:53:22.525 collect-started=0.08ms request-sent=29.09ms started=30.543ms ready=1370.04ms sent=1371.567ms finished=1378.114ms
+10-25 01:53:23.904   917   987 V WindowManagerShell: Track 0 became idle
+10-25 01:53:23.904   917   987 V WindowManagerShell: All active transition animations finished
+10-25 01:53:23.904   917   987 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d2246b
+10-25 01:53:23.904   917   987 V WindowManagerShell: Track 0 became idle
+10-25 01:53:23.905   917   987 V WindowManagerShell: All active transition animations finished
+10-25 01:53:23.905   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.905   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.906   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.907   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.907  1061  1061 I NotificationListener: Handling notification state refresh for android#0
+10-25 01:53:23.907   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.907   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.907   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908  1061  1108 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.908   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.909   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.910   671   697 W IPCThreadState: Sending oneway calls to frozen process.
+10-25 01:53:23.913   671   697 W ProcessStats: Tracking association SourceState{7e5c6fa system/1000 BFgs #2309} whose proc state 4 is better than process ProcessState{4a21a8 com.google.android.ext.services/10207 pkg=com.google.android.ext.services} proc state 14 (4 skipped)
+10-25 01:53:23.925  1470  1790 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-25 01:53:23.925  1470  1790 I AiAiEcho: EchoTargets: 
+10-25 01:53:23.925  1470  1790 I AiAiEcho: Filtered by AiAi flag check: 
+10-25 01:53:23.925  1470  1790 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-25 01:53:23.926  1470  1790 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-25 01:53:23.927  1470  1790 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-25 01:53:23.931   671   871 D BackgroundInstallControlService: Package event received: 0
+10-25 01:53:23.942  1061  1061 D SsBaseTemplateCard: No text view can be set up
+10-25 01:53:23.943  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:53:23.943  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:53:23.943  1061  1061 D SsBaseTemplateCard: Passed-in item info is null
+10-25 01:53:23.943  1061  1061 I SsBaseTemplateCard: Secondary card pane is null
+10-25 01:53:23.945   671   785 I ImeTracker: com.google.android.apps.nexuslauncher:a35c1e53: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+10-25 01:53:23.946  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+10-25 01:53:23.963  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-25 01:53:23.966  1349  1349 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-25 01:53:23.978  1061  1061 D InsetsController: hide(ime(), fromIme=false)
+10-25 01:53:23.978  1061  1061 I ImeTracker: com.google.android.apps.nexuslauncher:a35c1e53: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 01:53:23.997  1349  1349 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at asx.p(PG:6)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at axb.b(PG:13)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at nco.v(PG:13)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-25 01:53:23.997  1349  1349 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-25 01:53:23.998   671  1782 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+10-25 01:53:24.004  1061  1061 D RecentsView: onTaskRemoved: 31, not handling task stack changes
+10-25 01:53:24.004  1061  1061 D RecentsView: onTaskRemoved: 31, not handling task stack changes
+10-25 01:53:24.074   671  1782 W HWUI    : Image decoding logging dropped!

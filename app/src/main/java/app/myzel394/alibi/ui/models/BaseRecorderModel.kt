@@ -18,6 +18,12 @@ import app.myzel394.alibi.services.IntervalRecorderService
 import app.myzel394.alibi.services.RecorderNotificationHelper
 import app.myzel394.alibi.services.RecorderService
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 abstract class BaseRecorderModel<I, B : BatchesFolder, T : IntervalRecorderService<I, B>> :
@@ -58,6 +64,8 @@ abstract class BaseRecorderModel<I, B : BatchesFolder, T : IntervalRecorderServi
     abstract var batchesFolder: B?
 
     private var notificationDetails: RecorderNotificationHelper.NotificationDetails? = null
+    private val modelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private var startJob: Job? = null
 
     var settings: AppSettings? = null
         protected set
@@ -109,6 +117,8 @@ abstract class BaseRecorderModel<I, B : BatchesFolder, T : IntervalRecorderServi
     }
 
     open fun reset() {
+        startJob?.cancel()
+        startJob = null
         recorderService = null
         recorderState = RecorderState.IDLE
         recordingTime = 0
@@ -195,5 +205,35 @@ abstract class BaseRecorderModel<I, B : BatchesFolder, T : IntervalRecorderServi
         runCatching {
             context.unbindService(connection)
         }
+    }
+
+    protected fun startServiceRecording(
+        service: RecorderService,
+        clearExisting: Boolean,
+        onFailure: () -> Unit = {},
+    ) {
+        val folder = batchesFolder ?: run {
+            onFailure()
+            return
+        }
+        startJob?.cancel()
+        startJob = modelScope.launch {
+            val started = service.startRecording(beforeStart = {
+                if (clearExisting) {
+                    folder.deleteRecordings()
+                }
+            })
+            if (started) {
+                onRecordingStart()
+            } else {
+                recorderState = service.state
+                onFailure()
+            }
+        }
+    }
+
+    override fun onCleared() {
+        modelScope.cancel()
+        super.onCleared()
     }
 }

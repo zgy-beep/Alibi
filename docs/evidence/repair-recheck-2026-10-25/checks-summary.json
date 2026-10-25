@@ -1,0 +1,56 @@
+{
+  "unitTests": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 189,
+    "Information": 2
+  },
+  "lintTopIssues": [
+    [
+      "TypographyEllipsis",
+      92
+    ],
+    [
+      "UnusedResources",
+      25
+    ],
+    [
+      "GradleDependency",
+      22
+    ],
+    [
+      "UnusedAttribute",
+      12
+    ],
+    [
+      "UseKtx",
+      9
+    ],
+    [
+      "ComposableNaming",
+      7
+    ],
+    [
+      "VectorRaster",
+      5
+    ],
+    [
+      "ModifierParameter",
+      4
+    ],
+    [
+      "ConfigurationScreenWidthHeight",
+      3
+    ],
+    [
+      "Typos",
+      2
+    ]
+  ],
+  "instrumentation": "Prior evidence reviewed; not rerun",
+  "deviceTests": "Prior evidence reviewed; not rerun"
+}

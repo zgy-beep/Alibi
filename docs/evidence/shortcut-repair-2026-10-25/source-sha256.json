@@ -1,0 +1,122 @@
+[
+  {
+    "path": "app/src/androidTest/java/app/myzel394/alibi/ExampleInstrumentedTest.kt",
+    "sha256": "897156cd3d40a002a023ace90b44cc387d1c9e2c50d4ab0ba2212087f2cad878"
+  },
+  {
+    "path": "app/src/debug/res/xml/shortcuts.xml",
+    "sha256": "9e0a4f60b09ffa6090d37f1cc07e1ee772dd2c098e04c6d5e84b1e402ba5b990"
+  },
+  {
+    "path": "app/src/main/AndroidManifest.xml",
+    "sha256": "99b66584c4772e745aecb6b85c65ef8ad2e8ebb5f123c96d9976d1834534dd2d"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/AppShortcuts.kt",
+    "sha256": "0399cb8b6bbc3dcc5dcb5f7f552de49a0ee58c1395028852b4181ca759dbe77e"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/db/AppSettings.kt",
+    "sha256": "6a1c6b81c6320fba85138eb8bd98c22869f76bf29ffbf8b2667de6d6f0abe388"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/services/PhotoCaptureService.kt",
+    "sha256": "14313fb69831be5e2a2aea1f0d5efbb7dd6200065ef7b2dc52ba0c0618e14bb7"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/services/RecorderService.kt",
+    "sha256": "6642d8ec0f5af56f6132c97a586b8809c041a28ae8a61e74cfec62924277c4bc"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ShortcutActivity.kt",
+    "sha256": "568de9308c1d74391e63b859e57d9d4da93ac69c8ff14283f2aad53a2310f692"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/components/atoms/RunningStatusIndicator.kt",
+    "sha256": "0d70b9e92ddd1b748708e142d4632553e4c1494cb62ca034d7a63f2f08ac0335"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/atoms/LowStorageInfo.kt",
+    "sha256": "14d8752de9cc11a962629df9d3c5ff16ded162ffb583f07b504a0820033f1daf"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/components/SettingsScreen/Tiles/SaveFolderTile.kt",
+    "sha256": "05b68027936389cfe439101875b2401c0bc7d54bd4774ccd1ec81976d5506b29"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/models/AudioRecorderModel.kt",
+    "sha256": "29996ed3f1bb8c6b496d764d6d5a5f8b8a99b6df321053d52848e522af61c912"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/models/PhotoCaptureModel.kt",
+    "sha256": "a456e13ebfb34f397d33d47470aa63c71d35898a86e90d4d43a28c7f44258ffd"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/models/VideoRecorderModel.kt",
+    "sha256": "aa5fc0a9841a0c01b0fc64b4f1197a8bfd33784613be49fb5a05bed32c238811"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/Navigation.kt",
+    "sha256": "5b1b3c162191e399780450907ce409f4ac27ec9d61b3861d9efc32d30b3c8869"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/AboutScreen.kt",
+    "sha256": "e8dfa6941cf00d248f016cd3305aeec20bc3764f24a6d64f1db958dd56c1f99a"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/CustomRecordingNotificationsScreen.kt",
+    "sha256": "c8a31d5c13cab5eb1cbaefe1b6c4ab866a52ea131e59993e2536383f9281f3bb"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/PhotoCaptureSettingsScreen.kt",
+    "sha256": "c01dd88f976708b7d4a8b2a34ef6d4af6faf4f5b05f561583a70c369e1b5cf98"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/PhotoSetupScreen.kt",
+    "sha256": "20735e3183d5dd1e5f5af5e7ea11c4d73dbce1b1983fe8f0a7a214ed3abd398e"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/RecentPhotosScreen.kt",
+    "sha256": "52c474eb2bde5340d0d2cd4d3baa68dd1ef80cb1014c660ed3401f9f89e63f5d"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/RecorderScreen.kt",
+    "sha256": "2fdfea1fc2da56800441e78820c97562415b3b61cfca1b3921ad5dc06890e4c6"
+  },
+  {
+    "path": "app/src/main/java/app/myzel394/alibi/ui/screens/SettingsScreen.kt",
+    "sha256": "a24a47d365a36143b7506b66ea3606559d5177b9c9b19735e4896ae6454b5a5e"
+  },
+  {
+    "path": "app/src/main/res/drawable/ic_shortcut_photo.xml",
+    "sha256": "c36e45aa8862df8ef25612709741ed939c20ccfa2cfea4bf90548a99ffe02d1a"
+  },
+  {
+    "path": "app/src/main/res/drawable/ic_shortcut_record.xml",
+    "sha256": "23d05e43428bd2c19d3ff40c6dc24fd9deaaa124c0d916c79282f1c2ea62971b"
+  },
+  {
+    "path": "app/src/main/res/values-zh/strings.xml",
+    "sha256": "225e1d2b7a2a60fb4bb863b230354e1c09fe105b127e9b647dfd8f22c8e65164"
+  },
+  {
+    "path": "app/src/main/res/values/strings.xml",
+    "sha256": "3fd0db4bbcbbe04328dbda1efebc6224036a571d0a28db8ae81303a0d95dad97"
+  },
+  {
+    "path": "app/src/main/res/values/themes.xml",
+    "sha256": "2345fdb6599eaafd974bf89dce3f7cd041cb4fc5310bbc5ac589b6ef570e6769"
+  },
+  {
+    "path": "app/src/main/res/xml/shortcuts.xml",
+    "sha256": "e0f521f6547a459fc62caaac569771c1f790437579b4e1dfcea9ec1cc8270ede"
+  },
+  {
+    "path": "app/src/test/java/app/myzel394/alibi/ExampleUnitTest.kt",
+    "sha256": "53d2d19470b7a1fc0e3a9ffda6da5c05ae495f2310113b3f0d4f4a404e6cb9e0"
+  },
+  {
+    "path": "README.md",
+    "sha256": "e7de1dc643b1e7cf96501f87a9ea275d32eed3dbaa35205d50e10c4c61598046"
+  }
+]

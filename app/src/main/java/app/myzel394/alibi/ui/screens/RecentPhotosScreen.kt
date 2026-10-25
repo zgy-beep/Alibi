@@ -58,6 +58,8 @@ import app.myzel394.alibi.R
 import app.myzel394.alibi.helpers.PhotoRecord
 import app.myzel394.alibi.helpers.PhotoRepository
 import app.myzel394.alibi.helpers.PhotoStorage
+import app.myzel394.alibi.ui.components.atoms.TitleWithRunningStatus
+import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -126,20 +128,9 @@ fun RecentPhotosScreen(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.photo_recent_title)) },
-                navigationIcon = {
-                    IconButton(
-                        onClick = {
-                            onBackNavigate()
-                        }
-                    ) {
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.goBack),
-                        )
-                    }
-                },
+            AlibiTopAppBar(
+                title = stringResource(R.string.photo_recent_title),
+                onBack = onBackNavigate,
                 actions = {
                     IconButton(
                         onClick = {

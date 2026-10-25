@@ -1,0 +1,66 @@
+[
+  {
+    "case": "missing-microphone",
+    "crashed": true,
+    "audio_service_present": false,
+    "photo_service_present": false,
+    "main_activity_record_present": false,
+    "foreground_service": false
+  },
+  {
+    "case": "missing-camera-overlay",
+    "crashed": true,
+    "audio_service_present": false,
+    "photo_service_present": false,
+    "main_activity_record_present": false,
+    "foreground_service": false
+  },
+  {
+    "case": "audio-cold",
+    "crashed": false,
+    "audio_service_present": true,
+    "photo_service_present": false,
+    "main_activity_record_present": false,
+    "foreground_service": true
+  },
+  {
+    "case": "audio-repeat",
+    "crashed": false,
+    "audio_service_present": true,
+    "photo_service_present": false,
+    "main_activity_record_present": false,
+    "foreground_service": true
+  },
+  {
+    "case": "photo-cold",
+    "crashed": false,
+    "audio_service_present": false,
+    "photo_service_present": true,
+    "main_activity_record_present": false,
+    "foreground_service": true
+  },
+  {
+    "case": "photo-repeat",
+    "crashed": false,
+    "audio_service_present": false,
+    "photo_service_present": true,
+    "main_activity_record_present": false,
+    "foreground_service": true
+  },
+  {
+    "case": "photo-tap",
+    "crashed": false,
+    "audio_service_present": false,
+    "photo_service_present": true,
+    "main_activity_record_present": false,
+    "foreground_service": true
+  },
+  {
+    "case": "unknown-action",
+    "crashed": false,
+    "audio_service_present": false,
+    "photo_service_present": false,
+    "main_activity_record_present": false,
+    "foreground_service": false
+  }
+]

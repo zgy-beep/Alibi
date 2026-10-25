@@ -1,0 +1,26 @@
+files:
+total 56
+drwxrwx--x 5 u0_a217 u0_a217 4096 2026-10-25 01:53 .
+drwx------ 6 u0_a217 u0_a217 4096 2026-10-25 01:51 ..
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:52 .audio_recordings
+-rw------- 1 u0_a217 u0_a217  449 2026-10-25 01:53 photo_index.json
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:53 photo_pending
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:53 photos
+-rw------- 1 u0_a217 u0_a217   24 2026-10-25 01:51 profileInstalled
+
+files/.audio_recordings:
+total 128
+drwx------ 2 u0_a217 u0_a217   4096 2026-10-25 01:52 .
+drwxrwx--x 5 u0_a217 u0_a217   4096 2026-10-25 01:53 ..
+-rw------- 1 u0_a217 u0_a217 108620 2026-10-25 01:53 1.aac
+
+files/photo_pending:
+total 16
+drwx------ 2 u0_a217 u0_a217 4096 2026-10-25 01:53 .
+drwxrwx--x 5 u0_a217 u0_a217 4096 2026-10-25 01:53 ..
+
+files/photos:
+total 80
+drwx------ 2 u0_a217 u0_a217  4096 2026-10-25 01:53 .
+drwxrwx--x 5 u0_a217 u0_a217  4096 2026-10-25 01:53 ..
+-rw------- 1 u0_a217 u0_a217 59812 2026-10-25 01:53 alibi-photo_20261025_015317_334_b951155c.jpg

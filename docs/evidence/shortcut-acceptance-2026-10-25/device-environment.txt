@@ -1,0 +1,10 @@
+Host date (UTC): 2026-10-25T01:52:37.688371+00:00
+Serial: emulator-5580
+AVD: Pixel9_API36
+OK
+
+ro.kernel.qemu=1
+
+Android=16
+
+API=36

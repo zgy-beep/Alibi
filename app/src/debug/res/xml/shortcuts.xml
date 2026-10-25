@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_record"
+        android:shortcutId="background_audio_recording"
+        android:shortcutLongLabel="@string/shortcut_record_audio_long"
+        android:shortcutShortLabel="@string/shortcut_record_audio_short">
+        <intent
+            android:action="com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO"
+            android:targetClass="app.myzel394.alibi.ShortcutActivity"
+            android:targetPackage="com.zgybeep.alibi.debug" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_photo"
+        android:shortcutId="background_photo_capture"
+        android:shortcutLongLabel="@string/shortcut_take_photo_long"
+        android:shortcutShortLabel="@string/shortcut_take_photo_short">
+        <intent
+            android:action="com.zgybeep.alibi.debug.shortcut.TAKE_PHOTO"
+            android:targetClass="app.myzel394.alibi.ShortcutActivity"
+            android:targetPackage="com.zgybeep.alibi.debug" />
+    </shortcut>
+</shortcuts>

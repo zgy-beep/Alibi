@@ -1,0 +1,6 @@
+Starting: Intent { cmp=com.zgybeep.alibi/app.myzel394.alibi.MainActivity }
+Status: ok
+LaunchState: UNKNOWN (0)
+Activity: com.zgybeep.alibi/app.myzel394.alibi.MainActivity
+WaitTime: 995
+Complete

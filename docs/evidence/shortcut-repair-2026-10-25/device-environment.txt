@@ -1,0 +1,11 @@
+Serial: emulator-5580
+AVD: Pixel9_API36
+OK
+
+ro.kernel.qemu=1
+
+Android=16
+
+API=36
+
+ABI=x86_64

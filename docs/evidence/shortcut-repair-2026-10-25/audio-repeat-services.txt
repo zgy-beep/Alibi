@@ -1,0 +1,147 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 0 active services:
+  * ServiceRecord{5bc5af7 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService c:com.zgybeep.alibi.debug}
+    intent={act=init cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService}
+    packageName=com.zgybeep.alibi.debug
+    processName=com.zgybeep.alibi.debug
+    targetSdkVersion=34
+    baseDir=/data/app/~~WXE1nhquBtS1KRTJoonwGQ==/com.zgybeep.alibi.debug-yNkS1tqRDZ6UBJmK4iSzLw==/base.apk
+    dataDir=/data/user/0/com.zgybeep.alibi.debug
+    app=ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=com.zgybeep.alibi.debug
+    recentCallingUid=10220
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: com.zgybeep.alibi.debug; callingUid: 10220; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=0x00000080 foregroundNoti=Notification(channel=recorder shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|ONLY_ALERT_ONCE|NO_CLEAR|FOREGROUND_SERVICE|SILENT color=0x00000000 category=service actions=1 vis=PRIVATE)
+    createTime=-14s781ms startingBgTimeout=--
+    lastActivity=-2s367ms restartTime=-14s780ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
+ startCommandResult=1
+    Bindings:
+    * IntentBindRecord{35bd5d2}:
+      intent={xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService}
+      binder=android.os.BinderProxy@814523e
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{bac36a3 ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}}
+        Per-process Connections:
+          ConnectionRecord{8039f26 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService:@f735281 flags=0x0}
+    * IntentBindRecord{6c902f9}:
+      intent={act=init xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService}
+      binder=android.os.BinderProxy@814523e
+      requested=true received=true hasBound=false doRebind=false
+    All Connections:
+      ConnectionRecord{8039f26 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService:@f735281 flags=0x0}
+
+  * ServiceRecord{60b1da0 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService c:com.zgybeep.alibi.debug}
+    intent={cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService}
+    packageName=com.zgybeep.alibi.debug
+    processName=com.zgybeep.alibi.debug
+    targetSdkVersion=34
+    baseDir=/data/app/~~WXE1nhquBtS1KRTJoonwGQ==/com.zgybeep.alibi.debug-yNkS1tqRDZ6UBJmK4iSzLw==/base.apk
+    dataDir=/data/user/0/com.zgybeep.alibi.debug
+    app=null
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=DENIED
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=DENIED
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=false
+    recentCallingPackage=com.zgybeep.alibi.debug
+    recentCallingUid=10220
+    mAllowStart_noBinding=DENIED
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=DENIED
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=0
+    infoAllowStartForeground=[callingPackage: com.zgybeep.alibi.debug; callingUid: 10220; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+    createTime=-7s916ms startingBgTimeout=--
+    lastActivity=-7s916ms restartTime=-- createdFromFg=true
+    Bindings:
+    * IntentBindRecord{f828d59}:
+      intent={xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService}
+      binder=null
+      requested=false received=false hasBound=false doRebind=false
+      * Client AppBindRecord{d7d7d1e ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}}
+        Per-process Connections:
+          ConnectionRecord{d213914 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService:@16c8767 flags=0x0}
+    All Connections:
+      ConnectionRecord{d213914 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService:@16c8767 flags=0x0}
+
+  * ServiceRecord{4303303 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService c:com.zgybeep.alibi.debug}
+    intent={cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService}
+    packageName=com.zgybeep.alibi.debug
+    processName=com.zgybeep.alibi.debug
+    targetSdkVersion=34
+    baseDir=/data/app/~~WXE1nhquBtS1KRTJoonwGQ==/com.zgybeep.alibi.debug-yNkS1tqRDZ6UBJmK4iSzLw==/base.apk
+    dataDir=/data/user/0/com.zgybeep.alibi.debug
+    app=ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=DENIED
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=DENIED
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=false
+    recentCallingPackage=com.zgybeep.alibi.debug
+    recentCallingUid=10220
+    mAllowStart_noBinding=DENIED
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=DENIED
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=0
+    infoAllowStartForeground=[callingPackage: com.zgybeep.alibi.debug; callingUid: 10220; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+    createTime=-7s915ms startingBgTimeout=--
+    lastActivity=-7s915ms restartTime=-7s915ms createdFromFg=true
+    Bindings:
+    * IntentBindRecord{dc199ff CREATE}:
+      intent={xflg=0x4 cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService}
+      binder=android.os.BinderProxy@29473cc
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{45a615 ProcessRecord{7da4427 5870:com.zgybeep.alibi.debug/u0a220}}
+        Per-process Connections:
+          ConnectionRecord{97a87b2 u0 CR com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService:@195bd flags=0x1}
+    All Connections:
+      ConnectionRecord{97a87b2 u0 CR com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService:@195bd flags=0x1}
+
+  Connection bindings to services:
+  * ConnectionRecord{97a87b2 u0 CR com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService:@195bd flags=0x1}
+    binding=AppBindRecord{45a615 com.zgybeep.alibi.debug/app.myzel394.alibi.services.PhotoCaptureService:com.zgybeep.alibi.debug}
+    conn=android.os.BinderProxy@195bd flags=0x1
+  * ConnectionRecord{d213914 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService:@16c8767 flags=0x0}
+    binding=AppBindRecord{d7d7d1e com.zgybeep.alibi.debug/app.myzel394.alibi.services.VideoRecorderService:com.zgybeep.alibi.debug}
+    activity=ActivityRecord{123085474 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity t107}
+    conn=android.os.BinderProxy@16c8767 flags=0x0
+  * ConnectionRecord{8039f26 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService:@f735281 flags=0x0}
+    binding=AppBindRecord{bac36a3 com.zgybeep.alibi.debug/app.myzel394.alibi.services.AudioRecorderService:com.zgybeep.alibi.debug}
+    activity=ActivityRecord{123085474 u0 com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity t107}
+    conn=android.os.BinderProxy@f735281 flags=0x0

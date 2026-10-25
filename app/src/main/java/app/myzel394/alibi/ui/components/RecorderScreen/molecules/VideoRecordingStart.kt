@@ -91,7 +91,7 @@ fun VideoRecordingStart(
             },
             widthOverride = buttonSize,
             heightOverride = buttonSize * 1.36f,
-            primary = true,
+            primary = false,
             compactLayout = compactLayout,
         )
     }

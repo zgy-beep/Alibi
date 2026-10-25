@@ -48,6 +48,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.myzel394.alibi.BuildConfig
+import app.myzel394.alibi.ui.components.atoms.TitleWithRunningStatus
+import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import app.myzel394.alibi.R
 import app.myzel394.alibi.ui.CONTACT_METHODS
 import app.myzel394.alibi.ui.REPO_URL
@@ -60,31 +62,15 @@ import app.myzel394.alibi.ui.components.AboutScreen.atoms.GPGKeyOverview
 fun AboutScreen(
     onBackNavigate: () -> Unit
 ) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
-        rememberTopAppBarState()
-    )
     val uriHandler = LocalUriHandler.current
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(stringResource(R.string.ui_about_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackNavigate) {
-                        val label = stringResource(R.string.goBack)
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = label,
-                        )
-                    }
-                },
-                scrollBehavior = scrollBehavior,
+            AlibiTopAppBar(
+                title = stringResource(R.string.ui_about_title),
+                onBack = onBackNavigate,
             )
         },
-        modifier = Modifier
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { padding ->
         Column(
             modifier = Modifier

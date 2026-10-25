@@ -9,29 +9,25 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.filled.PictureInPictureAlt
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,14 +42,21 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import app.myzel394.alibi.R
 import app.myzel394.alibi.db.AppSettings
+import app.myzel394.alibi.db.PhotoCaptureSettings
+import app.myzel394.alibi.db.PhotoCaptureStrategy
+import app.myzel394.alibi.db.PhotoHapticFeedback
 import app.myzel394.alibi.services.PhotoCaptureMode
 import app.myzel394.alibi.services.PhotoCaptureStatus
 import app.myzel394.alibi.ui.RECORDER_MEDIA_SELECTED_VALUE
+import app.myzel394.alibi.ui.components.atoms.AlibiSectionHeader
+import app.myzel394.alibi.ui.components.atoms.AlibiSectionPanel
+import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import app.myzel394.alibi.ui.components.atoms.MessageBox
 import app.myzel394.alibi.ui.components.atoms.MessageType
+import app.myzel394.alibi.ui.components.atoms.SelectableModeCard
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
+import app.myzel394.alibi.ui.theme.AlibiLayout
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhotoSetupScreen(
     photoCapture: PhotoCaptureModel,
@@ -64,6 +67,15 @@ fun PhotoSetupScreen(
     onOpenGallery: () -> Unit,
 ) {
     val context = LocalContext.current
+    var selectedMode by rememberSaveable {
+        mutableStateOf(
+            if (photoCapture.isInSession) {
+                photoCapture.state.mode ?: PhotoCaptureMode.BLACK_SCREEN
+            } else {
+                PhotoCaptureMode.BLACK_SCREEN
+            }
+        )
+    }
     var requestedMode by rememberSaveable {
         mutableStateOf<PhotoCaptureMode?>(null)
     }
@@ -76,6 +88,8 @@ fun PhotoSetupScreen(
 
         if (started && mode == PhotoCaptureMode.BLACK_SCREEN) {
             onOpenBlackScreen()
+        } else if (started && mode == PhotoCaptureMode.FLOATING) {
+            onBackNavigate()
         } else if (!started) {
             errorMessage = context.getString(R.string.photo_error_generic)
         }
@@ -96,7 +110,6 @@ fun PhotoSetupScreen(
             )
             return
         }
-
         startSession(mode)
     }
 
@@ -131,7 +144,6 @@ fun PhotoSetupScreen(
             requestedMode = null
             return@rememberLauncherForActivityResult
         }
-
         if (mode == PhotoCaptureMode.FLOATING && !Settings.canDrawOverlays(context)) {
             overlayPermissionLauncher.launch(
                 Intent(
@@ -145,10 +157,14 @@ fun PhotoSetupScreen(
     }
 
     fun begin(mode: PhotoCaptureMode) {
+        selectedMode = mode
         if (photoCapture.isInSession) {
+            errorMessage = null
             photoCapture.setMode(mode)
             if (mode == PhotoCaptureMode.BLACK_SCREEN) {
                 onOpenBlackScreen()
+            } else {
+                onBackNavigate()
             }
             return
         }
@@ -197,218 +213,170 @@ fun PhotoSetupScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.photo_setup_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackNavigate) {
+            AlibiTopAppBar(
+                title = stringResource(R.string.photo_setup_title),
+                onBack = onBackNavigate,
+                actions = {
+                    IconButton(onClick = onOpenPhotoSettings) {
                         Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.goBack),
+                            Icons.Default.Tune,
+                            contentDescription = stringResource(R.string.photo_settings_open),
                         )
                     }
                 },
             )
-        }
+        },
     ) { padding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(padding),
+            contentPadding = PaddingValues(
+                start = AlibiLayout.pagePadding,
+                end = AlibiLayout.pagePadding,
+                top = 8.dp,
+                bottom = 32.dp,
+            ),
+            verticalArrangement = Arrangement.spacedBy(AlibiLayout.itemGap),
         ) {
-            Text(
-                text = stringResource(R.string.photo_setup_description),
-                style = MaterialTheme.typography.bodyLarge,
-            )
+            item {
+                Text(
+                    text = stringResource(R.string.photo_setup_description),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
 
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-                ),
-            ) {
-                Column(
+            errorMessage?.let { message ->
+                item {
+                    MessageBox(type = MessageType.ERROR, message = message)
+                }
+            }
+
+            item {
+                AlibiSectionHeader(
+                    title = stringResource(R.string.photo_setup_mode_title),
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
+            item {
+                SelectableModeCard(
+                    title = stringResource(R.string.photo_mode_black_title),
+                    description = stringResource(R.string.photo_mode_black_description),
+                    icon = Icons.Default.CameraAlt,
+                    selected = selectedMode == PhotoCaptureMode.BLACK_SCREEN,
+                    onClick = { selectedMode = PhotoCaptureMode.BLACK_SCREEN },
+                )
+            }
+            item {
+                SelectableModeCard(
+                    title = stringResource(R.string.photo_mode_floating_title),
+                    description = stringResource(R.string.photo_mode_floating_description),
+                    icon = Icons.Default.PictureInPictureAlt,
+                    selected = selectedMode == PhotoCaptureMode.FLOATING,
+                    onClick = { selectedMode = PhotoCaptureMode.FLOATING },
+                )
+            }
+
+            if (photoCapture.isInSession) {
+                item {
+                    ActiveSessionCard(photoCapture)
+                }
+            }
+
+            item {
+                AlibiSectionHeader(
+                    title = stringResource(R.string.photo_settings_summary_title),
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
+            item {
+                AlibiSectionPanel {
+                    Column(
+                        modifier = Modifier.padding(18.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                    ) {
+                        Text(
+                            text = stringResource(
+                                R.string.photo_settings_summary_strategy,
+                                stringResource(settings.photoCaptureSettings.captureStrategyLabel()),
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                        Text(
+                            text = stringResource(
+                                R.string.photo_settings_summary_feedback,
+                                stringResource(settings.photoCaptureSettings.hapticLabel()),
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                        FilledTonalButton(
+                            onClick = onOpenPhotoSettings,
+                            enabled = !photoCapture.isInSession,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Icon(Icons.Default.Tune, contentDescription = null)
+                            Text(
+                                stringResource(R.string.photo_settings_open),
+                                modifier = Modifier.padding(start = 8.dp),
+                            )
+                        }
+                    }
+                }
+            }
+
+            item {
+                Button(
+                    onClick = { begin(selectedMode) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                        .padding(top = 8.dp),
+                    contentPadding = PaddingValues(vertical = 16.dp),
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        Icon(Icons.Default.Tune, contentDescription = null)
-                        Text(
-                            stringResource(R.string.photo_settings_summary_title),
-                            style = MaterialTheme.typography.titleLarge,
-                        )
-                    }
-                    Text(
-                        stringResource(
-                            R.string.photo_settings_summary_strategy,
-                            stringResource(
-                                when (settings.photoCaptureSettings
-                                    .getEffectiveCaptureStrategy()
-                                ) {
-                                    app.myzel394.alibi.db.PhotoCaptureStrategy.BALANCED ->
-                                        R.string.photo_settings_strategy_balanced
-                                    app.myzel394.alibi.db.PhotoCaptureStrategy.FAST ->
-                                        R.string.photo_settings_strategy_fast
-                                    app.myzel394.alibi.db.PhotoCaptureStrategy.MOTION ->
-                                        R.string.photo_settings_strategy_motion
-                                }
-                            ),
-                        ),
-                        style = MaterialTheme.typography.bodyMedium,
+                    Icon(
+                        if (selectedMode == PhotoCaptureMode.BLACK_SCREEN) {
+                            Icons.Default.CameraAlt
+                        } else {
+                            Icons.Default.PictureInPictureAlt
+                        },
+                        contentDescription = null,
                     )
                     Text(
-                        stringResource(
-                            R.string.photo_settings_summary_feedback,
-                            stringResource(
-                                when (settings.photoCaptureSettings
-                                    .getEffectiveHapticFeedback()
-                                ) {
-                                    app.myzel394.alibi.db.PhotoHapticFeedback.OFF ->
-                                        R.string.photo_settings_feedback_off
-                                    app.myzel394.alibi.db.PhotoHapticFeedback.LIGHT ->
-                                        R.string.photo_settings_feedback_light
-                                    app.myzel394.alibi.db.PhotoHapticFeedback.STANDARD ->
-                                        R.string.photo_settings_feedback_standard
-                                }
-                            ),
+                        text = stringResource(
+                            when {
+                                photoCapture.isInSession &&
+                                    photoCapture.state.mode == selectedMode &&
+                                    selectedMode == PhotoCaptureMode.BLACK_SCREEN ->
+                                    R.string.photo_action_open_black
+                                selectedMode == PhotoCaptureMode.FLOATING ->
+                                    R.string.photo_setup_start_floating
+                                else -> R.string.photo_setup_start_black
+                            }
                         ),
-                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(start = 8.dp),
                     )
+                }
+            }
+            item {
+                FilledTonalButton(
+                    onClick = onOpenGallery,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Icon(Icons.Default.PhotoLibrary, contentDescription = null)
+                    Text(
+                        stringResource(R.string.photo_action_open_gallery),
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
+            }
+            if (photoCapture.isInSession) {
+                item {
                     FilledTonalButton(
-                        onClick = onOpenPhotoSettings,
-                        enabled = !photoCapture.isInSession,
+                        onClick = photoCapture::stopSession,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        Icon(Icons.Default.Tune, contentDescription = null)
-                        Text(
-                            stringResource(R.string.photo_settings_open),
-                            modifier = Modifier.padding(start = 8.dp),
-                        )
+                        Text(stringResource(R.string.photo_action_stop))
                     }
-                }
-            }
-
-            if (photoCapture.isInSession) {
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer
-                    ),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        Text(
-                            stringResource(R.string.photo_active_title),
-                            style = MaterialTheme.typography.titleLarge,
-                        )
-                        Text(
-                            stringResource(
-                                if (photoCapture.state.mode == PhotoCaptureMode.BLACK_SCREEN) {
-                                    R.string.photo_active_black
-                                } else {
-                                    R.string.photo_active_floating
-                                }
-                            )
-                        )
-                        Text(
-                            stringResource(
-                                when (photoCapture.state.status) {
-                                    PhotoCaptureStatus.READY -> R.string.photo_black_ready
-                                    PhotoCaptureStatus.CAPTURING -> R.string.photo_black_shooting
-                                    PhotoCaptureStatus.SAVING,
-                                    PhotoCaptureStatus.STOPPING -> R.string.photo_black_saving
-                                    PhotoCaptureStatus.STARTING -> R.string.photo_black_starting
-                                    PhotoCaptureStatus.ERROR -> R.string.photo_black_error
-                                    else -> R.string.photo_active_description
-                                }
-                            )
-                        )
-                        if (photoCapture.state.mode == PhotoCaptureMode.FLOATING &&
-                            photoCapture.state.status == PhotoCaptureStatus.READY
-                        ) {
-                            Text(
-                                stringResource(R.string.photo_mode_active_hint),
-                                style = MaterialTheme.typography.bodySmall,
-                            )
-                        }
-                        if (photoCapture.state.status == PhotoCaptureStatus.ERROR) {
-                            Text(
-                                photoCapture.state.error
-                                    ?: stringResource(R.string.photo_error_generic),
-                                color = MaterialTheme.colorScheme.error,
-                                style = MaterialTheme.typography.bodySmall,
-                            )
-                            if (photoCapture.state.canRetrySave) {
-                                Button(onClick = photoCapture::retryLastSave) {
-                                    Text(stringResource(R.string.photo_action_retry_save))
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            errorMessage?.let {
-                MessageBox(
-                    type = MessageType.ERROR,
-                    message = it,
-                )
-            }
-
-            ModeCard(
-                title = stringResource(R.string.photo_mode_black_title),
-                description = stringResource(R.string.photo_mode_black_description),
-                icon = {
-                    Icon(Icons.Default.CameraAlt, contentDescription = null)
-                },
-                actionLabel = stringResource(
-                    if (photoCapture.isInSession &&
-                        photoCapture.state.mode == PhotoCaptureMode.BLACK_SCREEN
-                    ) {
-                        R.string.photo_action_open_black
-                    } else {
-                        R.string.photo_action_start
-                    }
-                ),
-                onClick = { begin(PhotoCaptureMode.BLACK_SCREEN) },
-            )
-
-            ModeCard(
-                title = stringResource(R.string.photo_mode_floating_title),
-                description = stringResource(R.string.photo_mode_floating_description),
-                icon = {
-                    Icon(Icons.Default.PictureInPictureAlt, contentDescription = null)
-                },
-                actionLabel = stringResource(R.string.photo_action_use_floating),
-                onClick = { begin(PhotoCaptureMode.FLOATING) },
-            )
-
-            FilledTonalButton(
-                onClick = onOpenGallery,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Icon(Icons.Default.PhotoLibrary, contentDescription = null)
-                Text(
-                    stringResource(R.string.photo_action_open_gallery),
-                    modifier = Modifier.padding(start = 8.dp),
-                )
-            }
-
-            if (photoCapture.isInSession) {
-                Button(
-                    onClick = { photoCapture.stopSession() },
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(stringResource(R.string.photo_action_stop))
                 }
             }
         }
@@ -416,44 +384,83 @@ fun PhotoSetupScreen(
 }
 
 @Composable
-private fun ModeCard(
-    title: String,
-    description: String,
-    icon: @Composable () -> Unit,
-    actionLabel: String,
-    onClick: () -> Unit,
-) {
-    Card(
+private fun ActiveSessionCard(photoCapture: PhotoCaptureModel) {
+    Surface(
         modifier = Modifier.fillMaxWidth(),
+        color = MaterialTheme.colorScheme.secondaryContainer,
         shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-        ),
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.padding(18.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                icon()
-                Text(title, style = MaterialTheme.typography.titleLarge)
+                Icon(
+                    Icons.Default.CameraAlt,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+                Text(
+                    stringResource(R.string.photo_active_title),
+                    style = MaterialTheme.typography.titleMedium,
+                )
             }
             Text(
-                description,
+                stringResource(
+                    if (photoCapture.state.mode == PhotoCaptureMode.BLACK_SCREEN) {
+                        R.string.photo_active_black
+                    } else {
+                        R.string.photo_active_floating
+                    }
+                ),
                 style = MaterialTheme.typography.bodyMedium,
+            )
+            Text(
+                stringResource(photoCapture.state.status.label()),
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Button(
-                onClick = onClick,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(actionLabel)
+            if (photoCapture.state.status == PhotoCaptureStatus.ERROR) {
+                Text(
+                    photoCapture.state.error ?: stringResource(R.string.photo_error_generic),
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                if (photoCapture.state.canRetrySave) {
+                    FilledTonalButton(onClick = photoCapture::retryLastSave) {
+                        Text(stringResource(R.string.photo_action_retry_save))
+                    }
+                }
             }
         }
     }
+}
+
+private fun PhotoCaptureSettings.captureStrategyLabel(): Int =
+    when (getEffectiveCaptureStrategy()) {
+        PhotoCaptureStrategy.BALANCED -> R.string.photo_settings_strategy_balanced
+        PhotoCaptureStrategy.FAST -> R.string.photo_settings_strategy_fast
+        PhotoCaptureStrategy.MOTION -> R.string.photo_settings_strategy_motion
+    }
+
+private fun PhotoCaptureSettings.hapticLabel(): Int =
+    when (getEffectiveHapticFeedback()) {
+        PhotoHapticFeedback.OFF -> R.string.photo_settings_feedback_off
+        PhotoHapticFeedback.LIGHT -> R.string.photo_settings_feedback_light
+        PhotoHapticFeedback.STANDARD -> R.string.photo_settings_feedback_standard
+    }
+
+private fun PhotoCaptureStatus.label(): Int = when (this) {
+    PhotoCaptureStatus.STOPPED -> R.string.photo_active_description
+    PhotoCaptureStatus.READY -> R.string.photo_black_ready
+    PhotoCaptureStatus.CAPTURING -> R.string.photo_black_shooting
+    PhotoCaptureStatus.SAVING,
+    PhotoCaptureStatus.STOPPING -> R.string.photo_black_saving
+    PhotoCaptureStatus.STARTING -> R.string.photo_black_starting
+    PhotoCaptureStatus.ERROR -> R.string.photo_black_error
 }
 
 private fun needsLegacyStoragePermission(settings: AppSettings): Boolean =
@@ -468,7 +475,6 @@ private fun hasCameraPermission(context: android.content.Context, settings: AppS
     ) {
         return false
     }
-
     return !needsLegacyStoragePermission(settings) ||
         ContextCompat.checkSelfPermission(
             context,

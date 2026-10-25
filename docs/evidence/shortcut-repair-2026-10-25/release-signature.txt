@@ -1,0 +1,4 @@
+Signer #1 certificate DN: CN=Alibi Release, OU=Android, O=zgy-beep, L=Shanghai, ST=Shanghai, C=CN
+Signer #1 certificate SHA-256 digest: 5f9d20f64ae2b40b880cb8719afccf71ff62777ad76ef9565cc33a2ca9fcb334
+Signer #1 certificate SHA-1 digest: 4f668ccaf7b8ccfea6b112a68ebe127d903c8770
+Signer #1 certificate MD5 digest: fc391737bcffca398cc4bbba148ddb7e

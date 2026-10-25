@@ -19,4 +19,16 @@ class ExampleUnitTest {
     fun debugApplicationIdentityIsIndependent() {
         assertEquals("com.zgybeep.alibi.debug", BuildConfig.APPLICATION_ID)
     }
+
+    @Test
+    fun shortcutActionsUseTheCurrentApplicationIdentity() {
+        assertEquals(
+            "com.zgybeep.alibi.debug.shortcut.RECORD_AUDIO",
+            AppShortcuts.ACTION_RECORD_AUDIO,
+        )
+        assertEquals(
+            "com.zgybeep.alibi.debug.shortcut.TAKE_PHOTO",
+            AppShortcuts.ACTION_TAKE_PHOTO,
+        )
+    }
 }

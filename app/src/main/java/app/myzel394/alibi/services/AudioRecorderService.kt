@@ -32,6 +32,7 @@ class AudioRecorderService :
 
     var recorder: MediaRecorder? = null
         private set
+    private var microphoneListenerRegistered = false
 
     // Callbacks
     var onSelectedMicrophoneChange: (MicrophoneInfo?) -> Unit = {}
@@ -42,18 +43,24 @@ class AudioRecorderService :
     override fun startNewCycle() {
         super.startNewCycle()
 
-        val newRecorder = createRecorder().also {
-            it.prepare()
-        }
-
-        resetRecorder()
-        startAudioDevice()
-
+        var newRecorder: MediaRecorder? = null
         try {
-            recorder = newRecorder
-            newRecorder.start()
-        } catch (error: RuntimeException) {
-            onError()
+            val candidate = createRecorder().also {
+                it.prepare()
+            }
+            newRecorder = candidate
+
+            resetRecorder()
+            startAudioDevice()
+            recorder = candidate
+            candidate.start()
+        } catch (error: Exception) {
+            runCatching { newRecorder?.release() }
+            runCatching { resetRecorder() }
+            if (state == RecorderState.STARTING) {
+                throw error
+            }
+            failCycle(error)
         }
     }
 
@@ -93,6 +100,12 @@ class AudioRecorderService :
                 0
             },
         )
+    }
+
+    override fun onStartAborted() {
+        runCatching { resetRecorder() }
+        runCatching { unregisterMicrophoneListener() }
+        super.onStartAborted()
     }
 
     // ==== Amplitude related ====
@@ -287,18 +300,22 @@ class AudioRecorderService :
     }
 
     private fun registerMicrophoneListener() {
+        if (microphoneListenerRegistered) return
         val audioManager = getSystemService(Context.AUDIO_SERVICE)!! as AudioManager
 
         audioManager.registerAudioDeviceCallback(
             audioDeviceCallback,
             Handler(Looper.getMainLooper())
         )
+        microphoneListenerRegistered = true
     }
 
     private fun unregisterMicrophoneListener() {
+        if (!microphoneListenerRegistered) return
         val audioManager = getSystemService(Context.AUDIO_SERVICE)!! as AudioManager
 
         audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)
+        microphoneListenerRegistered = false
     }
 
     // ==== Settings ====

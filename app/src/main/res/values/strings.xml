@@ -1,5 +1,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Alibi</string>
+    <string name="shortcut_record_audio_short">Record now</string>
+    <string name="shortcut_record_audio_long">Start background audio recording</string>
+    <string name="shortcut_take_photo_short">Quick photo</string>
+    <string name="shortcut_take_photo_long">Start floating photo capture</string>
+    <string name="shortcut_permission_required">Permissions are required. Open Alibi to grant access.</string>
+    <string name="ui_runtime_status_description">Alibi is running</string>
+    <string name="ui_runtime_starting_description">Alibi is getting ready</string>
+    <string name="ui_runtime_paused_description">Alibi is paused</string>
 
     <string name="dialog_close_cancel_label">Cancel</string>
     <string name="dialog_close_neutral_label">OK</string>
@@ -32,11 +40,13 @@
     <string name="photo_lens_back">Back camera</string>
     <string name="photo_lens_front">Front camera</string>
     <string name="photo_mode_black_title">Black screen shutter</string>
+    <string name="photo_setup_mode_title">Capture mode</string>
+    <string name="photo_setup_start_black">Enter black screen</string>
+    <string name="photo_setup_start_floating">Start floating capture</string>
     <string name="photo_mode_black_description">Tap the dark screen to take a photo. Long press to return home. Leaving the screen stops capture.</string>
     <string name="photo_mode_floating_title">Floating shutter</string>
     <string name="photo_mode_floating_description">Use a small floating button after switching to another app. Long press it for controls.</string>
     <string name="photo_action_open_gallery">Recent photos</string>
-    <string name="photo_action_start">Start</string>
     <string name="photo_action_manage">Manage photo capture</string>
     <string name="photo_active_title">Photo capture is active</string>
     <string name="photo_active_description">The camera remains available for the selected shutter mode.</string>
@@ -125,7 +135,6 @@
     <string name="photo_settings_section_summary">Capture strategy, image quality, flash, focus, feedback, and black screen controls are managed on the camera settings page.</string>
     <string name="photo_action_stop">Stop photo capture</string>
     <string name="photo_action_open_black">Open black screen</string>
-    <string name="photo_action_use_floating">Use floating shutter</string>
     <string name="photo_mode_active_hint">Press Home and tap the floating button to take photos in another app.</string>
 
     <string name="ui_permissions_request_title">Permission denied</string>
@@ -274,7 +283,6 @@
     <string name="recorder_home_video_label">Video</string>
     <string name="recorder_home_video_subtitle">Save video</string>
     <string name="recorder_home_photo_subtitle">Quick capture</string>
-    <string name="ui_home_local_status">Local mode</string>
     <string name="ui_home_storage_warning_title">Storage space is critically low</string>
     <string name="ui_home_storage_warning_message">Change the save folder or free some space before recording.</string>
     <string name="ui_home_storage_warning_internal">Internal storage is too small for the current cache duration.</string>

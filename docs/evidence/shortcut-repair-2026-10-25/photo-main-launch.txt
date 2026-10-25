@@ -1,0 +1,7 @@
+Starting: Intent { cmp=com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity }
+Status: ok
+LaunchState: WARM
+Activity: com.zgybeep.alibi.debug/app.myzel394.alibi.MainActivity
+TotalTime: 994
+WaitTime: 1050
+Complete

@@ -11,6 +11,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -24,10 +25,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import app.myzel394.alibi.dataStore
+import app.myzel394.alibi.enums.RecorderState
 import app.myzel394.alibi.ui.enums.Screen
 import app.myzel394.alibi.ui.models.AudioRecorderModel
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import app.myzel394.alibi.ui.models.VideoRecorderModel
+import app.myzel394.alibi.services.PhotoCaptureStatus
+import app.myzel394.alibi.ui.components.atoms.LocalAlibiRuntimeStatus
+import app.myzel394.alibi.ui.components.atoms.RuntimeStatus
 import app.myzel394.alibi.ui.screens.AboutScreen
 import app.myzel394.alibi.ui.screens.CustomRecordingNotificationsScreen
 import app.myzel394.alibi.ui.screens.BlackPhotoScreen
@@ -85,12 +90,47 @@ fun Navigation(
         }
     }
 
-    NavHost(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.background),
-        navController = navController,
-        startDestination = if (settings.hasSeenOnboarding || DEBUG_SKIP_WELCOME) Screen.AudioRecorder.route else Screen.Welcome.route,
-    ) {
+    val audioActive = audioRecorder.recorderState in listOf(
+        RecorderState.STARTING,
+        RecorderState.RECORDING,
+        RecorderState.PAUSED,
+    )
+    val videoActive = videoRecorder.recorderState in listOf(
+        RecorderState.STARTING,
+        RecorderState.RECORDING,
+        RecorderState.PAUSED,
+    )
+    val photoActive =
+        (
+            photoCapture.isInSession &&
+                photoCapture.state.status !in listOf(
+                    PhotoCaptureStatus.ERROR,
+                    PhotoCaptureStatus.STOPPING,
+                )
+            )
+    val runtimeStatus = when {
+        audioRecorder.recorderState == RecorderState.PAUSED ||
+            videoRecorder.recorderState == RecorderState.PAUSED ->
+            RuntimeStatus.PAUSED
+        audioRecorder.recorderState == RecorderState.STARTING ||
+            videoRecorder.recorderState == RecorderState.STARTING ||
+            (photoActive && photoCapture.state.status == PhotoCaptureStatus.STARTING) ->
+            RuntimeStatus.STARTING
+        audioActive || videoActive || photoActive -> RuntimeStatus.RUNNING
+        else -> RuntimeStatus.IDLE
+    }
+
+    CompositionLocalProvider(LocalAlibiRuntimeStatus provides runtimeStatus) {
+        NavHost(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background),
+            navController = navController,
+            startDestination = if (settings.hasSeenOnboarding || DEBUG_SKIP_WELCOME) {
+                Screen.AudioRecorder.route
+            } else {
+                Screen.Welcome.route
+            },
+        ) {
         composable(Screen.Welcome.route) {
             WelcomeScreen(
                 onNavigateToAudioRecorderScreen = {
@@ -241,6 +281,7 @@ fun Navigation(
             AboutScreen(
                 onBackNavigate = navController::popBackStack,
             )
+        }
         }
     }
 }

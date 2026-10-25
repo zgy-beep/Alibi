@@ -1,0 +1,12 @@
+
+10-25 14:01:15.701  5118  5118 I PhotoCaptureService: Photo captured: request=1 latencyMs=362 queued=0
+10-25 14:01:15.820  5118  5118 I PhotoCaptureService: Photo saved: request=1 saveMs=108
+10-25 14:01:15.972  5118  5118 I PhotoCaptureService: Photo captured: request=2 latencyMs=240 queued=1
+10-25 14:01:16.020  5118  5118 I PhotoCaptureService: Photo saved: request=2 saveMs=46
+10-25 14:01:16.206  5118  5118 I PhotoCaptureService: Photo captured: request=3 latencyMs=258 queued=1
+10-25 14:01:16.262  5118  5118 I PhotoCaptureService: Photo saved: request=3 saveMs=54
+10-25 14:01:16.444  5118  5118 I PhotoCaptureService: Photo captured: request=4 latencyMs=278 queued=1
+10-25 14:01:16.495  5118  5118 I PhotoCaptureService: Photo saved: request=4 saveMs=50
+10-25 14:01:16.681  5118  5118 I PhotoCaptureService: Photo captured: request=5 latencyMs=293 queued=0
+10-25 14:01:16.727  5118  5118 I PhotoCaptureService: Photo saved: request=5 saveMs=45
+

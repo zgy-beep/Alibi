@@ -336,12 +336,12 @@ fun SaveFolderTile(
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
                             Button(
                                 onClick = {
-                                    openFolder(
+                                    runCatching {
                                         DocumentFile.fromTreeUri(
                                             context,
                                             settings.saveFolder.toUri(),
-                                        )!!.uri
-                                    )
+                                        )?.uri
+                                    }.getOrNull()?.let { uri -> openFolder(uri) }
                                 },
                                 shape = MaterialTheme.shapes.small,
                                 contentPadding = ButtonDefaults.TextButtonContentPadding,

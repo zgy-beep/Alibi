@@ -1,0 +1,31 @@
+files:
+total 56
+drwxrwxrwx 6 u0_a220 u0_a220 4096 2026-10-25 14:07 .
+drwx------ 5 u0_a220 u0_a220 4096 2026-10-25 14:06 ..
+drwx------ 2 u0_a220 u0_a220 4096 2026-10-25 14:07 .audio_recordings
+drwxrwxrwx 2 u0_a220 u0_a220 4096 2026-10-25 14:06 datastore
+drwx------ 2 u0_a220 u0_a220 4096 2026-10-25 14:06 photo_pending
+drwx------ 2 u0_a220 u0_a220 4096 2026-10-25 14:06 photos
+-rw------- 1 u0_a220 u0_a220   24 2026-10-25 14:06 profileInstalled
+
+files/.audio_recordings:
+total 72
+drwx------ 2 u0_a220 u0_a220  4096 2026-10-25 14:07 .
+drwxrwxrwx 6 u0_a220 u0_a220  4096 2026-10-25 14:07 ..
+-rw------- 1 u0_a220 u0_a220 52074 2026-10-25 14:07 1.aac
+
+files/datastore:
+total 24
+drwxrwxrwx 2 u0_a220 u0_a220 4096 2026-10-25 14:06 .
+drwxrwxrwx 6 u0_a220 u0_a220 4096 2026-10-25 14:07 ..
+-rw-rw-rw- 1 u0_a220 u0_a220   26 2026-10-25 14:06 settings.json
+
+files/photo_pending:
+total 16
+drwx------ 2 u0_a220 u0_a220 4096 2026-10-25 14:06 .
+drwxrwxrwx 6 u0_a220 u0_a220 4096 2026-10-25 14:07 ..
+
+files/photos:
+total 16
+drwx------ 2 u0_a220 u0_a220 4096 2026-10-25 14:06 .
+drwxrwxrwx 6 u0_a220 u0_a220 4096 2026-10-25 14:07 ..

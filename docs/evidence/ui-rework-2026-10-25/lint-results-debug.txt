@@ -1,0 +1,845 @@
+T:\Github\Alibi\app\src\main\res\values-he: Warning: The locale folder "he" should be called "iw" instead; see the java.util.Locale documentation [LocaleFolder]
+
+   Explanation for issues of type "LocaleFolder":
+   From the java.util.Locale documentation:
+   "Note that Java uses several deprecated two-letter codes. The Hebrew ("he")
+   language code is rewritten as "iw", Indonesian ("id") as "in", and Yiddish
+   ("yi") as "ji". This rewriting happens even if you construct your own
+   Locale object, not just for instances returned by the various lookup
+   methods.
+
+   Because of this, if you add your localized resources in for example
+   values-he they will not be used, since the system will look for values-iw
+   instead.
+
+   To work around this, place your resources in a values folder using the
+   deprecated language code instead.
+
+   https://developer.android.com/reference/java/util/Locale.html
+
+T:\Github\Alibi\app\build.gradle:40: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 34
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdkVersion specifies that it has been tested with,
+   various compatibility modes kick in. This ensures that your application
+   continues to work, but it may look out of place. For example, if the
+   targetSdkVersion is less than 14, your app may get an option button in the
+   UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:6: Warning: Attribute shortcutId is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutId="background_audio_recording"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:6: Warning: Attribute shortcutId is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutId="background_audio_recording"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:7: Warning: Attribute shortcutLongLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutLongLabel="@string/shortcut_record_audio_long"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:7: Warning: Attribute shortcutLongLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutLongLabel="@string/shortcut_record_audio_long"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:8: Warning: Attribute shortcutShortLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutShortLabel="@string/shortcut_record_audio_short">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:8: Warning: Attribute shortcutShortLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutShortLabel="@string/shortcut_record_audio_short">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:17: Warning: Attribute shortcutId is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutId="background_photo_capture"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:17: Warning: Attribute shortcutId is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutId="background_photo_capture"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:18: Warning: Attribute shortcutLongLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutLongLabel="@string/shortcut_take_photo_long"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:18: Warning: Attribute shortcutLongLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutLongLabel="@string/shortcut_take_photo_long"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\debug\res\xml\shortcuts.xml:19: Warning: Attribute shortcutShortLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutShortLabel="@string/shortcut_take_photo_short">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\xml\shortcuts.xml:19: Warning: Attribute shortcutShortLabel is only used in API level 25 and higher (current min is 24) [UnusedAttribute]
+        android:shortcutShortLabel="@string/shortcut_take_photo_short">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+T:\Github\Alibi\app\src\main\AndroidManifest.xml:62: Warning: Redundant label can be removed [RedundantLabel]
+            android:label="@string/app_name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantLabel":
+   When an activity does not have a label attribute, it will use the one from
+   the application tag. Since the application has already specified the same
+   label, the label on this activity can be omitted.
+
+T:\Github\Alibi\app\src\main\res\drawable\ic_crowdin.xml:2: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="248dp"
+                   ~~~~~
+T:\Github\Alibi\app\src\main\res\drawable\ic_custom_recording_notifications_blob.xml:2: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="1000dp"
+                   ~~~~~~
+T:\Github\Alibi\app\src\main\res\drawable\launcher_foreground.xml:2: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="250dp"
+                   ~~~~~
+T:\Github\Alibi\app\src\main\res\drawable\launcher_monochrome.xml:2: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="250dp"
+                   ~~~~~
+T:\Github\Alibi\app\src\main\res\drawable\launcher_monochrome_noopacity.xml:2: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="250dp"
+                   ~~~~~
+
+   Explanation for issues of type "VectorRaster":
+   Vector icons require API 21 or API 24 depending on used features, but when
+   minSdkVersion is less than 21 or 24 and Android Gradle plugin 1.4 or higher
+   is used, a vector drawable placed in the drawable folder is automatically
+   moved to drawable-anydpi-v21 or drawable-anydpi-v24 and bitmap images are
+   generated for different screen resolutions for backwards compatibility.
+
+   However, there are some limitations to this raster image generation, and
+   this lint check flags elements and attributes that are not fully supported.
+   You should manually check whether the generated output is acceptable for
+   those older devices.
+
+T:\Github\Alibi\app\build.gradle:97: Warning: A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.19.1 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.13.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:98: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.4 is available: 2.11.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:99: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-compose than 2.8.4 is available: 2.11.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.8.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:100: Warning: A newer version of androidx.activity:activity-compose than 1.9.1 is available: 1.13.0 [GradleDependency]
+    implementation 'androidx.activity:activity-compose:1.9.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:101: Warning: A newer version of androidx.activity:activity-ktx than 1.9.1 is available: 1.13.0 [GradleDependency]
+    implementation 'androidx.activity:activity-ktx:1.9.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:102: Warning: A newer version of androidx.compose:compose-bom than 2025.06.01 is available: 2026.09.00 [GradleDependency]
+    implementation platform('androidx.compose:compose-bom:2025.06.01')
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:108: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.8.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:109: Warning: A newer version of androidx.documentfile:documentfile than 1.0.1 is available: 1.1.0 [GradleDependency]
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:110: Warning: A newer version of androidx.lifecycle:lifecycle-service than 2.8.4 is available: 2.11.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-service:2.8.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:113: Warning: A newer version of androidx.test.ext:junit than 1.2.1 is available: 1.3.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:114: Warning: A newer version of androidx.test.espresso:espresso-core than 3.6.1 is available: 3.7.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:115: Warning: A newer version of androidx.compose:compose-bom than 2025.06.01 is available: 2026.09.00 [GradleDependency]
+    androidTestImplementation platform('androidx.compose:compose-bom:2025.06.01')
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:120: Warning: A newer version of androidx.navigation:navigation-compose than 2.7.7 is available: 2.10.2 [GradleDependency]
+    implementation "androidx.navigation:navigation-compose:2.7.7"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:124: Warning: A newer version of androidx.hilt:hilt-navigation-compose than 1.2.0 is available: 1.4.0 [GradleDependency]
+    implementation "androidx.hilt:hilt-navigation-compose:1.2.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:126: Warning: A newer version of com.android.tools:desugar_jdk_libs than 2.1.1 is available: 2.1.5 [GradleDependency]
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.1'
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:130: Warning: A newer version of androidx.datastore:datastore-preferences than 1.1.1 is available: 1.3.0 [GradleDependency]
+    implementation "androidx.datastore:datastore-preferences:1.1.1"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:141: Warning: A newer version of androidx.camera:camera-core than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-core:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:142: Warning: A newer version of androidx.camera:camera-camera2 than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:143: Warning: A newer version of androidx.camera:camera-lifecycle than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:144: Warning: A newer version of androidx.camera:camera-video than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-video:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:146: Warning: A newer version of androidx.camera:camera-view than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-view:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\build.gradle:147: Warning: A newer version of androidx.camera:camera-extensions than 1.3.4 is available: 1.6.2 [GradleDependency]
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\organisms\AudioRecordingStatus.kt:125: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _PrimitiveControls(audioRecorder: AudioRecorderModel) {
+    ~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\WelcomeScreen\pages\SaveFolderPage.kt:249: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _FolderInaccessibleDialog(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\WelcomeScreen\pages\SaveFolderPage.kt:287: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _CustomFolderDialog(
+    ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\organisms\VideoRecordingStatus.kt:128: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _VideoGeneralInfo(videoRecorder: VideoRecorderModel) {
+    ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\organisms\VideoRecordingStatus.kt:184: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _VideoRecordingStatus(videoRecorder: VideoRecorderModel) {
+    ~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\organisms\VideoRecordingStatus.kt:194: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _PrimitiveControls(videoRecorder: VideoRecorderModel) {
+    ~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\organisms\VideoRecordingStatus.kt:275: Warning: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
+fun _VideoControls(videoRecorder: VideoRecorderModel) {
+    ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ComposableNaming":
+   @Composable functions without a return type should use similar naming to
+   classes, starting with an uppercase letter and ending with a noun.
+   @Composable functions with a return type should be treated as normal Kotlin
+   functions, starting with a lowercase letter.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.runtime
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\CustomRecordingNotificationsScreen\molecules\NotificationPresetsRoulette.kt:49: Warning: Using Configuration.screenWidthDp instead of LocalWindowInfo.current.containerSize [ConfigurationScreenWidthHeight from androidx.compose.ui]
+                    LocalConfiguration.current.screenWidthDp.dp,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\atoms\RealTimeAudioVisualizer.kt:73: Warning: Using Configuration.screenWidthDp instead of LocalWindowInfo.current.containerSize [ConfigurationScreenWidthHeight from androidx.compose.ui]
+            configuration.screenWidthDp.dp.toPx(),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\atoms\RealTimeAudioVisualizer.kt:74: Warning: Using Configuration.screenHeightDp instead of LocalWindowInfo.current.containerSize [ConfigurationScreenWidthHeight from androidx.compose.ui]
+            configuration.screenHeightDp.dp.toPx()
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ConfigurationScreenWidthHeight":
+   Configuration.screenWidthDp and Configuration.screenHeightDp have different
+   insets behaviour depending on target SDK version, and are rounded to the
+   nearest Dp. This means that using these values in composition to size a
+   layout can result in issues, as these values do not accurately represent
+   the actual available window size. Instead it is recommended to use
+   WindowInfo.containerSize which accurately represents the window size.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\effects\force-update.kt:53: Warning: Modifier factory functions should be extensions on Modifier [ModifierFactoryExtensionFunction from androidx.compose.ui]
+fun rememberForceUpdateOnLifeCycleChange(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ModifierFactoryExtensionFunction":
+   Modifier factory functions should be defined as extension functions on
+   Modifier to allow modifiers to be fluently chained.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\molecules\RecordingStatus.kt:43: Warning: Modifier parameter should be named modifier [ModifierParameter from androidx.compose.ui]
+    progressModifier: Modifier = Modifier.width(300.dp),
+    ~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\RecorderScreen\molecules\RecordingStatus.kt:43: Warning: Optional Modifier parameter should have a default value of Modifier [ModifierParameter from androidx.compose.ui]
+    progressModifier: Modifier = Modifier.width(300.dp),
+    ~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\atoms\RotateDeviceToPortrait.kt:22: Warning: Optional Modifier parameter should have a default value of Modifier [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\components\SettingsScreen\Tiles\SectionTitle.kt:22: Warning: Optional Modifier parameter should have a default value of Modifier [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+
+   Explanation for issues of type "ModifierParameter":
+   The first (or only) Modifier parameter in a Composable function should
+   follow the following rules:
+   - Be named modifier
+   - Have a type of Modifier
+   - Either have no default value, or have a default value of Modifier
+   - If optional, be the first optional parameter in the parameter list
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:180: Warning: "portait" is a common misspelling; did you mean "portrait"? [Typos]
+    <string name="ui_rotateDevice_portrait_label">Please rotate your device to portait mode</string>
+                                                                               ^
+T:\Github\Alibi\app\src\main\res\values\strings.xml:342: Warning: "portait" is a common misspelling; did you mean "portrait"? [Typos]
+    <string name="ui_rotateDevice_portrait_label">Please rotate your device to portait mode</string>
+                                                                               ^
+
+   Explanation for issues of type "Typos":
+   This check looks through the string definitions, and if it finds any words
+   that look like likely misspellings, they are flagged.
+
+T:\Github\Alibi\app\src\main\res\values\strings.xml:60: Warning: Formatting %d followed by words ("more"): This should probably be a plural rather than a string [PluralsCandidate]
+    <string name="photo_black_queued">%d more captures queued</string>
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:296: Warning: Formatting %d followed by words ("minutes"): This should probably be a plural rather than a string [PluralsCandidate]
+    <string name="ui_home_cache_ready_message">Only the latest %d minutes stay cached, ready to save when you need them.</string>
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "PluralsCandidate":
+   This lint check looks for potential errors in internationalization where
+   you have translated a message which involves a quantity and it looks like
+   other parts of the string may need grammatical changes.
+
+   For example, rather than something like this:
+     <string name="try_again">Try again in %d seconds.</string>
+   you should be using a plural:
+      <plurals name="try_again">
+           <item quantity="one">Try again in %d second</item>
+           <item quantity="other">Try again in %d seconds</item>
+       </plurals>
+   This will ensure that in other languages the right set of translations are
+   provided for the different quantity classes.
+
+   (This check depends on some heuristics, so it may not accurately determine
+   whether a string really should be a quantity. You can use tools:ignore to
+   filter out false positives.
+
+   https://developer.android.com/guide/topics/resources/string-resource.html#Plurals
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\receivers\LocalChangeReceiver.kt:10: Warning: This broadcast receiver declares an intent-filter for a protected broadcast action string, which can only be sent by the system, not third-party applications. However, the receiver's onReceive method does not appear to call getAction to ensure that the received Intent's action string matches the expected value, potentially making it possible for another actor to send a spoofed intent with no action string or a different action string and cause undesired behavior. [UnsafeProtectedBroadcastReceiver]
+    override fun onReceive(context: Context?, p1: Intent?) {
+                 ~~~~~~~~~
+
+   Explanation for issues of type "UnsafeProtectedBroadcastReceiver":
+   `BroadcastReceiver`s that declare an intent-filter for a
+   protected-broadcast action string must check that the received intent's
+   action string matches the expected value, otherwise it is possible for
+   malicious actors to spoof intents.
+
+   https://goo.gle/UnsafeProtectedBroadcastReceiver
+
+T:\Github\Alibi\app\src\main\res\drawable\ic_github.xml:7: Warning: Very long vector path (903 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector. [VectorPath]
+      android:pathData="M48.854,0C21.839,0 0,22 0,49.217c0,21.756 13.993,40.172 33.405,46.69 2.427,0.49 3.316,-1.059 3.316,-2.362 0,-1.141 -0.08,-5.052 -0.08,-9.127 -13.59,2.934 -16.42,-5.867 -16.42,-5.867 -2.184,-5.704 -5.42,-7.17 -5.42,-7.17 -4.448,-3.015 0.324,-3.015 0.324,-3.015 4.934,0.326 7.523,5.052 7.523,5.052 4.367,7.496 11.404,5.378 14.235,4.074 0.404,-3.178 1.699,-5.378 3.074,-6.6 -10.839,-1.141 -22.243,-5.378 -22.243,-24.283 0,-5.378 1.94,-9.778 5.014,-13.2 -0.485,-1.222 -2.184,-6.275 0.486,-13.038 0,0 4.125,-1.304 13.426,5.052a46.97,46.97 0,0 1,12.214 -1.63c4.125,0 8.33,0.571 12.213,1.63 9.302,-6.356 13.427,-5.052 13.427,-5.052 2.67,6.763 0.97,11.816 0.485,13.038 3.155,3.422 5.015,7.822 5.015,13.2 0,18.905 -11.404,23.06 -22.324,24.283 1.78,1.548 3.316,4.481 3.316,9.126 0,6.6 -0.08,11.897 -0.08,13.526 0,1.304 0.89,2.853 3.316,2.364 19.412,-6.52 33.405,-24.935 33.405,-46.691C97.707,22 75.788,0 48.854,0z"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "VectorPath":
+   Using long vector paths is bad for performance. There are several ways to
+   make the pathData shorter:
+   * Using less precision
+   * Removing some minor details
+   * Using the Android Studio vector conversion tool
+   * Rasterizing the image (converting to PNG)
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\effects\force-update.kt:24: Information: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
+    var tickTack by rememberSaveable { mutableStateOf(1f) }
+                                       ~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\effects\force-update.kt:58: Information: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
+    var tickTack by rememberSaveable { mutableStateOf(1f) }
+                                       ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AutoboxingStateCreation":
+   Calling mutableStateOf<T>() when T is either backed by a primitive type on
+   the JVM or is a value class results in a state implementation that requires
+   all state values to be boxed. This usually causes an additional allocation
+   for each state write, and adds some additional work to auto-unbox values
+   when reading the value of the state. Instead, prefer to use a specialized
+   primitive state implementation for Int, Long, Float, and Double when the
+   state does not need to track null values and does not override the default
+   SnapshotMutationPolicy. See mutableIntStateOf(), mutableLongStateOf(),
+   mutableFloatStateOf(), and mutableDoubleStateOf() for more information.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.runtime
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+T:\Github\Alibi\app\src\main\res\values\colors.xml:3: Warning: The resource R.color.purple_200 appears to be unused [UnusedResources]
+    <color name="purple_200">#FFBB86FC</color>
+           ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:4: Warning: The resource R.color.purple_500 appears to be unused [UnusedResources]
+    <color name="purple_500">#FF6200EE</color>
+           ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:5: Warning: The resource R.color.purple_700 appears to be unused [UnusedResources]
+    <color name="purple_700">#FF3700B3</color>
+           ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:6: Warning: The resource R.color.teal_200 appears to be unused [UnusedResources]
+    <color name="teal_200">#FF03DAC5</color>
+           ~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:7: Warning: The resource R.color.teal_700 appears to be unused [UnusedResources]
+    <color name="teal_700">#FF018786</color>
+           ~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:8: Warning: The resource R.color.black appears to be unused [UnusedResources]
+    <color name="black">#FF000000</color>
+           ~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\colors.xml:9: Warning: The resource R.color.white appears to be unused [UnusedResources]
+    <color name="white">#FFFFFFFF</color>
+           ~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\drawable\ic_cancel.xml:1: Warning: The resource R.drawable.ic_cancel appears to be unused [UnusedResources]
+<vector android:height="24dp" android:tint="#000000"
+^
+T:\Github\Alibi\app\src\main\res\values\strings.xml:60: Warning: The resource R.string.photo_black_queued appears to be unused [UnusedResources]
+    <string name="photo_black_queued">%d more captures queued</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:138: Warning: The resource R.string.photo_mode_active_hint appears to be unused [UnusedResources]
+    <string name="photo_mode_active_hint">Press Home and tap the floating button to take photos in another app.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:149: Warning: The resource R.string.ui_recorder_action_saveOldRecording_label appears to be unused [UnusedResources]
+    <string name="ui_recorder_action_saveOldRecording_label">Save Recording from <xliff:g name="date">%s</xliff:g></string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:160: Warning: The resource R.string.ui_recorder_action_start_description_1 appears to be unused [UnusedResources]
+    <string name="ui_recorder_action_start_description_1">Alibi will continue recording in the background and store the last\u0020</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:161: Warning: The resource R.string.ui_recorder_action_start_description_2 appears to be unused [UnusedResources]
+    <string name="ui_recorder_action_start_description_2"><xliff:g name="durationInMinutes">%s</xliff:g> minutes</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:162: Warning: The resource R.string.ui_recorder_action_start_description_3 appears to be unused [UnusedResources]
+    <string name="ui_recorder_action_start_description_3">\u0020at your request</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:183: Warning: The resource R.string.ui_welcome_start_label appears to be unused [UnusedResources]
+    <string name="ui_welcome_start_label">Start Alibi</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:208: Warning: The resource R.string.ui_settings_language_update_label appears to be unused [UnusedResources]
+    <string name="ui_settings_language_update_label">Change</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:260: Warning: The resource R.string.ui_settings_option_saveFolder_warning_title appears to be unused [UnusedResources]
+    <string name="ui_settings_option_saveFolder_warning_title">Are you sure you want to change the folder?</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:261: Warning: The resource R.string.ui_settings_option_saveFolder_warning_text appears to be unused [UnusedResources]
+    <string name="ui_settings_option_saveFolder_warning_text">By default, Alibi will save the recording batches into its private, encrypted file storage. You can change this and specify an external, unencrypted folder. This will allow you to access the batches manually. ONLY DO THIS IF YOU KNOW WHAT YOU ARE DOING!</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:262: Warning: The resource R.string.ui_settings_option_saveFolder_warning_action_confirm appears to be unused [UnusedResources]
+    <string name="ui_settings_option_saveFolder_warning_action_confirm">Yes, change folder</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:273: Warning: The resource R.string.ui_settings_option_videoTargetedFrameRate_description appears to be unused [UnusedResources]
+    <string name="ui_settings_option_videoTargetedFrameRate_description">How many frames per second should be recorded.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:295: Warning: The resource R.string.ui_home_cache_ready_title appears to be unused [UnusedResources]
+    <string name="ui_home_cache_ready_title">Alibi is ready</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:309: Warning: The resource R.string.ui_videoRecorder_action_configure_label appears to be unused [UnusedResources]
+    <string name="ui_videoRecorder_action_configure_label">Press long for configuration</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:314: Warning: The resource R.string.ui_videoRecorder_info_starting appears to be unused [UnusedResources]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:339: Warning: The resource R.string.ui_settings_option_saveFolder_explainMediaFolder_openFolderExplanation appears to be unused [UnusedResources]
+    <string name="ui_settings_option_saveFolder_explainMediaFolder_openFolderExplanation">Tap on a folder to open it in the Files app</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:346: Warning: The resource R.string.ui_recorder_lowOnStorage_hint appears to be unused [UnusedResources]
+    <string name="ui_recorder_lowOnStorage_hint">You are low on storage. Alibi may not function properly. Please free up some space.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:347: Warning: The resource R.string.ui_recorder_lowOnStorage_hintANDswitchSaveFolder appears to be unused [UnusedResources]
+    <string name="ui_recorder_lowOnStorage_hintANDswitchSaveFolder">You are low on storage. Alibi may not function properly. Please free up some space. Alternatively, change the batches folder to a different location in the settings.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:353: Warning: The resource R.string.ui_welcome_timeSettings_values_1hour appears to be unused [UnusedResources]
+    <string name="ui_welcome_timeSettings_values_1hour">1 hour</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">جاري تحميل المِلَفّ...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Datei wird heruntergeladen...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Téléchargement du fichier...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Download del file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Bestand aan het downloaden...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Baixando arquivo...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Dosya indiriliyor...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:40: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:57: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_starting">Preparing camera...</string>
+                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:58: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_shooting">Taking photo...</string>
+                                        ~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:59: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_saving">Saving photo...</string>
+                                      ~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Wenn angehalten, speichern Sie die letzten...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Quand arrêté, enregistrez les dernières...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Quando fermato, salva gli ultimi...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Indien gestopt, opslaan de laatste...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Quando interrompido, salve a última...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">Durdurulduğunda, sonuncuyu kaydedin...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:148: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Videoaufnahme wird gestartet...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Démarrage de l\'enregistrement vidéo...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Registratore video è in avvio...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video-opname wordt gestart...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">O Gravador de Vídeo está iniciando...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Kaydedici başlatılıyor...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:152: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:174: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_state_recording_fake_browser_description">Downloading file...</string>
+                                                                        ~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:183: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">停止时，保存最后...</string>
+                                                              ~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:187: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">视频录制开始...</string>
+                                                  ~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:289: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_starting">正在准备相机...</string>
+                                        ~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:290: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_shooting">正在拍摄...</string>
+                                        ~~~~~~~
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:291: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="photo_black_saving">正在保存照片...</string>
+                                      ~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:310: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_recorder_action_changeMaxDuration_title">When stopped, save the last...</string>
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\res\values\strings.xml:314: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="ui_videoRecorder_info_starting">Video Recorder is starting...</string>
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "TypographyEllipsis":
+   You can replace the string "..." with a dedicated ellipsis character,
+   ellipsis character (u2026, &#8230;). This can help make the text more
+   readable.
+
+   https://en.wikipedia.org/wiki/Ellipsis
+
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\helpers\AudioBatchesFolder.kt:141: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+            else -> viaCustomFolder(context, DocumentFile.fromTreeUri(context, Uri.parse(folder))!!)
+                                                                               ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\models\AudioRecorderModel.kt:75: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                        Uri.parse(settings.saveFolder)
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:302: Warning: Use the KTX extension property View.isVisible instead? [UseKtx]
+        panel.visibility = if (panel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:302: Warning: Use the KTX extension property View.isVisible instead? [UseKtx]
+        panel.visibility = if (panel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:303: Warning: Use the KTX extension property View.isVisible instead? [UseKtx]
+        params.width = if (panel.visibility == View.VISIBLE) dp(176) else buttonSize
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:304: Warning: Use the KTX extension property View.isVisible instead? [UseKtx]
+        params.height = if (panel.visibility == View.VISIBLE) dp(168) else buttonSize
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:355: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit()
+        ~~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\helpers\VideoBatchesFolder.kt:146: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                DocumentFile.fromTreeUri(context, Uri.parse(folder))!!
+                                                  ~~~~~~~~~~~~~~~~~
+T:\Github\Alibi\app\src\main\java\app\myzel394\alibi\ui\models\VideoRecorderModel.kt:54: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                        Uri.parse(settings.saveFolder)
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+0 errors, 191 warnings

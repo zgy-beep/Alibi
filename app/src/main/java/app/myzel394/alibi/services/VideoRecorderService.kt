@@ -36,6 +36,7 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.properties.Delegates
 
@@ -84,6 +85,15 @@ class VideoRecorderService :
 
         scope.launch {
             openCamera()
+        }
+    }
+
+    override suspend fun awaitReady() {
+        withTimeout(CAMERA_CLOSE_TIMEOUT) {
+            _cameraAvailableListener.await()
+        }
+        if (state == RecorderState.ERROR) {
+            throw IllegalStateException("Camera failed to become ready")
         }
     }
 
@@ -153,7 +163,7 @@ class VideoRecorderService :
                     }
                 }
             } catch (error: Exception) {
-                onError()
+                failCycle(error)
             }
         }
 
@@ -224,19 +234,27 @@ class VideoRecorderService :
                     cameraReady = true
                     onCameraControlAvailable()
 
-                    if (!_cameraAvailableListener.isCompleted) {
-                        _cameraAvailableListener.complete(Unit)
-                    }
                     if (pendingCycleStart) {
                         pendingCycleStart = false
                         startNewCycle()
                     }
+                    if (!_cameraAvailableListener.isCompleted &&
+                        state != RecorderState.ERROR
+                    ) {
+                        _cameraAvailableListener.complete(Unit)
+                    }
                 } catch (error: Exception) {
-                    onError()
+                    failCycle(error)
+                    if (!_cameraAvailableListener.isCompleted) {
+                        _cameraAvailableListener.completeExceptionally(error)
+                    }
                 }
             }
         } catch (error: Exception) {
-            onError()
+            failCycle(error)
+            if (!_cameraAvailableListener.isCompleted) {
+                _cameraAvailableListener.completeExceptionally(error)
+            }
         }
     }
 

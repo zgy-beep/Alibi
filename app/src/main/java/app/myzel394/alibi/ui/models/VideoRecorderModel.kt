@@ -46,13 +46,15 @@ class VideoRecorderModel :
         batchesFolder = when (settings.saveFolder) {
             null -> VideoBatchesFolder.viaInternalFolder(context)
             RECORDER_MEDIA_SELECTED_VALUE -> VideoBatchesFolder.viaMediaFolder(context)
-            else -> VideoBatchesFolder.viaCustomFolder(
-                context,
-                DocumentFile.fromTreeUri(
+            else -> runCatching {
+                VideoBatchesFolder.viaCustomFolder(
                     context,
-                    Uri.parse(settings.saveFolder)
-                )!!
-            )
+                    DocumentFile.fromTreeUri(
+                        context,
+                        Uri.parse(settings.saveFolder)
+                    )!!
+                )
+            }.getOrNull()
         }
 
         super.startRecording(context, settings)
@@ -64,10 +66,11 @@ class VideoRecorderModel :
         // not already recording
         if (service.state == RecorderState.IDLE) {
             isStartingRecording = true
-
-            service.clearAllRecordings()
-            service.startRecording()
-            onRecordingStart()
+            startServiceRecording(
+                service = service,
+                clearExisting = true,
+                onFailure = { isStartingRecording = false },
+            )
         } else {
             isStartingRecording = false
         }

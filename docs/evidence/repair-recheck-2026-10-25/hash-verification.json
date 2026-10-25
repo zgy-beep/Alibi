@@ -1,0 +1,134 @@
+{
+  "source-sha256.json": [
+    {
+      "path": "app/src/androidTest/java/app/myzel394/alibi/ExampleInstrumentedTest.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/debug/res/xml/shortcuts.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/AppShortcuts.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/db/AppSettings.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/services/PhotoCaptureService.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/services/RecorderService.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ShortcutActivity.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/components/atoms/RunningStatusIndicator.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/atoms/LowStorageInfo.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/components/SettingsScreen/Tiles/SaveFolderTile.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/models/AudioRecorderModel.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/models/PhotoCaptureModel.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/models/VideoRecorderModel.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/Navigation.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/AboutScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/CustomRecordingNotificationsScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/PhotoCaptureSettingsScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/PhotoSetupScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/RecentPhotosScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/RecorderScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/java/app/myzel394/alibi/ui/screens/SettingsScreen.kt",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_shortcut_photo.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_shortcut_record.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/values-zh/strings.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/values/strings.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/values/themes.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/main/res/xml/shortcuts.xml",
+      "matches": true
+    },
+    {
+      "path": "app/src/test/java/app/myzel394/alibi/ExampleUnitTest.kt",
+      "matches": true
+    },
+    {
+      "path": "README.md",
+      "matches": true
+    }
+  ],
+  "apk-sha256.json": [
+    {
+      "path": "T:\\Github\\Alibi\\app\\build\\outputs\\apk\\debug\\app-x86_64-debug.apk",
+      "matches": true
+    },
+    {
+      "path": "T:\\Github\\Alibi\\app\\build\\outputs\\apk\\release\\app-x86_64-release.apk",
+      "matches": true
+    }
+  ]
+}

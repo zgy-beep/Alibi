@@ -12,6 +12,13 @@ import androidx.lifecycle.LifecycleService
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.enums.RecorderState
 import app.myzel394.alibi.ui.utils.PermissionHelper
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 import java.util.concurrent.Executors
@@ -28,6 +35,7 @@ abstract class RecorderService : LifecycleService() {
     private var recordingTimeTimer: ScheduledExecutorService? = null
     private val mainHandler = Handler(Looper.getMainLooper())
     private var notificationDetails: RecorderNotificationHelper.NotificationDetails? = null
+    private val startMutex = Mutex()
 
     var state = RecorderState.IDLE
         private set
@@ -59,20 +67,57 @@ abstract class RecorderService : LifecycleService() {
 
     protected abstract fun startForegroundService()
 
-    fun startRecording() {
-        recordingStart = LocalDateTime.now()
+    protected open suspend fun awaitReady() = Unit
 
-        startForegroundService()
-        changeState(RecorderState.RECORDING)
+    protected open fun onStartAborted() {
+        stopRecordingTimeTimer()
+    }
+
+    protected fun failRecording(error: Throwable) {
+        error.printStackTrace()
+        stopRecordingTimeTimer()
+        changeState(RecorderState.ERROR)
+        onError()
+    }
+
+    suspend fun startRecording(
+        beforeStart: suspend () -> Unit = {},
+    ): Boolean = startMutex.withLock {
+        if (state == RecorderState.RECORDING || state == RecorderState.PAUSED) {
+            return@withLock true
+        }
+
+        recordingStart = LocalDateTime.now()
+        changeState(RecorderState.STARTING)
 
         try {
-            start()
-        } catch (error: RuntimeException) {
+            withContext(Dispatchers.Main.immediate) {
+                startForegroundService()
+            }
+            withContext(Dispatchers.IO) {
+                beforeStart()
+                currentCoroutineContext().ensureActive()
+                start()
+            }
+            awaitReady()
+            currentCoroutineContext().ensureActive()
+            if (state == RecorderState.ERROR) {
+                return@withLock false
+            }
+            changeState(RecorderState.RECORDING)
+            true
+        } catch (error: CancellationException) {
+            runCatching { onStartAborted() }
+            changeState(RecorderState.ERROR)
+            throw error
+        } catch (error: Exception) {
             error.printStackTrace()
-
+            runCatching { onStartAborted() }
+            changeState(RecorderState.ERROR)
             if (error !is AvoidErrorDialogError) {
                 onError()
             }
+            false
         }
     }
 

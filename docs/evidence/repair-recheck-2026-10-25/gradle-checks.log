@@ -1,0 +1,212 @@
+Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details
+Configuration on demand is an incubating feature.
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:generateDebugResValues
+> Task :app:extractDebugSupportedLocales
+> Task :app:generateDebugResources
+> Task :app:generateDebugLocaleConfig
+> Task :app:generateDebugBuildConfig
+
+> Task :app:mergeDebugResources
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-af\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-hu\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pt\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values\strings.xml:17:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values\strings.xml:207:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values\strings.xml:138:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values\strings.xml:253:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values\strings.xml:360:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ar\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ja\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:81:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:22:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:127:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-zh\strings.xml:234:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-it\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ro\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ko\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ca\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-tr\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sr\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-nl\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-ru\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-sv\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-uk\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-el\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-da\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-cs\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-es\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-de\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-vi\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fi\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-he\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-no\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-en\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-fr\strings.xml:202:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/form_error_value_notInRange. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:73:4: Multiple substitutions specified in non-positional format of string resource string/ui_audioRecorder_error_microphoneDisconnected_message. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/ui_minApiRequired. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:109:4: Multiple substitutions specified in non-positional format of string resource string/ui_settings_option_saveFolder_explainMediaFolder_subfoldersExplanation. Did you mean to add the formatted="false" attribute?
+T:\Github\Alibi\app\src\main\res\values-pl\strings.xml:201:4: Multiple substitutions specified in non-positional format of string resource string/ui_welcome_timeSettings_values_customFormat_hh_mm. Did you mean to add the formatted="false" attribute?
+
+> Task :app:packageDebugResources
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:parseDebugLocalResources
+> Task :app:extractDeepLinksDebug
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:extractProguardFiles
+> Task :app:processDebugResources
+> Task :app:compileDebugKotlin
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/services/AudioRecorderService.kt:148:25 'fun startBluetoothSco(): Unit' is deprecated. Deprecated in Java.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/services/AudioRecorderService.kt:158:25 'fun stopBluetoothSco(): Unit' is deprecated. Deprecated in Java.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/services/AudioRecorderService.kt:170:13 'constructor(): MediaRecorder' is deprecated. Deprecated in Java.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/AudioRecordingStatus.kt:175:56 Unchecked cast of 'app.myzel394.alibi.ui.models.AudioRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:96:46 Unchecked cast of 'app.myzel394.alibi.ui.models.AudioRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:99:46 Unchecked cast of 'app.myzel394.alibi.ui.models.VideoRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:260:45 Unchecked cast of 'app.myzel394.alibi.ui.models.AudioRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:267:55 Unchecked cast of 'app.myzel394.alibi.ui.models.AudioRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:310:45 Unchecked cast of 'app.myzel394.alibi.ui.models.VideoRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/RecorderEventsHandler.kt:317:55 Unchecked cast of 'app.myzel394.alibi.ui.models.VideoRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/organisms/VideoRecordingStatus.kt:253:56 Unchecked cast of 'app.myzel394.alibi.ui.models.VideoRecorderModel' to 'app.myzel394.alibi.ui.models.BaseRecorderModel<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder, app.myzel394.alibi.services.IntervalRecorderService<app.myzel394.alibi.db.RecordingInformation, app.myzel394.alibi.helpers.BatchesFolder>>'.
+w: file:///T:/Github/Alibi/app/src/main/java/app/myzel394/alibi/ui/models/BaseRecorderModel.kt:70:75 Unchecked cast of 'app.myzel394.alibi.services.RecorderService' to 'T'.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:generateDebugLintReportModel
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:testDebugUnitTest
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebug
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///T:/Github/Alibi/app/build/reports/lint-results-debug.html
+
+> Task :app:lintDebug
+
+BUILD SUCCESSFUL in 2m 28s
+38 actionable tasks: 38 executed

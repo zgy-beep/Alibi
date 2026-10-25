@@ -52,7 +52,7 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
         cycleTimer = Executors.newSingleThreadScheduledExecutor().also {
             it.scheduleWithFixedDelay(
                 ::startNewCycle,
-                0,
+                settings.intervalDuration,
                 settings.intervalDuration,
                 TimeUnit.MILLISECONDS
             )
@@ -70,6 +70,8 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
             throw AvoidErrorDialogError()
         }
 
+        // The first cycle must finish before the service reports RECORDING.
+        startNewCycle()
         createTimer()
     }
 
@@ -101,6 +103,11 @@ abstract class IntervalRecorderService<I, B : BatchesFolder> :
 
     fun clearAllRecordings() {
         batchesFolder.deleteRecordings()
+    }
+
+    protected fun failCycle(error: Throwable) {
+        stopCycleTimer()
+        failRecording(error)
     }
 
     private fun deleteOldRecordings() {

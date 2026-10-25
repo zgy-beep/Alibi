@@ -226,7 +226,7 @@ data class RecordingInformation(
     val fileExtension: String,
     val type: Type,
 ) {
-    fun hasRecordingsAvailable(context: Context): Boolean =
+    fun hasRecordingsAvailable(context: Context): Boolean = runCatching {
         when (type) {
             Type.AUDIO -> AudioBatchesFolder.importFromFolder(folderPath, context)
                 .hasRecordingsAvailable()
@@ -234,6 +234,7 @@ data class RecordingInformation(
             Type.VIDEO -> VideoBatchesFolder.importFromFolder(folderPath, context)
                 .hasRecordingsAvailable()
         }
+    }.getOrDefault(false)
 
     fun getStartDateForFilename(filenameFormat: AppSettings.FilenameFormat): LocalDateTime {
         return when (filenameFormat) {

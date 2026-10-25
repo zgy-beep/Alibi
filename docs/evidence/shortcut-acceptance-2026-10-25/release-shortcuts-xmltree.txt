@@ -1,0 +1,22 @@
+N: android=http://schemas.android.com/apk/res/android (line=2)
+  E: shortcuts (line=2)
+      E: shortcut (line=8)
+        A: http://schemas.android.com/apk/res/android:icon(0x01010002)=@0x7f080069
+        A: http://schemas.android.com/apk/res/android:enabled(0x0101000e)=true
+        A: http://schemas.android.com/apk/res/android:shortcutId(0x01010528)="background_audio_recording" (Raw: "background_audio_recording")
+        A: http://schemas.android.com/apk/res/android:shortcutShortLabel(0x01010529)=@0x7f0f0128
+        A: http://schemas.android.com/apk/res/android:shortcutLongLabel(0x0101052a)=@0x7f0f0127
+          E: intent (line=12)
+            A: http://schemas.android.com/apk/res/android:targetPackage(0x01010021)="com.zgybeep.alibi" (Raw: "com.zgybeep.alibi")
+            A: http://schemas.android.com/apk/res/android:action(0x0101002d)="com.zgybeep.alibi.shortcut.RECORD_AUDIO" (Raw: "com.zgybeep.alibi.shortcut.RECORD_AUDIO")
+            A: http://schemas.android.com/apk/res/android:targetClass(0x0101002f)="app.myzel394.alibi.ShortcutActivity" (Raw: "app.myzel394.alibi.ShortcutActivity")
+      E: shortcut (line=19)
+        A: http://schemas.android.com/apk/res/android:icon(0x01010002)=@0x7f080068
+        A: http://schemas.android.com/apk/res/android:enabled(0x0101000e)=true
+        A: http://schemas.android.com/apk/res/android:shortcutId(0x01010528)="background_photo_capture" (Raw: "background_photo_capture")
+        A: http://schemas.android.com/apk/res/android:shortcutShortLabel(0x01010529)=@0x7f0f012a
+        A: http://schemas.android.com/apk/res/android:shortcutLongLabel(0x0101052a)=@0x7f0f0129
+          E: intent (line=23)
+            A: http://schemas.android.com/apk/res/android:targetPackage(0x01010021)="com.zgybeep.alibi" (Raw: "com.zgybeep.alibi")
+            A: http://schemas.android.com/apk/res/android:action(0x0101002d)="com.zgybeep.alibi.shortcut.TAKE_PHOTO" (Raw: "com.zgybeep.alibi.shortcut.TAKE_PHOTO")
+            A: http://schemas.android.com/apk/res/android:targetClass(0x0101002f)="app.myzel394.alibi.ShortcutActivity" (Raw: "app.myzel394.alibi.ShortcutActivity")

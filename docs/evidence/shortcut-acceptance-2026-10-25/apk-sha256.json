@@ -1,0 +1,12 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B3FEEDDA5AAFDD2A4AB3E493470A9EAE651A79975745B0FC676DF4AAA71C78AE",
+    "Path": "T:\\Github\\Alibi\\app\\build\\outputs\\apk\\debug\\app-x86_64-debug.apk"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "02D1E6541A769FE99BAC4E090453DAC35C56ECC8E355C728A1AC8CE56B16E90D",
+    "Path": "T:\\Github\\Alibi\\app\\build\\outputs\\apk\\release\\app-x86_64-release.apk"
+  }
+]

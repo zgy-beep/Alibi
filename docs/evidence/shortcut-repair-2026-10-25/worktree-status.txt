@@ -1,0 +1,35 @@
+ M .gitignore
+ M README.md
+ M app/src/androidTest/java/app/myzel394/alibi/ExampleInstrumentedTest.kt
+ M app/src/main/AndroidManifest.xml
+ M app/src/main/java/app/myzel394/alibi/db/AppSettings.kt
+ M app/src/main/java/app/myzel394/alibi/services/PhotoCaptureService.kt
+ M app/src/main/java/app/myzel394/alibi/services/RecorderService.kt
+ M app/src/main/java/app/myzel394/alibi/ui/Navigation.kt
+ M app/src/main/java/app/myzel394/alibi/ui/components/RecorderScreen/atoms/LowStorageInfo.kt
+ M app/src/main/java/app/myzel394/alibi/ui/components/SettingsScreen/Tiles/SaveFolderTile.kt
+ M app/src/main/java/app/myzel394/alibi/ui/models/AudioRecorderModel.kt
+ M app/src/main/java/app/myzel394/alibi/ui/models/PhotoCaptureModel.kt
+ M app/src/main/java/app/myzel394/alibi/ui/models/VideoRecorderModel.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/AboutScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/CustomRecordingNotificationsScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/PhotoCaptureSettingsScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/PhotoSetupScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/RecentPhotosScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/RecorderScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/SettingsScreen.kt
+ M app/src/main/res/values-zh/strings.xml
+ M app/src/main/res/values/strings.xml
+ M app/src/main/res/values/themes.xml
+ M app/src/test/java/app/myzel394/alibi/ExampleUnitTest.kt
+?? app/src/debug/
+?? app/src/main/java/app/myzel394/alibi/AppShortcuts.kt
+?? app/src/main/java/app/myzel394/alibi/ShortcutActivity.kt
+?? app/src/main/java/app/myzel394/alibi/ui/components/atoms/RunningStatusIndicator.kt
+?? app/src/main/res/drawable/ic_shortcut_photo.xml
+?? app/src/main/res/drawable/ic_shortcut_record.xml
+?? app/src/main/res/xml/shortcuts.xml
+?? docs/evidence/shortcut-acceptance-2026-10-25/
+?? docs/evidence/shortcut-repair-2026-10-25/
+?? docs/reviews/shortcut-acceptance-2026-10-25.md
+?? docs/reviews/shortcut-repair-2026-10-25.md

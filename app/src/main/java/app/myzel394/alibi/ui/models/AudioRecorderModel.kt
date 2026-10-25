@@ -54,9 +54,7 @@ class AudioRecorderModel :
         // so we only want to actually start the recording if the service is idle and thus
         // not already recording
         if (service.state == RecorderState.IDLE) {
-            service.clearAllRecordings()
-            service.startRecording()
-            onRecordingStart()
+            startServiceRecording(service, clearExisting = true)
         }
 
         recorderState = service.state
@@ -69,13 +67,15 @@ class AudioRecorderModel :
         batchesFolder = when (settings.saveFolder) {
             null -> AudioBatchesFolder.viaInternalFolder(context)
             RECORDER_MEDIA_SELECTED_VALUE -> AudioBatchesFolder.viaMediaFolder(context)
-            else -> AudioBatchesFolder.viaCustomFolder(
-                context,
-                DocumentFile.fromTreeUri(
+            else -> runCatching {
+                AudioBatchesFolder.viaCustomFolder(
                     context,
-                    Uri.parse(settings.saveFolder)
-                )!!
-            )
+                    DocumentFile.fromTreeUri(
+                        context,
+                        Uri.parse(settings.saveFolder)
+                    )!!
+                )
+            }.getOrNull()
         }
 
         super.startRecording(context, settings)
