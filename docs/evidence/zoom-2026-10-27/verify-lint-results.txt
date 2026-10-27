@@ -1,0 +1,148 @@
+Lint results parsed from app/build/reports/lint-results-debug.xml
+Run command: ./gradlew :app:lintDebug (forced re-analysis: gradle --stop, deleted lint-cache, 2m31s, 7 tasks executed)
+
+total issues = 191
+severity     = {'Warning': 188, 'Information': 3}
+ERROR        = 0
+FATAL        = 0
+
+by id:
+  TypographyEllipsis                     92
+  UnusedResources                        28
+  GradleDependency                       22
+  UnusedAttribute                        12
+  ComposableNaming                       7
+  UseKtx                                 6
+  VectorRaster                           5
+  ConfigurationScreenWidthHeight         3
+  ModifierParameter                      3
+  AutoboxingStateCreation                3
+  Typos                                  2
+  PluralsCandidate                       2
+  LocaleFolder                           1
+  OldTargetApi                           1
+  RedundantLabel                         1
+  ModifierFactoryExtensionFunction       1
+  UnsafeProtectedBroadcastReceiver       1
+  VectorPath                             1
+
+issues located in changed/new zoom files:
+ - Warning Typos \app\src\main\res\values-en\strings.xml:180 "portait" is a common misspelling; did you mean "portrait"?
+ - Warning Typos \app\src\main\res\values\strings.xml:363 "portait" is a common misspelling; did you mean "portrait"?
+ - Warning PluralsCandidate \app\src\main\res\values\strings.xml:67 Formatting %d followed by words ("more"): This should probably be a plural rather than a string
+ - Warning PluralsCandidate \app\src\main\res\values\strings.xml:317 Formatting %d followed by words ("minutes"): This should probably be a plural rather than a string
+ - Information AutoboxingStateCreation \app\src\main\java\app\myzel394\alibi\ui\models\PhotoCaptureModel.kt:32 Prefer `mutableFloatStateOf` instead of `mutableStateOf`
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:67 The resource `R.string.photo_black_queued` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:145 The resource `R.string.photo_mode_active_hint` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:156 The resource `R.string.ui_recorder_action_saveOldRecording_label` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:167 The resource `R.string.ui_recorder_action_start_description_1` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:168 The resource `R.string.ui_recorder_action_start_description_2` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:169 The resource `R.string.ui_recorder_action_start_description_3` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:190 The resource `R.string.ui_welcome_start_label` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:215 The resource `R.string.ui_settings_language_update_label` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:279 The resource `R.string.ui_settings_option_saveFolder_action_select_label` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:281 The resource `R.string.ui_settings_option_saveFolder_warning_title` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:282 The resource `R.string.ui_settings_option_saveFolder_warning_text` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:283 The resource `R.string.ui_settings_option_saveFolder_warning_action_confirm` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:294 The resource `R.string.ui_settings_option_videoTargetedFrameRate_description` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:316 The resource `R.string.ui_home_cache_ready_title` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:330 The resource `R.string.ui_videoRecorder_action_configure_label` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:335 The resource `R.string.ui_videoRecorder_info_starting` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:360 The resource `R.string.ui_settings_option_saveFolder_explainMediaFolder_openFolderExplanation` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:367 The resource `R.string.ui_recorder_lowOnStorage_hint` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:368 The resource `R.string.ui_recorder_lowOnStorage_hintANDswitchSaveFolder` appears to be unused
+ - Warning UnusedResources \app\src\main\res\values\strings.xml:374 The resource `R.string.ui_welcome_timeSettings_values_1hour` appears to be unused
+ - Warning TypographyEllipsis \app\src\main\res\values-af\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ar\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ca\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-cs\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-da\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-de\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-el\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-en\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-es\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fi\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fr\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-he\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-hu\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-it\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ja\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ko\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-nl\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-no\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pl\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pt\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ro\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ru\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sr\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sv\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-tr\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-uk\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-vi\strings.xml:40 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:64 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:65 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:66 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-af\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ar\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ca\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-cs\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-da\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-de\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-el\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-en\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-es\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fi\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fr\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-he\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-hu\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-it\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ja\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ko\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-nl\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-no\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pl\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pt\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ro\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ru\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sr\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sv\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-tr\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-uk\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-vi\strings.xml:148 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-af\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ar\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ca\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-cs\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-da\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-de\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-el\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-en\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-es\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fi\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-fr\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-he\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-hu\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-it\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ja\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ko\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-nl\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-no\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pl\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-pt\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ro\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-ru\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sr\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-sv\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-tr\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-uk\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-vi\strings.xml:152 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:181 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-zh\strings.xml:197 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-zh\strings.xml:201 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-zh\strings.xml:310 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-zh\strings.xml:311 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values-zh\strings.xml:312 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:331 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning TypographyEllipsis \app\src\main\res\values\strings.xml:335 Replace "..." with ellipsis character (…, &#8230;) ?
+ - Warning UseKtx \app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:681 Use the KTX extension property `View.isVisible` instead?
+ - Warning UseKtx \app\src\main\java\app\myzel394\alibi\services\PhotoOverlayController.kt:725 Use the KTX extension function `SharedPreferences.edit` instead?

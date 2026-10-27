@@ -16,8 +16,12 @@ object AlibiOverlayStyle {
     const val SHUTTER_SIZE_DP = 56
     const val ICON_TEXT_SIZE_SP = 24f
     const val PANEL_CORNER_DP = 24
+    const val PANEL_WIDTH_DP = 176
     const val ACTION_CORNER_DP = 16
     const val STATE_ANIMATION_MILLIS = 180L
+    const val ZOOM_STEP_FACTOR = 1.25f
+    const val ZOOM_VALUE_TEXT_SIZE_SP = 16f
+    const val ZOOM_SEEK_BAR_MAX = 1000
 
     const val STARTING_COLOR = 0xFF50575D.toInt()
     const val READY_COLOR = 0xFF176B5B.toInt()

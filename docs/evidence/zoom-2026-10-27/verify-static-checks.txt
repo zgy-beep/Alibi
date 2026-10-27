@@ -1,0 +1,53 @@
+== 1. 工作区改动范围（git status --short）==
+ M README.md
+ M app/src/main/java/app/myzel394/alibi/services/PhotoCaptureService.kt
+ M app/src/main/java/app/myzel394/alibi/services/PhotoOverlayController.kt
+ M app/src/main/java/app/myzel394/alibi/ui/models/PhotoCaptureModel.kt
+ M app/src/main/java/app/myzel394/alibi/ui/screens/BlackPhotoScreen.kt
+ M app/src/main/java/app/myzel394/alibi/ui/theme/Tokens.kt
+ M app/src/main/res/values-zh/strings.xml
+ M app/src/main/res/values/strings.xml
+ M docs/plans/black-screen-floating-camera.md
+ M docs/plans/unified-ui-design-2026-10-25.md
+?? app/src/androidTest/java/app/myzel394/alibi/PhotoZoomInstrumentedTest.kt
+?? app/src/main/java/app/myzel394/alibi/services/ZoomRequestQueue.kt
+?? app/src/test/java/app/myzel394/alibi/ZoomRequestQueueTest.kt
+?? docs/evidence/zoom-2026-10-27/
+?? docs/reviews/zoom-overlay-2026-10-27.md
+
+== 2. 变更行数（git diff --stat，未含未跟踪新文件）==
+ README.md                                          |   7 +-
+ .../myzel394/alibi/services/PhotoCaptureService.kt | 149 +++++++-
+ .../alibi/services/PhotoOverlayController.kt       | 416 ++++++++++++++++++++-
+ .../myzel394/alibi/ui/models/PhotoCaptureModel.kt  |  20 +-
+ .../myzel394/alibi/ui/screens/BlackPhotoScreen.kt  |  27 +-
+ .../java/app/myzel394/alibi/ui/theme/Tokens.kt     |   4 +
+ app/src/main/res/values-zh/strings.xml             |   7 +
+ app/src/main/res/values/strings.xml                |   7 +
+ docs/plans/black-screen-floating-camera.md         |  10 +-
+ docs/plans/unified-ui-design-2026-10-25.md         |   2 +-
+ 10 files changed, 606 insertions(+), 43 deletions(-)
+
+== 3. values / values-zh 字符串键集合 ==
+values keys = 388  values-zh keys = 388
+in values not in values-zh = []
+in values-zh not in values = []
+new zoom keys present in both = True
+== 4. 文档引用的证据/图片是否存在 ==
+checked refs = 13  missing = none
+== 5. 源码/测试声明统计 ==
+androidTest ExampleInstrumentedTest.kt @Test = 4
+androidTest PhotoZoomInstrumentedTest.kt @Test = 3
+unitTest    AppSettingsPhotoCompatibilityTest.kt @Test = 6
+unitTest    ExampleUnitTest.kt @Test = 3
+unitTest    PhotoCaptureSessionStateTest.kt @Test = 4
+unitTest    PhotoNamingTest.kt @Test = 2
+unitTest    PhotoRepositoryCompatibilityTest.kt @Test = 1
+unitTest    ZoomRequestQueueTest.kt @Test = 5
+== 6. 设备上被测 APK 与工作区构建产物的哈希 ==
+
+== 6. 设备上被测 APK 与工作区构建产物的哈希 ==
+手动验证前从设备 pull 的 base.apk、验证后重装的 base.apk 与工作区产物完全一致：
+131936b4ad1663685b41f6797d4ab95a *app/build/outputs/apk/debug/app-x86_64-debug.apk
+131936b4ad1663685b41f6797d4ab95a */tmp/alibi-installed.apk      (手动验证时安装包)
+131936b4ad1663685b41f6797d4ab95a */tmp/alibi-installed2.apk     (验证收尾重装包)

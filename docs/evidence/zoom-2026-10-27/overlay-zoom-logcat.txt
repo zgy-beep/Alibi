@@ -1,0 +1,12 @@
+10-27 08:55:56.776 15625 15625 D PhotoCaptureService: zoom applied target=1.25 latencyMs=270
+10-27 08:55:57.283 15625 15625 D PhotoCaptureService: zoom applied target=1.5625 latencyMs=220
+10-27 08:55:57.824 15625 15625 D PhotoCaptureService: zoom applied target=1.953125 latencyMs=213
+10-27 08:55:58.410 15625 15625 D PhotoCaptureService: zoom applied target=2.4414062 latencyMs=232
+10-27 08:56:01.062 15625 15625 D PhotoCaptureService: zoom applied target=3.0517578 latencyMs=233
+10-27 08:56:01.636 15625 15625 D PhotoCaptureService: zoom applied target=3.8146973 latencyMs=241
+10-27 08:56:02.178 15625 15625 D PhotoCaptureService: zoom applied target=4.7683716 latencyMs=233
+10-27 08:56:02.757 15625 15625 D PhotoCaptureService: zoom applied target=5.9604645 latencyMs=259
+10-27 08:56:03.266 15625 15625 D PhotoCaptureService: zoom applied target=7.4505806 latencyMs=221
+10-27 08:56:03.843 15625 15625 D PhotoCaptureService: zoom applied target=9.313226 latencyMs=231
+10-27 08:56:04.382 15625 15625 D PhotoCaptureService: zoom applied target=10.0 latencyMs=220
+10-27 08:56:09.889 15625 15625 D PhotoCaptureService: zoom applied target=1.0 latencyMs=244

@@ -25,6 +25,13 @@ class PhotoCaptureModel : ViewModel() {
     var state by mutableStateOf(PhotoCaptureSessionState())
         private set
 
+    /**
+     * Zoom-only state, kept separate from [state] so a continuous pinch does not
+     * invalidate every composable that reads the session state.
+     */
+    var zoomRatio by mutableStateOf(1f)
+        private set
+
     val isInSession: Boolean
         get() = state.isActive
 
@@ -37,15 +44,22 @@ class PhotoCaptureModel : ViewModel() {
             service = (binder as? PhotoCaptureService.PhotoBinder)?.getService()
             service?.onStateChanged = { newState ->
                 state = newState
+                zoomRatio = newState.zoomRatio
+            }
+            service?.onZoomChanged = { newZoomRatio ->
+                zoomRatio = newZoomRatio
             }
             state = service?.state ?: PhotoCaptureSessionState()
+            zoomRatio = state.zoomRatio
             service?.setAppVisible(appVisible)
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
             service?.onStateChanged = null
+            service?.onZoomChanged = null
             service = null
             state = PhotoCaptureSessionState()
+            zoomRatio = 1f
         }
     }
 
@@ -68,10 +82,12 @@ class PhotoCaptureModel : ViewModel() {
     fun unbindFromService() {
         val context = boundContext ?: return
         service?.onStateChanged = null
+        service?.onZoomChanged = null
         runCatching { context.unbindService(connection) }
         boundContext = null
         service = null
         state = PhotoCaptureSessionState()
+        zoomRatio = 1f
     }
 
     fun startSession(
@@ -131,11 +147,11 @@ class PhotoCaptureModel : ViewModel() {
 
     fun rememberCurrentZoom() {
         val context = boundContext ?: return
-        val zoomRatio = state.zoomRatio
+        val currentZoom = zoomRatio
         viewModelScope.launch {
             context.dataStore.updateData { settings ->
                 settings.setPhotoCaptureSettings(
-                    settings.photoCaptureSettings.setLastZoomRatio(zoomRatio)
+                    settings.photoCaptureSettings.setLastZoomRatio(currentZoom)
                 )
             }
         }

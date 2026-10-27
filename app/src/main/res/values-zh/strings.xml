@@ -280,6 +280,13 @@
     <string name="photo_overlay_open_app">打开 Alibi</string>
     <string name="photo_overlay_stop">停止</string>
     <string name="photo_overlay_close">关闭</string>
+    <string name="photo_overlay_zoom_title">变焦</string>
+    <string name="photo_overlay_zoom_in">变焦放大</string>
+    <string name="photo_overlay_zoom_out">变焦缩小</string>
+    <string name="photo_overlay_zoom_reset">重置变焦</string>
+    <string name="photo_overlay_zoom_value">%1$.1f×</string>
+    <string name="photo_overlay_zoom_description">当前变焦 %1$.1f×</string>
+    <string name="photo_overlay_zoom_unavailable">当前相机不支持变焦</string>
     <string name="photo_home_label">拍照</string>
     <string name="photo_setup_title">拍照</string>
     <string name="photo_setup_description">选择相机，然后启用需要的快门模式。</string>

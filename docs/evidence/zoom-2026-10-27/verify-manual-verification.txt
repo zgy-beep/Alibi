@@ -1,0 +1,107 @@
+# 悬浮窗变焦 / rememberZoom 手动验收记录（独立验证）
+
+日期：2026-10-27（模拟器时钟 UTC 09:xx，本地 +08:00）
+设备：emulator-5580 · Pixel9_API36 · Android 16 / API 36 · 1080x2424 · density 420 (2.625x) · 中文系统
+应用：com.zgybeep.alibi.debug 0.6.1
+被测 APK：手动验证前设备已安装 base.apk 的 md5 =
+  131936b4ad1663685b41f6797d4ab95a，与工作区构建产物
+  app/build/outputs/apk/debug/app-x86_64-debug.apk 的 md5 完全一致
+  => 手动验证运行的是当前工作区源码构建的包。
+
+## 1. 悬浮会话启动与窗口尺寸
+
+命令：
+  adb -s emulator-5580 shell am force-stop com.zgybeep.alibi.debug
+  adb -s emulator-5580 shell am start -a com.zgybeep.alibi.debug.shortcut.TAKE_PHOTO \
+      -n com.zgybeep.alibi.debug/app.myzel394.alibi.ShortcutActivity
+  sleep 6
+
+dumpsys window windows：
+  APPLICATION_OVERLAY mAttrs={(618,739)(147x147)} package=com.zgybeep.alibi.debug
+147 px / 2.625 = 56 dp，与设计一致；状态色为 READY（绿色圆点）。
+证据：verify-floating-collapsed.png、verify-dumpsys-collapsed.txt
+
+## 2. 长按展开面板
+
+命令：adb -s emulator-5580 shell input swipe 691 812 691 812 900（900ms 长按快门中心）
+
+dumpsys window windows：
+  APPLICATION_OVERLAY mAttrs={(618,739)(462x581)}
+  462 px / 2.625 = 176 dp（PANEL_WIDTH_DP），高度 581 px 为内容测量值（非旧固定 168 dp）。
+面板内容（截图 verify-floating-panel.png）：
+  - 第一行：− 按钮 / “1.0×” 倍率 / ＋ 按钮（3 个 48 dp 触达区）
+  - 对数映射 SeekBar（1.0x 时在左端）
+  - 打开 Alibi / 停止 / 关闭 三个原有按钮
+初始 1.0x：− 按钮禁用（alpha 0.45），＋ 可用。
+
+## 3. 变焦交互实测（每次操作均记录 logcat “zoom applied target=...”）
+
+| 操作 | 坐标 | CameraX 目标倍率 | 面板显示 | 截图 |
+| --- | --- | --- | --- | --- |
+| 点击 ＋ | (1002,818) | 1.25（latency 256ms） | 1.3×，滑杆右移 | verify-floating-zoomed-1.png |
+| 再点 ＋ 两次 | (1002,818) | 1.5625、1.953125（223–233ms） | 2.0× | verify-floating-zoomed-2.png |
+| 点击滑杆右端 | (1050,900) | 10.0（249ms） | 10.0×，＋ 禁用 | verify-floating-seekbar-max.png |
+| 滑杆拖动 0→50% | (640,900)→(850,900) 800ms | 1.0→1.2022644→1.9906733→3.1841974（共 4 次 apply） | 3.2× | verify-floating-seekbar-drag.png / verify-seekbar-drag-logcat.txt |
+| 点击 − | (699,818) | 2.547358 | 2.5× | – |
+| 点击倍率文字重置 | (849,818) | 1.0 | 1.0×，− 禁用 | verify-floating-zoom-reset.png |
+| 点击关闭 | (840,1217) | – | 面板收起，dumpsys 恢复 (618,739)(147x147) | verify-floating-collapsed-return.png / verify-dumpsys-collapsed-return.txt |
+
+说明：800ms 滑杆拖动时间内只发生 4 次 CameraX 请求（间隔约 230–290ms），
+与 latest-wins 合并设计一致；UI 缩放标签每次输入立即更新。
+
+## 4. 原有点击 / 拖动 / 长按 / 位置持久化 / 状态色 / 透明度回归
+
+- 点击快门（tap 691,812）：生成照片
+  files/photos/alibi-photo_20261027_090125_672_09c6889d.jpg（61115 B），
+  logcat “Photo captured: request=1 latencyMs=445 queued=0”、“Photo saved ... saveMs=46”；
+  点击不被面板/滑杆拦截。证据：verify-floating-capture.png
+- 拖动：swipe (691,812)→(400,1200) 600ms 后窗口变为 (327,1127)(147x147)，
+  shared_prefs/photo_overlay.xml 写入 x=327 y=1127；未触发拍照（photos 仍 1 张）。
+  证据：verify-floating-dragged.png、verify-dumpsys-dragged.txt
+- 长按：新位置再次长按可展开面板且不拍照。证据：verify-floating-panel-dragged.png
+- “打开 Alibi”：展开面板点击后 MainActivity 前台显示（mCurrentFocus=MainActivity）。
+  证据：verify-open-app.png
+- “停止”：会话停止，overlay 窗口消失，CameraX 释放：
+  “CameraDevice.onClosed() / CLOSING --> INITIALIZED”，无 FATAL/ANR，
+  dumpsys activity services 无 PhotoCaptureService；再次启动 shortcut 会话正常恢复
+  （悬浮窗回到持久化位置 (327,1127)）。
+  证据：verify-floating-stopped.png、verify-floating-restarted.png、verify-dumpsys-stopped.txt
+- force-stop 路径：会话运行中 am force-stop 后窗口计数 0、服务 0、相机 DISCONNECT、无 FATAL。
+  证据：verify-force-stop.png
+- 说明：截图 verify-floating-stop-final.png 与 verify-force-stop.png 内容一致（均为干净桌面，
+  无悬浮窗、无相机隐私指示器）。
+
+## 5. rememberZoom（默认关闭）不得写入 lastZoomRatio
+
+验证时应用数据为全新（files/datastore 不存在）：
+  - 悬浮会话变焦前：run-as ls files/datastore -> No such file or directory
+  - 点击 ＋ 到 1.25x、等待 >1s 后：仍为 No such file or directory
+    => rememberZoom 默认 false 时悬浮变焦不写 DataStore（PASS）
+证据：本记录的 §3 logcat、以及验收时的 adb 输出（见 verification-summary.md 复现命令）。
+
+## 6. rememberZoom 开启 → 悬浮变焦写入 DataStore → 重启会话恢复
+
+1) 打开应用 → 拍照 → 打开相机设置 → 打开“记住缩放倍率”开关：
+   files/datastore/settings.json 变为
+   {"photoCaptureSettings":{"rememberZoom":true},"hasSeenOnboarding":true,...}
+2) HOME 后重新启动悬浮会话（rememberZoom=true），长按展开面板，点击 ＋ → 1.25x，
+   等待 400ms debounce 后：
+   {"photoCaptureSettings":{"rememberZoom":true,"lastZoomRatio":1.25},...}
+   证据：verify-floating-remember-on-panel.png、verify-floating-remembered.png
+3) 点击“停止”后重新启动会话：面板初始倍率显示 1.3×（恢复 lastZoomRatio=1.25）。
+   证据：verify-floating-zoom-restored.png
+   对应 logcat：PhotoCaptureService setZoomRatio 初始化路径 + 面板 1.3×。
+=> rememberZoom 对悬浮模式 E2E 生效（PASS）。
+
+## 7. 稳定性
+
+全程 logcat 无 “FATAL EXCEPTION”、无 “ANR in com.zgybeep.alibi.debug”；
+instr 测试 7/7 通过（详见 verification-summary.md）。
+
+## 复现/清理说明
+
+connectedDebugAndroidTest 结束后 AGP 卸载了 debug APK 并清空数据（预期行为）。
+验证收尾时已用工作区产物重新安装：
+  adb -s emulator-5580 install -r app/build/outputs/apk/debug/app-x86_64-debug.apk
+并重新授权 CAMERA / POST_NOTIFICATIONS / SYSTEM_ALERT_WINDOW；
+冷启动 MainActivity 正常（LaunchState COLD, 无 FATAL），随后 force-stop 保持干净状态。

@@ -1,0 +1,4 @@
+10-27 09:00:57.588 15945 15945 D PhotoCaptureService: zoom applied target=1.0 latencyMs=282
+10-27 09:00:57.875 15945 15945 D PhotoCaptureService: zoom applied target=1.2022644 latencyMs=286
+10-27 09:00:58.167 15945 15945 D PhotoCaptureService: zoom applied target=1.9906733 latencyMs=291
+10-27 09:00:58.397 15945 15945 D PhotoCaptureService: zoom applied target=3.1841974 latencyMs=231

@@ -1,0 +1,11 @@
+Instrumentation results parsed from app/build/outputs/androidTest-results/connected/debug/*.xml
+Run command: ./gradlew :app:connectedDebugAndroidTest (device emulator-5580 / Pixel9_API36 / API 36)
+
+suite=TEST-Pixel9_API36(AVD) - 16-_app-.xml tests=7 failures=0 errors=0 skipped=0 time=16.787s
+  PASS  app.myzel394.alibi.ExampleInstrumentedTest.photoShortcutSwitchesBlackSessionToFloating time=0.577s
+  PASS  app.myzel394.alibi.ExampleInstrumentedTest.audioStartIsIdempotentAndReportsReadyAfterRecorderStarts time=0.783s
+  PASS  app.myzel394.alibi.ExampleInstrumentedTest.mainActivityLaunchesWithStaticShortcuts time=2.728s
+  PASS  app.myzel394.alibi.ExampleInstrumentedTest.useAppContext time=0.247s
+  PASS  app.myzel394.alibi.PhotoZoomInstrumentedTest.pinchGestureOnBlackScreenChangesZoomRatio time=4.463s
+  PASS  app.myzel394.alibi.PhotoZoomInstrumentedTest.floatingOverlayAcceptsZoomAdjustments time=2.32s
+  PASS  app.myzel394.alibi.PhotoZoomInstrumentedTest.rapidZoomInputsAreCoalescedIntoBoundedCameraRequests time=2.388s

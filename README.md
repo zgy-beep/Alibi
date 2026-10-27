@@ -28,6 +28,10 @@ remain on the device.
 | --- | --- |
 | <img src="docs/evidence/ui-rework-2026-10-25/photo-setup.png" alt="Alibi camera setup" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
 
+| Floating shutter | Floating shutter zoom panel |
+| --- | --- |
+| <img src="docs/evidence/zoom-2026-10-27/floating-overlay.png" alt="Alibi floating shutter" width="100%" /> | <img src="docs/evidence/zoom-2026-10-27/floating-panel-zoomed.png" alt="Alibi floating shutter zoom panel" width="100%" /> |
+
 ## Features
 
 ### Background recording
@@ -41,7 +45,8 @@ remain on the device.
 ### Photo capture
 
 - Black screen shutter with tap-to-capture
-- Floating shutter over other apps
+- Pinch-to-zoom with coalesced camera requests that keep the preview responsive
+- Floating shutter over other apps, with zoom controls in its long-press panel
 - Continuous tapping with a bounded capture queue
 - Capture only after the camera is ready
 - Successful-capture vibration with short feedback profiles

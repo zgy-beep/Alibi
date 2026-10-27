@@ -29,6 +29,7 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -54,9 +55,13 @@ import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.services.PhotoCaptureStatus
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import app.myzel394.alibi.ui.theme.LocalAlibiExtendedColors
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
 import kotlin.math.abs
 
+@OptIn(FlowPreview::class)
 @Composable
 fun BlackPhotoScreen(
     photoCapture: PhotoCaptureModel,
@@ -92,15 +97,21 @@ fun BlackPhotoScreen(
         showHint = false
     }
 
-    LaunchedEffect(photoCapture.state.zoomRatio) {
-        if (photoCapture.state.zoomRatio != 1f) {
-            showZoomIndicator = true
-            delay(800)
-            showZoomIndicator = false
+    LaunchedEffect(Unit) {
+        snapshotFlow { photoCapture.zoomRatio }.collectLatest { ratio ->
+            if (ratio != 1f) {
+                showZoomIndicator = true
+                delay(800)
+                showZoomIndicator = false
+            }
         }
+    }
+
+    LaunchedEffect(settings.photoCaptureSettings.rememberZoom) {
         if (settings.photoCaptureSettings.rememberZoom) {
-            delay(450)
-            photoCapture.rememberCurrentZoom()
+            snapshotFlow { photoCapture.zoomRatio }
+                .debounce(450)
+                .collect { photoCapture.rememberCurrentZoom() }
         }
     }
 
@@ -294,7 +305,7 @@ fun BlackPhotoScreen(
             Text(
                 text = stringResource(
                     R.string.photo_zoom_indicator,
-                    photoCapture.state.zoomRatio,
+                    photoCapture.zoomRatio,
                 ),
                 color = captureColors.captureContent.copy(alpha = 0.78f),
                 style = MaterialTheme.typography.titleMedium,

@@ -48,6 +48,7 @@ import app.myzel394.alibi.MainActivity
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.R
 import app.myzel394.alibi.BuildConfig
+import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.db.PhotoAspectRatio
 import app.myzel394.alibi.db.PhotoCaptureSettings
@@ -127,6 +128,8 @@ class PhotoCaptureService : LifecycleService() {
             onCapture = ::requestCapture,
             onOpenApp = ::openApp,
             onStop = ::stopSession,
+            onZoomBy = ::zoomBy,
+            onZoomTo = ::setZoomRatio,
         )
     }
     private val screenReceiver = object : BroadcastReceiver() {
@@ -157,6 +160,17 @@ class PhotoCaptureService : LifecycleService() {
     private val requestStartedAtNanos = mutableMapOf<Long, Long>()
     private val hapticDeliveredRequests = mutableSetOf<Long>()
     private var captureInFlight = false
+    private val zoomRequests = ZoomRequestQueue()
+    private var lastZoomInputAtMillis = 0L
+    private var zoomRememberJob: Job? = null
+    internal var zoomInputCount = 0
+        private set
+    internal var zoomApplyCount = 0
+        private set
+    internal var zoomCoalescedCount = 0
+        private set
+    internal var lastZoomStalenessMillis = 0L
+        private set
     private var saveWorkerRunning = false
     private var lastSavedPhotoUri: String? = null
     private var initializationJob: Job? = null
@@ -165,6 +179,7 @@ class PhotoCaptureService : LifecycleService() {
     private var recoveryJob: Job? = null
 
     var onStateChanged: ((PhotoCaptureSessionState) -> Unit)? = null
+    var onZoomChanged: ((Float) -> Unit)? = null
 
     var state = PhotoCaptureSessionState()
         private set
@@ -265,21 +280,116 @@ class PhotoCaptureService : LifecycleService() {
     }
 
     fun zoomBy(scaleFactor: Float) {
-        if (!state.isActive || isStopping || scaleFactor <= 0f) {
+        if (scaleFactor <= 0f) {
+            return
+        }
+        requestZoom(state.zoomRatio * scaleFactor)
+    }
+
+    fun setZoomRatio(target: Float) {
+        requestZoom(target)
+    }
+
+    private fun requestZoom(target: Float) {
+        if (!state.isActive || isStopping) {
             return
         }
 
         val zoomState = camera?.cameraInfo?.zoomState?.value ?: return
-        val target = (state.zoomRatio * scaleFactor)
-            .coerceIn(zoomState.minZoomRatio, zoomState.maxZoomRatio)
-        if (abs(target - state.zoomRatio) < 0.005f) {
+        val clamped = target.coerceIn(zoomState.minZoomRatio, zoomState.maxZoomRatio)
+        if (abs(clamped - state.zoomRatio) < ZOOM_EPSILON) {
             return
         }
-        runCatching {
-            camera?.cameraControl?.setZoomRatio(target)
-            publish(state.copy(zoomRatio = target))
-        }.onFailure {
-            Log.w(TAG, "Could not update camera zoom", it)
+
+        // Update the session state optimistically (without publishing: zoom-only
+        // changes must not recompose the whole screen or touch overlay windows).
+        state = state.copy(zoomRatio = clamped)
+        lastZoomInputAtMillis = SystemClock.elapsedRealtime()
+        zoomInputCount++
+        onZoomChanged?.invoke(clamped)
+        updateOverlayZoom()
+        rememberFloatingZoom(clamped)
+
+        val immediate = zoomRequests.submit(clamped)
+        if (immediate != null) {
+            applyZoomRequest(immediate)
+        } else {
+            zoomCoalescedCount++
+        }
+    }
+
+    /**
+     * Applies at most one CameraX zoom request at a time and drops intermediate
+     * ratios, so a continuous pinch can never build a request backlog.
+     */
+    private fun applyZoomRequest(target: Float) {
+        val control = camera?.cameraControl
+        if (control == null) {
+            zoomRequests.reset()
+            return
+        }
+        lastZoomStalenessMillis =
+            (SystemClock.elapsedRealtime() - lastZoomInputAtMillis).coerceAtLeast(0L)
+        val startedAt = SystemClock.elapsedRealtime()
+        val future = runCatching { control.setZoomRatio(target) }.getOrNull()
+        if (future == null) {
+            applyNextZoomRequest()
+            return
+        }
+        zoomApplyCount++
+        future.addListener(
+            {
+                if (BuildConfig.DEBUG) {
+                    Log.d(
+                        TAG,
+                        "zoom applied target=$target latencyMs=" +
+                            (SystemClock.elapsedRealtime() - startedAt),
+                    )
+                }
+                applyNextZoomRequest()
+            },
+            ContextCompat.getMainExecutor(this),
+        )
+    }
+
+    private fun applyNextZoomRequest() {
+        val next = zoomRequests.complete()
+        if (next != null) {
+            applyZoomRequest(next)
+        }
+    }
+
+    private fun updateOverlayZoom() {
+        val currentSession = session ?: return
+        if (currentSession.mode != PhotoCaptureMode.FLOATING || appVisible || isStopping) {
+            return
+        }
+        val zoomState = camera?.cameraInfo?.zoomState?.value
+        overlay.updateZoom(
+            ratio = state.zoomRatio,
+            minRatio = zoomState?.minZoomRatio ?: 1f,
+            maxRatio = zoomState?.maxZoomRatio ?: 1f,
+        )
+    }
+
+    /** Floating windows have no black screen UI, so they persist their zoom themselves. */
+    private fun rememberFloatingZoom(ratio: Float) {
+        val currentSession = session ?: return
+        if (currentSession.mode != PhotoCaptureMode.FLOATING ||
+            !currentSession.photoSettings.rememberZoom
+        ) {
+            return
+        }
+        zoomRememberJob?.cancel()
+        zoomRememberJob = scope.launch {
+            delay(ZOOM_REMEMBER_DELAY_MILLIS)
+            runCatching {
+                dataStore.updateData { settings ->
+                    settings.setPhotoCaptureSettings(
+                        settings.photoCaptureSettings.setLastZoomRatio(ratio)
+                    )
+                }
+            }.onFailure { Log.w(TAG, "Could not remember overlay zoom", it) }
         }
     }
 
@@ -635,6 +745,11 @@ class PhotoCaptureService : LifecycleService() {
         if (intent.getBooleanExtra(EXTRA_START_IN_BACKGROUND, false)) {
             appVisible = false
         }
+        zoomRequests.reset()
+        zoomInputCount = 0
+        zoomApplyCount = 0
+        zoomCoalescedCount = 0
+        lastZoomStalenessMillis = 0L
         if (session != null || state.isActive) {
             setMode(mode)
             updateOverlay()
@@ -718,6 +833,10 @@ class PhotoCaptureService : LifecycleService() {
                 lastZoomRatio = intent.getFloatExtra(
                     EXTRA_INITIAL_ZOOM,
                     1f,
+                ),
+                rememberZoom = intent.getBooleanExtra(
+                    EXTRA_REMEMBER_ZOOM,
+                    false,
                 ),
             ),
         )
@@ -1297,6 +1416,9 @@ class PhotoCaptureService : LifecycleService() {
         imageAnalysis = null
         camera = null
         cameraProvider = null
+        zoomRequests.reset()
+        zoomRememberJob?.cancel()
+        zoomRememberJob = null
     }
 
     private fun publishError(error: Throwable) {
@@ -1352,6 +1474,8 @@ class PhotoCaptureService : LifecycleService() {
         )
         if (!shown) {
             stopSession()
+        } else {
+            updateOverlayZoom()
         }
     }
 
@@ -1424,6 +1548,7 @@ class PhotoCaptureService : LifecycleService() {
         const val EXTRA_SHOW_PREVIEW_ON_LAUNCH = "showPreviewOnLaunch"
         const val EXTRA_OVERLAY_OPACITY = "overlayOpacity"
         const val EXTRA_INITIAL_ZOOM = "initialZoom"
+        const val EXTRA_REMEMBER_ZOOM = "rememberZoom"
         const val EXTRA_START_IN_BACKGROUND = "startInBackground"
         private const val REQUEST_STOP = 41
         private const val REQUEST_OPEN = 42
@@ -1431,6 +1556,8 @@ class PhotoCaptureService : LifecycleService() {
         private const val RECOVERY_REQUEST_ID = -1L
         private const val MIN_FAST_CAPTURE_FPS = 30
         private const val MOTION_CAPTURE_FPS = 60
+        private const val ZOOM_EPSILON = 0.005f
+        private const val ZOOM_REMEMBER_DELAY_MILLIS = 400L
 
         fun createStartIntent(
             context: Context,
@@ -1491,6 +1618,10 @@ class PhotoCaptureService : LifecycleService() {
                     } else {
                         1f
                     },
+                )
+                putExtra(
+                    EXTRA_REMEMBER_ZOOM,
+                    settings.photoCaptureSettings.rememberZoom,
                 )
                 putExtra(EXTRA_START_IN_BACKGROUND, startInBackground)
                 settings.saveFolder?.let {

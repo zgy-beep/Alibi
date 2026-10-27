@@ -34,6 +34,13 @@
     <string name="photo_overlay_open_app">Open Alibi</string>
     <string name="photo_overlay_stop">Stop</string>
     <string name="photo_overlay_close">Close</string>
+    <string name="photo_overlay_zoom_title">Zoom</string>
+    <string name="photo_overlay_zoom_in">Zoom in</string>
+    <string name="photo_overlay_zoom_out">Zoom out</string>
+    <string name="photo_overlay_zoom_reset">Reset zoom</string>
+    <string name="photo_overlay_zoom_value">%1$.1f×</string>
+    <string name="photo_overlay_zoom_description">Zoom level %1$.1f×</string>
+    <string name="photo_overlay_zoom_unavailable">This camera does not support zoom</string>
     <string name="photo_home_label">Photo Capture</string>
     <string name="photo_setup_title">Photo capture</string>
     <string name="photo_setup_description">Choose a camera and start the shutter mode you need.</string>

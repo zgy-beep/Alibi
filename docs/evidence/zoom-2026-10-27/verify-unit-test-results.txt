@@ -1,0 +1,11 @@
+Unit test results parsed from app/build/test-results/testDebugUnitTest/*.xml
+Run command: ./gradlew :app:testDebugUnitTest --no-build-cache (outputs deleted first => re-executed)
+
+app.myzel394.alibi.AppSettingsPhotoCompatibilityTest    tests=6 failures=0 errors=0 skipped=0 time=0.277s
+app.myzel394.alibi.ExampleUnitTest                      tests=3 failures=0 errors=0 skipped=0 time=0.002s
+app.myzel394.alibi.PhotoCaptureSessionStateTest         tests=4 failures=0 errors=0 skipped=0 time=0.015s
+app.myzel394.alibi.PhotoNamingTest                      tests=2 failures=0 errors=0 skipped=0 time=0.014s
+app.myzel394.alibi.PhotoRepositoryCompatibilityTest     tests=1 failures=0 errors=0 skipped=0 time=0.019s
+app.myzel394.alibi.ZoomRequestQueueTest                 tests=5 failures=0 errors=0 skipped=0 time=0.011s
+
+TOTAL tests=21 failures=0 errors=0 skipped=0
