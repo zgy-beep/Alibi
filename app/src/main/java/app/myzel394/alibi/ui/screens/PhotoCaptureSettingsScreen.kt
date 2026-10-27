@@ -8,23 +8,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -46,8 +39,10 @@ import app.myzel394.alibi.db.PhotoFlashMode
 import app.myzel394.alibi.db.PhotoHapticFeedback
 import app.myzel394.alibi.db.PhotoResolutionPreference
 import app.myzel394.alibi.ui.effects.rememberSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiChoiceSetting
 import app.myzel394.alibi.ui.components.atoms.AlibiSectionHeader
 import app.myzel394.alibi.ui.components.atoms.AlibiSectionPanel
+import app.myzel394.alibi.ui.components.atoms.AlibiSwitchSetting
 import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import kotlinx.coroutines.launch
@@ -127,7 +122,7 @@ fun PhotoCaptureSettingsScreen(
             }
             item {
                 AlibiSectionPanel {
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_lens_title),
                         description = stringResource(R.string.photo_settings_lens_description),
                         values = listOf(
@@ -148,7 +143,7 @@ fun PhotoCaptureSettingsScreen(
                         onSelect = { update { s -> s.setLensFacing(it) } },
                     )
                     HorizontalDivider()
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_strategy_title),
                         description = stringResource(
                             R.string.photo_settings_strategy_description
@@ -171,7 +166,7 @@ fun PhotoCaptureSettingsScreen(
                         onSelect = { update { s -> s.setCaptureStrategy(it) } },
                     )
                     HorizontalDivider()
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_resolution_title),
                         description = stringResource(
                             R.string.photo_settings_resolution_description
@@ -194,7 +189,7 @@ fun PhotoCaptureSettingsScreen(
                         onSelect = { update { s -> s.setResolutionPreference(it) } },
                     )
                     HorizontalDivider()
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_aspect_title),
                         description = stringResource(
                             R.string.photo_settings_aspect_description
@@ -215,7 +210,7 @@ fun PhotoCaptureSettingsScreen(
                         onSelect = { update { s -> s.setAspectRatio(it) } },
                     )
                     HorizontalDivider()
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_flash_title),
                         description = stringResource(
                             R.string.photo_settings_flash_description
@@ -250,7 +245,7 @@ fun PhotoCaptureSettingsScreen(
             }
             item {
                 AlibiSectionPanel {
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_ois_title),
                         description = stringResource(R.string.photo_settings_ois_description),
                         checked = photoSettings.opticalStabilizationEnabled,
@@ -260,7 +255,7 @@ fun PhotoCaptureSettingsScreen(
                         },
                     )
                     HorizontalDivider()
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_caf_title),
                         description = stringResource(R.string.photo_settings_caf_description),
                         checked = photoSettings.continuousAutoFocusEnabled,
@@ -282,7 +277,7 @@ fun PhotoCaptureSettingsScreen(
             }
             item {
                 AlibiSectionPanel {
-                    ChoiceSetting(
+                    AlibiChoiceSetting(
                         title = stringResource(R.string.photo_settings_feedback_title_new),
                         description = stringResource(
                             R.string.photo_settings_feedback_description_new
@@ -317,7 +312,7 @@ fun PhotoCaptureSettingsScreen(
             }
             item {
                 AlibiSectionPanel {
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_grid_title),
                         description = stringResource(R.string.photo_settings_grid_description),
                         checked = photoSettings.gridLinesEnabled,
@@ -327,7 +322,7 @@ fun PhotoCaptureSettingsScreen(
                         },
                     )
                     HorizontalDivider()
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_preview_launch_title),
                         description = stringResource(
                             R.string.photo_settings_preview_launch_description
@@ -339,7 +334,7 @@ fun PhotoCaptureSettingsScreen(
                         },
                     )
                     HorizontalDivider()
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_remember_zoom_title),
                         description = stringResource(
                             R.string.photo_settings_remember_zoom_description
@@ -351,7 +346,7 @@ fun PhotoCaptureSettingsScreen(
                         },
                     )
                     HorizontalDivider()
-                    SwitchSetting(
+                    AlibiSwitchSetting(
                         title = stringResource(R.string.photo_settings_mirror_title),
                         description = stringResource(R.string.photo_settings_mirror_description),
                         checked = photoSettings.mirrorFrontCamera,
@@ -398,78 +393,6 @@ fun PhotoCaptureSettingsScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun <T> ChoiceSetting(
-    title: String,
-    description: String,
-    values: List<T>,
-    selected: T,
-    label: @Composable (T) -> String,
-    enabled: Boolean,
-    onSelect: (T) -> Unit,
-) {
-    Column(
-        modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
-        Text(
-            description,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-            values.forEachIndexed { index, value ->
-                SegmentedButton(
-                    selected = value == selected,
-                    onClick = { onSelect(value) },
-                    enabled = enabled,
-                    shape = SegmentedButtonDefaults.itemShape(
-                        index = index,
-                        count = values.size,
-                    ),
-                ) {
-                    Text(label(value))
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun SwitchSetting(
-    title: String,
-    description: String,
-    checked: Boolean,
-    enabled: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            Text(title, style = MaterialTheme.typography.titleMedium)
-            Text(
-                description,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-        Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            enabled = enabled,
-        )
     }
 }
 

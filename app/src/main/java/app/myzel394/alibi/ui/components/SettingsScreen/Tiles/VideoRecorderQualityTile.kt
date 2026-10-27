@@ -1,15 +1,9 @@
 package app.myzel394.alibi.ui.components.SettingsScreen.Tiles
 
-import android.media.MediaRecorder
 import androidx.camera.video.Quality
-import androidx.camera.video.Recorder
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.HighQuality
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -19,13 +13,12 @@ import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.db.VideoRecorderSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.components.atoms.ExampleListRoulette
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
 import app.myzel394.alibi.ui.utils.IconResource
 import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
-import com.maxkeppeler.sheets.input.models.InputHeader
 import com.maxkeppeler.sheets.list.ListDialog
 import com.maxkeppeler.sheets.list.models.ListOption
 import com.maxkeppeler.sheets.list.models.ListSelection
@@ -83,30 +76,13 @@ fun VideoRecorderQualityTile(
             updateValue(quality)
         },
     )
-    SettingsTile(
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_option_videoQualityTile_title),
-        leading = {
-            Icon(
-                Icons.Default.HighQuality,
-                contentDescription = null,
-            )
-        },
-        trailing = {
-            Button(
-                onClick = showDialog::show,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                shape = MaterialTheme.shapes.medium,
-            ) {
-                Text(
-                    QUALITY_NAME_TEXT_MAP[settings.videoRecorderSettings.getQuality()]
-                        ?: stringResource(
-                            R.string.ui_settings_value_auto_label
-                        )
-                )
-            }
-        },
+        value = QUALITY_NAME_TEXT_MAP[settings.videoRecorderSettings.getQuality()]
+            ?: stringResource(
+                R.string.ui_settings_value_auto_label
+            ),
+        onClick = showDialog::show,
         extra = {
             ExampleListRoulette(
                 items = listOf(null),

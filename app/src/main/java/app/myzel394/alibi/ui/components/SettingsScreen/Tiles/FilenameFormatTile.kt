@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Timelapse
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -47,7 +45,7 @@ import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.ui.SHEET_BOTTOM_OFFSET
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import kotlinx.coroutines.launch
 
 val FORMAT_RESOURCE_MAP: Map<AppSettings.FilenameFormat, Int> = mapOf(
@@ -105,30 +103,13 @@ fun FilenameFormatTile(
         )
     }
 
-    SettingsTile(
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_option_filenameFormat_title),
         description = stringResource(R.string.ui_settings_option_filenameFormat_explanation),
-        leading = {
-            Icon(
-                Icons.AutoMirrored.Filled.TextSnippet,
-                contentDescription = null,
-            )
-        },
-        trailing = {
-            Button(
-                onClick = {
-                    scope.launch {
-                        selectionVisible = true
-                    }
-                },
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                shape = MaterialTheme.shapes.medium,
-            ) {
-                Text(
-                    text = stringResource(FORMAT_RESOURCE_MAP[settings.filenameFormat]!!),
-                )
+        value = stringResource(FORMAT_RESOURCE_MAP[settings.filenameFormat]!!),
+        onClick = {
+            scope.launch {
+                selectionVisible = true
             }
         },
     )

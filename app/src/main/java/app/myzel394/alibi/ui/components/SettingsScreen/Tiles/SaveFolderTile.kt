@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.InsertDriveFile
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Error
@@ -30,6 +29,7 @@ import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.PermMedia
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -40,7 +40,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -75,10 +74,10 @@ import app.myzel394.alibi.ui.SUPPORTS_SAVING_VIDEOS_IN_CUSTOM_FOLDERS
 import app.myzel394.alibi.ui.SUPPORTS_SCOPED_STORAGE
 import app.myzel394.alibi.ui.VIDEO_RECORDING_BATCHES_SUBFOLDER_NAME
 import app.myzel394.alibi.ui.components.SettingsScreen.atoms.FolderBreadcrumbs
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.components.atoms.MessageBox
 import app.myzel394.alibi.ui.components.atoms.MessageType
 import app.myzel394.alibi.ui.components.atoms.PermissionRequester
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
 import app.myzel394.alibi.ui.effects.rememberOpenUri
 import app.myzel394.alibi.ui.utils.PermissionHelper
 import app.myzel394.alibi.ui.utils.rememberFolderSelectorDialog
@@ -239,92 +238,53 @@ fun SaveFolderTile(
         )
     }
 
-    SettingsTile(
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_option_saveFolder_title),
         description = stringResource(R.string.ui_settings_option_saveFolder_explanation),
-        leading = {
-            Icon(
-                Icons.AutoMirrored.Filled.InsertDriveFile,
-                contentDescription = null,
-            )
+        value = when (settings.saveFolder) {
+            RECORDER_MEDIA_SELECTED_VALUE -> stringResource(R.string.ui_settings_option_saveFolder_dcimValue)
+            null -> stringResource(R.string.ui_settings_option_saveFolder_defaultValue)
+            else -> splitPath(settings.saveFolder).joinToString(" > ")
         },
-        trailing = {
-            Button(
-                onClick = {
-                    scope.launch {
-                        selectionVisible = true
-                    }
-                },
-                enabled = enabled,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                shape = MaterialTheme.shapes.medium,
-            ) {
-                Text(
-                    text = stringResource(R.string.ui_settings_option_saveFolder_action_select_label),
-                )
+        onClick = {
+            scope.launch {
+                selectionVisible = true
             }
         },
+        enabled = enabled,
         extra = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(
-                    text = stringResource(
-                        R.string.form_value_selected,
-                        when (settings.saveFolder) {
-                            RECORDER_MEDIA_SELECTED_VALUE -> stringResource(R.string.ui_settings_option_saveFolder_dcimValue)
-                            null -> stringResource(R.string.ui_settings_option_saveFolder_defaultValue)
-                            else -> splitPath(settings.saveFolder).joinToString(" > ")
-                        }
-                    ),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-
-
                 val openFolder = rememberOpenUri()
 
                 when (settings.saveFolder) {
                     null -> {
-                        Button(
+                        TextButton(
                             onClick = {
                                 showExplanationDialog = true
                             },
                             shape = MaterialTheme.shapes.small,
-                            contentPadding = ButtonDefaults.TextButtonContentPadding,
-                            colors = ButtonDefaults.filledTonalButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                            ),
                         ) {
                             Text(
                                 stringResource(R.string.ui_settings_option_saveFolder_explainMediaFolder_label),
-                                fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                                style = MaterialTheme.typography.labelLarge,
                             )
                         }
                     }
 
                     RECORDER_MEDIA_SELECTED_VALUE -> {
-                        Button(
+                        TextButton(
                             onClick = {
                                 showDCIMFolderHelpSheet = true
                             },
                             shape = MaterialTheme.shapes.small,
-                            contentPadding = ButtonDefaults.TextButtonContentPadding,
-                            colors = ButtonDefaults.filledTonalButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                            ),
                         ) {
                             Text(
                                 stringResource(R.string.ui_settings_option_saveFolder_explainMediaFolder_label),
-                                fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                                style = MaterialTheme.typography.labelLarge,
                             )
                         }
                     }
@@ -334,7 +294,7 @@ fun SaveFolderTile(
                         // has been tested; so we just show the button for versions
                         // above 30
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-                            Button(
+                            TextButton(
                                 onClick = {
                                     runCatching {
                                         DocumentFile.fromTreeUri(
@@ -344,15 +304,10 @@ fun SaveFolderTile(
                                     }.getOrNull()?.let { uri -> openFolder(uri) }
                                 },
                                 shape = MaterialTheme.shapes.small,
-                                contentPadding = ButtonDefaults.TextButtonContentPadding,
-                                colors = ButtonDefaults.filledTonalButtonColors(
-                                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                                ),
                             ) {
                                 Text(
                                     stringResource(R.string.ui_settings_option_saveFolder_openFolder_label),
-                                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                                    style = MaterialTheme.typography.labelLarge,
                                 )
                             }
                 }

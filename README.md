@@ -16,13 +16,17 @@ remain on the device.
 
 ## Current interface
 
-| Home | Photo capture settings |
+| Home | Settings |
 | --- | --- |
-| <img src="docs/evidence/ui-rework-2026-10-25/home-final.png" alt="Alibi home screen" width="100%" /> | <img src="docs/evidence/ui-rework-2026-10-25/photo-setup.png" alt="Alibi camera setup" width="100%" /> |
+| <img src="docs/evidence/ui-rework-2026-10-25/home-final.png" alt="Alibi home screen" width="100%" /> | <img src="docs/evidence/settings-ui-2026-10-27/settings-top.png" alt="Alibi settings screen" width="100%" /> |
 
-| Black screen shutter | Partial camera reveal |
+| Camera settings | Black screen shutter |
 | --- | --- |
-| <img src="docs/evidence/ui-rework-2026-10-25/black-capture.png" alt="Alibi black screen shutter" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
+| <img src="docs/evidence/settings-ui-2026-10-27/camera-settings-light.png" alt="Alibi camera settings" width="100%" /> | <img src="docs/evidence/ui-rework-2026-10-25/black-capture.png" alt="Alibi black screen shutter" width="100%" /> |
+
+| Photo capture setup | Partial camera reveal |
+| --- | --- |
+| <img src="docs/evidence/ui-rework-2026-10-25/photo-setup.png" alt="Alibi camera setup" width="100%" /> | <img src="docs/evidence/preview-transparency-api36.png" alt="Alibi camera preview reveal" width="100%" /> |
 
 ## Features
 

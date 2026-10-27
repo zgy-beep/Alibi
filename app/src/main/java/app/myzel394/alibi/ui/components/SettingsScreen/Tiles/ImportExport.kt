@@ -1,18 +1,14 @@
 package app.myzel394.alibi.ui.components.SettingsScreen.Tiles
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -25,13 +21,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.utils.FileSaveResult
 import app.myzel394.alibi.ui.utils.rememberFileSaverDialog
 import app.myzel394.alibi.ui.utils.rememberFileSelectorDialog
@@ -145,50 +141,29 @@ fun ImportExport(
         )
     }
 
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        FilledTonalButton(
-            onClick = {
-                openFile("application/json")
-            },
-            enabled = enabled,
-            contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
-        ) {
-            Icon(
-                Icons.Default.Download,
-                contentDescription = null,
-                modifier = Modifier.size(ButtonDefaults.IconSize),
-            )
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(stringResource(R.string.ui_settings_option_import_label))
-        }
-        FilledTonalButton(
-            onClick = {
-                val settingsToExport = settings
-                scope.launch {
-                    val tempFile = withContext(Dispatchers.IO) {
-                        File.createTempFile("alibi_settings", ".json").also {
-                            it.writeText(settingsToExport.exportToString())
-                        }
+    AlibiSettingRow(
+        title = stringResource(R.string.ui_settings_option_import_label),
+        onClick = {
+            openFile("application/json")
+        },
+        enabled = enabled,
+    )
+    HorizontalDivider()
+    AlibiSettingRow(
+        title = stringResource(R.string.ui_settings_option_export_label),
+        onClick = {
+            val settingsToExport = settings
+            scope.launch {
+                val tempFile = withContext(Dispatchers.IO) {
+                    File.createTempFile("alibi_settings", ".json").also {
+                        it.writeText(settingsToExport.exportToString())
                     }
-                    saveFile(tempFile, "alibi_settings.json")
                 }
-            },
-            enabled = enabled,
-            contentPadding = ButtonDefaults.ButtonWithIconContentPadding,
-        ) {
-            Icon(
-                Icons.Default.Upload,
-                contentDescription = null,
-                modifier = Modifier.size(ButtonDefaults.IconSize),
-            )
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(stringResource(R.string.ui_settings_option_export_label))
-        }
-    }
+                saveFile(tempFile, "alibi_settings.json")
+            }
+        },
+        enabled = enabled,
+    )
 }
 
 private fun InputStream.readLimitedText(maxBytes: Int): String {

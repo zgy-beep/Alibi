@@ -2,11 +2,7 @@ package app.myzel394.alibi.ui.components.SettingsScreen.Tiles
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AudioFile
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -16,8 +12,8 @@ import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.db.AudioRecorderSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.components.atoms.ExampleListRoulette
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
 import app.myzel394.alibi.ui.utils.IconResource
 import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.IconSource
@@ -70,31 +66,14 @@ fun AudioRecorderOutputFormatTile(
             updateValue(availableOptions[index])
         },
     )
-    SettingsTile(
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_option_outputFormat_title),
-        leading = {
-            Icon(
-                Icons.Default.AudioFile,
-                contentDescription = null,
-            )
+        value = if (settings.audioRecorderSettings.outputFormat == null) {
+            stringResource(R.string.ui_settings_value_auto_label)
+        } else {
+            AudioRecorderSettings.OUTPUT_FORMAT_INDEX_TEXT_MAP[settings.audioRecorderSettings.outputFormat]!!
         },
-        trailing = {
-            Button(
-                onClick = showDialog::show,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                shape = MaterialTheme.shapes.medium,
-            ) {
-                Text(
-                    text = if (settings.audioRecorderSettings.outputFormat == null) {
-                        stringResource(R.string.ui_settings_value_auto_label)
-                    } else {
-                        AudioRecorderSettings.OUTPUT_FORMAT_INDEX_TEXT_MAP[settings.audioRecorderSettings.outputFormat]!!
-                    }
-                )
-            }
-        },
+        onClick = showDialog::show,
         extra = {
             ExampleListRoulette(
                 items = listOf(null),

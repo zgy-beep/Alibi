@@ -3,11 +3,7 @@ package app.myzel394.alibi.ui.components.SettingsScreen.Tiles
 import android.media.MediaRecorder
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Memory
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -19,8 +15,8 @@ import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.AppSettings
 import app.myzel394.alibi.db.AudioRecorderSettings
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.components.atoms.ExampleListRoulette
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
 import app.myzel394.alibi.ui.utils.IconResource
 import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.IconSource
@@ -92,31 +88,14 @@ fun AudioRecorderEncoderTile(
             updateValue(index)
         },
     )
-    SettingsTile(
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_option_encoder_title),
-        leading = {
-            Icon(
-                Icons.Default.Memory,
-                contentDescription = null,
-            )
+        value = if (settings.audioRecorderSettings.encoder == null) {
+            stringResource(R.string.ui_settings_value_auto_label)
+        } else {
+            AudioRecorderSettings.ENCODER_INDEX_TEXT_MAP[settings.audioRecorderSettings.encoder]!!
         },
-        trailing = {
-            Button(
-                onClick = showDialog::show,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                shape = MaterialTheme.shapes.medium,
-            ) {
-                Text(
-                    text = if (settings.audioRecorderSettings.encoder == null) {
-                        stringResource(R.string.ui_settings_value_auto_label)
-                    } else {
-                        AudioRecorderSettings.ENCODER_INDEX_TEXT_MAP[settings.audioRecorderSettings.encoder]!!
-                    }
-                )
-            }
-        },
+        onClick = showDialog::show,
         extra = {
             ExampleListRoulette(
                 items = listOf(null),

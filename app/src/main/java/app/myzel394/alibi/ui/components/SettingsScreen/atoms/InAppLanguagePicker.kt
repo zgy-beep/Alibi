@@ -1,32 +1,17 @@
 package app.myzel394.alibi.ui.components.SettingsScreen.atoms
 
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AudioFile
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Translate
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.LocaleListCompat
 import app.myzel394.alibi.R
 import app.myzel394.alibi.SUPPORTED_LOCALES
-import app.myzel394.alibi.db.AppSettings
-import app.myzel394.alibi.db.AudioRecorderSettings
-import app.myzel394.alibi.ui.components.atoms.SettingsTile
+import app.myzel394.alibi.ui.components.atoms.AlibiSettingRow
 import app.myzel394.alibi.ui.utils.IconResource
 import com.maxkeppeker.sheets.core.models.base.ButtonStyle
 import com.maxkeppeker.sheets.core.models.base.Header
@@ -38,6 +23,10 @@ import com.maxkeppeler.sheets.list.models.ListOption
 import com.maxkeppeler.sheets.list.models.ListSelection
 import java.util.Locale
 
+/**
+ * Language row. Intended to be rendered inside an
+ * [app.myzel394.alibi.ui.components.atoms.AlibiSectionPanel].
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InAppLanguagePicker() {
@@ -49,6 +38,7 @@ fun InAppLanguagePicker() {
 
         SUPPORTED_LOCALES.contains(locale)
     }
+    val currentLanguage = remember { currentLanguageLabel() }
 
     ListDialog(
         state = showDialog,
@@ -57,11 +47,11 @@ fun InAppLanguagePicker() {
             icon = IconSource(
                 painter = IconResource.fromImageVector(Icons.Default.Translate).asPainterResource(),
                 contentDescription = null,
-            )
+            ),
         ),
         selection = ListSelection.Single(
             showRadioButtons = true,
-            options = IntRange(0, locales.size - 1).map {index ->
+            options = IntRange(0, locales.size - 1).map { index ->
                 val locale = locales[index]!!
 
                 ListOption(
@@ -71,13 +61,14 @@ fun InAppLanguagePicker() {
             }.toList(),
             positiveButton = SelectionButton(
                 icon = IconSource(
-                    painter = IconResource.fromImageVector(Icons.Default.CheckCircle).asPainterResource(),
+                    painter = IconResource.fromImageVector(Icons.Default.CheckCircle)
+                        .asPainterResource(),
                     contentDescription = null,
                 ),
                 text = stringResource(android.R.string.ok),
                 type = ButtonStyle.TEXT,
-            )
-        ) {index, _ ->
+            ),
+        ) { index, _ ->
             AppCompatDelegate.setApplicationLocales(
                 LocaleListCompat.forLanguageTags(
                     locales[index]!!.toLanguageTag(),
@@ -85,18 +76,26 @@ fun InAppLanguagePicker() {
             )
         },
     )
-    SettingsTile(
-        firstModifier = Modifier
-            .fillMaxHeight()
-            .clickable {
-                showDialog.show()
-            },
+
+    AlibiSettingRow(
         title = stringResource(R.string.ui_settings_language_title),
-        leading = {
-            Icon(
-                Icons.Default.Translate,
-                contentDescription = null,
-            )
-        },
+        value = currentLanguage,
+        onClick = showDialog::show,
     )
+}
+
+private fun currentLanguageLabel(): String {
+    val appLocales = AppCompatDelegate.getApplicationLocales()
+    val defaultLocale = Locale.getDefault()
+    val locale = if (appLocales.isEmpty) {
+        defaultLocale
+    } else {
+        appLocales.get(0) ?: defaultLocale
+    }
+    val language = locale.getDisplayLanguage(defaultLocale)
+    if (locale == defaultLocale) {
+        return language
+    }
+    val country = locale.getDisplayCountry(defaultLocale)
+    return if (country.isBlank()) language else "$language ($country)"
 }
