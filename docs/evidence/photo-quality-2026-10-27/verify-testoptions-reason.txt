@@ -1,0 +1,34 @@
+# Why testOptions.unitTests.returnDefaultValues = true is needed (independent check)
+
+## 1. CameraX 1.5.3 camera-video Quality class initialiser builds android.util.Size
+$ javap -c -p androidx.camera.video.Quality   (extracted from camera-video-1.5.3.aar classes.jar)
+  static {};
+    ...
+    new           android/util/Size
+    invokespecial android/util/Size."<init>":(II)V     <- SD / HD / FHD / UHD ...
+    putstatic     Quality.SD ...
+
+## 2. Plain JVM + real android-36 stub jar => RuntimeException: Stub!
+Compiled a throw-away class T.java that only reads androidx.camera.video.Quality.HD and ran it with
+  java -cp ...;C:/Android/Sdk/platforms/android-36/android.jar;classes.jar;kotlin-stdlib-2.0.21.jar
+Output:
+  loading Quality...
+  Exception in thread "main" java.lang.ExceptionInInitializerError
+      at T.main(T.java:4)
+  Caused by: java.lang.RuntimeException: Stub!
+      at android.util.Size.<init>(Size.java:23)
+      at androidx.camera.video.Quality.<clinit>(Quality.java:71)
+
+## 3. JVM unit tests reach that class
+app/src/test/.../AppSettingsPhotoCompatibilityTest.kt calls AppSettings.getDefaultInstance().
+AppSettings data class defaults include videoRecorderSettings: VideoRecorderSettings = VideoRecorderSettings.getDefaultInstance().
+VideoRecorderSettings.getDefaultInstance() lives in the companion object and forces class init of
+VideoRecorderSettings, whose companion initialiser builds QUALITY_NAME_QUALITY_MAP -> Quality.LOWEST/HIGHEST/SD/HD/FHD/UHD.
+Therefore any unit test that instantiates AppSettings would fail with the "Stub!" error unless
+AGP's mockable android.jar returns default values.
+
+## 4. Actual observed behaviour
+- With returnDefaultValues=true (current app/build.gradle): 24/24 unit tests pass (run with --rerun-tasks).
+- Note: an init-script attempt to force the flag back to false was ineffective because the project's
+  build.gradle re-applied `true` after the init script callback; the failure was therefore verified
+  by the mechanism above instead of by an intentionally red test run.

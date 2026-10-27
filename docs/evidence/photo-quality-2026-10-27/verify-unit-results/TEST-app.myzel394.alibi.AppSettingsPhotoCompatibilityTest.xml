@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-27T15:27:42" hostname="CHINAMI-5L2AH8O" time="0.073">
+  <properties/>
+  <testcase name="importedSettingsRejectInvalidDurations" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.058"/>
+  <testcase name="detailedPhotoSettingsRoundTrip" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.013"/>
+  <testcase name="hapticFeedbackIsOnlyEffectiveAfterAnEnabledSuccessSetting" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.0"/>
+  <testcase name="settingsWithoutPhotoSectionUseSafeDefaults" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.0"/>
+  <testcase name="fastCaptureSettingPersistsWhenDisabled" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.001"/>
+  <testcase name="importedSettingsRejectInvalidOverlayOpacity" classname="app.myzel394.alibi.AppSettingsPhotoCompatibilityTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

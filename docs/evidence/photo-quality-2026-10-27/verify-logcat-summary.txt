@@ -1,0 +1,25 @@
+# Key device logcat lines for the photo-quality verification (independently filtered)
+
+## RECOMMENDED floating-shutter capture (15:21:55 - 15:22:0x)
+I PhotoCaptureService: Capture profile FAST: ZSL=true, fps=[30, 30], OIS=false, CAF=true
+I PhotoCaptureService: Image capture mode=2 jpegQuality=95 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false
+I PhotoCaptureService: Photo captured: request=1 latencyMs=441 queued=0
+I PhotoCaptureService: Photo saved: request=1 saveMs=33
+
+## QUALITY floating-shutter capture (15:22:25 - 15:22:3x)
+(no "Capture profile" line: ZSL and forced frame-rate disabled for quality)
+I PhotoCaptureService: Image capture mode=1 jpegQuality=100 resolution=QUALITY aspect=FOUR_THREE qualityPriority=true hqNoiseReduction=true hqEdge=true
+I PhotoCaptureService: Photo captured: request=1 latencyMs=478 queued=0
+I PhotoCaptureService: Photo saved: request=1 saveMs=29
+D StreamUseCaseUtil: populateSurfaceToStreamUseCaseMapping() - streamUseCaseMap = {ImmediateSurface@cc22d92=1, ImmediateSurface@930955c=2}
+   (2 surfaces = Preview + ImageCapture; no ImageAnalysis surface -> analysis stream skipped as designed)
+
+## RECOMMENDED stream use cases
+D StreamUseCaseUtil: populateSurfaceToStreamUseCaseMapping() - streamUseCaseMap = {}
+
+## Error scan over the whole verification logcat (10201 lines, includes video smoke + settings navigation)
+IndexOutOfBoundsException : 0
+Photo capture failed       : 0
+FATAL EXCEPTION            : 0
+ANR in                     : 0
+StreamUseCaseUtil warnings/errors/exception lines: 0 (only benign D "populateSurfaceToStreamUseCaseMapping" lines)

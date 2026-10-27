@@ -342,7 +342,7 @@
     <string name="photo_settings_strategy_fast">快速</string>
     <string name="photo_settings_strategy_motion">运动</string>
     <string name="photo_settings_resolution_title">照片分辨率</string>
-    <string name="photo_settings_resolution_description">相机会选择设备支持的最接近分辨率。</string>
+    <string name="photo_settings_resolution_description">相机会选择设备支持的最接近分辨率；画质优先还会使用最大支持尺寸、更高画质处理与更高质量 JPEG 编码。</string>
     <string name="photo_settings_resolution_speed">速度优先</string>
     <string name="photo_settings_resolution_recommended">推荐</string>
     <string name="photo_settings_resolution_quality">画质优先</string>

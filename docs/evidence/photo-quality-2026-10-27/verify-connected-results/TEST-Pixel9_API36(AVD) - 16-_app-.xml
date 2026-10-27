@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="app.myzel394.alibi.ExampleInstrumentedTest" tests="7" failures="0" errors="0" skipped="0" time="15.349" timestamp="2026-10-27T15:17:19" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel9_API36(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="photoShortcutSwitchesBlackSessionToFloating" classname="app.myzel394.alibi.ExampleInstrumentedTest" time="0.843" />
+  <testcase name="audioStartIsIdempotentAndReportsReadyAfterRecorderStarts" classname="app.myzel394.alibi.ExampleInstrumentedTest" time="0.263" />
+  <testcase name="mainActivityLaunchesWithStaticShortcuts" classname="app.myzel394.alibi.ExampleInstrumentedTest" time="2.254" />
+  <testcase name="useAppContext" classname="app.myzel394.alibi.ExampleInstrumentedTest" time="0.015" />
+  <testcase name="pinchGestureOnBlackScreenChangesZoomRatio" classname="app.myzel394.alibi.PhotoZoomInstrumentedTest" time="5.62" />
+  <testcase name="floatingOverlayAcceptsZoomAdjustments" classname="app.myzel394.alibi.PhotoZoomInstrumentedTest" time="2.215" />
+  <testcase name="rapidZoomInputsAreCoalescedIntoBoundedCameraRequests" classname="app.myzel394.alibi.PhotoZoomInstrumentedTest" time="2.301" />
+</testsuite>

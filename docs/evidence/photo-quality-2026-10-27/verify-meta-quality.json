@@ -1,0 +1,21 @@
+{
+  "preference": "QUALITY",
+  "tag": "quality",
+  "steps": [],
+  "overlayAttrs": [
+    891,
+    739,
+    147,
+    147
+  ],
+  "sessionLogLine": "10-27 15:22:25.913 10029 10029 I PhotoCaptureService: Image capture mode=1 jpegQuality=100 resolution=QUALITY aspect=FOUR_THREE qualityPriority=true hqNoiseReduction=true hqEdge=true",
+  "photosBefore": [
+    "alibi-photo_20261027_152205_357_bc14ee51.jpg"
+  ],
+  "newPhoto": "alibi-photo_20261027_152235_385_1095766a.jpg",
+  "sizeBytes": 83408,
+  "tapAttempts": 1,
+  "captureLogLine": "10-27 15:22:35.803 10029 10029 I PhotoCaptureService: Photo captured: request=1 latencyMs=478 queued=0",
+  "jpegPath": "T:\\Github\\Alibi\\docs\\evidence\\photo-quality-2026-10-27\\verify-quality.jpg",
+  "jpegBytesOnHost": 83408
+}

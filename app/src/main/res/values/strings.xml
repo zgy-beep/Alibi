@@ -96,7 +96,7 @@
     <string name="photo_settings_strategy_fast">Fast</string>
     <string name="photo_settings_strategy_motion">Motion</string>
     <string name="photo_settings_resolution_title">Photo resolution</string>
-    <string name="photo_settings_resolution_description">The camera chooses the closest supported resolution.</string>
+    <string name="photo_settings_resolution_description">The camera chooses the closest supported resolution. Quality also requests the largest supported size, higher-quality still processing and JPEG quality.</string>
     <string name="photo_settings_resolution_speed">Speed</string>
     <string name="photo_settings_resolution_recommended">Recommended</string>
     <string name="photo_settings_resolution_quality">Quality</string>

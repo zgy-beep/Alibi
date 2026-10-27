@@ -22,10 +22,11 @@
 - `:app:compileDebugKotlin`、`:app:testDebugUnitTest`、`:app:lintDebug`、`:app:assembleDebug` 通过；单元测试共 7 项通过。
 - API 36 x86_64 虚拟手机（Android 16、前后虚拟摄像头、1080×2424、420 dpi）已验证：权限流程、黑屏拍摄、5 次快速连点生成 5 张可读 JPEG、悬浮快门点击、拖动不误拍、长按菜单、停止、图库缩略图、分享、打开和息屏停止；竖屏首页三张操作卡片尺寸一致，底部安全提示无截断，拍摄期间不显示状态文字，长按直接回首页。
 - 快速抓拍开关已验证可持久化；虚拟后置相机报告 `ZSL=false`，正确回退到低延迟拍摄并应用 `[30, 30]` 帧率，虚拟前置相机报告 `ZSL=true` 并成功走零快门延迟路径；两类相机均不支持 OIS。开启和关闭快速模式的多个分支均能连续保存照片。
-- 当前仍使用 CameraX 1.3.4；截至 2026-10-24 最新稳定版为 1.6.2，其 AAR 要求 `compileSdk 36` 和 AGP 8.9.1 以上。项目当前为 compileSdk 34、AGP 8.3，因此升级需要单独完成 Gradle、AGP、Kotlin 与视频录制回归，不与本次预览手势改动混合。
+- 2026-10-27 照片画质完善时已将 CameraX 从 1.3.4 升级到 1.5.3。项目当前为 compileSdk 36、AGP 8.9.1、Kotlin 2.0.21，满足 1.5.3 要求（其 kotlin-stdlib 2.0.21 与项目一致）；1.5.3 同时修复了 API 36 模拟器上非 ZSL 拍摄打开会话失败的问题。最新稳定版 1.6.2 要求 kotlin-stdlib 2.1.20，需要单独升级 Kotlin/Compose 插件后再评估，不与本次画质改动混合。
 - 验收截图：[首页](../evidence/home-api36.png)、[黑屏快门页](../evidence/black-screen-api36.png)。系统相机隐私指示属于 Android 平台行为。
 - 双指缩放已通过 CameraX `cameraControl.setZoomRatio()` 接入，倍率受设备 `minZoomRatio/maxZoomRatio` 限制。2026-10-27 起变焦请求改为 latest-wins 合并（`ZoomRequestQueue`）：连续手势最多一个 CameraX 请求在途，模拟器上 60 次 60 Hz 输入合并为 7 次请求，最新请求滞后 183 ms，避免预览随请求堆积而滞后；见[验收报告](../reviews/zoom-overlay-2026-10-27.md)与[证据](../evidence/zoom-2026-10-27/README.md)。Compose instrumentation 已能在 API 36 模拟器上自动注入双指捏合验证倍率变化；物理手机的倍率范围、缩放方向和手感仍需真机确认（U05）。
 - 悬浮快门长按面板已加入倍率调节：−/当前倍率/＋、对数映射滑杆、点击倍率重置；到设备边界禁用按钮，相机不支持变焦时显示提示并隐藏控件。`rememberZoom` 对悬浮模式生效；截图为深色桌面背景，大字体与读屏待真机复核。
+- 2026-10-27 照片画质完善：默认“推荐”分辨率目标从 1920×1440 / 1920×1080 提升到 4000×3000 / 3840×2160（约 12MP / 8MP）；“画质优先”请求设备最大支持尺寸，并使用 JPEG 100、软件 JPEG 编码、设备支持时的高质量降噪/锐化、非 ZSL 的稳定拍摄路径，同时跳过额外分析流。CameraX 升级到 1.5.3 后，API 36 模拟器上画质路径可正常拍摄；视频录制冒烟通过。真机分辨率/色彩/噪声与系统相机计算摄影差距仍需物理设备验收。
 - 尚未连接具备摄像头的物理手机；物理设备的快门延迟、厂商后台限制和 Android 7-15 兼容仍需继续执行 P0 与设备矩阵。
 
 ## 1. 计划审查结论
@@ -137,7 +138,7 @@ Android 13 及以上即使用户拒绝通知权限，服务仍须按规定提交
 | API 34 / Android 14 | 相机前台服务专用权限与使用期间检查；可见页面启动、取消启动和后台误启动异常。 |
 | API 35–36 / Android 15–16 测试设备 | 验证现有 targetSdk 34 的实际行为；后续提高 targetSdk 时重新执行相关兼容用例。Android 15 的悬浮窗后台服务启动收紧条件按目标版本区分。 |
 
-项目当前 `compileSdk/targetSdk = 34`，`minSdk = 24`，CameraX 为 1.3.4。本功能先使用项目已有依赖可用的 API；P0 如发现确定的库缺陷，再单独评估升级并回归视频录制。发布需要的 targetSdk 升级须明确记录，不能把 target 34 的测试结果直接作为升级后的结果。
+项目当前 `compileSdk = 36`、`targetSdk = 34`、`minSdk = 24`，CameraX 为 1.5.3。本功能使用项目已有依赖可用的 API；如发现确定的库缺陷，再单独评估升级并回归视频录制。发布需要的 targetSdk 升级须明确记录，不能把 target 34 的测试结果直接作为升级后的结果。
 
 悬浮窗类型从 API 26 才提供新类型；窗口可能被系统调整或被其他页面隐藏，因此“所有页面永久可见”不作为验收承诺。[窗口类型依据](https://developer.android.com/reference/android/view/WindowManager.LayoutParams)、[隐藏悬浮窗依据](https://developer.android.com/about/versions/12/features#hide-application-overlay-windows)。
 
@@ -147,7 +148,7 @@ Android 13 及以上即使用户拒绝通知权限，服务仍须按规定提交
 
 | 当前文件或模块 | 已核对事实 | 实施要求 |
 | --- | --- | --- |
-| `app/build.gradle` | minSdk 24、target/compileSdk 34，已有 CameraX 和 LifecycleService 依赖 | 检查所用 API 版本；必要依赖调整有单独理由。 |
+| `app/build.gradle` | minSdk 24、targetSdk 34 / compileSdk 36，已有 CameraX 1.5.3 和 LifecycleService 依赖 | 检查所用 API 版本；必要依赖调整有单独理由。 |
 | `app/src/main/AndroidManifest.xml` | 已声明 CAMERA、FOREGROUND_SERVICE_CAMERA 和前台服务权限；没有悬浮窗权限、照片服务或 FileProvider | 新增悬浮窗权限、照片专用 camera 服务；若采用后台震动则补充 VIBRATE；分享内部照片时增加范围受限的 FileProvider。服务 `exported=false`。 |
 | `ui/screens/RecorderScreen.kt`、`ui/components/RecorderScreen/organisms/StartRecording.kt` | 当前入口和活动状态只处理音频、视频 | 增加照片入口、活动会话展示与模式互斥，不让已运行照片服务被当作空闲。 |
 | `ui/Navigation.kt`、`ui/enums/Screen.kt` | 当前路由无照片页面 | 新增准备、黑屏、最近照片路由；在导航根部绑定照片服务并正确解绑。 |

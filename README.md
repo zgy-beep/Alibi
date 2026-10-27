@@ -59,7 +59,8 @@ remain on the device.
 - Balanced, fast, and motion capture strategies
 - Zero shutter lag, optical stabilization, and continuous autofocus when the
   device supports them
-- Speed, recommended, and quality resolution preferences
+- Speed, recommended (about 12 MP), and maximum-quality resolution preferences
+- Quality-first stills with JPEG 100 and high-quality noise reduction/edge processing when supported
 - 4:3 and 16:9 frames
 - Flash, rule-of-thirds grid, launch preview, zoom memory, and front-camera
   mirroring

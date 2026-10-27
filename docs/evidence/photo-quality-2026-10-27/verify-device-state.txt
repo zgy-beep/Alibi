@@ -1,0 +1,42 @@
+# Device state after verification (2026-10-27T23:29:45+08:00)
+
+google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.D1/13818094:user/release-keys
+Physical size: 1080x2424
+Physical density: 420
+
+## app process / package
+not running (force-stopped)
+    versionCode=19 minSdk=24 targetSdk=34
+    versionName=0.6.2
+    lastUpdateTime=2026-10-27 15:19:20
+      firstInstallTime=2026-10-27 15:19:20
+package:/data/app/~~EY5A0JBJHBI6AzTAq5tcIg==/com.zgybeep.alibi.debug-AB_u53F1dfCRF675JLfnkw==/base.apk
+
+## release package untouched
+    versionCode=19 minSdk=24 targetSdk=34
+    versionName=0.6.2
+    lastUpdateTime=2026-10-27 09:29:54
+package:/data/app/~~PXbVTERptsBuSdXVJuMnWw==/com.zgybeep.alibi-ptx4BhJz6jOVNNyvbe2sBQ==/base.apk
+
+## permissions
+      android.permission.POST_NOTIFICATIONS
+      android.permission.CAMERA
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.CAMERA: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+SYSTEM_ALERT_WINDOW: allow; time=+7m2s115ms ago; duration=0
+
+## floating overlay windows of Alibi
+0
+0 (no alibi overlay)
+
+## settings.json restored
+{"hasSeenOnboarding":true}
+
+## photos left in internal folder
+total 152
+-rw------- 1 u0_a244 u0_a244 61225 2026-10-27 15:22 alibi-photo_20261027_152205_357_bc14ee51.jpg
+-rw------- 1 u0_a244 u0_a244 83408 2026-10-27 15:22 alibi-photo_20261027_152235_385_1095766a.jpg
+
+## video smoke file kept in Download
+-rw-rw---- 1 u0_a215 media_rw 126477 2026-10-27 15:15 /sdcard/Download/2026-10-27T15-15-32_695.mp4
+-rw-rw---- 1 u0_a215 media_rw 256945 2026-10-27 15:24 /sdcard/Download/2026-10-27T15-23-58_13.mp4

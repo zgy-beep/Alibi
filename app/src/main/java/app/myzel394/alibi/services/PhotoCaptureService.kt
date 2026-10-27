@@ -57,6 +57,8 @@ import app.myzel394.alibi.db.PhotoFlashMode
 import app.myzel394.alibi.db.PhotoHapticFeedback
 import app.myzel394.alibi.db.PhotoResolutionPreference
 import app.myzel394.alibi.helpers.PhotoNaming
+import app.myzel394.alibi.helpers.photoTargetSize
+import app.myzel394.alibi.helpers.usesQualityPriority
 import app.myzel394.alibi.helpers.PendingPhoto
 import app.myzel394.alibi.helpers.PhotoRecord
 import app.myzel394.alibi.helpers.PhotoRepository
@@ -95,9 +97,12 @@ class PhotoCaptureService : LifecycleService() {
 
     private data class FastCaptureProfile(
         val useZeroShutterLag: Boolean,
+        val useQualityPriority: Boolean,
         val frameRateRange: Range<Int>?,
         val useOpticalStabilization: Boolean,
         val useContinuousAutoFocus: Boolean,
+        val useHighQualityNoiseReduction: Boolean,
+        val useHighQualityEdge: Boolean,
     )
 
     private data class FailedSave(
@@ -736,6 +741,7 @@ class PhotoCaptureService : LifecycleService() {
         startPendingRecovery()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun startSession(intent: Intent) {
         val mode = runCatching {
             PhotoCaptureMode.valueOf(
@@ -898,13 +904,22 @@ class PhotoCaptureService : LifecycleService() {
                     return@launch
                 }
                 releaseCamera()
+                val captureMode = captureModeFor(fastCaptureProfile)
+                val jpegQuality = jpegQualityFor(fastCaptureProfile)
+                Log.i(
+                    TAG,
+                    "Image capture mode=$captureMode jpegQuality=$jpegQuality " +
+                        "resolution=${sessionConfig.photoSettings.resolutionPreference} " +
+                        "aspect=${sessionConfig.photoSettings.aspectRatio} " +
+                        "qualityPriority=${fastCaptureProfile.useQualityPriority} " +
+                        "hqNoiseReduction=${fastCaptureProfile.useHighQualityNoiseReduction} " +
+                        "hqEdge=${fastCaptureProfile.useHighQualityEdge}",
+                )
                 val captureBuilder = ImageCapture.Builder()
-                    .setCaptureMode(
-                        if (fastCaptureProfile.useZeroShutterLag) {
-                            ImageCapture.CAPTURE_MODE_ZERO_SHUTTER_LAG
-                        } else {
-                            ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY
-                        }
+                    .setCaptureMode(captureMode)
+                    .setJpegQuality(jpegQuality)
+                    .setSoftwareJpegEncoderRequested(
+                        fastCaptureProfile.useQualityPriority
                     )
                     .setFlashMode(
                         when (sessionConfig.photoSettings.flashMode) {
@@ -926,31 +941,39 @@ class PhotoCaptureService : LifecycleService() {
                 val previewUseCase = Preview.Builder()
                     .setTargetRotation(currentDisplayRotation())
                     .build()
-                val analysisBuilder = ImageAnalysis.Builder()
-                    .setResolutionSelector(
-                        ResolutionSelector.Builder()
-                            .setResolutionStrategy(
-                                ResolutionStrategy(
-                                    Size(640, 480),
-                                    ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
-                                ),
-                            )
-                            .build(),
+                // Quality stills use preview + capture only. The extra analysis
+                // surface combined with a non-ZSL high-resolution JPEG pipeline
+                // makes CameraX 1.3.4 fail to open the capture session on the
+                // API 36 emulator; preview keeps AE/AF running.
+                val analysis = if (fastCaptureProfile.useQualityPriority) {
+                    null
+                } else {
+                    val analysisBuilder = ImageAnalysis.Builder()
+                        .setResolutionSelector(
+                            ResolutionSelector.Builder()
+                                .setResolutionStrategy(
+                                    ResolutionStrategy(
+                                        Size(640, 480),
+                                        ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
+                                    ),
+                                )
+                                .build(),
+                        )
+                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    applyFastCaptureOptions(
+                        Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
+                        fastCaptureProfile,
                     )
-                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                applyFastCaptureOptions(
-                    Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
-                    fastCaptureProfile,
-                )
-                val analysis = analysisBuilder
-                    .build()
-                    .also { useCase ->
-                        useCase.setAnalyzer(cameraExecutor) { image ->
-                            image.close()
+                    analysisBuilder
+                        .build()
+                        .also { useCase ->
+                            useCase.setAnalyzer(cameraExecutor) { image ->
+                                image.close()
+                            }
                         }
-                    }
+                }
                 if (!isCurrentSession(sessionConfig.id) || isStopping) {
-                    analysis.clearAnalyzer()
+                    analysis?.clearAnalyzer()
                     return@launch
                 }
                 cameraProvider = provider
@@ -962,9 +985,7 @@ class PhotoCaptureService : LifecycleService() {
                     provider.bindToLifecycle(
                         this@PhotoCaptureService,
                         selector,
-                        previewUseCase,
-                        capture,
-                        analysis,
+                        *listOfNotNull(previewUseCase, capture, analysis).toTypedArray(),
                     )
                 } catch (error: IllegalArgumentException) {
                     Log.w(
@@ -972,9 +993,14 @@ class PhotoCaptureService : LifecycleService() {
                         "Fast photo use-case combination is unavailable; retrying without analysis",
                         error,
                     )
-                    analysis.clearAnalyzer()
+                    analysis?.clearAnalyzer()
+                    imageAnalysis = null
                     val fallbackBuilder = ImageCapture.Builder()
-                        .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                        .setCaptureMode(captureMode)
+                        .setJpegQuality(jpegQuality)
+                        .setSoftwareJpegEncoderRequested(
+                            fastCaptureProfile.useQualityPriority
+                        )
                         .setFlashMode(
                             when (sessionConfig.photoSettings.flashMode) {
                                 PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
@@ -1035,7 +1061,10 @@ class PhotoCaptureService : LifecycleService() {
         settings: PhotoCaptureSettings,
     ): FastCaptureProfile {
         val strategy = settings.getEffectiveCaptureStrategy()
-        val useFastOptions = strategy != PhotoCaptureStrategy.BALANCED
+        val useQualityPriority = usesQualityPriority(settings.resolutionPreference)
+        // "Quality" trades ZSL and forced fast frame rates for larger frames and
+        // higher-quality still processing; other profiles keep the fast path.
+        val useFastOptions = strategy != PhotoCaptureStrategy.BALANCED && !useQualityPriority
         val zeroShutterLagSupported =
             useFastOptions && settings.flashMode == PhotoFlashMode.OFF && runCatching {
                 cameraInfo.isZslSupported()
@@ -1074,15 +1103,55 @@ class PhotoCaptureService : LifecycleService() {
                 )
                 ?.contains(CameraMetadata.CONTROL_AF_MODE_CONTINUOUS_PICTURE) == true
         }.getOrDefault(false)
+        val highQualityNoiseReductionSupported = useQualityPriority && runCatching {
+            Camera2CameraInfo
+                .from(cameraInfo)
+                .getCameraCharacteristic(
+                    CameraCharacteristics.NOISE_REDUCTION_AVAILABLE_NOISE_REDUCTION_MODES
+                )
+                ?.contains(CameraMetadata.NOISE_REDUCTION_MODE_HIGH_QUALITY) == true
+        }.getOrDefault(false)
+        val highQualityEdgeSupported = useQualityPriority && runCatching {
+            Camera2CameraInfo
+                .from(cameraInfo)
+                .getCameraCharacteristic(
+                    CameraCharacteristics.EDGE_AVAILABLE_EDGE_MODES
+                )
+                ?.contains(CameraMetadata.EDGE_MODE_HIGH_QUALITY) == true
+        }.getOrDefault(false)
 
         return FastCaptureProfile(
             useZeroShutterLag = zeroShutterLagSupported,
+            useQualityPriority = useQualityPriority,
             frameRateRange = fastFrameRateRange,
             useOpticalStabilization = settings.opticalStabilizationEnabled &&
                 opticalStabilizationSupported,
             useContinuousAutoFocus = settings.continuousAutoFocusEnabled &&
                 continuousAutoFocusSupported,
+            useHighQualityNoiseReduction = highQualityNoiseReductionSupported,
+            useHighQualityEdge = highQualityEdgeSupported,
         )
+    }
+
+    private fun captureModeFor(profile: FastCaptureProfile): Int {
+        // On the API 36 emulator CameraX 1.5.3's hardware JPEG path produced
+        // quality-95 quantisation tables even with JPEG 100 / MAXIMIZE_QUALITY
+        // requested. The quality profile therefore requests a software JPEG
+        // encoder (which honours quality 100 deterministically) while keeping
+        // the low-latency capture mode; the fast/ZSL profile is unchanged.
+        return if (profile.useZeroShutterLag) {
+            ImageCapture.CAPTURE_MODE_ZERO_SHUTTER_LAG
+        } else {
+            ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY
+        }
+    }
+
+    private fun jpegQualityFor(profile: FastCaptureProfile): Int {
+        return when {
+            profile.useQualityPriority -> 100
+            profile.useZeroShutterLag -> 95
+            else -> 98
+        }
     }
 
     private fun applyFastCaptureOptions(
@@ -1107,6 +1176,18 @@ class PhotoCaptureService : LifecycleService() {
                 CameraMetadata.CONTROL_AF_MODE_CONTINUOUS_PICTURE,
             )
         }
+        if (profile.useHighQualityNoiseReduction) {
+            builder.setCaptureRequestOption(
+                CaptureRequest.NOISE_REDUCTION_MODE,
+                CameraMetadata.NOISE_REDUCTION_MODE_HIGH_QUALITY,
+            )
+        }
+        if (profile.useHighQualityEdge) {
+            builder.setCaptureRequestOption(
+                CaptureRequest.EDGE_MODE,
+                CameraMetadata.EDGE_MODE_HIGH_QUALITY,
+            )
+        }
     }
 
     private fun captureResolutionSelector(settings: PhotoCaptureSettings): ResolutionSelector {
@@ -1114,29 +1195,11 @@ class PhotoCaptureService : LifecycleService() {
             PhotoAspectRatio.FOUR_THREE -> AspectRatio.RATIO_4_3
             PhotoAspectRatio.SIXTEEN_NINE -> AspectRatio.RATIO_16_9
         }
-        val target = when (settings.resolutionPreference) {
-            PhotoResolutionPreference.SPEED -> if (
-                settings.aspectRatio == PhotoAspectRatio.FOUR_THREE
-            ) {
-                Size(1280, 960)
-            } else {
-                Size(1280, 720)
-            }
-            PhotoResolutionPreference.RECOMMENDED -> if (
-                settings.aspectRatio == PhotoAspectRatio.FOUR_THREE
-            ) {
-                Size(1920, 1440)
-            } else {
-                Size(1920, 1080)
-            }
-            PhotoResolutionPreference.QUALITY -> if (
-                settings.aspectRatio == PhotoAspectRatio.FOUR_THREE
-            ) {
-                Size(4032, 3024)
-            } else {
-                Size(3840, 2160)
-            }
-        }
+        val targetSize = photoTargetSize(
+            settings.resolutionPreference,
+            settings.aspectRatio,
+        )
+        val target = Size(targetSize.width, targetSize.height)
         return ResolutionSelector.Builder()
             .setAspectRatioStrategy(
                 AspectRatioStrategy(

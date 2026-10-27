@@ -1,0 +1,19 @@
+{
+  "preference": "RECOMMENDED",
+  "tag": "recommended",
+  "steps": [],
+  "overlayAttrs": [
+    891,
+    739,
+    147,
+    147
+  ],
+  "sessionLogLine": "10-27 15:21:55.921  9866  9866 I PhotoCaptureService: Image capture mode=2 jpegQuality=95 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false",
+  "photosBefore": [],
+  "newPhoto": "alibi-photo_20261027_152205_357_bc14ee51.jpg",
+  "sizeBytes": 61225,
+  "tapAttempts": 1,
+  "captureLogLine": "10-27 15:22:05.713  9866  9866 I PhotoCaptureService: Photo captured: request=1 latencyMs=441 queued=0",
+  "jpegPath": "T:\\Github\\Alibi\\docs\\evidence\\photo-quality-2026-10-27\\verify-recommended.jpg",
+  "jpegBytesOnHost": 61225
+}
