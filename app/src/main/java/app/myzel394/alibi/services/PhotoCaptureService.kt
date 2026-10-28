@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.graphics.ImageFormat
 import android.content.IntentFilter
 import android.content.pm.ServiceInfo
 import android.hardware.camera2.CameraCharacteristics
@@ -48,6 +49,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import app.myzel394.alibi.db.PhotoCaptureExtensionMode
 import app.myzel394.alibi.helpers.resolvePhotoCaptureExtension
+import app.myzel394.alibi.helpers.shouldUseSoftwareJpegEncoder
 import app.myzel394.alibi.MainActivity
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.R
@@ -906,10 +908,15 @@ class PhotoCaptureService : LifecycleService() {
                 )
                 val bindSelector = extensionSelection?.cameraSelector ?: selector
                 val extensionActive = extensionSelection != null
+                val maxHardwareJpegPixels = queryMaxHardwareJpegPixels(cameraInfo)
                 val fastCaptureProfile = buildFastCaptureProfile(
                     cameraInfo = cameraInfo,
                     settings = sessionConfig.photoSettings,
                     extensionActive = extensionActive,
+                )
+                val useSoftwareJpegEncoder = !extensionActive && shouldUseSoftwareJpegEncoder(
+                    qualityPriority = fastCaptureProfile.useQualityPriority,
+                    maxHardwareJpegPixels = maxHardwareJpegPixels,
                 )
                 if (fastCaptureProfile.useZeroShutterLag ||
                     fastCaptureProfile.frameRateRange != null
@@ -941,14 +948,14 @@ class PhotoCaptureService : LifecycleService() {
                         "qualityPriority=${fastCaptureProfile.useQualityPriority} " +
                         "hqNoiseReduction=${fastCaptureProfile.useHighQualityNoiseReduction} " +
                         "hqEdge=${fastCaptureProfile.useHighQualityEdge} " +
+                        "softwareJpeg=$useSoftwareJpegEncoder " +
+                        "hardwareJpegMaxPixels=${maxHardwareJpegPixels ?: "unknown"} " +
                         "extension=${extensionSelection?.let { extensionLabel(it.mode) } ?: "NONE"}",
                 )
                 val captureBuilder = ImageCapture.Builder()
                     .setCaptureMode(captureMode)
                     .setJpegQuality(jpegQuality)
-                    .setSoftwareJpegEncoderRequested(
-                        !extensionActive && fastCaptureProfile.useQualityPriority
-                    )
+                    .setSoftwareJpegEncoderRequested(useSoftwareJpegEncoder)
                     .setFlashMode(
                         if (extensionActive) {
                             ImageCapture.FLASH_MODE_OFF
@@ -1041,7 +1048,10 @@ class PhotoCaptureService : LifecycleService() {
                         .setCaptureMode(captureMode)
                         .setJpegQuality(jpegQuality)
                         .setSoftwareJpegEncoderRequested(
-                            fastCaptureProfile.useQualityPriority
+                            shouldUseSoftwareJpegEncoder(
+                                qualityPriority = fastCaptureProfile.useQualityPriority,
+                                maxHardwareJpegPixels = maxHardwareJpegPixels,
+                            )
                         )
                         .setFlashMode(
                             when (sessionConfig.photoSettings.flashMode) {
@@ -1177,6 +1187,18 @@ class PhotoCaptureService : LifecycleService() {
             useHighQualityNoiseReduction = highQualityNoiseReductionSupported,
             useHighQualityEdge = highQualityEdgeSupported,
         )
+    }
+
+    private fun queryMaxHardwareJpegPixels(cameraInfo: CameraInfo): Long? {
+        return runCatching {
+            Camera2CameraInfo
+                .from(cameraInfo)
+                .getCameraCharacteristic(
+                    CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
+                )
+                ?.getOutputSizes(ImageFormat.JPEG)
+                ?.maxOfOrNull { it.width.toLong() * it.height.toLong() }
+        }.getOrNull()
     }
 
     private data class CameraExtensionSelection(
