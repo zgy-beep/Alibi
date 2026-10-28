@@ -33,6 +33,7 @@ import androidx.camera.core.CameraSelector
 import app.myzel394.alibi.R
 import app.myzel394.alibi.dataStore
 import app.myzel394.alibi.db.PhotoAspectRatio
+import app.myzel394.alibi.db.PhotoCaptureExtensionMode
 import app.myzel394.alibi.db.PhotoCaptureSettings
 import app.myzel394.alibi.db.PhotoCaptureStrategy
 import app.myzel394.alibi.db.PhotoFlashMode
@@ -164,6 +165,31 @@ fun PhotoCaptureSettingsScreen(
                         },
                         enabled = enabled,
                         onSelect = { update { s -> s.setCaptureStrategy(it) } },
+                    )
+                    HorizontalDivider()
+                    AlibiChoiceSetting(
+                        title = stringResource(R.string.photo_settings_extension_title),
+                        description = stringResource(
+                            R.string.photo_settings_extension_description
+                        ),
+                        values = PhotoCaptureExtensionMode.entries,
+                        selected = photoSettings.extensionMode,
+                        label = {
+                            stringResource(
+                                when (it) {
+                                    PhotoCaptureExtensionMode.AUTO ->
+                                        R.string.photo_settings_extension_auto
+                                    PhotoCaptureExtensionMode.OFF ->
+                                        R.string.photo_settings_extension_off
+                                    PhotoCaptureExtensionMode.NIGHT ->
+                                        R.string.photo_settings_extension_night
+                                    PhotoCaptureExtensionMode.HDR ->
+                                        R.string.photo_settings_extension_hdr
+                                }
+                            )
+                        },
+                        enabled = enabled,
+                        onSelect = { update { s -> s.setExtensionMode(it) } },
                     )
                     HorizontalDivider()
                     AlibiChoiceSetting(

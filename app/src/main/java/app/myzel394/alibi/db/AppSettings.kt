@@ -609,6 +609,7 @@ data class PhotoCaptureSettings(
     val overlayOpacity: Float = 0.9f,
     val rememberZoom: Boolean = false,
     val lastZoomRatio: Float = 1f,
+    val extensionMode: PhotoCaptureExtensionMode = PhotoCaptureExtensionMode.OFF,
 ) {
     fun setFeedbackEnabled(enabled: Boolean): PhotoCaptureSettings {
         return copy(
@@ -702,6 +703,10 @@ data class PhotoCaptureSettings(
         return copy(lastZoomRatio = zoomRatio.coerceIn(1f, MAX_ZOOM_RATIO))
     }
 
+    fun setExtensionMode(mode: PhotoCaptureExtensionMode): PhotoCaptureSettings {
+        return copy(extensionMode = mode)
+    }
+
     fun getEffectiveCaptureStrategy(): PhotoCaptureStrategy {
         return if (!fastCaptureEnabled && captureStrategy == PhotoCaptureStrategy.FAST) {
             PhotoCaptureStrategy.BALANCED
@@ -747,6 +752,18 @@ enum class PhotoResolutionPreference {
 enum class PhotoAspectRatio {
     FOUR_THREE,
     SIXTEEN_NINE,
+}
+
+/**
+ * Vendor camera extensions exposed through CameraX. AUTO prefers the night
+ * extension, then HDR; unsupported modes fall back to the standard pipeline.
+ */
+@Serializable
+enum class PhotoCaptureExtensionMode {
+    AUTO,
+    OFF,
+    NIGHT,
+    HDR,
 }
 
 @Serializable

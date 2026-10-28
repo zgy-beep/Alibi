@@ -39,11 +39,15 @@ import androidx.camera.core.Preview
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
+import androidx.camera.extensions.ExtensionMode
+import androidx.camera.extensions.ExtensionsManager
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
+import app.myzel394.alibi.db.PhotoCaptureExtensionMode
+import app.myzel394.alibi.helpers.resolvePhotoCaptureExtension
 import app.myzel394.alibi.MainActivity
 import app.myzel394.alibi.NotificationHelper
 import app.myzel394.alibi.R
@@ -72,12 +76,18 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
 import java.util.UUID
+import com.google.common.util.concurrent.ListenableFuture
+import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.math.abs
 
 @androidx.annotation.OptIn(
@@ -844,6 +854,12 @@ class PhotoCaptureService : LifecycleService() {
                     EXTRA_REMEMBER_ZOOM,
                     false,
                 ),
+                extensionMode = runCatching {
+                    PhotoCaptureExtensionMode.valueOf(
+                        intent.getStringExtra(EXTRA_EXTENSION_MODE)
+                            ?: PhotoCaptureExtensionMode.OFF.name,
+                    )
+                }.getOrDefault(PhotoCaptureExtensionMode.OFF),
             ),
         )
         initializationJob?.cancel()
@@ -883,9 +899,17 @@ class PhotoCaptureService : LifecycleService() {
                     .filter(provider.availableCameraInfos)
                     .firstOrNull()
                     ?: error("The selected camera is not available")
+                val extensionSelection = resolveCameraExtension(
+                    provider = provider,
+                    selector = selector,
+                    requested = sessionConfig.photoSettings.extensionMode,
+                )
+                val bindSelector = extensionSelection?.cameraSelector ?: selector
+                val extensionActive = extensionSelection != null
                 val fastCaptureProfile = buildFastCaptureProfile(
                     cameraInfo = cameraInfo,
                     settings = sessionConfig.photoSettings,
+                    extensionActive = extensionActive,
                 )
                 if (fastCaptureProfile.useZeroShutterLag ||
                     fastCaptureProfile.frameRateRange != null
@@ -906,6 +930,9 @@ class PhotoCaptureService : LifecycleService() {
                 releaseCamera()
                 val captureMode = captureModeFor(fastCaptureProfile)
                 val jpegQuality = jpegQualityFor(fastCaptureProfile)
+                if (extensionActive && sessionConfig.photoSettings.flashMode != PhotoFlashMode.OFF) {
+                    Log.i(TAG, "Camera extension active; flash is disabled")
+                }
                 Log.i(
                     TAG,
                     "Image capture mode=$captureMode jpegQuality=$jpegQuality " +
@@ -913,29 +940,36 @@ class PhotoCaptureService : LifecycleService() {
                         "aspect=${sessionConfig.photoSettings.aspectRatio} " +
                         "qualityPriority=${fastCaptureProfile.useQualityPriority} " +
                         "hqNoiseReduction=${fastCaptureProfile.useHighQualityNoiseReduction} " +
-                        "hqEdge=${fastCaptureProfile.useHighQualityEdge}",
+                        "hqEdge=${fastCaptureProfile.useHighQualityEdge} " +
+                        "extension=${extensionSelection?.let { extensionLabel(it.mode) } ?: "NONE"}",
                 )
                 val captureBuilder = ImageCapture.Builder()
                     .setCaptureMode(captureMode)
                     .setJpegQuality(jpegQuality)
                     .setSoftwareJpegEncoderRequested(
-                        fastCaptureProfile.useQualityPriority
+                        !extensionActive && fastCaptureProfile.useQualityPriority
                     )
                     .setFlashMode(
-                        when (sessionConfig.photoSettings.flashMode) {
-                            PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
-                            PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
-                            PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
+                        if (extensionActive) {
+                            ImageCapture.FLASH_MODE_OFF
+                        } else {
+                            when (sessionConfig.photoSettings.flashMode) {
+                                PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
+                                PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
+                                PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
+                            }
                         }
                     )
                     .setResolutionSelector(
                         captureResolutionSelector(sessionConfig.photoSettings)
                     )
                     .setTargetRotation(currentDisplayRotation())
-                applyFastCaptureOptions(
-                    Camera2Interop.Extender<ImageCapture>(captureBuilder),
-                    fastCaptureProfile,
-                )
+                if (!extensionActive) {
+                    applyFastCaptureOptions(
+                        Camera2Interop.Extender<ImageCapture>(captureBuilder),
+                        fastCaptureProfile,
+                    )
+                }
                 val capture = captureBuilder.build()
 
                 val previewUseCase = Preview.Builder()
@@ -945,7 +979,10 @@ class PhotoCaptureService : LifecycleService() {
                 // surface combined with a non-ZSL high-resolution JPEG pipeline
                 // makes CameraX 1.3.4 fail to open the capture session on the
                 // API 36 emulator; preview keeps AE/AF running.
-                val analysis = if (fastCaptureProfile.useQualityPriority) {
+                val analysis = if (
+                    fastCaptureProfile.useQualityPriority ||
+                    (extensionSelection != null && !extensionSelection.analysisSupported)
+                ) {
                     null
                 } else {
                     val analysisBuilder = ImageAnalysis.Builder()
@@ -960,10 +997,12 @@ class PhotoCaptureService : LifecycleService() {
                                 .build(),
                         )
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                    applyFastCaptureOptions(
-                        Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
-                        fastCaptureProfile,
-                    )
+                    if (!extensionActive) {
+                        applyFastCaptureOptions(
+                            Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
+                            fastCaptureProfile,
+                        )
+                    }
                     analysisBuilder
                         .build()
                         .also { useCase ->
@@ -984,7 +1023,7 @@ class PhotoCaptureService : LifecycleService() {
                 camera = try {
                     provider.bindToLifecycle(
                         this@PhotoCaptureService,
-                        selector,
+                        bindSelector,
                         *listOfNotNull(previewUseCase, capture, analysis).toTypedArray(),
                     )
                 } catch (error: IllegalArgumentException) {
@@ -993,6 +1032,9 @@ class PhotoCaptureService : LifecycleService() {
                         "Fast photo use-case combination is unavailable; retrying without analysis",
                         error,
                     )
+                    if (extensionActive) {
+                        Log.w(TAG, "Camera extension binding failed; using standard camera")
+                    }
                     analysis?.clearAnalyzer()
                     imageAnalysis = null
                     val fallbackBuilder = ImageCapture.Builder()
@@ -1059,12 +1101,16 @@ class PhotoCaptureService : LifecycleService() {
     private fun buildFastCaptureProfile(
         cameraInfo: CameraInfo,
         settings: PhotoCaptureSettings,
+        extensionActive: Boolean = false,
     ): FastCaptureProfile {
         val strategy = settings.getEffectiveCaptureStrategy()
         val useQualityPriority = usesQualityPriority(settings.resolutionPreference)
-        // "Quality" trades ZSL and forced fast frame rates for larger frames and
-        // higher-quality still processing; other profiles keep the fast path.
-        val useFastOptions = strategy != PhotoCaptureStrategy.BALANCED && !useQualityPriority
+        // "Quality" and vendor extensions trade ZSL and forced fast frame rates
+        // for larger frames and higher-quality still processing; other profiles
+        // keep the fast path.
+        val useFastOptions = strategy != PhotoCaptureStrategy.BALANCED &&
+            !useQualityPriority &&
+            !extensionActive
         val zeroShutterLagSupported =
             useFastOptions && settings.flashMode == PhotoFlashMode.OFF && runCatching {
                 cameraInfo.isZslSupported()
@@ -1131,6 +1177,97 @@ class PhotoCaptureService : LifecycleService() {
             useHighQualityNoiseReduction = highQualityNoiseReductionSupported,
             useHighQualityEdge = highQualityEdgeSupported,
         )
+    }
+
+    private data class CameraExtensionSelection(
+        val mode: Int,
+        val cameraSelector: CameraSelector,
+        val analysisSupported: Boolean,
+    )
+
+    private fun extensionLabel(mode: Int): String {
+        return when (mode) {
+            ExtensionMode.NIGHT -> "NIGHT"
+            ExtensionMode.HDR -> "HDR"
+            else -> "NONE"
+        }
+    }
+
+    private suspend fun resolveCameraExtension(
+        provider: ProcessCameraProvider,
+        selector: CameraSelector,
+        requested: PhotoCaptureExtensionMode,
+    ): CameraExtensionSelection? {
+        if (requested == PhotoCaptureExtensionMode.OFF) {
+            return null
+        }
+        val manager = try {
+            withTimeoutOrNull(EXTENSION_INIT_TIMEOUT_MILLIS) {
+                ExtensionsManager.getInstanceAsync(this@PhotoCaptureService, provider).awaitCameraFuture()
+            }
+        } catch (error: CancellationException) {
+            throw error
+        } catch (error: Exception) {
+            Log.w(TAG, "Could not initialize CameraX extensions; using standard camera", error)
+            null
+        }
+        if (manager == null) {
+            Log.i(TAG, "CameraX extensions unavailable or timed out; using standard camera")
+            return null
+        }
+
+        val nightAvailable = runCatching {
+            manager.isExtensionAvailable(selector, ExtensionMode.NIGHT)
+        }.getOrDefault(false)
+        val hdrAvailable = runCatching {
+            manager.isExtensionAvailable(selector, ExtensionMode.HDR)
+        }.getOrDefault(false)
+        val selected = resolvePhotoCaptureExtension(requested, nightAvailable, hdrAvailable)
+        Log.i(
+            TAG,
+            "Camera extensions requested=$requested nightAvailable=$nightAvailable " +
+                "hdrAvailable=$hdrAvailable selected=$selected",
+        )
+        if (selected == PhotoCaptureExtensionMode.OFF) {
+            return null
+        }
+        val mode = when (selected) {
+            PhotoCaptureExtensionMode.NIGHT -> ExtensionMode.NIGHT
+            PhotoCaptureExtensionMode.HDR -> ExtensionMode.HDR
+            else -> return null
+        }
+        val extensionSelector = runCatching {
+            manager.getExtensionEnabledCameraSelector(selector, mode)
+        }.onFailure {
+            Log.w(TAG, "Could not enable CameraX extension ${extensionLabel(mode)}", it)
+        }.getOrNull() ?: return null
+        val analysisSupported = runCatching {
+            manager.isImageAnalysisSupported(selector, mode)
+        }.getOrDefault(false)
+        return CameraExtensionSelection(
+            mode = mode,
+            cameraSelector = extensionSelector,
+            analysisSupported = analysisSupported,
+        )
+    }
+
+    private suspend fun <T> ListenableFuture<T>.awaitCameraFuture(): T {
+        val service = this@PhotoCaptureService
+        return suspendCancellableCoroutine { continuation ->
+            addListener(
+                {
+                    try {
+                        continuation.resume(get())
+                    } catch (error: ExecutionException) {
+                        continuation.resumeWithException(error.cause ?: error)
+                    } catch (error: Throwable) {
+                        continuation.resumeWithException(error)
+                    }
+                },
+                ContextCompat.getMainExecutor(service),
+            )
+            continuation.invokeOnCancellation { runCatching { cancel(true) } }
+        }
     }
 
     private fun captureModeFor(profile: FastCaptureProfile): Int {
@@ -1612,6 +1749,7 @@ class PhotoCaptureService : LifecycleService() {
         const val EXTRA_OVERLAY_OPACITY = "overlayOpacity"
         const val EXTRA_INITIAL_ZOOM = "initialZoom"
         const val EXTRA_REMEMBER_ZOOM = "rememberZoom"
+        const val EXTRA_EXTENSION_MODE = "extensionMode"
         const val EXTRA_START_IN_BACKGROUND = "startInBackground"
         private const val REQUEST_STOP = 41
         private const val REQUEST_OPEN = 42
@@ -1621,6 +1759,7 @@ class PhotoCaptureService : LifecycleService() {
         private const val MOTION_CAPTURE_FPS = 60
         private const val ZOOM_EPSILON = 0.005f
         private const val ZOOM_REMEMBER_DELAY_MILLIS = 400L
+        private const val EXTENSION_INIT_TIMEOUT_MILLIS = 3_000L
 
         fun createStartIntent(
             context: Context,
@@ -1685,6 +1824,10 @@ class PhotoCaptureService : LifecycleService() {
                 putExtra(
                     EXTRA_REMEMBER_ZOOM,
                     settings.photoCaptureSettings.rememberZoom,
+                )
+                putExtra(
+                    EXTRA_EXTENSION_MODE,
+                    settings.photoCaptureSettings.extensionMode.name,
                 )
                 putExtra(EXTRA_START_IN_BACKGROUND, startInBackground)
                 settings.saveFolder?.let {

@@ -95,6 +95,12 @@
     <string name="photo_settings_strategy_balanced">Balanced</string>
     <string name="photo_settings_strategy_fast">Fast</string>
     <string name="photo_settings_strategy_motion">Motion</string>
+    <string name="photo_settings_extension_title">Camera extensions</string>
+    <string name="photo_settings_extension_description">Off by default. Auto prefers the vendor night extension, then HDR, and falls back to the standard pipeline when unsupported. Extensions can make captures slower.</string>
+    <string name="photo_settings_extension_auto">Auto</string>
+    <string name="photo_settings_extension_off">Off</string>
+    <string name="photo_settings_extension_night">Night</string>
+    <string name="photo_settings_extension_hdr">HDR</string>
     <string name="photo_settings_resolution_title">Photo resolution</string>
     <string name="photo_settings_resolution_description">The camera chooses the closest supported resolution. Quality also requests the largest supported size, higher-quality still processing and JPEG quality.</string>
     <string name="photo_settings_resolution_speed">Speed</string>

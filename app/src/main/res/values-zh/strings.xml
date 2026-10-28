@@ -341,6 +341,12 @@
     <string name="photo_settings_strategy_balanced">均衡</string>
     <string name="photo_settings_strategy_fast">快速</string>
     <string name="photo_settings_strategy_motion">运动</string>
+    <string name="photo_settings_extension_title">相机扩展</string>
+    <string name="photo_settings_extension_description">默认关闭。自动会优先使用厂商夜景扩展，其次 HDR；不支持时回退标准拍摄。扩展可能会降低拍摄速度。</string>
+    <string name="photo_settings_extension_auto">自动</string>
+    <string name="photo_settings_extension_off">关闭</string>
+    <string name="photo_settings_extension_night">夜景</string>
+    <string name="photo_settings_extension_hdr">HDR</string>
     <string name="photo_settings_resolution_title">照片分辨率</string>
     <string name="photo_settings_resolution_description">相机会选择设备支持的最接近分辨率；画质优先还会使用最大支持尺寸、更高画质处理与更高质量 JPEG 编码。</string>
     <string name="photo_settings_resolution_speed">速度优先</string>
