@@ -343,6 +343,12 @@
     <string name="photo_settings_strategy_motion">运动</string>
     <string name="photo_settings_extension_title">相机扩展</string>
     <string name="photo_settings_extension_description">默认关闭。自动会优先使用厂商夜景扩展，其次 HDR；不支持时回退标准拍摄。扩展可能会降低拍摄速度。</string>
+    <string name="photo_settings_extension_support_checking">正在检测设备支持情况…</string>
+    <string name="photo_settings_extension_support_unknown">无法检测设备支持情况。</string>
+    <string name="photo_settings_extension_support_night_hdr">本机支持夜景和 HDR 扩展。</string>
+    <string name="photo_settings_extension_support_night">本机支持夜景扩展。</string>
+    <string name="photo_settings_extension_support_hdr">本机支持 HDR 扩展。</string>
+    <string name="photo_settings_extension_support_none">本机不提供夜景或 HDR 扩展。</string>
     <string name="photo_settings_extension_auto">自动</string>
     <string name="photo_settings_extension_off">关闭</string>
     <string name="photo_settings_extension_night">夜景</string>

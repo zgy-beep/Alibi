@@ -97,6 +97,12 @@
     <string name="photo_settings_strategy_motion">Motion</string>
     <string name="photo_settings_extension_title">Camera extensions</string>
     <string name="photo_settings_extension_description">Off by default. Auto prefers the vendor night extension, then HDR, and falls back to the standard pipeline when unsupported. Extensions can make captures slower.</string>
+    <string name="photo_settings_extension_support_checking">Checking device support…</string>
+    <string name="photo_settings_extension_support_unknown">Device support could not be checked.</string>
+    <string name="photo_settings_extension_support_night_hdr">This device supports Night and HDR.</string>
+    <string name="photo_settings_extension_support_night">This device supports Night.</string>
+    <string name="photo_settings_extension_support_hdr">This device supports HDR.</string>
+    <string name="photo_settings_extension_support_none">This device does not expose Night or HDR extensions.</string>
     <string name="photo_settings_extension_auto">Auto</string>
     <string name="photo_settings_extension_off">Off</string>
     <string name="photo_settings_extension_night">Night</string>

@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-代码完成，静态/构建验证通过；设备级验证因宿主重启暂停。
+代码完成，静态/构建验证通过；华为 Mate 70 Pro 真机实测不支持扩展，回退路径已验证。
 
 | 项目 | 结果 |
 | --- | --- |
@@ -12,7 +12,15 @@
 | JVM 单元测试 | 27 / 27（新增 `PhotoCaptureExtensionsTest` 3 项） |
 | Lint | 0 error / 0 fatal（188 既有 warning） |
 | Release 构建 | `:app:assembleRelease` 通过（R8 + 签名） |
-| 设备实测 | 未执行（见下） |
+| 华为 Mate 70 Pro 实测 | 扩展支持：**无**；自动模式回退拍照正常；照片 3072×4096 JPEG |
+
+### 华为 Mate 70 Pro 实测（2026-10-28）
+
+- 设备：`HUAWEI PLR-AL50`，HarmonyOS `4.3.0.208` / Android 12（API 31），arm64。
+- 安装 `app-arm64-v8a-debug.apk`（`com.zgybeep.alibi.debug`），授权相机/悬浮窗。
+- 相机设置页显示：**“本机不提供夜景或 HDR 扩展。”**（见 `huawei-extension-support.png` / `.xml`）。
+- 选择“自动”后通过悬浮快门拍照：成功保存 `3072×4096` JPEG（约 2.5–4.2 MB），无崩溃/ANR；扩展不可用时正确回退标准管线。
+- 华为的日志输出被系统策略裁剪，未取得 `Camera extensions requested=…` 原始 logcat；以设置页实时检测结果和实际拍照结果作为回退证据。
 
 ## 关键日志格式
 
@@ -29,12 +37,9 @@ Camera extensions unavailable or timed out; using standard camera
 
 ## 设备级验证待办
 
-由于宿主机在启动模拟器时意外重启（Kernel-Power 41，无蓝屏 dump），暂未重新启动模拟器。待执行：
-
-1. 默认「关闭」：拍照正常，无扩展日志；
-2. 选择「自动」：确认回报日志中的 `nightAvailable/hdrAvailable/selected`；
-3. `selected=OFF` 时照片正常、无崩溃、无绑定错误；
-4. 若支持扩展：对比开启前后的噪点、文件大小和拍摄时延。
+1. ✅ 华为 Mate 70 Pro：扩展不支持，自动模式回退拍照正常（见上）；
+2. ⏳ 其他支持 CameraX 扩展的机型：验证夜景/HDR 实际画质、速度与分辨率限制；
+3. ⏳ 模拟器：不提供厂商扩展，只能验证回退路径；宿主机上次启动模拟器时意外重启（Kernel-Power 41），暂未重试。
 
 ## 华为 Mate 70 Pro 说明
 

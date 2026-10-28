@@ -19,8 +19,10 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -39,6 +41,8 @@ import app.myzel394.alibi.db.PhotoCaptureStrategy
 import app.myzel394.alibi.db.PhotoFlashMode
 import app.myzel394.alibi.db.PhotoHapticFeedback
 import app.myzel394.alibi.db.PhotoResolutionPreference
+import app.myzel394.alibi.helpers.CameraExtensionSupport
+import app.myzel394.alibi.helpers.queryCameraExtensionSupport
 import app.myzel394.alibi.ui.effects.rememberSettings
 import app.myzel394.alibi.ui.components.atoms.AlibiChoiceSetting
 import app.myzel394.alibi.ui.components.atoms.AlibiSectionHeader
@@ -61,6 +65,27 @@ fun PhotoCaptureSettingsScreen(
     val settings = rememberSettings()
     val photoSettings = settings.photoCaptureSettings
     val enabled = !photoCapture.isInSession
+    var extensionSupport by remember { mutableStateOf<CameraExtensionSupport?>(null) }
+    var extensionSupportChecked by remember { mutableStateOf(false) }
+    LaunchedEffect(photoSettings.lensFacing) {
+        extensionSupportChecked = false
+        extensionSupport = queryCameraExtensionSupport(context, photoSettings.lensFacing)
+        extensionSupportChecked = true
+    }
+    val extensionSupportText = when {
+        !extensionSupportChecked ->
+            stringResource(R.string.photo_settings_extension_support_checking)
+        extensionSupport == null ->
+            stringResource(R.string.photo_settings_extension_support_unknown)
+        extensionSupport?.night == true && extensionSupport?.hdr == true ->
+            stringResource(R.string.photo_settings_extension_support_night_hdr)
+        extensionSupport?.night == true ->
+            stringResource(R.string.photo_settings_extension_support_night)
+        extensionSupport?.hdr == true ->
+            stringResource(R.string.photo_settings_extension_support_hdr)
+        else ->
+            stringResource(R.string.photo_settings_extension_support_none)
+    }
 
     fun update(transform: (PhotoCaptureSettings) -> PhotoCaptureSettings) {
         if (!enabled) return
@@ -171,7 +196,7 @@ fun PhotoCaptureSettingsScreen(
                         title = stringResource(R.string.photo_settings_extension_title),
                         description = stringResource(
                             R.string.photo_settings_extension_description
-                        ),
+                        ) + "\n" + extensionSupportText,
                         values = PhotoCaptureExtensionMode.entries,
                         selected = photoSettings.extensionMode,
                         label = {
