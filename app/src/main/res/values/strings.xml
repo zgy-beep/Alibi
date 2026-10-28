@@ -414,4 +414,47 @@
     <string name="ui_settings_option_filenameFormat_success">The new format will be used for future recordings</string>
     <string name="ui_settings_option_filenameFormat_action_now_label">Save time</string>
     <string name="ui_settings_option_filenameFormat_action_now_explanation">Use the time you saved the recording</string>
+
+    <!-- Subpage Titles & Summaries -->
+    <string name="audio_settings_page_title">Audio settings</string>
+    <string name="audio_settings_page_description">Configure recording duration, audio encoder, sampling rate, format, and bitrate.</string>
+    <string name="audio_settings_section_duration">Duration &amp; Retention</string>
+    <string name="audio_settings_section_duration_description">Set maximum duration, interval slicing, and auto-delete policy.</string>
+    <string name="audio_settings_section_encoding">Audio Encoding &amp; Format</string>
+    <string name="audio_settings_section_encoding_description">Fine-tune microphone inputs, sample rates, formats, and encoders.</string>
+
+    <string name="video_settings_page_title">Video settings</string>
+    <string name="video_settings_page_description">Configure video recording quality, bitrate, and frame rate.</string>
+    <string name="video_settings_section_quality">Video Quality &amp; Performance</string>
+    <string name="video_settings_section_quality_description">Adjust capture resolution, encoding bitrate, and frame rate.</string>
+    <string name="video_settings_section_duration">Recording Duration</string>
+    <string name="video_settings_section_duration_description">Video recordings follow the global retention duration and interval slicing settings.</string>
+
+    <string name="storage_settings_page_title">Storage &amp; backup</string>
+    <string name="storage_settings_page_description">Manage where recordings are saved, timestamp filename formats, and settings backup.</string>
+    <string name="storage_settings_section_location">Storage location</string>
+    <string name="storage_settings_section_location_description">Choose between internal private storage or the public DCIM folder.</string>
+    <string name="storage_settings_section_naming">Filename format</string>
+    <string name="storage_settings_section_naming_description">Choose how recording batches and final exports are named.</string>
+
+    <string name="settings_section_modes_title">Capture Modes</string>
+    <string name="settings_section_modes_description">Audio loop recording, video recording, and camera capture preferences.</string>
+    <string name="settings_section_system_title">Preferences &amp; System</string>
+    <string name="settings_section_system_description">Appearance, storage management, notifications, and security.</string>
+
+    <!-- About Screen -->
+    <string name="about_app_slogan">Private, lightweight loop recording &amp; discrete capture</string>
+    <string name="about_version_copied">Version info copied to clipboard</string>
+    <string name="about_section_privacy_title">Privacy &amp; Architecture</string>
+    <string name="about_privacy_offline_title">100% Offline</string>
+    <string name="about_privacy_offline_desc">Zero internet permissions. No telemetry, no third-party tracking, all audio and photos stay locally on your device.</string>
+    <string name="about_privacy_loop_title">Smart Loop Retention</string>
+    <string name="about_privacy_loop_desc">Automatically cycles and deletes historical slices so your storage is never filled.</string>
+    <string name="about_privacy_discrete_title">Discrete Capture</string>
+    <string name="about_privacy_discrete_desc">Designed for quiet, rapid documentation with black screen and floating trigger support.</string>
+    <string name="about_section_community_title">Open Source</string>
+    <string name="about_repo_title">GitHub Repository</string>
+    <string name="about_repo_desc">View source code, release tags, and issue discussions</string>
+    <string name="about_license_title">License</string>
+    <string name="about_license_desc">GNU General Public License v3.0 (GPL-3.0)</string>
 </resources>

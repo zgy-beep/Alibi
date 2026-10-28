@@ -401,4 +401,47 @@
     <string name="photo_action_stop">停止拍照</string>
     <string name="photo_action_open_black">打开黑屏页面</string>
     <string name="photo_mode_active_hint">按 Home 键，然后在其他应用中点击悬浮按钮拍照。</string>
+
+    <!-- 子页面标题与摘要 -->
+    <string name="audio_settings_page_title">音频录制设置</string>
+    <string name="audio_settings_page_description">配置录制保留时长、音频编码器、采样率、输出格式与比特率。</string>
+    <string name="audio_settings_section_duration">时长与保留策略</string>
+    <string name="audio_settings_section_duration_description">设置最大保留时长、切片切分间隔与旧录音自动删除策略。</string>
+    <string name="audio_settings_section_encoding">音频编码与格式</string>
+    <string name="audio_settings_section_encoding_description">微调麦克风输入源、采样率、编码格式与比特率。</string>
+
+    <string name="video_settings_page_title">视频录制设置</string>
+    <string name="video_settings_page_description">配置视频录制质量、码率与帧率规格。</string>
+    <string name="video_settings_section_quality">视频质量与规格</string>
+    <string name="video_settings_section_quality_description">调整视频分辨率画质级别、编码比特率与目标帧率。</string>
+    <string name="video_settings_section_duration">录制时长规则</string>
+    <string name="video_settings_section_duration_description">视频录制遵循全局设定的循环保留时长与分段切片间隔。</string>
+
+    <string name="storage_settings_page_title">存储与备份</string>
+    <string name="storage_settings_page_description">管理录制文件存储路径、时间戳命名规则与应用配置导入导出。</string>
+    <string name="storage_settings_section_location">存储路径</string>
+    <string name="storage_settings_section_location_description">在应用内部私有目录与公共 DCIM 相册目录之间切换。</string>
+    <string name="storage_settings_section_naming">文件命名格式</string>
+    <string name="storage_settings_section_naming_description">选择录音片段与合并文件的时间戳命名规则。</string>
+
+    <string name="settings_section_modes_title">记录模式</string>
+    <string name="settings_section_modes_description">音频循环录音、视频录制与照相抓拍设置。</string>
+    <string name="settings_section_system_title">系统与偏好</string>
+    <string name="settings_section_system_description">外观主题、存储管理、通知与应用安全。</string>
+
+    <!-- 关于页面 -->
+    <string name="about_app_slogan">私密、轻量的离线循环留痕与取证记录</string>
+    <string name="about_version_copied">已复制版本信息到剪贴板</string>
+    <string name="about_section_privacy_title">隐私与架构</string>
+    <string name="about_privacy_offline_title">100% 本地离线</string>
+    <string name="about_privacy_offline_desc">无需网络权限、无遥测数据、无第三方统计，所有音视频与照片数据完全留存在您的设备本地。</string>
+    <string name="about_privacy_loop_title">智能循环保留</string>
+    <string name="about_privacy_loop_desc">根据设定的保留时长自动滚动清理历史切片，永远不用担心占满手机磁盘空间。</string>
+    <string name="about_privacy_discrete_title">离散静默取证</string>
+    <string name="about_privacy_discrete_desc">专为低干扰与安全取证设计，支持暗屏拍照、微型悬浮快门与静音震动确认。</string>
+    <string name="about_section_community_title">开源项目</string>
+    <string name="about_repo_title">GitHub 仓库</string>
+    <string name="about_repo_desc">查看源代码、Release 发行版与提交 Issue</string>
+    <string name="about_license_title">开源许可证</string>
+    <string name="about_license_desc">GNU General Public License v3.0 (GPL-3.0)</string>
 </resources>

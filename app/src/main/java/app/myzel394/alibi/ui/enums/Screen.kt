@@ -8,6 +8,9 @@ sealed class Screen(val route: String) {
     data object About : Screen("about")
     data object PhotoCapture : Screen("photo-capture")
     data object PhotoCaptureSettings : Screen("photo-capture-settings")
+    data object AudioSettings : Screen("audio-settings")
+    data object VideoSettings : Screen("video-settings")
+    data object StorageSettings : Screen("storage-settings")
     data object BlackPhoto : Screen("black-photo")
     data object RecentPhotos : Screen("recent-photos")
 

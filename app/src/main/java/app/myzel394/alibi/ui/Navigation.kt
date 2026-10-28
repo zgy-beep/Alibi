@@ -34,13 +34,16 @@ import app.myzel394.alibi.services.PhotoCaptureStatus
 import app.myzel394.alibi.ui.components.atoms.LocalAlibiRuntimeStatus
 import app.myzel394.alibi.ui.components.atoms.RuntimeStatus
 import app.myzel394.alibi.ui.screens.AboutScreen
-import app.myzel394.alibi.ui.screens.CustomRecordingNotificationsScreen
+import app.myzel394.alibi.ui.screens.AudioSettingsScreen
 import app.myzel394.alibi.ui.screens.BlackPhotoScreen
-import app.myzel394.alibi.ui.screens.PhotoSetupScreen
+import app.myzel394.alibi.ui.screens.CustomRecordingNotificationsScreen
 import app.myzel394.alibi.ui.screens.PhotoCaptureSettingsScreen
-import app.myzel394.alibi.ui.screens.RecorderScreen
+import app.myzel394.alibi.ui.screens.PhotoSetupScreen
 import app.myzel394.alibi.ui.screens.RecentPhotosScreen
+import app.myzel394.alibi.ui.screens.RecorderScreen
 import app.myzel394.alibi.ui.screens.SettingsScreen
+import app.myzel394.alibi.ui.screens.StorageSettingsScreen
+import app.myzel394.alibi.ui.screens.VideoSettingsScreen
 import app.myzel394.alibi.ui.screens.WelcomeScreen
 import app.myzel394.alibi.ui.theme.AlibiMotion
 import app.myzel394.alibi.ui.theme.LocalReduceMotion
@@ -131,157 +134,204 @@ fun Navigation(
                 Screen.Welcome.route
             },
         ) {
-        composable(Screen.Welcome.route) {
-            WelcomeScreen(
-                onNavigateToAudioRecorderScreen = {
-                    navController.navigate(Screen.AudioRecorder.route)
+            composable(Screen.Welcome.route) {
+                WelcomeScreen(
+                    onNavigateToAudioRecorderScreen = {
+                        navController.navigate(Screen.AudioRecorder.route)
+                    },
+                )
+            }
+            composable(
+                Screen.AudioRecorder.route,
+                enterTransition = {
+                    when (initialState.destination.route) {
+                        Screen.Welcome.route -> null
+                        else -> popEnter(reduceMotion)
+                    }
                 },
-            )
-        }
-        composable(
-            Screen.AudioRecorder.route,
-            enterTransition = {
-                when (initialState.destination.route) {
-                    Screen.Welcome.route -> null
-                    else -> popEnter(reduceMotion)
-                }
-            },
-            exitTransition = { pushExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            RecorderScreen(
-                onNavigateToSettingsScreen = {
-                    navController.navigate(Screen.Settings.route)
+                exitTransition = { pushExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                RecorderScreen(
+                    onNavigateToSettingsScreen = {
+                        navController.navigate(Screen.Settings.route)
+                    },
+                    onNavigateToPhotoCapture = {
+                        navController.navigate(Screen.PhotoCapture.route)
+                    },
+                    audioRecorder = audioRecorder,
+                    videoRecorder = videoRecorder,
+                    photoCapture = photoCapture,
+                    settings = settings,
+                )
+            }
+            composable(
+                Screen.PhotoCapture.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                PhotoSetupScreen(
+                    photoCapture = photoCapture,
+                    settings = settings,
+                    onBackNavigate = navController::popBackStack,
+                    onOpenBlackScreen = {
+                        navController.navigate(Screen.BlackPhoto.route)
+                    },
+                    onOpenPhotoSettings = {
+                        navController.navigate(Screen.PhotoCaptureSettings.route)
+                    },
+                    onOpenGallery = {
+                        navController.navigate(Screen.RecentPhotos.route)
+                    },
+                )
+            }
+            composable(
+                Screen.PhotoCaptureSettings.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                PhotoCaptureSettingsScreen(
+                    photoCapture = photoCapture,
+                    onBackNavigate = navController::popBackStack,
+                )
+            }
+            composable(
+                Screen.AudioSettings.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                AudioSettingsScreen(
+                    audioRecorder = audioRecorder,
+                    onBackNavigate = navController::popBackStack,
+                )
+            }
+            composable(
+                Screen.VideoSettings.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                VideoSettingsScreen(
+                    videoRecorder = videoRecorder,
+                    onBackNavigate = navController::popBackStack,
+                )
+            }
+            composable(
+                Screen.StorageSettings.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                StorageSettingsScreen(
+                    photoCapture = photoCapture,
+                    audioRecorder = audioRecorder,
+                    videoRecorder = videoRecorder,
+                    onBackNavigate = navController::popBackStack,
+                )
+            }
+            composable(
+                Screen.BlackPhoto.route,
+                enterTransition = {
+                    fadeIn(AlibiMotion.page(reduceMotion)) +
+                        scaleIn(
+                            initialScale = 0.99f,
+                            animationSpec = AlibiMotion.page(reduceMotion),
+                        )
                 },
-                onNavigateToPhotoCapture = {
-                    navController.navigate(Screen.PhotoCapture.route)
+                exitTransition = {
+                    fadeOut(AlibiMotion.state(reduceMotion)) +
+                        scaleOut(
+                            targetScale = 1.01f,
+                            animationSpec = AlibiMotion.state(reduceMotion),
+                        )
                 },
-                audioRecorder = audioRecorder,
-                videoRecorder = videoRecorder,
-                photoCapture = photoCapture,
-                settings = settings,
-            )
-        }
-        composable(
-            Screen.PhotoCapture.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            PhotoSetupScreen(
-                photoCapture = photoCapture,
-                settings = settings,
-                onBackNavigate = navController::popBackStack,
-                onOpenBlackScreen = {
-                    navController.navigate(Screen.BlackPhoto.route)
+                popEnterTransition = { fadeEnter(reduceMotion) },
+                popExitTransition = {
+                    fadeOut(AlibiMotion.state(reduceMotion)) +
+                        scaleOut(
+                            targetScale = 1.01f,
+                            animationSpec = AlibiMotion.state(reduceMotion),
+                        )
                 },
-                onOpenPhotoSettings = {
-                    navController.navigate(Screen.PhotoCaptureSettings.route)
-                },
-                onOpenGallery = {
-                    navController.navigate(Screen.RecentPhotos.route)
-                },
-            )
-        }
-        composable(
-            Screen.PhotoCaptureSettings.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            PhotoCaptureSettingsScreen(
-                photoCapture = photoCapture,
-                onBackNavigate = navController::popBackStack,
-            )
-        }
-        composable(
-            Screen.BlackPhoto.route,
-            enterTransition = {
-                fadeIn(AlibiMotion.page(reduceMotion)) +
-                    scaleIn(
-                        initialScale = 0.99f,
-                        animationSpec = AlibiMotion.page(reduceMotion),
-                    )
-            },
-            exitTransition = {
-                fadeOut(AlibiMotion.state(reduceMotion)) +
-                    scaleOut(
-                        targetScale = 1.01f,
-                        animationSpec = AlibiMotion.state(reduceMotion),
-                    )
-            },
-            popEnterTransition = { fadeEnter(reduceMotion) },
-            popExitTransition = {
-                fadeOut(AlibiMotion.state(reduceMotion)) +
-                    scaleOut(
-                        targetScale = 1.01f,
-                        animationSpec = AlibiMotion.state(reduceMotion),
-                    )
-            },
-        ) {
-            BlackPhotoScreen(
-                photoCapture = photoCapture,
-                settings = settings,
-                onExit = {
-                    navController.popBackStack(Screen.AudioRecorder.route, false)
-                },
-            )
-        }
-        composable(
-            Screen.RecentPhotos.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            RecentPhotosScreen(onBackNavigate = navController::popBackStack)
-        }
-        composable(
-            Screen.Settings.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            SettingsScreen(
-                onBackNavigate = navController::popBackStack,
-                onNavigateToCustomRecordingNotifications = {
-                    navController.navigate(Screen.CustomRecordingNotifications.route)
-                },
-                onNavigateToAboutScreen = { navController.navigate(Screen.About.route) },
-                onNavigateToPhotoCaptureSettings = {
-                    navController.navigate(Screen.PhotoCaptureSettings.route)
-                },
-                audioRecorder = audioRecorder,
-                videoRecorder = videoRecorder,
-                photoCapture = photoCapture,
-            )
-        }
-        composable(
-            Screen.CustomRecordingNotifications.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            CustomRecordingNotificationsScreen(
-                onBackNavigate = navController::popBackStack
-            )
-        }
-        composable(
-            Screen.About.route,
-            enterTransition = { pushEnter(reduceMotion) },
-            exitTransition = { fadeExit(reduceMotion) },
-            popEnterTransition = { popEnter(reduceMotion) },
-            popExitTransition = { popExit(reduceMotion) },
-        ) {
-            AboutScreen(
-                onBackNavigate = navController::popBackStack,
-            )
-        }
+            ) {
+                BlackPhotoScreen(
+                    photoCapture = photoCapture,
+                    settings = settings,
+                    onExit = {
+                        navController.popBackStack(Screen.AudioRecorder.route, false)
+                    },
+                )
+            }
+            composable(
+                Screen.RecentPhotos.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                RecentPhotosScreen(onBackNavigate = navController::popBackStack)
+            }
+            composable(
+                Screen.Settings.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                SettingsScreen(
+                    onBackNavigate = navController::popBackStack,
+                    onNavigateToAudioSettings = {
+                        navController.navigate(Screen.AudioSettings.route)
+                    },
+                    onNavigateToVideoSettings = {
+                        navController.navigate(Screen.VideoSettings.route)
+                    },
+                    onNavigateToPhotoCaptureSettings = {
+                        navController.navigate(Screen.PhotoCaptureSettings.route)
+                    },
+                    onNavigateToStorageSettings = {
+                        navController.navigate(Screen.StorageSettings.route)
+                    },
+                    onNavigateToCustomRecordingNotifications = {
+                        navController.navigate(Screen.CustomRecordingNotifications.route)
+                    },
+                    onNavigateToAboutScreen = { navController.navigate(Screen.About.route) },
+                    audioRecorder = audioRecorder,
+                    videoRecorder = videoRecorder,
+                    photoCapture = photoCapture,
+                )
+            }
+            composable(
+                Screen.CustomRecordingNotifications.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                CustomRecordingNotificationsScreen(
+                    onBackNavigate = navController::popBackStack
+                )
+            }
+            composable(
+                Screen.About.route,
+                enterTransition = { pushEnter(reduceMotion) },
+                exitTransition = { fadeExit(reduceMotion) },
+                popEnterTransition = { popEnter(reduceMotion) },
+                popExitTransition = { popExit(reduceMotion) },
+            ) {
+                AboutScreen(
+                    onBackNavigate = navController::popBackStack,
+                )
+            }
         }
     }
 }
