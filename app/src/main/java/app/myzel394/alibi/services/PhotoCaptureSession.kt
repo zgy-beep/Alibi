@@ -1,8 +1,18 @@
 package app.myzel394.alibi.services
 
+import androidx.camera.core.CameraSelector
+import app.myzel394.alibi.db.PhotoFlashMode
+
 enum class PhotoCaptureMode {
     BLACK_SCREEN,
     FLOATING,
+
+    /**
+     * In-app standard camera: the session owns a real, always-visible viewfinder
+     * (the screen supplies the Preview surface provider) and never shows the
+     * floating overlay.
+     */
+    STANDARD,
 }
 
 enum class PhotoCaptureStatus {
@@ -24,6 +34,13 @@ data class PhotoCaptureSessionState(
     val queuedCaptures: Int = 0,
     val pendingCaptures: Int = 0,
     val zoomRatio: Float = 1f,
+    /** Currently bound camera lens (one of [CameraSelector]'s `LENS_FACING_*`). */
+    val lensFacing: Int = CameraSelector.LENS_FACING_BACK,
+    /** Requested flash mode; camera extensions may disable it internally. */
+    val flashMode: PhotoFlashMode = PhotoFlashMode.OFF,
+    /** Supported zoom range of the currently bound camera, for UI slider bounds. */
+    val zoomMinRatio: Float = 1f,
+    val zoomMaxRatio: Float = 1f,
 ) {
     val canAcceptCapture: Boolean
         get() = pendingCaptures < MAX_PENDING_CAPTURES &&

@@ -7,8 +7,8 @@ repository. Read it before changing code.
 
 1. **每一次用户可见的修复或功能改动，都必须提升版本号并打包发布**，不能只提交代码、不能只留在工作区。
    - Patch 版本：`0.6.x`，`versionCode` 每次 +1。
-   - 当前已发布：`0.6.7 (24)`，tag `v0.6.7`，
-     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.7>。
+   - 当前已发布：`0.6.8 (25)`，tag `v0.6.8`，
+     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.8>。
 2. 发布流程固定为：
    - 在 `app/build.gradle` 提升 `versionCode` / `versionName`；
    - 新增 `docs/releases/<version>.md` 发布说明；
@@ -60,6 +60,23 @@ repository. Read it before changing code.
   `VideoCapture.Builder.setVideoStabilizationEnabled(true)`。
 - 取景器分辨率显式指定（拍照 1440×1080 / 1920×1080，录像 1280×960），
   不要再依赖 CameraX 的 640×480 默认值；绑定失败的回退链必须保留。
+- 标准相机模式（0.6.8 起，`ui/screens/StandardCameraScreen.kt`）：
+  - 这是**可选**的、类似系统相机的界面（首页“标准相机”入口）；隐蔽模式仍是默认体验，
+    改动必须保证 BLACK_SCREEN/FLOATING/隐蔽录像三条路径不受影响。
+  - 拍照走 `PhotoCaptureMode.STANDARD`：对焦用
+    `PhotoCaptureModel.setMeteringPointFactory(PreviewView.meteringPointFactory)` +
+    `requestFocus(viewX, viewY)`；镜头/闪光切换用 `reconfigure(lensFacing?, flashMode?)`，
+    正在拍摄/保存时会被丢弃（按钮状态保持旧值），重绑期间状态为 STARTING。
+  - 录像走 `VideoRecorderService`：服务与 `VideoCapture` 同时绑定 `Preview`，
+    `setPreviewSurfaceProvider(null)` 只是去掉取景器、录制继续；录制中变焦用
+    `zoomDuringRecording`（`SmoothZoom` + 队列，作用于成片），对焦用 `focusAt`。
+  - 保存回调（`RecorderEventsHandler`）已上移到 `Navigation`，两个界面共用；
+    不要把注册逻辑挪回 `RecorderScreen`，否则标准相机停止录像时会抛
+    `NotImplementedError`。
+  - 单摄像头设备必须隐藏镜头切换（用 `CameraInfo.queryAvailableCameras` 判断）；
+    标准相机界面按竖屏设计，旋转重建未专项验证。
+  - 回归测试：`StandardCameraInstrumentedTest`（STANDARD 会话/对焦/重绑、录制中清空取景器
+    与实时变焦）。
 
 ## 验证门槛与验收流程（强制）
 

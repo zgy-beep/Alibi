@@ -447,4 +447,32 @@
     <string name="about_repo_desc">查看源代码、Release 发行版与提交 Issue</string>
     <string name="about_license_title">开源许可证</string>
     <string name="about_license_desc">GNU General Public License v3.0 (GPL-3.0)</string>
+    <!-- Standard camera mode (0.6.8) -->
+    <string name="camera_standard_title">相机</string>
+    <string name="camera_standard_entry_title">标准相机</string>
+    <string name="camera_standard_entry_description">全屏取景、点按对焦、双指变焦</string>
+    <string name="camera_standard_mode_photo">拍照</string>
+    <string name="camera_standard_mode_video">录像</string>
+    <string name="camera_standard_take_photo">拍照</string>
+    <string name="camera_standard_start_recording">开始录像</string>
+    <string name="camera_standard_stop_recording">停止并保存</string>
+    <string name="camera_standard_pause_recording">暂停录像</string>
+    <string name="camera_standard_resume_recording">继续录像</string>
+    <string name="camera_standard_saving">正在保存…</string>
+    <string name="camera_standard_switch_lens">切换镜头</string>
+    <string name="camera_standard_flash_off">闪光灯：关闭</string>
+    <string name="camera_standard_flash_auto">闪光灯：自动</string>
+    <string name="camera_standard_flash_on">闪光灯：开启</string>
+    <string name="camera_standard_torch_on">打开手电筒</string>
+    <string name="camera_standard_torch_off">关闭手电筒</string>
+    <string name="camera_standard_torch_unavailable">当前镜头没有补光灯</string>
+    <string name="camera_standard_close">退出相机</string>
+    <string name="camera_standard_gallery">最近照片</string>
+    <string name="camera_standard_focus_hint">点按对焦</string>
+    <string name="camera_standard_focus_done">对焦完成</string>
+    <string name="camera_standard_focus_failed">对焦失败</string>
+    <string name="camera_standard_permission">标准相机需要相机权限。</string>
+    <string name="camera_standard_starting">正在启动相机…</string>
+    <string name="camera_standard_error">相机无法启动。</string>
+    <string name="camera_standard_recording_zoom_hint">录像中可双指缩放</string>
 </resources>

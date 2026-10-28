@@ -33,7 +33,6 @@ import app.myzel394.alibi.db.RecordingInformation
 import app.myzel394.alibi.services.PhotoCaptureMode
 import app.myzel394.alibi.services.PhotoCaptureStatus
 import app.myzel394.alibi.ui.components.RecorderScreen.organisms.AudioRecordingStatus
-import app.myzel394.alibi.ui.components.RecorderScreen.organisms.RecorderEventsHandler
 import app.myzel394.alibi.ui.components.RecorderScreen.organisms.StartRecording
 import app.myzel394.alibi.ui.components.RecorderScreen.organisms.VideoRecordingStatus
 import app.myzel394.alibi.ui.components.atoms.AlibiTopAppBar
@@ -46,19 +45,14 @@ import kotlinx.coroutines.launch
 fun RecorderScreen(
     onNavigateToSettingsScreen: () -> Unit,
     onNavigateToPhotoCapture: () -> Unit,
+    onNavigateToStandardCamera: () -> Unit,
     audioRecorder: AudioRecorderModel,
     videoRecorder: VideoRecorderModel,
     photoCapture: PhotoCaptureModel,
     settings: AppSettings,
+    snackbarHostState: SnackbarHostState,
 ) {
-    val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
-    RecorderEventsHandler(
-        settings = settings,
-        snackbarHostState = snackbarHostState,
-        audioRecorder = audioRecorder,
-        videoRecorder = videoRecorder,
-    )
 
     // TopAppBar and AudioRecordingStart should be hidden when
     // the video preview is visible.
@@ -130,6 +124,7 @@ fun RecorderScreen(
                     },
                     showAudioRecorder = topBarVisible,
                     onOpenPhotoCapture = onNavigateToPhotoCapture,
+                    onOpenStandardCamera = onNavigateToStandardCamera,
                     onOpenSettings = onNavigateToSettingsScreen,
                     onHideTopBar = {
                         topBarVisible = false

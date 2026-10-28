@@ -460,4 +460,32 @@
     <string name="about_repo_desc">View source code, release tags, and issue discussions</string>
     <string name="about_license_title">License</string>
     <string name="about_license_desc">GNU General Public License v3.0 (GPL-3.0)</string>
+    <!-- Standard camera mode (0.6.8) -->
+    <string name="camera_standard_title">Camera</string>
+    <string name="camera_standard_entry_title">Standard camera</string>
+    <string name="camera_standard_entry_description">Full viewfinder, tap to focus, pinch to zoom</string>
+    <string name="camera_standard_mode_photo">Photo</string>
+    <string name="camera_standard_mode_video">Video</string>
+    <string name="camera_standard_take_photo">Take photo</string>
+    <string name="camera_standard_start_recording">Start recording</string>
+    <string name="camera_standard_stop_recording">Stop and save</string>
+    <string name="camera_standard_pause_recording">Pause recording</string>
+    <string name="camera_standard_resume_recording">Resume recording</string>
+    <string name="camera_standard_saving">Saving…</string>
+    <string name="camera_standard_switch_lens">Switch camera</string>
+    <string name="camera_standard_flash_off">Flash: off</string>
+    <string name="camera_standard_flash_auto">Flash: auto</string>
+    <string name="camera_standard_flash_on">Flash: on</string>
+    <string name="camera_standard_torch_on">Turn torch on</string>
+    <string name="camera_standard_torch_off">Turn torch off</string>
+    <string name="camera_standard_torch_unavailable">This camera has no light</string>
+    <string name="camera_standard_close">Close camera</string>
+    <string name="camera_standard_gallery">Recent photos</string>
+    <string name="camera_standard_focus_hint">Tap to focus</string>
+    <string name="camera_standard_focus_done">Focused</string>
+    <string name="camera_standard_focus_failed">Could not focus</string>
+    <string name="camera_standard_permission">Camera access is required for the standard camera.</string>
+    <string name="camera_standard_starting">Starting camera…</string>
+    <string name="camera_standard_error">The camera could not be started.</string>
+    <string name="camera_standard_recording_zoom_hint">Pinch to zoom while recording</string>
 </resources>

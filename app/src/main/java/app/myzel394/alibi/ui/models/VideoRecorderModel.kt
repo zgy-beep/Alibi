@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.MeteringPointFactory
+import androidx.camera.core.Preview
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -56,6 +58,27 @@ class VideoRecorderModel :
     var zoomMaxRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
         private set
 
+    /**
+     * Live zoom state of the recorder service's own viewfinder while recording.
+     * Kept separate from [zoomRatio] so the pre-record sheet zoom and the
+     * in-recording pinch never overwrite each other. Updated from the service's
+     * `onZoomChanged` (eased values) and reset when a recording starts.
+     */
+    var liveZoomRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
+    var liveZoomMinRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
+    var liveZoomMaxRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
+
+    /** `null` while no tap-to-focus result is pending, then the service result. */
+    var focusResult by mutableStateOf<Boolean?>(null)
+
+    // Delivered to the service once it (re)connects: the standard camera screen
+    // may hand over its viewfinder before the service exists.
+    private var previewSurfaceProvider: Preview.SurfaceProvider? = null
+    private var meteringPointFactory: MeteringPointFactory? = null
+
     override val isInRecording: Boolean
         get() = super.isInRecording
 
@@ -83,7 +106,70 @@ class VideoRecorderModel :
         zoomRatio = normalizeZoomRatio(ratio, min, max)
     }
 
+    /**
+     * The standard camera screen renders the recorder service's own preview into
+     * its viewfinder: it hands over the `PreviewView.surfaceProvider`. Repeated
+     * calls with the same provider are ignored, and a provider supplied before
+     * the service connected is applied once the service is there. Clearing it
+     * only detaches the viewfinder, the recording keeps running.
+     */
+    fun setPreviewSurfaceProvider(provider: Preview.SurfaceProvider?) {
+        if (previewSurfaceProvider === provider) {
+            return
+        }
+        previewSurfaceProvider = provider
+        recorderService?.setPreviewSurfaceProvider(provider)
+    }
+
+    /**
+     * Coordinate mapper for [focusAt], i.e. the viewfinder's
+     * `PreviewView.getMeteringPointFactory()`. Cached like the surface provider so
+     * it also works when it is supplied before the service connects.
+     */
+    fun setMeteringPointFactory(factory: MeteringPointFactory?) {
+        if (meteringPointFactory === factory) {
+            return
+        }
+        meteringPointFactory = factory
+        recorderService?.setMeteringPointFactory(factory)
+    }
+
+    /**
+     * Tap-to-focus at viewfinder pixel coordinates while recording. Clears the
+     * previous result; the service reports the new one through [focusResult]
+     * (or `false` when it cannot run the request).
+     */
+    fun focusAt(x: Float, y: Float) {
+        focusResult = null
+        val service = recorderService
+        if (service == null) {
+            focusResult = false
+            return
+        }
+        service.focusAt(x, y)
+    }
+
+    /** Lets the UI hide the focus ring after it has shown the last result long enough. */
+    fun clearFocusResult() {
+        focusResult = null
+    }
+
+    /**
+     * Relative pinch input while recording. The service eases it at camera level,
+     * so both the live viewfinder and the recorded file follow the gesture.
+     */
+    fun zoomDuringRecording(factor: Float) {
+        recorderService?.zoomBy(factor)
+    }
+
     override fun startRecording(context: Context, settings: AppSettings) {
+        // A new recording starts from the pre-record zoom; the service reports
+        // the camera's real zoom range once its camera control is available.
+        liveZoomRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        liveZoomMinRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        liveZoomMaxRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        focusResult = null
+
         batchesFolder = when (settings.saveFolder) {
             null -> VideoBatchesFolder.viaInternalFolder(context)
             RECORDER_MEDIA_SELECTED_VALUE -> VideoBatchesFolder.viaMediaFolder(context)
@@ -116,12 +202,51 @@ class VideoRecorderModel :
             isStartingRecording = false
         }
 
+        service.onZoomChanged = { ratio, minRatio, maxRatio ->
+            liveZoomMinRatio = minRatio
+            liveZoomMaxRatio = maxRatio
+            liveZoomRatio = normalizeZoomRatio(ratio, minRatio, maxRatio)
+        }
+        service.onFocusChanged = { focused ->
+            focusResult = focused
+        }
+        // Re-apply what the standard camera screen supplied before the service
+        // connection existed (idempotent on the service side).
+        service.setPreviewSurfaceProvider(previewSurfaceProvider)
+        service.setMeteringPointFactory(meteringPointFactory)
+        // The camera may already be bound when reconnecting to a running service.
+        syncLiveZoom(service)
+
         service.onCameraControlAvailable = {
             isStartingRecording = false
+            syncLiveZoom(service)
         }
 
         recorderState = service.state
         recordingTime = service.recordingTime
+    }
+
+    /** Mirrors the service's zoom state into the Compose state the viewfinder reads. */
+    private fun syncLiveZoom(service: VideoRecorderService) {
+        val control = service.cameraControl ?: return
+        val min = control.zoomMinRatio
+        val max = control.zoomMaxRatio
+        liveZoomMinRatio = min
+        liveZoomMaxRatio = max
+        liveZoomRatio = normalizeZoomRatio(service.cameraZoomRatio, min, max)
+    }
+
+    override fun reset() {
+        val service = recorderService
+        service?.onZoomChanged = null
+        service?.onFocusChanged = null
+        liveZoomRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        liveZoomMinRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        liveZoomMaxRatio = DEFAULT_VIDEO_ZOOM_RATIO
+        focusResult = null
+        previewSurfaceProvider = null
+        meteringPointFactory = null
+        super.reset()
     }
 
     override fun handleIntent(intent: Intent) =

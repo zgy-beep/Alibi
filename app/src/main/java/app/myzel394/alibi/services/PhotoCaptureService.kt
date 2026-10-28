@@ -33,10 +33,13 @@ import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.ExperimentalZeroShutterLag
+import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.MeteringPointFactory
 import androidx.camera.core.Preview
+import androidx.camera.core.ZoomState
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
@@ -88,6 +91,7 @@ import java.util.UUID
 import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.math.abs
@@ -164,6 +168,14 @@ class PhotoCaptureService : LifecycleService() {
     private var imageAnalysis: ImageAnalysis? = null
     private var preview: Preview? = null
     private var previewSurfaceProvider: Preview.SurfaceProvider? = null
+    /**
+     * Supplied by the standard camera screen from `PreviewView.getMeteringPointFactory()`;
+     * it already applies the viewfinder's FILL_CENTER transform, so
+     * [requestFocus] receives raw view pixels.
+     */
+    private var meteringPointFactory: MeteringPointFactory? = null
+    /** Invalidates focus results that arrive after the camera was released. */
+    private var focusRequestGeneration = 0
     private var appVisible = true
     private var isStopping = false
     private var stopFinalized = false
@@ -203,6 +215,7 @@ class PhotoCaptureService : LifecycleService() {
 
     var onStateChanged: ((PhotoCaptureSessionState) -> Unit)? = null
     var onZoomChanged: ((Float) -> Unit)? = null
+    var onFocusChanged: ((focused: Boolean) -> Unit)? = null
 
     var state = PhotoCaptureSessionState()
         private set
@@ -303,6 +316,141 @@ class PhotoCaptureService : LifecycleService() {
     }
 
     /**
+     * Coordinate mapper for [requestFocus]. The standard camera screen passes the
+     * `PreviewView.getMeteringPointFactory()` of its viewfinder; that factory
+     * already applies the FILL_CENTER transform, so [requestFocus] receives raw
+     * view pixels. Pass `null` when the viewfinder is detached.
+     */
+    fun setMeteringPointFactory(factory: MeteringPointFactory?) {
+        meteringPointFactory = factory
+    }
+
+    /**
+     * Starts an AF+AE metering/focus pass at [xPixels]/[yPixels] (viewfinder pixel
+     * space) and reports the outcome asynchronously through [onFocusChanged] on
+     * the main thread. Missing camera/factory and CameraX failures report
+     * `false`, so the UI can always settle its focus indicator.
+     */
+    fun requestFocus(xPixels: Float, yPixels: Float) {
+        if (isStopping || stopFinalized) {
+            onFocusChanged?.invoke(false)
+            return
+        }
+        val camera = camera
+        val factory = meteringPointFactory
+        if (camera == null || factory == null ||
+            !xPixels.isFinite() || !yPixels.isFinite()
+        ) {
+            onFocusChanged?.invoke(false)
+            return
+        }
+
+        val point = runCatching { factory.createPoint(xPixels, yPixels) }.getOrNull()
+        if (point == null) {
+            onFocusChanged?.invoke(false)
+            return
+        }
+        val generation = ++focusRequestGeneration
+        val action = FocusMeteringAction.Builder(
+            point,
+            FocusMeteringAction.FLAG_AF or FocusMeteringAction.FLAG_AE,
+        )
+            .setAutoCancelDuration(FOCUS_AUTO_CANCEL_SECONDS, TimeUnit.SECONDS)
+            .build()
+        val future = runCatching {
+            camera.cameraControl.startFocusAndMetering(action)
+        }.getOrNull()
+        if (future == null) {
+            onFocusChanged?.invoke(false)
+            return
+        }
+        future.addListener(
+            {
+                // A newer focus request, a reconfigure or a teardown makes this
+                // result stale: never report it to the UI.
+                if (generation != focusRequestGeneration) {
+                    return@addListener
+                }
+                val focused = runCatching { future.get().isFocusSuccessful }
+                    .getOrDefault(false)
+                onFocusChanged?.invoke(focused)
+            },
+            ContextCompat.getMainExecutor(this),
+        )
+    }
+
+    /**
+     * Runtime lens/flash switch that keeps the service, session id, mode and
+     * preview surface provider alive; only the camera use cases are rebound.
+     *
+     * The current zoom ratio is carried over as the initial zoom of the new
+     * camera. Requests are dropped (the UI just keeps its buttons in the old
+     * state) while a capture or save is still in flight, because rebinding the
+     * use cases mid-flight could strand a queued request on the wrong
+     * [ImageCapture]. A request that changes neither lens nor flash is a no-op.
+     */
+    fun reconfigure(lensFacing: Int? = null, flashMode: PhotoFlashMode? = null) {
+        val currentSession = session ?: return
+        if (isStopping || stopFinalized) {
+            return
+        }
+        if (captureInFlight ||
+            captureQueue.isNotEmpty() ||
+            saveWorkerRunning ||
+            saveQueue.isNotEmpty()
+        ) {
+            return
+        }
+        if (lensFacing != null &&
+            lensFacing != CameraSelector.LENS_FACING_BACK &&
+            lensFacing != CameraSelector.LENS_FACING_FRONT
+        ) {
+            return
+        }
+
+        val newLensFacing = lensFacing ?: currentSession.lensFacing
+        val newFlashMode = flashMode ?: currentSession.photoSettings.flashMode
+        if (newLensFacing == currentSession.lensFacing &&
+            newFlashMode == currentSession.photoSettings.flashMode
+        ) {
+            return
+        }
+
+        // Preserve what the user currently sees. The value travels through
+        // PhotoCaptureSettings.lastZoomRatio because initializeCamera applies it
+        // as the initial zoom of the freshly bound camera.
+        val preservedZoom = state.zoomRatio
+            .takeIf { it.isFinite() && it > 0f }
+            ?: currentSession.photoSettings.lastZoomRatio
+        val updatedSession = currentSession.copy(
+            lensFacing = newLensFacing,
+            photoSettings = currentSession.photoSettings.copy(
+                lensFacing = newLensFacing,
+                flashMode = newFlashMode,
+                lastZoomRatio = preservedZoom,
+            ),
+        )
+
+        initializationJob?.cancel()
+        initializationJob = null
+        releaseCamera()
+        session = updatedSession
+        publish(
+            state.copy(
+                status = PhotoCaptureStatus.STARTING,
+                mode = updatedSession.mode,
+                error = null,
+                canRetrySave = false,
+                lensFacing = newLensFacing,
+                flashMode = newFlashMode,
+            )
+        )
+        initializationJob = scope.launch {
+            initializeCamera(updatedSession)
+        }
+    }
+
+    /**
      * Relative pinch input. The accumulated target is eased toward by a ~16 ms
      * ticker, so the preview tracks the fingers continuously instead of
      * stepping once per touch sample, and at most one CameraX request is in
@@ -350,6 +498,7 @@ class PhotoCaptureService : LifecycleService() {
         smoothZoom.setBounds(zoomState.minZoomRatio, zoomState.maxZoomRatio)
         val clamped = smoothZoom.snapTo(target)
         cancelZoomTicker()
+        syncZoomBounds(zoomState)
 
         if (abs(clamped - state.zoomRatio) >= ZOOM_EPSILON) {
             // Zoom-only update: update the session state optimistically without
@@ -417,6 +566,7 @@ class PhotoCaptureService : LifecycleService() {
         if (!ratio.isFinite()) {
             return
         }
+        syncZoomBounds(camera?.cameraInfo?.zoomState?.value)
         val changed = abs(ratio - state.zoomRatio) >= ZOOM_STATE_PUBLISH_EPSILON
         if (changed) {
             state = state.copy(zoomRatio = ratio)
@@ -425,6 +575,27 @@ class PhotoCaptureService : LifecycleService() {
         if (changed || force) {
             updateOverlayZoom(ratio = ratio, force = force)
         }
+    }
+
+    /**
+     * Keeps [PhotoCaptureSessionState.zoomMinRatio]/[PhotoCaptureSessionState.zoomMaxRatio]
+     * in sync with the bound camera (they change when [reconfigure] switches
+     * lens). Does not publish the session state: bounds are UI-only data and the
+     * zoom ticker must not force a full recomposition.
+     */
+    private fun syncZoomBounds(zoomState: ZoomState?) {
+        if (zoomState == null) {
+            return
+        }
+        if (state.zoomMinRatio == zoomState.minZoomRatio &&
+            state.zoomMaxRatio == zoomState.maxZoomRatio
+        ) {
+            return
+        }
+        state = state.copy(
+            zoomMinRatio = zoomState.minZoomRatio,
+            zoomMaxRatio = zoomState.maxZoomRatio,
+        )
     }
 
     /**
@@ -1030,261 +1201,286 @@ class PhotoCaptureService : LifecycleService() {
             PhotoCaptureSessionState(
                 status = PhotoCaptureStatus.STARTING,
                 mode = mode,
+                lensFacing = sessionConfig.lensFacing,
+                flashMode = sessionConfig.photoSettings.flashMode,
             )
         )
 
         initializationJob = scope.launch {
-            try {
-                val provider = withContext(Dispatchers.IO) {
-                    ProcessCameraProvider.getInstance(this@PhotoCaptureService).get()
-                }
-                if (!isCurrentSession(sessionConfig.id) || isStopping) {
-                    return@launch
-                }
-                val selector = CameraSelector.Builder()
-                    .requireLensFacing(sessionConfig.lensFacing)
-                    .build()
+            initializeCamera(sessionConfig)
+        }
+    }
 
-                val cameraInfo = selector
-                    .filter(provider.availableCameraInfos)
-                    .firstOrNull()
-                    ?: error("The selected camera is not available")
-                val extensionSelection = resolveCameraExtension(
-                    provider = provider,
-                    selector = selector,
-                    requested = sessionConfig.photoSettings.extensionMode,
-                )
-                val bindSelector = extensionSelection?.cameraSelector ?: selector
-                val extensionActive = extensionSelection != null
-                val maxHardwareJpegPixels = queryMaxHardwareJpegPixels(cameraInfo)
-                val fastCaptureProfile = buildFastCaptureProfile(
-                    cameraInfo = cameraInfo,
-                    settings = sessionConfig.photoSettings,
-                    extensionActive = extensionActive,
-                )
-                val useSoftwareJpegEncoder = !extensionActive && shouldUseSoftwareJpegEncoder(
-                    qualityPriority = fastCaptureProfile.useQualityPriority,
-                    maxHardwareJpegPixels = maxHardwareJpegPixels,
-                )
-                if (fastCaptureProfile.useZeroShutterLag ||
-                    fastCaptureProfile.frameRateRange != null
-                ) {
-                    Log.i(
-                        TAG,
-                        "Capture profile ${sessionConfig.photoSettings.getEffectiveCaptureStrategy()}: " +
-                            "ZSL=${fastCaptureProfile.useZeroShutterLag}, " +
-                            "fps=${fastCaptureProfile.frameRateRange}, " +
-                            "OIS=${fastCaptureProfile.useOpticalStabilization}, " +
-                            "CAF=${fastCaptureProfile.useContinuousAutoFocus}",
-                    )
-                }
+    /**
+     * Binds every camera use case for [sessionConfig] and publishes the READY
+     * state (with the actual lens, flash mode and zoom bounds).
+     *
+     * Handles the camera-extension selection and its ZSL / software-JPEG /
+     * analysis / preview-resolution fallbacks, then applies the zoom ratio
+     * stored in [PhotoCaptureSettings.lastZoomRatio] (the session start value,
+     * or the ratio carried over by [reconfigure]).
+     *
+     * Shared by [startSession] and [reconfigure] so a runtime lens/flash switch
+     * takes exactly the same path as the initial start. Must be called from the
+     * main dispatcher.
+     */
+    @SuppressLint("RestrictedApi")
+    private suspend fun initializeCamera(sessionConfig: SessionConfig) {
+        try {
+            val provider = withContext(Dispatchers.IO) {
+                ProcessCameraProvider.getInstance(this@PhotoCaptureService).get()
+            }
+            if (!isCurrentSession(sessionConfig.id) || isStopping) {
+                return
+            }
+            val selector = CameraSelector.Builder()
+                .requireLensFacing(sessionConfig.lensFacing)
+                .build()
 
-                if (!isCurrentSession(sessionConfig.id) || isStopping) {
-                    return@launch
-                }
-                releaseCamera()
-                val captureMode = captureModeFor(fastCaptureProfile)
-                val jpegQuality = jpegQualityFor(fastCaptureProfile)
-                if (extensionActive && sessionConfig.photoSettings.flashMode != PhotoFlashMode.OFF) {
-                    Log.i(TAG, "Camera extension active; flash is disabled")
-                }
+            val cameraInfo = selector
+                .filter(provider.availableCameraInfos)
+                .firstOrNull()
+                ?: error("The selected camera is not available")
+            val extensionSelection = resolveCameraExtension(
+                provider = provider,
+                selector = selector,
+                requested = sessionConfig.photoSettings.extensionMode,
+            )
+            val bindSelector = extensionSelection?.cameraSelector ?: selector
+            val extensionActive = extensionSelection != null
+            val maxHardwareJpegPixels = queryMaxHardwareJpegPixels(cameraInfo)
+            val fastCaptureProfile = buildFastCaptureProfile(
+                cameraInfo = cameraInfo,
+                settings = sessionConfig.photoSettings,
+                extensionActive = extensionActive,
+            )
+            val useSoftwareJpegEncoder = !extensionActive && shouldUseSoftwareJpegEncoder(
+                qualityPriority = fastCaptureProfile.useQualityPriority,
+                maxHardwareJpegPixels = maxHardwareJpegPixels,
+            )
+            if (fastCaptureProfile.useZeroShutterLag ||
+                fastCaptureProfile.frameRateRange != null
+            ) {
                 Log.i(
                     TAG,
-                    "Image capture mode=$captureMode jpegQuality=$jpegQuality " +
-                        "resolution=${sessionConfig.photoSettings.resolutionPreference} " +
-                        "aspect=${sessionConfig.photoSettings.aspectRatio} " +
-                        "qualityPriority=${fastCaptureProfile.useQualityPriority} " +
-                        "hqNoiseReduction=${fastCaptureProfile.useHighQualityNoiseReduction} " +
-                        "hqEdge=${fastCaptureProfile.useHighQualityEdge} " +
-                        "softwareJpeg=$useSoftwareJpegEncoder " +
-                        "hardwareJpegMaxPixels=${maxHardwareJpegPixels ?: "unknown"} " +
-                        "extension=${extensionSelection?.let { extensionLabel(it.mode) } ?: "NONE"}",
+                    "Capture profile ${sessionConfig.photoSettings.getEffectiveCaptureStrategy()}: " +
+                        "ZSL=${fastCaptureProfile.useZeroShutterLag}, " +
+                        "fps=${fastCaptureProfile.frameRateRange}, " +
+                        "OIS=${fastCaptureProfile.useOpticalStabilization}, " +
+                        "CAF=${fastCaptureProfile.useContinuousAutoFocus}",
                 )
-                val captureBuilder = ImageCapture.Builder()
+            }
+
+            if (!isCurrentSession(sessionConfig.id) || isStopping) {
+                return
+            }
+            releaseCamera()
+            val captureMode = captureModeFor(fastCaptureProfile)
+            val jpegQuality = jpegQualityFor(fastCaptureProfile)
+            if (extensionActive && sessionConfig.photoSettings.flashMode != PhotoFlashMode.OFF) {
+                Log.i(TAG, "Camera extension active; flash is disabled")
+            }
+            Log.i(
+                TAG,
+                "Image capture mode=$captureMode jpegQuality=$jpegQuality " +
+                    "resolution=${sessionConfig.photoSettings.resolutionPreference} " +
+                    "aspect=${sessionConfig.photoSettings.aspectRatio} " +
+                    "qualityPriority=${fastCaptureProfile.useQualityPriority} " +
+                    "hqNoiseReduction=${fastCaptureProfile.useHighQualityNoiseReduction} " +
+                    "hqEdge=${fastCaptureProfile.useHighQualityEdge} " +
+                    "softwareJpeg=$useSoftwareJpegEncoder " +
+                    "hardwareJpegMaxPixels=${maxHardwareJpegPixels ?: "unknown"} " +
+                    "extension=${extensionSelection?.let { extensionLabel(it.mode) } ?: "NONE"}",
+            )
+            val captureBuilder = ImageCapture.Builder()
+                .setCaptureMode(captureMode)
+                .setJpegQuality(jpegQuality)
+                .setSoftwareJpegEncoderRequested(useSoftwareJpegEncoder)
+                .setFlashMode(
+                    if (extensionActive) {
+                        ImageCapture.FLASH_MODE_OFF
+                    } else {
+                        when (sessionConfig.photoSettings.flashMode) {
+                            PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
+                            PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
+                            PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
+                        }
+                    }
+                )
+                .setResolutionSelector(
+                    captureResolutionSelector(sessionConfig.photoSettings)
+                )
+                .setTargetRotation(currentDisplayRotation())
+            if (!extensionActive) {
+                applyFastCaptureOptions(
+                    Camera2Interop.Extender<ImageCapture>(captureBuilder),
+                    fastCaptureProfile,
+                )
+            }
+            val capture = captureBuilder.build()
+
+            val previewUseCase = Preview.Builder()
+                .setResolutionSelector(previewResolutionSelector(sessionConfig.photoSettings))
+                .setTargetRotation(currentDisplayRotation())
+                .build()
+            // Quality stills use preview + capture only. The extra analysis
+            // surface combined with a non-ZSL high-resolution JPEG pipeline
+            // makes CameraX 1.3.4 fail to open the capture session on the
+            // API 36 emulator; preview keeps AE/AF running.
+            val analysis = if (
+                fastCaptureProfile.useQualityPriority ||
+                (extensionSelection != null && !extensionSelection.analysisSupported)
+            ) {
+                null
+            } else {
+                val analysisBuilder = ImageAnalysis.Builder()
+                    .setResolutionSelector(
+                        ResolutionSelector.Builder()
+                            .setResolutionStrategy(
+                                ResolutionStrategy(
+                                    Size(640, 480),
+                                    ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
+                                ),
+                            )
+                            .build(),
+                    )
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                if (!extensionActive) {
+                    applyFastCaptureOptions(
+                        Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
+                        fastCaptureProfile,
+                    )
+                }
+                analysisBuilder
+                    .build()
+                    .also { useCase ->
+                        useCase.setAnalyzer(cameraExecutor) { image ->
+                            image.close()
+                        }
+                    }
+            }
+            if (!isCurrentSession(sessionConfig.id) || isStopping) {
+                analysis?.clearAnalyzer()
+                return
+            }
+            cameraProvider = provider
+            imageCapture = capture
+            imageAnalysis = analysis
+            preview = previewUseCase
+            previewUseCase.setSurfaceProvider(previewSurfaceProvider)
+            camera = try {
+                provider.bindToLifecycle(
+                    this@PhotoCaptureService,
+                    bindSelector,
+                    *listOfNotNull(previewUseCase, capture, analysis).toTypedArray(),
+                )
+            } catch (error: IllegalArgumentException) {
+                Log.w(
+                    TAG,
+                    "Fast photo use-case combination is unavailable; retrying without analysis",
+                    error,
+                )
+                if (extensionActive) {
+                    Log.w(TAG, "Camera extension binding failed; using standard camera")
+                }
+                analysis?.clearAnalyzer()
+                imageAnalysis = null
+                val fallbackBuilder = ImageCapture.Builder()
                     .setCaptureMode(captureMode)
                     .setJpegQuality(jpegQuality)
-                    .setSoftwareJpegEncoderRequested(useSoftwareJpegEncoder)
+                    .setSoftwareJpegEncoderRequested(
+                        shouldUseSoftwareJpegEncoder(
+                            qualityPriority = fastCaptureProfile.useQualityPriority,
+                            maxHardwareJpegPixels = maxHardwareJpegPixels,
+                        )
+                    )
                     .setFlashMode(
-                        if (extensionActive) {
-                            ImageCapture.FLASH_MODE_OFF
-                        } else {
-                            when (sessionConfig.photoSettings.flashMode) {
-                                PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
-                                PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
-                                PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
-                            }
+                        when (sessionConfig.photoSettings.flashMode) {
+                            PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
+                            PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
+                            PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
                         }
                     )
                     .setResolutionSelector(
                         captureResolutionSelector(sessionConfig.photoSettings)
                     )
                     .setTargetRotation(currentDisplayRotation())
-                if (!extensionActive) {
-                    applyFastCaptureOptions(
-                        Camera2Interop.Extender<ImageCapture>(captureBuilder),
-                        fastCaptureProfile,
-                    )
-                }
-                val capture = captureBuilder.build()
-
-                val previewUseCase = Preview.Builder()
-                    .setResolutionSelector(previewResolutionSelector(sessionConfig.photoSettings))
-                    .setTargetRotation(currentDisplayRotation())
-                    .build()
-                // Quality stills use preview + capture only. The extra analysis
-                // surface combined with a non-ZSL high-resolution JPEG pipeline
-                // makes CameraX 1.3.4 fail to open the capture session on the
-                // API 36 emulator; preview keeps AE/AF running.
-                val analysis = if (
-                    fastCaptureProfile.useQualityPriority ||
-                    (extensionSelection != null && !extensionSelection.analysisSupported)
-                ) {
-                    null
-                } else {
-                    val analysisBuilder = ImageAnalysis.Builder()
-                        .setResolutionSelector(
-                            ResolutionSelector.Builder()
-                                .setResolutionStrategy(
-                                    ResolutionStrategy(
-                                        Size(640, 480),
-                                        ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
-                                    ),
-                                )
-                                .build(),
-                        )
-                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                    if (!extensionActive) {
-                        applyFastCaptureOptions(
-                            Camera2Interop.Extender<ImageAnalysis>(analysisBuilder),
-                            fastCaptureProfile,
-                        )
-                    }
-                    analysisBuilder
-                        .build()
-                        .also { useCase ->
-                            useCase.setAnalyzer(cameraExecutor) { image ->
-                                image.close()
-                            }
-                        }
-                }
-                if (!isCurrentSession(sessionConfig.id) || isStopping) {
-                    analysis?.clearAnalyzer()
-                    return@launch
-                }
-                cameraProvider = provider
-                imageCapture = capture
-                imageAnalysis = analysis
-                preview = previewUseCase
-                previewUseCase.setSurfaceProvider(previewSurfaceProvider)
-                camera = try {
+                applyFastCaptureOptions(
+                    Camera2Interop.Extender<ImageCapture>(fallbackBuilder),
+                    fastCaptureProfile,
+                )
+                val fallbackCapture = fallbackBuilder.build()
+                imageCapture = fallbackCapture
+                val fallbackBind = runCatching {
                     provider.bindToLifecycle(
                         this@PhotoCaptureService,
-                        bindSelector,
-                        *listOfNotNull(previewUseCase, capture, analysis).toTypedArray(),
+                        selector,
+                        previewUseCase,
+                        fallbackCapture,
                     )
-                } catch (error: IllegalArgumentException) {
+                }
+                fallbackBind.getOrElse { fallbackError ->
+                    // Last resort: the 1080-class preview selector itself may
+                    // be unsupported by this camera/extension combination.
+                    // Rebind with CameraX's default preview resolution so the
+                    // session still starts (soft viewfinder instead of no
+                    // viewfinder).
                     Log.w(
                         TAG,
-                        "Fast photo use-case combination is unavailable; retrying without analysis",
-                        error,
+                        "Preview resolution selector was rejected; " +
+                            "retrying with the default preview resolution",
+                        fallbackError,
                     )
-                    if (extensionActive) {
-                        Log.w(TAG, "Camera extension binding failed; using standard camera")
-                    }
-                    analysis?.clearAnalyzer()
-                    imageAnalysis = null
-                    val fallbackBuilder = ImageCapture.Builder()
-                        .setCaptureMode(captureMode)
-                        .setJpegQuality(jpegQuality)
-                        .setSoftwareJpegEncoderRequested(
-                            shouldUseSoftwareJpegEncoder(
-                                qualityPriority = fastCaptureProfile.useQualityPriority,
-                                maxHardwareJpegPixels = maxHardwareJpegPixels,
-                            )
-                        )
-                        .setFlashMode(
-                            when (sessionConfig.photoSettings.flashMode) {
-                                PhotoFlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
-                                PhotoFlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
-                                PhotoFlashMode.ON -> ImageCapture.FLASH_MODE_ON
-                            }
-                        )
-                        .setResolutionSelector(
-                            captureResolutionSelector(sessionConfig.photoSettings)
-                        )
+                    previewUseCase.setSurfaceProvider(null)
+                    val defaultPreview = Preview.Builder()
                         .setTargetRotation(currentDisplayRotation())
-                    applyFastCaptureOptions(
-                        Camera2Interop.Extender<ImageCapture>(fallbackBuilder),
-                        fastCaptureProfile,
+                        .build()
+                    preview = defaultPreview
+                    defaultPreview.setSurfaceProvider(previewSurfaceProvider)
+                    provider.bindToLifecycle(
+                        this@PhotoCaptureService,
+                        selector,
+                        defaultPreview,
+                        fallbackCapture,
                     )
-                    val fallbackCapture = fallbackBuilder.build()
-                    imageCapture = fallbackCapture
-                    val fallbackBind = runCatching {
-                        provider.bindToLifecycle(
-                            this@PhotoCaptureService,
-                            selector,
-                            previewUseCase,
-                            fallbackCapture,
-                        )
-                    }
-                    fallbackBind.getOrElse { fallbackError ->
-                        // Last resort: the 1080-class preview selector itself may
-                        // be unsupported by this camera/extension combination.
-                        // Rebind with CameraX's default preview resolution so the
-                        // session still starts (soft viewfinder instead of no
-                        // viewfinder).
-                        Log.w(
-                            TAG,
-                            "Preview resolution selector was rejected; " +
-                                "retrying with the default preview resolution",
-                            fallbackError,
-                        )
-                        previewUseCase.setSurfaceProvider(null)
-                        val defaultPreview = Preview.Builder()
-                            .setTargetRotation(currentDisplayRotation())
-                            .build()
-                        preview = defaultPreview
-                        defaultPreview.setSurfaceProvider(previewSurfaceProvider)
-                        provider.bindToLifecycle(
-                            this@PhotoCaptureService,
-                            selector,
-                            defaultPreview,
-                            fallbackCapture,
-                        )
-                    }
                 }
-                if (!isCurrentSession(sessionConfig.id) || isStopping) {
-                    releaseCamera()
-                    return@launch
-                }
-                val zoomState = camera?.cameraInfo?.zoomState?.value
-                smoothZoom.setBounds(
-                    zoomState?.minZoomRatio ?: 1f,
-                    zoomState?.maxZoomRatio ?: 1f,
+            }
+            if (!isCurrentSession(sessionConfig.id) || isStopping) {
+                releaseCamera()
+                return
+            }
+            val zoomState = camera?.cameraInfo?.zoomState?.value
+            smoothZoom.setBounds(
+                zoomState?.minZoomRatio ?: 1f,
+                zoomState?.maxZoomRatio ?: 1f,
+            )
+            val initialZoom = smoothZoom.snapTo(sessionConfig.photoSettings.lastZoomRatio)
+            if (initialZoom != 1f) {
+                camera?.cameraControl?.setZoomRatio(initialZoom)
+            }
+            // The restore was applied directly, so a later identical request
+            // does not need to go through the queue again.
+            lastSubmittedZoomRatio = initialZoom
+            focusRequestGeneration++
+            overlayZoomThrottle.reset()
+            publish(
+                state.copy(
+                    status = PhotoCaptureStatus.READY,
+                    mode = session?.mode ?: sessionConfig.mode,
+                    error = null,
+                    zoomRatio = initialZoom,
+                    lensFacing = sessionConfig.lensFacing,
+                    flashMode = sessionConfig.photoSettings.flashMode,
+                    zoomMinRatio = zoomState?.minZoomRatio ?: 1f,
+                    zoomMaxRatio = zoomState?.maxZoomRatio ?: 1f,
                 )
-                val initialZoom = smoothZoom.snapTo(sessionConfig.photoSettings.lastZoomRatio)
-                if (initialZoom != 1f) {
-                    camera?.cameraControl?.setZoomRatio(initialZoom)
-                }
-                // The restore was applied directly, so a later identical request
-                // does not need to go through the queue again.
-                lastSubmittedZoomRatio = initialZoom
-                overlayZoomThrottle.reset()
-                publish(
-                    state.copy(
-                        status = PhotoCaptureStatus.READY,
-                        mode = session?.mode ?: sessionConfig.mode,
-                        error = null,
-                        zoomRatio = initialZoom,
-                    )
-                )
-            } catch (error: CancellationException) {
-                throw error
-            } catch (error: Exception) {
-                Log.e(TAG, "Could not initialize photo capture", error)
-                if (isCurrentSession(sessionConfig.id)) {
-                    publishError(error)
-                }
+            )
+        } catch (error: CancellationException) {
+            throw error
+        } catch (error: Exception) {
+            Log.e(TAG, "Could not initialize photo capture", error)
+            if (isCurrentSession(sessionConfig.id)) {
+                publishError(error)
             }
         }
     }
@@ -1836,6 +2032,10 @@ class PhotoCaptureService : LifecycleService() {
         val capture = imageCapture
         val analysis = imageAnalysis
 
+        // Focus results belong to the camera being released; never let a stale
+        // callback reach the UI after a reconfigure or teardown.
+        focusRequestGeneration++
+        runCatching { camera?.cameraControl?.cancelFocusAndMetering() }
         previewUseCase?.setSurfaceProvider(null)
         if (provider != null) {
             runCatching {
@@ -2013,6 +2213,8 @@ class PhotoCaptureService : LifecycleService() {
         private val PREVIEW_TARGET_4_3 = Size(1440, 1080)
         private val PREVIEW_TARGET_16_9 = Size(1920, 1080)
         private const val EXTENSION_INIT_TIMEOUT_MILLIS = 3_000L
+        /** Focus/metering auto-cancel, matching the system camera's behaviour. */
+        private const val FOCUS_AUTO_CANCEL_SECONDS = 3L
 
         fun createStartIntent(
             context: Context,

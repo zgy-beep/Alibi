@@ -12,6 +12,7 @@ sealed class Screen(val route: String) {
     data object VideoSettings : Screen("video-settings")
     data object StorageSettings : Screen("storage-settings")
     data object BlackPhoto : Screen("black-photo")
+    data object StandardCamera : Screen("standard-camera")
     data object RecentPhotos : Screen("recent-photos")
 
     fun withArgs(vararg args: String): String {

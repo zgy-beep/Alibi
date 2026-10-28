@@ -71,6 +71,8 @@ fun CameraPreview(
     cameraKey: Any = cameraSelector,
     initialZoom: Float = 1f,
     onZoomChanged: ((ratio: Float, minRatio: Float, maxRatio: Float) -> Unit)? = null,
+    onPreviewViewReady: ((PreviewView) -> Unit)? = null,
+    onCameraReady: ((Camera?) -> Unit)? = null,
     cornerRadius: Dp = 0.dp,
 ) {
     // Switching the lens means a different camera and a different zoom range:
@@ -84,6 +86,8 @@ fun CameraPreview(
             cameraSelector = cameraSelector,
             initialZoom = initialZoom,
             onZoomChanged = onZoomChanged,
+            onPreviewViewReady = onPreviewViewReady,
+            onCameraReady = onCameraReady,
             cornerRadius = cornerRadius,
         )
     }
@@ -95,6 +99,8 @@ private fun CameraPreviewContent(
     cameraSelector: CameraSelector,
     initialZoom: Float,
     onZoomChanged: ((ratio: Float, minRatio: Float, maxRatio: Float) -> Unit)?,
+    onPreviewViewReady: ((PreviewView) -> Unit)?,
+    onCameraReady: ((Camera?) -> Unit)?,
     cornerRadius: Dp,
 ) {
     val context = LocalContext.current
@@ -108,6 +114,8 @@ private fun CameraPreviewContent(
 
     val latestInitialZoom by rememberUpdatedState(initialZoom)
     val latestOnZoomChanged by rememberUpdatedState(onZoomChanged)
+    val latestOnPreviewViewReady by rememberUpdatedState(onPreviewViewReady)
+    val latestOnCameraReady by rememberUpdatedState(onCameraReady)
 
     var zoomIndicatorRatio by remember { mutableFloatStateOf(initialZoom) }
     var showZoomIndicator by remember { mutableStateOf(false) }
@@ -191,6 +199,7 @@ private fun CameraPreviewContent(
                     .build()
                 binding.preview = preview
                 preview.setSurfaceProvider(previewView.surfaceProvider)
+                latestOnPreviewViewReady?.invoke(previewView)
 
                 coroutineScope.launch {
                     try {
@@ -214,6 +223,7 @@ private fun CameraPreviewContent(
                             preview,
                         )
                         binding.camera = camera
+                        latestOnCameraReady?.invoke(camera)
 
                         // The display can still be null while the sheet animates
                         // in; correct the rotation once the view is attached.
@@ -255,6 +265,7 @@ private fun CameraPreviewContent(
             },
             onRelease = {
                 binding.released = true
+                latestOnCameraReady?.invoke(null)
                 val provider = binding.cameraProvider
                 val preview = binding.preview
                 if (provider != null && preview != null) {

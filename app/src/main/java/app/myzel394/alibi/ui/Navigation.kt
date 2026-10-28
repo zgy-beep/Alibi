@@ -10,11 +10,13 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -31,6 +33,7 @@ import app.myzel394.alibi.ui.models.AudioRecorderModel
 import app.myzel394.alibi.ui.models.PhotoCaptureModel
 import app.myzel394.alibi.ui.models.VideoRecorderModel
 import app.myzel394.alibi.services.PhotoCaptureStatus
+import app.myzel394.alibi.ui.components.RecorderScreen.organisms.RecorderEventsHandler
 import app.myzel394.alibi.ui.components.atoms.LocalAlibiRuntimeStatus
 import app.myzel394.alibi.ui.components.atoms.RuntimeStatus
 import app.myzel394.alibi.ui.screens.AboutScreen
@@ -42,6 +45,7 @@ import app.myzel394.alibi.ui.screens.PhotoSetupScreen
 import app.myzel394.alibi.ui.screens.RecentPhotosScreen
 import app.myzel394.alibi.ui.screens.RecorderScreen
 import app.myzel394.alibi.ui.screens.SettingsScreen
+import app.myzel394.alibi.ui.screens.StandardCameraScreen
 import app.myzel394.alibi.ui.screens.StorageSettingsScreen
 import app.myzel394.alibi.ui.screens.VideoSettingsScreen
 import app.myzel394.alibi.ui.screens.WelcomeScreen
@@ -123,6 +127,16 @@ fun Navigation(
         else -> RuntimeStatus.IDLE
     }
 
+    // One handler for the whole app: the save callbacks must stay registered while
+    // navigating between the recorder screen and the standard camera screen.
+    val snackbarHostState = remember { SnackbarHostState() }
+    RecorderEventsHandler(
+        settings = settings,
+        snackbarHostState = snackbarHostState,
+        audioRecorder = audioRecorder,
+        videoRecorder = videoRecorder,
+    )
+
     CompositionLocalProvider(LocalAlibiRuntimeStatus provides runtimeStatus) {
         NavHost(
             modifier = Modifier
@@ -160,10 +174,14 @@ fun Navigation(
                     onNavigateToPhotoCapture = {
                         navController.navigate(Screen.PhotoCapture.route)
                     },
+                    onNavigateToStandardCamera = {
+                        navController.navigate(Screen.StandardCamera.route)
+                    },
                     audioRecorder = audioRecorder,
                     videoRecorder = videoRecorder,
                     photoCapture = photoCapture,
                     settings = settings,
+                    snackbarHostState = snackbarHostState,
                 )
             }
             composable(
@@ -279,6 +297,50 @@ fun Navigation(
                 popExitTransition = { popExit(reduceMotion) },
             ) {
                 RecentPhotosScreen(onBackNavigate = navController::popBackStack)
+            }
+            composable(
+                Screen.StandardCamera.route,
+                enterTransition = {
+                    fadeIn(AlibiMotion.page(reduceMotion)) +
+                        scaleIn(
+                            initialScale = 0.99f,
+                            animationSpec = AlibiMotion.page(reduceMotion),
+                        )
+                },
+                exitTransition = {
+                    fadeOut(AlibiMotion.state(reduceMotion)) +
+                        scaleOut(
+                            targetScale = 1.01f,
+                            animationSpec = AlibiMotion.state(reduceMotion),
+                        )
+                },
+                popEnterTransition = { fadeEnter(reduceMotion) },
+                popExitTransition = {
+                    fadeOut(AlibiMotion.state(reduceMotion)) +
+                        scaleOut(
+                            targetScale = 1.01f,
+                            animationSpec = AlibiMotion.state(reduceMotion),
+                        )
+                },
+            ) {
+                StandardCameraScreen(
+                    photoCapture = photoCapture,
+                    videoRecorder = videoRecorder,
+                    settings = settings,
+                    snackbarHostState = snackbarHostState,
+                    onExit = {
+                        navController.popBackStack(Screen.AudioRecorder.route, false)
+                    },
+                    onOpenGallery = {
+                        navController.navigate(Screen.RecentPhotos.route)
+                    },
+                    onOpenPhotoSettings = {
+                        navController.navigate(Screen.PhotoCaptureSettings.route)
+                    },
+                    onOpenVideoSettings = {
+                        navController.navigate(Screen.VideoSettings.route)
+                    },
+                )
             }
             composable(
                 Screen.Settings.route,

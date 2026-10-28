@@ -1,6 +1,7 @@
 package app.myzel394.alibi.ui.components.RecorderScreen.organisms
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -13,8 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Timer
@@ -59,6 +62,7 @@ fun StartRecording(
     onShowTopBar: () -> Unit,
     showAudioRecorder: Boolean,
     onOpenPhotoCapture: () -> Unit,
+    onOpenStandardCamera: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -147,6 +151,7 @@ fun StartRecording(
                         compactLayout = true,
                     )
                     PhotoCaptureStartButton(onClick = onOpenPhotoCapture)
+                    StandardCameraEntry(onClick = onOpenStandardCamera)
                 }
             }
 
@@ -185,6 +190,44 @@ private fun PhotoCaptureStartButton(onClick: () -> Unit) {
         primary = true,
         compactLayout = true,
     )
+}
+
+/**
+ * Entry point for the system-camera-like screen. It is deliberately a quiet,
+ * secondary row: the covert modes stay the default experience of the app.
+ */
+@Composable
+private fun StandardCameraEntry(onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainerLow,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .clickable(onClick = onClick)
+            .padding(horizontal = 18.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
+    ) {
+        Icon(
+            Icons.Default.CameraAlt,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(22.dp),
+        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(R.string.camera_standard_entry_title),
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Text(
+                text = stringResource(R.string.camera_standard_entry_description),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
 }
 
 @Composable
