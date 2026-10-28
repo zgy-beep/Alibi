@@ -2,13 +2,14 @@
 
 Build date: 2026-10-28
 
-## Artifact
+## Artifacts (Architecture Splits)
 
 | Package | Application ID | Version | Size | SHA-256 |
 | --- | --- | --- | ---: | --- |
-| `app-universal-release.apk` | `com.zgybeep.alibi` | `0.6.6 (23)` | 125,400,000 B | `4914E7BAA8EF463C0386289C0F150D0B7906958831DE311158390D19147DFCED` |
-
-Universal APK includes `arm64-v8a`, `armeabi-v7a`, `x86`, and `x86_64`.
+| `app-arm64-v8a-release.apk` | `com.zgybeep.alibi` | `0.6.6 (23)` | 30,937,745 B | `6B1D9CA30EC5F4CD9804C298EE8340EEA95932AE25F2839587DBC8469A13573E` |
+| `app-armeabi-v7a-release.apk` | `com.zgybeep.alibi` | `0.6.6 (23)` | 31,942,872 B | `0E4CB3E6F8CC50F354E87301F4589D6C10FC74DAE43DDB0E7975E4B26D2A652D` |
+| `app-x86_64-release.apk` | `com.zgybeep.alibi` | `0.6.6 (23)` | 39,216,383 B | `82995A350EADD6DB99D58B50728A00CB3A47966208B5B74FAE155905B5B24B9D` |
+| `app-x86-release.apk` | `com.zgybeep.alibi` | `0.6.6 (23)` | 34,206,137 B | `05A1B5540DF50B41B49271A8997746A443DA0A9E739B00FF5D963B51354EAE52` |
 
 - `minSdkVersion`: 24
 - `targetSdkVersion`: 34
@@ -46,4 +47,8 @@ The certificate matches 0.6.1–0.6.5, so existing installations update in place
 
 - Tag: `v0.6.6`
 - Release: <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.6>
-- Asset: `app-universal-release.apk`
+- Assets:
+  - `app-arm64-v8a-release.apk`
+  - `app-armeabi-v7a-release.apk`
+  - `app-x86_64-release.apk`
+  - `app-x86-release.apk`

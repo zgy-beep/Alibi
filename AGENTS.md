@@ -16,8 +16,7 @@ repository. Read it before changing code.
    - 有设备时做真机 smoke test，证据放 `docs/evidence/apk-<version>/`
      （APK SHA-256、签名、截图、设备结果、SHA256SUMS）；
    - 提交，打 `v<version>` tag，推送 `master` 和 tag；
-   - 用 `gh release create` 上传 `app-universal-release.apk`，验证 asset digest
-     与 Latest 状态。
+   - 严禁上传 `app-universal-release.apk`（体积高达 125MB，过大臃肿）；发布时批量上传各架构的小包（`app-arm64-v8a-release.apk`、`app-armeabi-v7a-release.apk`、`app-x86_64-release.apk`、`app-x86-release.apk` 等，单包仅约 30MB），验证 asset digest 与 Latest 状态。
 3. 发布时如果仓库的 release workflows 仍因缺少 CI secrets 无法运行，先临时
    `gh workflow disable` 两个 release workflow，手动发布完成后立即
    `gh workflow enable`，并确认 Actions 运行数不变。
