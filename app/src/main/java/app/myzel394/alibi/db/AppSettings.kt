@@ -508,6 +508,7 @@ data class VideoRecorderSettings(
     val targetedVideoBitRate: Int? = null,
     val quality: String? = null,
     val targetFrameRate: Int? = null,
+    val videoStabilizationEnabled: Boolean = true,
 ) {
     fun setTargetedVideoBitRate(bitRate: Int?): VideoRecorderSettings {
         return copy(targetedVideoBitRate = bitRate)
@@ -521,6 +522,10 @@ data class VideoRecorderSettings(
 
     fun setTargetFrameRate(frameRate: Int?): VideoRecorderSettings {
         return copy(targetFrameRate = frameRate)
+    }
+
+    fun setVideoStabilizationEnabled(enabled: Boolean): VideoRecorderSettings {
+        return copy(videoStabilizationEnabled = enabled)
     }
 
     fun getQuality(): Quality? =

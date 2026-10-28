@@ -3,6 +3,7 @@ package app.myzel394.alibi.ui.screens
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.os.SystemClock
 import android.view.WindowManager
 import androidx.activity.compose.BackHandler
 import androidx.camera.view.PreviewView
@@ -27,11 +28,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -59,6 +62,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.math.abs
 
 @OptIn(FlowPreview::class)
@@ -73,7 +77,9 @@ fun BlackPhotoScreen(
     val activity = context.findActivity()
     val captureColors = LocalAlibiExtendedColors.current
     var showHint by rememberSaveable { mutableStateOf(true) }
-    var showZoomIndicator by rememberSaveable { mutableStateOf(false) }
+    // Timestamp of the last event that involved more than one finger. Used to
+    // stop a quick two-finger tap from being delivered as a capture tap.
+    val lastMultiTouchAtMillis = remember { AtomicLong(0L) }
     var previewProgress by rememberSaveable {
         mutableFloatStateOf(
             if (settings.photoCaptureSettings.showPreviewOnLaunch) 1f else 0f
@@ -95,16 +101,6 @@ fun BlackPhotoScreen(
     LaunchedEffect(Unit) {
         delay(2500)
         showHint = false
-    }
-
-    LaunchedEffect(Unit) {
-        snapshotFlow { photoCapture.zoomRatio }.collectLatest { ratio ->
-            if (ratio != 1f) {
-                showZoomIndicator = true
-                delay(800)
-                showZoomIndicator = false
-            }
-        }
     }
 
     LaunchedEffect(settings.photoCaptureSettings.rememberZoom) {
@@ -213,10 +209,28 @@ fun BlackPhotoScreen(
                         }
                     }
             }
+            // Observes multi-finger contact without consuming anything. A quick
+            // two-finger tap never moves past touch slop, so the transform
+            // detector stays quiet and the tap detector below would otherwise
+            // fire a capture; the guard in onTap suppresses that.
+            .pointerInput(Unit) {
+                awaitPointerEventScope {
+                    while (true) {
+                        val event = awaitPointerEvent()
+                        if (event.changes.count { it.pressed } > 1) {
+                            lastMultiTouchAtMillis.set(SystemClock.uptimeMillis())
+                        }
+                    }
+                }
+            }
             .pointerInput(photoCapture.state.canAcceptCapture) {
                 detectTapGestures(
                     onTap = {
-                        if (photoCapture.state.canAcceptCapture) {
+                        val sinceMultiTouch = SystemClock.uptimeMillis() -
+                            lastMultiTouchAtMillis.get()
+                        if (photoCapture.state.canAcceptCapture &&
+                            sinceMultiTouch >= MULTI_TOUCH_TAP_GUARD_MILLIS
+                        ) {
                             photoCapture.capture()
                             showHint = false
                         }
@@ -301,19 +315,13 @@ fun BlackPhotoScreen(
             }
         }
 
-        if (showZoomIndicator) {
-            Text(
-                text = stringResource(
-                    R.string.photo_zoom_indicator,
-                    photoCapture.zoomRatio,
-                ),
-                color = captureColors.captureContent.copy(alpha = 0.78f),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .padding(top = 56.dp),
-            )
-        }
+        PhotoZoomIndicator(
+            photoCapture = photoCapture,
+            color = captureColors.captureContent.copy(alpha = 0.78f),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 56.dp),
+        )
 
         when {
             photoCapture.state.status == PhotoCaptureStatus.ERROR -> {
@@ -364,6 +372,46 @@ fun BlackPhotoScreen(
         }
     }
 
+}
+
+private const val ZOOM_INDICATOR_HIDE_DELAY_MILLIS = 800L
+
+/** Ignore taps that happen this soon after any two-finger contact. */
+private const val MULTI_TOUCH_TAP_GUARD_MILLIS = 350L
+
+/**
+ * The zoom readout lives in its own composable on purpose: while a pinch is
+ * running this reads the zoom ratio on every eased frame, and isolating that
+ * state read means only this small Text recomposes instead of the whole black
+ * screen (its pointer modifiers, grid Canvas and preview container).
+ */
+@Composable
+private fun PhotoZoomIndicator(
+    photoCapture: PhotoCaptureModel,
+    color: Color,
+    modifier: Modifier = Modifier,
+) {
+    var visible by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(photoCapture) {
+        snapshotFlow { photoCapture.zoomRatio }
+            .collectLatest { ratio ->
+                if (ratio != 1f) {
+                    visible = true
+                    delay(ZOOM_INDICATOR_HIDE_DELAY_MILLIS)
+                    visible = false
+                } else if (visible) {
+                    visible = false
+                }
+            }
+    }
+    if (visible) {
+        Text(
+            text = stringResource(R.string.photo_zoom_indicator, photoCapture.zoomRatio),
+            color = color,
+            style = MaterialTheme.typography.titleMedium,
+            modifier = modifier,
+        )
+    }
 }
 
 private fun Context.findActivity(): Activity? {

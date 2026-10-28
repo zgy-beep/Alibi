@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.camera.core.CameraSelector
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,6 +21,23 @@ import app.myzel394.alibi.ui.RECORDER_MEDIA_SELECTED_VALUE
 import app.myzel394.alibi.ui.utils.CameraInfo
 import app.myzel394.alibi.ui.utils.PermissionHelper
 
+/**
+ * Clamps a zoom ratio reported by the preview into the range supported by the
+ * bound camera. Invalid or missing camera state falls back to the neutral 1.0x
+ * range so a broken [androidx.camera.core.ZoomState] can never produce an
+ * undefined zoom target.
+ *
+ * Pure function so the zoom target carry-over can be unit tested on the JVM.
+ */
+internal fun normalizeZoomRatio(ratio: Float, minRatio: Float, maxRatio: Float): Float {
+    val min = minRatio.takeIf { it.isFinite() && it > 0f } ?: DEFAULT_VIDEO_ZOOM_RATIO
+    val max = maxRatio.takeIf { it.isFinite() && it >= min } ?: min
+    val requested = ratio.takeIf { it.isFinite() } ?: DEFAULT_VIDEO_ZOOM_RATIO
+    return requested.coerceIn(min, max)
+}
+
+const val DEFAULT_VIDEO_ZOOM_RATIO = 1f
+
 class VideoRecorderModel :
     BaseRecorderModel<RecordingInformation, VideoBatchesFolder, VideoRecorderService>() {
     override var batchesFolder: VideoBatchesFolder? = null
@@ -27,6 +45,16 @@ class VideoRecorderModel :
 
     var enableAudio by mutableStateOf(true)
     var cameraID by mutableIntStateOf(CameraInfo.Lens.BACK.androidValue)
+
+    /** Zoom ratio chosen in the live preview; survives sheet dismissal. */
+    var zoomRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
+
+    /** Zoom range reported by the currently bound camera, for the preview UI. */
+    var zoomMinRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
+    var zoomMaxRatio by mutableFloatStateOf(DEFAULT_VIDEO_ZOOM_RATIO)
+        private set
 
     override val isInRecording: Boolean
         get() = super.isInRecording
@@ -40,6 +68,19 @@ class VideoRecorderModel :
     fun init(context: Context) {
         enableAudio = PermissionHelper.hasGranted(context, Manifest.permission.RECORD_AUDIO)
         cameraID = CameraInfo.Lens.BACK.androidValue
+    }
+
+    /**
+     * Called by the live preview on every pinch update. The ratio is carried
+     * over to the recording service through [handleIntent].
+     */
+    fun onPreviewZoomChanged(ratio: Float, minRatio: Float, maxRatio: Float) {
+        val min = minRatio.takeIf { it.isFinite() && it > 0f }
+            ?: DEFAULT_VIDEO_ZOOM_RATIO
+        val max = maxRatio.takeIf { it.isFinite() && it >= min } ?: min
+        zoomMinRatio = min
+        zoomMaxRatio = max
+        zoomRatio = normalizeZoomRatio(ratio, min, max)
     }
 
     override fun startRecording(context: Context, settings: AppSettings) {
@@ -87,5 +128,6 @@ class VideoRecorderModel :
         intent.apply {
             putExtra("cameraID", cameraID)
             putExtra("enableAudio", enableAudio)
+            putExtra("initialZoom", zoomRatio)
         }
 }

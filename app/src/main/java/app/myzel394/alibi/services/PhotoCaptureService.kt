@@ -177,8 +177,14 @@ class PhotoCaptureService : LifecycleService() {
     private val requestStartedAtNanos = mutableMapOf<Long, Long>()
     private val hapticDeliveredRequests = mutableSetOf<Long>()
     private var captureInFlight = false
+    private val smoothZoom = SmoothZoom()
     private val zoomRequests = ZoomRequestQueue()
+    private val overlayZoomThrottle = ZoomUiUpdateThrottle()
+    private var zoomTickerJob: Job? = null
+    private var zoomTickerLastFrameNanos = 0L
     private var lastZoomInputAtMillis = 0L
+    private var lastSubmittedZoomRatio = Float.NaN
+    private var lastRememberedZoomRatio = Float.NaN
     private var zoomRememberJob: Job? = null
     internal var zoomInputCount = 0
         private set
@@ -296,38 +302,149 @@ class PhotoCaptureService : LifecycleService() {
         preview?.setSurfaceProvider(provider)
     }
 
+    /**
+     * Relative pinch input. The accumulated target is eased toward by a ~16 ms
+     * ticker, so the preview tracks the fingers continuously instead of
+     * stepping once per touch sample, and at most one CameraX request is in
+     * flight at a time (see [ZoomRequestQueue]).
+     */
     fun zoomBy(scaleFactor: Float) {
-        if (scaleFactor <= 0f) {
+        if (!scaleFactor.isFinite() || scaleFactor <= 0f || scaleFactor == 1f) {
             return
         }
-        requestZoom(state.zoomRatio * scaleFactor)
-    }
-
-    fun setZoomRatio(target: Float) {
-        requestZoom(target)
-    }
-
-    private fun requestZoom(target: Float) {
         if (!state.isActive || isStopping) {
             return
         }
-
         val zoomState = camera?.cameraInfo?.zoomState?.value ?: return
-        val clamped = target.coerceIn(zoomState.minZoomRatio, zoomState.maxZoomRatio)
-        if (abs(clamped - state.zoomRatio) < ZOOM_EPSILON) {
+        smoothZoom.setBounds(zoomState.minZoomRatio, zoomState.maxZoomRatio)
+
+        val previousTarget = smoothZoom.targetRatio
+        val target = smoothZoom.scaleBy(scaleFactor)
+        // The gesture pushed against the supported min/max ratio: nothing new
+        // to animate.
+        if (abs(target - previousTarget) < ZOOM_TARGET_EPSILON) {
             return
         }
 
-        // Update the session state optimistically (without publishing: zoom-only
-        // changes must not recompose the whole screen or touch overlay windows).
-        state = state.copy(zoomRatio = clamped)
         lastZoomInputAtMillis = SystemClock.elapsedRealtime()
         zoomInputCount++
-        onZoomChanged?.invoke(clamped)
-        updateOverlayZoom()
-        rememberFloatingZoom(clamped)
+        // Persisting is debounced internally; the ticker's per-frame frames only
+        // re-arm the debounce when the *target* moved materially.
+        maybeRememberFloatingZoom(target, force = false)
+        startZoomTicker()
+    }
 
-        val immediate = zoomRequests.submit(clamped)
+    /**
+     * Absolute zoom input (floating overlay slider/step buttons, restored
+     * session zoom). Absolute inputs snap and are submitted immediately:
+     * easing a deliberate input reads as sluggishness.
+     */
+    fun setZoomRatio(target: Float) {
+        if (!target.isFinite()) {
+            return
+        }
+        if (!state.isActive || isStopping) {
+            return
+        }
+        val zoomState = camera?.cameraInfo?.zoomState?.value ?: return
+        smoothZoom.setBounds(zoomState.minZoomRatio, zoomState.maxZoomRatio)
+        val clamped = smoothZoom.snapTo(target)
+        cancelZoomTicker()
+
+        if (abs(clamped - state.zoomRatio) >= ZOOM_EPSILON) {
+            // Zoom-only update: update the session state optimistically without
+            // publishing it, so the capture screen does not recompose.
+            state = state.copy(zoomRatio = clamped)
+            lastZoomInputAtMillis = SystemClock.elapsedRealtime()
+            zoomInputCount++
+            onZoomChanged?.invoke(clamped)
+            maybeRememberFloatingZoom(clamped, force = true)
+        }
+        // Even a no-op absolute input flushes the overlay: it may still be
+        // showing an eased ratio from an interrupted pinch.
+        updateOverlayZoom(ratio = clamped, force = true)
+        submitZoomRequest(clamped)
+    }
+
+    /**
+     * Drives the eased zoom at display cadence. Runs only while a pinch is
+     * active/settling and cancels itself as soon as the target is reached, the
+     * session stops, or the camera goes away.
+     */
+    private fun startZoomTicker() {
+        if (zoomTickerJob?.isActive == true) {
+            return
+        }
+        zoomTickerLastFrameNanos = SystemClock.elapsedRealtimeNanos()
+        zoomTickerJob = scope.launch {
+            while (true) {
+                delay(ZOOM_TICK_MILLIS)
+                if (!state.isActive || isStopping || camera == null) {
+                    break
+                }
+                val nowNanos = SystemClock.elapsedRealtimeNanos()
+                val elapsedMillis = ((nowNanos - zoomTickerLastFrameNanos) / 1_000_000f)
+                    .coerceIn(ZOOM_TICK_MIN_STEP_MILLIS, ZOOM_TICK_MAX_STEP_MILLIS)
+                zoomTickerLastFrameNanos = nowNanos
+
+                val ratio = smoothZoom.advance(elapsedMillis)
+                val settled = smoothZoom.isSettled
+                publishZoomFrame(ratio, force = settled)
+                submitZoomRequest(ratio)
+                if (settled) {
+                    // Make sure the final gesture target is persisted even when
+                    // the eased value stopped just short of it.
+                    maybeRememberFloatingZoom(smoothZoom.targetRatio, force = true)
+                    break
+                }
+            }
+            zoomTickerJob = null
+        }
+    }
+
+    private fun cancelZoomTicker() {
+        zoomTickerJob?.cancel()
+        zoomTickerJob = null
+    }
+
+    /**
+     * Reports an eased zoom frame. Deliberately does not publish the session
+     * state: zoom-only changes must not recompose the whole capture screen.
+     * Sub-perceptual changes are skipped so a pinch cannot invalidate Compose
+     * readers on every display frame; the settled value is always published.
+     */
+    private fun publishZoomFrame(ratio: Float, force: Boolean) {
+        if (!ratio.isFinite()) {
+            return
+        }
+        val changed = abs(ratio - state.zoomRatio) >= ZOOM_STATE_PUBLISH_EPSILON
+        if (changed) {
+            state = state.copy(zoomRatio = ratio)
+            onZoomChanged?.invoke(ratio)
+        }
+        if (changed || force) {
+            updateOverlayZoom(ratio = ratio, force = force)
+        }
+    }
+
+    /**
+     * Submits one ratio to the latest-wins queue. Duplicate consecutive ratios
+     * are dropped so settling does not issue redundant CameraX requests.
+     */
+    private fun submitZoomRequest(ratio: Float) {
+        if (!ratio.isFinite()) {
+            return
+        }
+        if (camera?.cameraControl == null) {
+            zoomRequests.reset()
+            lastSubmittedZoomRatio = Float.NaN
+            return
+        }
+        if (abs(ratio - lastSubmittedZoomRatio) < ZOOM_SUBMIT_EPSILON) {
+            return
+        }
+        lastSubmittedZoomRatio = ratio
+        val immediate = zoomRequests.submit(ratio)
         if (immediate != null) {
             applyZoomRequest(immediate)
         } else {
@@ -343,6 +460,7 @@ class PhotoCaptureService : LifecycleService() {
         val control = camera?.cameraControl
         if (control == null) {
             zoomRequests.reset()
+            lastSubmittedZoomRatio = Float.NaN
             return
         }
         lastZoomStalenessMillis =
@@ -376,27 +494,51 @@ class PhotoCaptureService : LifecycleService() {
         }
     }
 
-    private fun updateOverlayZoom() {
+    /**
+     * Pushes the zoom ratio into the floating overlay. A pinch can produce a
+     * frame per display refresh; the overlay views are only re-rendered on
+     * perceptible changes and at most roughly every 50 ms, with a guaranteed
+     * render for the settled value.
+     */
+    private fun updateOverlayZoom(ratio: Float = state.zoomRatio, force: Boolean = false) {
         val currentSession = session ?: return
         if (currentSession.mode != PhotoCaptureMode.FLOATING || appVisible || isStopping) {
             return
         }
+        val now = SystemClock.elapsedRealtime()
+        if (!overlayZoomThrottle.shouldRender(ratio, now, force)) {
+            return
+        }
+        overlayZoomThrottle.markRendered(ratio, now)
         val zoomState = camera?.cameraInfo?.zoomState?.value
         overlay.updateZoom(
-            ratio = state.zoomRatio,
+            ratio = ratio,
             minRatio = zoomState?.minZoomRatio ?: 1f,
             maxRatio = zoomState?.maxZoomRatio ?: 1f,
         )
     }
 
-    /** Floating windows have no black screen UI, so they persist their zoom themselves. */
-    private fun rememberFloatingZoom(ratio: Float) {
+    /**
+     * Floating windows have no black screen UI, so they persist their zoom
+     * themselves. The DataStore write stays debounced: eased ticks only re-arm
+     * the debounce when the target moved materially, and the final target is
+     * always persisted when the zoom settles.
+     */
+    private fun maybeRememberFloatingZoom(ratio: Float, force: Boolean) {
         val currentSession = session ?: return
         if (currentSession.mode != PhotoCaptureMode.FLOATING ||
-            !currentSession.photoSettings.rememberZoom
+            !currentSession.photoSettings.rememberZoom ||
+            !ratio.isFinite()
         ) {
             return
         }
+        val previous = lastRememberedZoomRatio
+        if (!force && previous.isFinite() &&
+            abs(ratio - previous) < ZOOM_REMEMBER_MIN_DELTA
+        ) {
+            return
+        }
+        lastRememberedZoomRatio = ratio
         zoomRememberJob?.cancel()
         zoomRememberJob = scope.launch {
             delay(ZOOM_REMEMBER_DELAY_MILLIS)
@@ -701,6 +843,7 @@ class PhotoCaptureService : LifecycleService() {
         }
 
         isStopping = true
+        cancelZoomTicker()
         discardQueuedRequests()
         publish(state.copy(status = PhotoCaptureStatus.STOPPING, error = null))
         overlay.hide()
@@ -764,6 +907,7 @@ class PhotoCaptureService : LifecycleService() {
             appVisible = false
         }
         zoomRequests.reset()
+        lastSubmittedZoomRatio = Float.NaN
         zoomInputCount = 0
         zoomApplyCount = 0
         zoomCoalescedCount = 0
@@ -867,6 +1011,10 @@ class PhotoCaptureService : LifecycleService() {
         initializationJob?.cancel()
         stopTimeoutJob?.cancel()
         saveWorkerJob?.cancel()
+        cancelZoomTicker()
+        smoothZoom.reset(1f)
+        lastRememberedZoomRatio = Float.NaN
+        overlayZoomThrottle.reset()
         session = sessionConfig
         isStopping = false
         stopFinalized = false
@@ -980,6 +1128,7 @@ class PhotoCaptureService : LifecycleService() {
                 val capture = captureBuilder.build()
 
                 val previewUseCase = Preview.Builder()
+                    .setResolutionSelector(previewResolutionSelector(sessionConfig.photoSettings))
                     .setTargetRotation(currentDisplayRotation())
                     .build()
                 // Quality stills use preview + capture only. The extra analysis
@@ -1070,25 +1219,57 @@ class PhotoCaptureService : LifecycleService() {
                     )
                     val fallbackCapture = fallbackBuilder.build()
                     imageCapture = fallbackCapture
-                    provider.bindToLifecycle(
-                        this@PhotoCaptureService,
-                        selector,
-                        previewUseCase,
-                        fallbackCapture,
-                    )
+                    val fallbackBind = runCatching {
+                        provider.bindToLifecycle(
+                            this@PhotoCaptureService,
+                            selector,
+                            previewUseCase,
+                            fallbackCapture,
+                        )
+                    }
+                    fallbackBind.getOrElse { fallbackError ->
+                        // Last resort: the 1080-class preview selector itself may
+                        // be unsupported by this camera/extension combination.
+                        // Rebind with CameraX's default preview resolution so the
+                        // session still starts (soft viewfinder instead of no
+                        // viewfinder).
+                        Log.w(
+                            TAG,
+                            "Preview resolution selector was rejected; " +
+                                "retrying with the default preview resolution",
+                            fallbackError,
+                        )
+                        previewUseCase.setSurfaceProvider(null)
+                        val defaultPreview = Preview.Builder()
+                            .setTargetRotation(currentDisplayRotation())
+                            .build()
+                        preview = defaultPreview
+                        defaultPreview.setSurfaceProvider(previewSurfaceProvider)
+                        provider.bindToLifecycle(
+                            this@PhotoCaptureService,
+                            selector,
+                            defaultPreview,
+                            fallbackCapture,
+                        )
+                    }
                 }
                 if (!isCurrentSession(sessionConfig.id) || isStopping) {
                     releaseCamera()
                     return@launch
                 }
                 val zoomState = camera?.cameraInfo?.zoomState?.value
-                val initialZoom = sessionConfig.photoSettings.lastZoomRatio.coerceIn(
+                smoothZoom.setBounds(
                     zoomState?.minZoomRatio ?: 1f,
                     zoomState?.maxZoomRatio ?: 1f,
                 )
+                val initialZoom = smoothZoom.snapTo(sessionConfig.photoSettings.lastZoomRatio)
                 if (initialZoom != 1f) {
                     camera?.cameraControl?.setZoomRatio(initialZoom)
                 }
+                // The restore was applied directly, so a later identical request
+                // does not need to go through the queue again.
+                lastSubmittedZoomRatio = initialZoom
+                overlayZoomThrottle.reset()
                 publish(
                     state.copy(
                         status = PhotoCaptureStatus.READY,
@@ -1375,6 +1556,38 @@ class PhotoCaptureService : LifecycleService() {
             .build()
     }
 
+    /**
+     * The preview used to be built without a resolution selector, so CameraX
+     * picked its default 640x480 frame and the revealed viewfinder looked soft
+     * next to the captured photo. Request a 1080-class frame that matches the
+     * configured capture aspect ratio instead; the fallback rule keeps the bind
+     * working on cameras that do not expose the exact target size.
+     */
+    private fun previewResolutionSelector(settings: PhotoCaptureSettings): ResolutionSelector {
+        val aspectRatio = when (settings.aspectRatio) {
+            PhotoAspectRatio.FOUR_THREE -> AspectRatio.RATIO_4_3
+            PhotoAspectRatio.SIXTEEN_NINE -> AspectRatio.RATIO_16_9
+        }
+        val target = when (settings.aspectRatio) {
+            PhotoAspectRatio.FOUR_THREE -> PREVIEW_TARGET_4_3
+            PhotoAspectRatio.SIXTEEN_NINE -> PREVIEW_TARGET_16_9
+        }
+        return ResolutionSelector.Builder()
+            .setAspectRatioStrategy(
+                AspectRatioStrategy(
+                    aspectRatio,
+                    AspectRatioStrategy.FALLBACK_RULE_AUTO,
+                )
+            )
+            .setResolutionStrategy(
+                ResolutionStrategy(
+                    target,
+                    ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
+                )
+            )
+            .build()
+    }
+
     private fun startSaveWorker() {
         if (saveWorkerRunning || saveQueue.isEmpty()) {
             return
@@ -1638,7 +1851,12 @@ class PhotoCaptureService : LifecycleService() {
         imageAnalysis = null
         camera = null
         cameraProvider = null
+        cancelZoomTicker()
         zoomRequests.reset()
+        smoothZoom.reset(1f)
+        lastSubmittedZoomRatio = Float.NaN
+        lastRememberedZoomRatio = Float.NaN
+        overlayZoomThrottle.reset()
         zoomRememberJob?.cancel()
         zoomRememberJob = null
     }
@@ -1697,7 +1915,7 @@ class PhotoCaptureService : LifecycleService() {
         if (!shown) {
             stopSession()
         } else {
-            updateOverlayZoom()
+            updateOverlayZoom(force = true)
         }
     }
 
@@ -1780,7 +1998,20 @@ class PhotoCaptureService : LifecycleService() {
         private const val MIN_FAST_CAPTURE_FPS = 30
         private const val MOTION_CAPTURE_FPS = 60
         private const val ZOOM_EPSILON = 0.005f
+        /** Target change below this counts as "no new gesture sample" (clamped). */
+        private const val ZOOM_TARGET_EPSILON = 0.0005f
+        /** A zoom frame smaller than this is sub-perceptual and not published. */
+        private const val ZOOM_STATE_PUBLISH_EPSILON = 0.001f
+        /** Ratios closer than this are the same request; do not resubmit. */
+        private const val ZOOM_SUBMIT_EPSILON = 0.000001f
+        /** Material target change that re-arms the floating zoom persistence. */
+        private const val ZOOM_REMEMBER_MIN_DELTA = 0.01f
+        private const val ZOOM_TICK_MILLIS = 16L
+        private const val ZOOM_TICK_MIN_STEP_MILLIS = 1f
+        private const val ZOOM_TICK_MAX_STEP_MILLIS = 64f
         private const val ZOOM_REMEMBER_DELAY_MILLIS = 400L
+        private val PREVIEW_TARGET_4_3 = Size(1440, 1080)
+        private val PREVIEW_TARGET_16_9 = Size(1920, 1080)
         private const val EXTENSION_INIT_TIMEOUT_MILLIS = 3_000L
 
         fun createStartIntent(
@@ -1857,5 +2088,57 @@ class PhotoCaptureService : LifecycleService() {
                 }
             }
         }
+    }
+}
+
+/**
+ * Pure decision logic for throttling zoom UI repaints.
+ *
+ * A pinch can produce an eased zoom frame per display refresh, but the floating
+ * overlay's text/seek-bar only need to be re-rendered when the ratio moved by a
+ * perceptible amount, and never more often than every [minIntervalMillis].
+ * Callers force a render for the settled value so the overlay always ends on
+ * the exact final ratio. Free of Android types so it is unit tested on the JVM.
+ */
+internal class ZoomUiUpdateThrottle(
+    private val minRelativeDelta: Float = DEFAULT_MIN_RELATIVE_DELTA,
+    private val minIntervalMillis: Long = DEFAULT_MIN_INTERVAL_MILLIS,
+) {
+    private var lastRenderedRatio = Float.NaN
+    private var lastRenderedAtMillis = Long.MIN_VALUE
+
+    fun shouldRender(ratio: Float, nowMillis: Long, force: Boolean): Boolean {
+        if (force) {
+            return true
+        }
+        if (!ratio.isFinite()) {
+            return false
+        }
+        if (!lastRenderedRatio.isFinite()) {
+            return true
+        }
+        val reference = if (lastRenderedRatio > 0f) lastRenderedRatio else 1f
+        if (abs(ratio - lastRenderedRatio) < minRelativeDelta * reference) {
+            return false
+        }
+        return nowMillis >= lastRenderedAtMillis + minIntervalMillis
+    }
+
+    fun markRendered(ratio: Float, nowMillis: Long) {
+        if (ratio.isFinite()) {
+            lastRenderedRatio = ratio
+        }
+        lastRenderedAtMillis = nowMillis
+    }
+
+    fun reset() {
+        lastRenderedRatio = Float.NaN
+        lastRenderedAtMillis = Long.MIN_VALUE
+    }
+
+    companion object {
+        /** ~0.5 % of the current ratio is a visible step in the overlay label. */
+        const val DEFAULT_MIN_RELATIVE_DELTA = 0.005f
+        const val DEFAULT_MIN_INTERVAL_MILLIS = 50L
     }
 }

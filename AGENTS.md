@@ -7,8 +7,8 @@ repository. Read it before changing code.
 
 1. **每一次用户可见的修复或功能改动，都必须提升版本号并打包发布**，不能只提交代码、不能只留在工作区。
    - Patch 版本：`0.6.x`，`versionCode` 每次 +1。
-   - 当前已发布：`0.6.6 (23)`，tag `v0.6.6`，
-     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.6>。
+   - 当前已发布：`0.6.7 (24)`，tag `v0.6.7`，
+     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.7>。
 2. 发布流程固定为：
    - 在 `app/build.gradle` 提升 `versionCode` / `versionName`；
    - 新增 `docs/releases/<version>.md` 发布说明；
@@ -44,6 +44,22 @@ repository. Read it before changing code.
   - “画质优先”使用硬件 JPEG 上限判断，保留最大分辨率。
 - 变更 `PhotoCaptureService` 后复查：ZSL/扩展回退、分析流、软件 JPEG 条件、
   flash、保存路径和内部存储/MediaStore 行为。
+- 变焦约定（0.6.7 起）：
+  - 拍照与录像共用的平滑变焦逻辑在 `services/SmoothZoom.kt`（纯 Kotlin、帧率无关缓动）
+    与 `services/ZoomRequestQueue.kt`（latest-wins 合并，最多一个 `setZoomRatio` 在途）。
+  - 相对输入（双指捏合）用 `scaleBy` 在 target 上累加，由 ~16 ms ticker 逐帧推进；
+    绝对输入（悬浮窗滑杆/按钮、恢复上次倍率）必须 `snapTo` 立即生效，不能缓动。
+  - 录像倍率经 `VideoRecorderModel.handleIntent` 的 `"initialZoom"` extra 传入
+    `VideoRecorderService`，在 `CameraControl.applyInitialZoom()` 中于首帧录制前应用；
+    录像界面的 `CameraPreview` 由 `cameraKey`（镜头 id）做重组 key，不能用
+    `CameraSelector` 实例（它没有 `equals()`）。
+  - 变焦只更新独立状态/回调，不得 `publish()` 全量会话状态；`PhotoZoomInstrumentedTest`
+    和 `VideoZoomInstrumentedTest` 是这条管线的回归测试。
+- 视频防抖默认开启，但只在相机报告 Camera2
+  `CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES` 含 ON 时才调用
+  `VideoCapture.Builder.setVideoStabilizationEnabled(true)`。
+- 取景器分辨率显式指定（拍照 1440×1080 / 1920×1080，录像 1280×960），
+  不要再依赖 CameraX 的 640×480 默认值；绑定失败的回退链必须保留。
 
 ## 验证门槛与验收流程（强制）
 

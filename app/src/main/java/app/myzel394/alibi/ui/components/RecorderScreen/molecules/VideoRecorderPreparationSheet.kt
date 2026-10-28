@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
@@ -41,6 +42,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChange
@@ -80,6 +82,8 @@ fun VideoRecorderPreparationSheet(
 
     val context = LocalContext.current
     val cameras = CameraInfo.queryAvailableCameras(context)
+    val hasGrantedCameraPermission =
+        PermissionHelper.hasGranted(context, Manifest.permission.CAMERA)
 
     LaunchedEffect(Unit) {
         videoSettings.init(context)
@@ -114,6 +118,9 @@ fun VideoRecorderPreparationSheet(
                     modifier = Modifier
                         .fillMaxSize(),
                     cameraSelector = videoSettings.cameraSelector,
+                    cameraKey = videoSettings.cameraID,
+                    initialZoom = videoSettings.zoomRatio,
+                    onZoomChanged = videoSettings::onPreviewZoomChanged,
                 )
             } else {
                 BoxWithConstraints {
@@ -144,6 +151,14 @@ fun VideoRecorderPreparationSheet(
                                 style = MaterialTheme.typography.labelLarge,
                             )
                         }
+
+                        // A persistent preview so the pinch gesture is actually
+                        // usable: the full-screen preview above is only visible
+                        // while the start button is held down.
+                        if (hasGrantedCameraPermission) {
+                            VideoZoomPreviewPanel(videoSettings = videoSettings)
+                        }
+
                         PermissionRequester(
                             permission = Manifest.permission.RECORD_AUDIO,
                             icon = Icons.Default.Mic,
@@ -177,8 +192,6 @@ fun VideoRecorderPreparationSheet(
 
                         val label =
                             stringResource(R.string.ui_videoRecorder_action_start_settings_start_label)
-                        val hasGrantedCameraPermission =
-                            PermissionHelper.hasGranted(context, Manifest.permission.CAMERA)
 
                         Column(
                             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -236,6 +249,53 @@ fun VideoRecorderPreparationSheet(
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Compact persistent viewfinder with pinch-to-zoom. The full-screen preview is
+ * only shown while the start button is held down, which makes a two-finger
+ * gesture impossible, so the sheet exposes this smaller surface instead.
+ */
+@Composable
+private fun VideoZoomPreviewPanel(
+    videoSettings: VideoRecorderModel,
+) {
+    val zoomRatio = videoSettings.zoomRatio
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        CameraPreview(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .background(Color.Black),
+            cameraSelector = videoSettings.cameraSelector,
+            cameraKey = videoSettings.cameraID,
+            initialZoom = zoomRatio,
+            onZoomChanged = videoSettings::onPreviewZoomChanged,
+            cornerRadius = 20.dp,
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                stringResource(R.string.video_settings_preview_zoom_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            if (abs(zoomRatio - 1f) > 0.01f) {
+                Text(
+                    stringResource(R.string.photo_overlay_zoom_value, zoomRatio),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
         }
     }

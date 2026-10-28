@@ -429,6 +429,9 @@
     <string name="video_settings_section_quality_description">Adjust capture resolution, encoding bitrate, and frame rate.</string>
     <string name="video_settings_section_duration">Recording Duration</string>
     <string name="video_settings_section_duration_description">Video recordings follow the global retention duration and interval slicing settings.</string>
+    <string name="video_settings_video_stabilization_title">Video stabilization</string>
+    <string name="video_settings_video_stabilization_description">Reduce handheld shake in recordings when the camera supports it.</string>
+    <string name="video_settings_preview_zoom_hint">Pinch to zoom while recording</string>
 
     <string name="storage_settings_page_title">Storage &amp; backup</string>
     <string name="storage_settings_page_description">Manage where recordings are saved, timestamp filename formats, and settings backup.</string>

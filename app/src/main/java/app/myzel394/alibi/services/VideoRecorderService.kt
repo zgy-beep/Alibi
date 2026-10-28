@@ -3,8 +3,12 @@ package app.myzel394.alibi.services
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraMetadata
 import android.os.Build
 import android.util.Range
+import androidx.camera.camera2.interop.Camera2CameraInfo
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.TorchState
@@ -38,6 +42,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
+import java.util.concurrent.Executor
+import kotlin.math.abs
 import kotlin.properties.Delegates
 
 class VideoRecorderService :
@@ -64,10 +70,27 @@ class VideoRecorderService :
     private lateinit var selectedCamera: CameraSelector
     private var enableAudio by Delegates.notNull<Boolean>()
 
+    /** Zoom ratio requested by the preparation sheet; applied as soon as the camera is bound. */
+    private var initialZoom = 1f
+
     var onCameraControlAvailable = {}
 
     var cameraControl: CameraControl? = null
         private set
+
+    /** Zoom ratio currently applied to the camera, readable for device acceptance checks. */
+    val cameraZoomRatio: Float
+        get() = cameraControl?.zoomRatio ?: initialZoom
+
+    /** Changes the zoom ratio of the bound camera; ignored until the camera is ready. */
+    fun setZoomRatio(ratio: Float) {
+        cameraControl?.setZoomRatio(ratio)
+    }
+
+    /** Multiplies the current zoom ratio, e.g. for step buttons. */
+    fun zoomBy(factor: Float) {
+        cameraControl?.zoomBy(factor)
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == "init") {
@@ -75,6 +98,7 @@ class VideoRecorderService :
                 intent.getIntExtra("cameraID", CameraSelector.LENS_FACING_BACK)
             ).build()
             enableAudio = intent.getBooleanExtra("enableAudio", true)
+            initialZoom = intent.getFloatExtra("initialZoom", 1f)
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -190,14 +214,41 @@ class VideoRecorderService :
         }
         .build()
 
-    private fun buildVideoCapture(recorder: Recorder) = VideoCapture.Builder(recorder)
+    private fun buildVideoCapture(recorder: Recorder, provider: ProcessCameraProvider) =
+        VideoCapture.Builder(recorder)
         .apply {
             val frameRate = settings.videoRecorderSettings.targetFrameRate
             if (frameRate != null) {
                 setTargetFrameRate(Range(frameRate, frameRate))
             }
+            // Only request stabilization when the selected camera advertises
+            // it; requesting it unconditionally fails the binding on devices
+            // that do not support it.
+            if (settings.videoRecorderSettings.videoStabilizationEnabled &&
+                provider.supportsVideoStabilization(selectedCamera)
+            ) {
+                setVideoStabilizationEnabled(true)
+            }
         }
         .build()
+
+    /**
+     * CameraX's stabilization request only works when the selected camera lists
+     * the ON mode in its Camera2 characteristics. Any lookup failure (missing
+     * characteristic, unsupported provider) simply disables the feature instead
+     * of crashing the recording service.
+     */
+    @androidx.annotation.OptIn(ExperimentalCamera2Interop::class)
+    private fun ProcessCameraProvider.supportsVideoStabilization(
+        selector: CameraSelector,
+    ): Boolean = runCatching {
+        val cameraInfo = selector.filter(availableCameraInfos).firstOrNull()
+            ?: return@runCatching false
+        val availableModes = Camera2CameraInfo.from(cameraInfo).getCameraCharacteristic(
+            CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES
+        )
+        availableModes?.contains(CameraMetadata.CONTROL_VIDEO_STABILIZATION_MODE_ON) == true
+    }.getOrDefault(false)
 
     // Open the camera.
     // Used to open it for a longer time, shouldn't be called when pausing / resuming.
@@ -213,7 +264,7 @@ class VideoRecorderService :
             }
             cameraProvider = provider
             val recorder = buildRecorder()
-            val capture = buildVideoCapture(recorder)
+            val capture = buildVideoCapture(recorder, provider)
             videoCapture = capture
 
             runOnMain {
@@ -228,8 +279,15 @@ class VideoRecorderService :
                         capture,
                     )
 
-                    cameraControl = CameraControl(camera!!).also {
+                    cameraControl = CameraControl(
+                        camera = camera!!,
+                        mainExecutor = ContextCompat.getMainExecutor(this@VideoRecorderService),
+                    ).also {
                         it.init()
+                        // Applies the ratio picked in the preparation sheet
+                        // before the first cycle starts, so the recorded file
+                        // starts at the chosen zoom.
+                        it.applyInitialZoom(initialZoom)
                     }
                     cameraReady = true
                     onCameraControlAvailable()
@@ -269,6 +327,8 @@ class VideoRecorderService :
                     cameraProvider?.unbind(capture)
                 }
             }
+            // Drop any queued/in-flight zoom request; the camera is going away.
+            cameraControl?.reset()
             _cameraCloserListener?.complete(Unit)
             _cameraCloserListener = null
 
@@ -383,11 +443,94 @@ class VideoRecorderService :
 
     class CameraControl(
         val camera: Camera,
+        private val mainExecutor: Executor,
         // Save state for optimistic updates
         var torchEnabled: Boolean = false,
     ) {
+        private val zoomRequests = ZoomRequestQueue()
+
+        /** Ratio that was requested last / is currently applied. */
+        var zoomRatio: Float = DEFAULT_ZOOM_RATIO
+            private set
+
+        var zoomMinRatio: Float = DEFAULT_ZOOM_RATIO
+            private set
+
+        var zoomMaxRatio: Float = DEFAULT_ZOOM_RATIO
+            private set
+
         fun init() {
             torchEnabled = camera.cameraInfo.torchState.value == TorchState.ON
+            updateZoomBounds()
+        }
+
+        /** Reads the camera's supported zoom range; safe to call at any time. */
+        private fun updateZoomBounds() {
+            val zoomState = camera.cameraInfo.zoomState.value ?: return
+            val min = zoomState.minZoomRatio.takeIf { it.isFinite() && it > 0f }
+                ?: DEFAULT_ZOOM_RATIO
+            val max = zoomState.maxZoomRatio.takeIf { it.isFinite() && it >= min } ?: min
+            zoomMinRatio = min
+            zoomMaxRatio = max
+        }
+
+        /**
+         * Applies the zoom chosen in the preparation sheet, clamped into the
+         * range the camera really supports.
+         */
+        fun applyInitialZoom(ratio: Float) {
+            updateZoomBounds()
+            val clamped = normalizeZoom(ratio)
+            zoomRatio = clamped
+            submitZoom(clamped)
+        }
+
+        fun setZoomRatio(target: Float) {
+            updateZoomBounds()
+            val clamped = normalizeZoom(target)
+            if (abs(clamped - zoomRatio) < ZOOM_EPSILON) {
+                return
+            }
+            zoomRatio = clamped
+            submitZoom(clamped)
+        }
+
+        fun zoomBy(factor: Float) {
+            if (!factor.isFinite() || factor <= 0f) {
+                return
+            }
+            setZoomRatio(zoomRatio * factor)
+        }
+
+        private fun normalizeZoom(ratio: Float): Float {
+            val requested = ratio.takeIf { it.isFinite() && it > 0f } ?: DEFAULT_ZOOM_RATIO
+            return requested.coerceIn(zoomMinRatio, zoomMaxRatio)
+        }
+
+        /** Marks the request queue dirty; call when the camera is closing. */
+        fun reset() {
+            zoomRequests.reset()
+        }
+
+        private fun submitZoom(ratio: Float) {
+            val immediate = zoomRequests.submit(ratio)
+            if (immediate != null) {
+                applyZoomRequest(immediate)
+            }
+        }
+
+        private fun applyZoomRequest(ratio: Float) {
+            val future = runCatching { camera.cameraControl.setZoomRatio(ratio) }.getOrNull()
+            if (future == null) {
+                zoomRequests.reset()
+                return
+            }
+            future.addListener({
+                val next = zoomRequests.complete()
+                if (next != null) {
+                    applyZoomRequest(next)
+                }
+            }, mainExecutor)
         }
 
         fun enableTorch() {
@@ -405,5 +548,10 @@ class VideoRecorderService :
         }
 
         fun hasTorchAvailable() = camera.cameraInfo.hasFlashUnit()
+
+        companion object {
+            const val DEFAULT_ZOOM_RATIO = 1f
+            private const val ZOOM_EPSILON = 0.001f
+        }
     }
 }

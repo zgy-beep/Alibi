@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ import app.myzel394.alibi.services.PhotoCaptureMode
 import app.myzel394.alibi.services.PhotoCaptureService
 import app.myzel394.alibi.services.PhotoCaptureSessionState
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 
 @SuppressLint("StaticFieldLeak")
 class PhotoCaptureModel : ViewModel() {
@@ -29,7 +31,7 @@ class PhotoCaptureModel : ViewModel() {
      * Zoom-only state, kept separate from [state] so a continuous pinch does not
      * invalidate every composable that reads the session state.
      */
-    var zoomRatio by mutableStateOf(1f)
+    var zoomRatio by mutableFloatStateOf(1f)
         private set
 
     val isInSession: Boolean
@@ -44,13 +46,13 @@ class PhotoCaptureModel : ViewModel() {
             service = (binder as? PhotoCaptureService.PhotoBinder)?.getService()
             service?.onStateChanged = { newState ->
                 state = newState
-                zoomRatio = newState.zoomRatio
+                publishZoomRatio(newState.zoomRatio)
             }
             service?.onZoomChanged = { newZoomRatio ->
-                zoomRatio = newZoomRatio
+                publishZoomRatio(newZoomRatio)
             }
             state = service?.state ?: PhotoCaptureSessionState()
-            zoomRatio = state.zoomRatio
+            publishZoomRatio(state.zoomRatio)
             service?.setAppVisible(appVisible)
         }
 
@@ -145,6 +147,18 @@ class PhotoCaptureModel : ViewModel() {
         }
     }
 
+    /**
+     * Publishes a zoom ratio to Compose. Skipping sub-perceptual changes keeps a
+     * ~16 ms easing ticker from invalidating zoom readers on every display
+     * frame; the settled value always differs by more than the epsilon.
+     */
+    private fun publishZoomRatio(value: Float) {
+        if (!value.isFinite() || abs(value - zoomRatio) < ZOOM_RATIO_EPSILON) {
+            return
+        }
+        zoomRatio = value
+    }
+
     fun rememberCurrentZoom() {
         val context = boundContext ?: return
         val currentZoom = zoomRatio
@@ -182,5 +196,10 @@ class PhotoCaptureModel : ViewModel() {
     override fun onCleared() {
         unbindFromService()
         super.onCleared()
+    }
+
+    private companion object {
+        /** Zoom changes below this are not worth a recomposition. */
+        const val ZOOM_RATIO_EPSILON = 0.001f
     }
 }

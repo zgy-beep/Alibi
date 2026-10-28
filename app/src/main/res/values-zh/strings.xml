@@ -416,6 +416,9 @@
     <string name="video_settings_section_quality_description">调整视频分辨率画质级别、编码比特率与目标帧率。</string>
     <string name="video_settings_section_duration">录制时长规则</string>
     <string name="video_settings_section_duration_description">视频录制遵循全局设定的循环保留时长与分段切片间隔。</string>
+    <string name="video_settings_video_stabilization_title">视频防抖</string>
+    <string name="video_settings_video_stabilization_description">在相机硬件支持时减少手持拍摄造成的画面抖动。</string>
+    <string name="video_settings_preview_zoom_hint">双指缩放调整录像倍率</string>
 
     <string name="storage_settings_page_title">存储与备份</string>
     <string name="storage_settings_page_description">管理录制文件存储路径、时间戳命名规则与应用配置导入导出。</string>

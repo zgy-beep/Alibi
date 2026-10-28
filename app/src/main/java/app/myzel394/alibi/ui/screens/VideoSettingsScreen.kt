@@ -19,6 +19,7 @@ import app.myzel394.alibi.ui.components.SettingsScreen.Tiles.MaxDurationTile
 import app.myzel394.alibi.ui.components.SettingsScreen.Tiles.VideoRecorderBitrateTile
 import app.myzel394.alibi.ui.components.SettingsScreen.Tiles.VideoRecorderFrameRateTile
 import app.myzel394.alibi.ui.components.SettingsScreen.Tiles.VideoRecorderQualityTile
+import app.myzel394.alibi.ui.components.SettingsScreen.Tiles.VideoRecorderStabilizationTile
 import app.myzel394.alibi.ui.components.atoms.AlibiSectionHeader
 import app.myzel394.alibi.ui.components.atoms.AlibiSectionPanel
 import app.myzel394.alibi.ui.components.atoms.AlibiSettingsNotice
@@ -84,6 +85,8 @@ fun VideoSettingsScreen(
                     VideoRecorderBitrateTile(settings = settings)
                     HorizontalDivider()
                     VideoRecorderFrameRateTile(settings = settings)
+                    HorizontalDivider()
+                    VideoRecorderStabilizationTile(settings = settings)
                 }
             }
 
