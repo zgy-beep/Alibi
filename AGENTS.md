@@ -7,8 +7,8 @@ repository. Read it before changing code.
 
 1. **每一次用户可见的修复或功能改动，都必须提升版本号并打包发布**，不能只提交代码、不能只留在工作区。
    - Patch 版本：`0.6.x`，`versionCode` 每次 +1。
-   - 当前已发布：`0.6.4 (21)`，tag `v0.6.4`，
-     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.4>。
+   - 当前已发布：`0.6.6 (23)`，tag `v0.6.6`，
+     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.6>。
 2. 发布流程固定为：
    - 在 `app/build.gradle` 提升 `versionCode` / `versionName`；
    - 新增 `docs/releases/<version>.md` 发布说明；
@@ -46,9 +46,24 @@ repository. Read it before changing code.
 - 变更 `PhotoCaptureService` 后复查：ZSL/扩展回退、分析流、软件 JPEG 条件、
   flash、保存路径和内部存储/MediaStore 行为。
 
-## 验证门槛
+## 验证门槛与验收流程（强制）
 
-- JVM 单测全绿；`:app:lintDebug` 0 error/0 fatal。
-- `:app:assembleRelease`（R8 + 签名）成功。
-- 相机/权限/悬浮窗改动尽量做真机或 instrumentation 验证；若设备不可用，
-  必须在 evidence 中明确写出“未执行”的原因，不能声称已验证。
+发布前**必须在真机（优先）或虚拟机（AVD，如 `Pixel9_API36`）进行实际安装与功能烟雾验收**，不能仅凭 JVM 单测或编译通过即发布：
+
+1. **构建与静态质检**：
+   - JVM 单测全绿（`:app:testDebugUnitTest`）；
+   - `:app:lintDebug` 0 error / 0 fatal；
+   - `:app:assembleRelease`（R8 混淆 + 签名）成功。
+2. **设备端安装与桌面图标验收**：
+   - **ADB 安装**：使用 `adb install -r <apk>` 推送至设备；
+   - **桌面图标与 Launcher 验证**：
+     - 检查入口 `MainActivity` 必须显式声明 `android:icon` 和 `android:roundIcon`，确保 `query-activities` 查得的 `icon` 绝不能为 `0x0`；
+     - 检查所有密度（hdpi/mdpi/xhdpi/xxhdpi/xxxhdpi）必须同时具备 `ic_launcher.png` 与 `ic_launcher_round.png` 实体位图资产；
+     - 在桌面检查是否有 Alibi 图标，点击能否成功冷启动；若存在多用户/隐私空间，需确认机主用户（User 0）正常安装。
+3. **核心功能与页面验收**：
+   - 核心模式（录音、录像、拍照）及悬浮窗交互正常；
+   - 设置中枢（`SettingsScreen`）各二级模块（音频、视频、相机、存储与备份）跳转无崩溃，参数生效正常；
+   - 关于页面（`AboutScreen`）版本显示、版本号点击复制、隐私承诺与开源链接正常。
+4. **证据留存**：
+   - 截取真机运行界面与关键设置截图，存入 `docs/evidence/apk-<version>/`，同步输出 `SHA256SUMS.txt` 与测试说明。
+   - 若真实设备确实断开且虚拟机不可用，必须在 evidence 中明确写出“未执行”的原因，绝不能声称已验证。
