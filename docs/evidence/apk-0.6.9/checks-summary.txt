@@ -1,0 +1,3 @@
+JVM: {'tests': 52, 'failures': 0, 'errors': 0, 'skipped': 0}
+Lint: {'Warning': 224, 'Information': 2}; Error=0; Fatal=0
+Release: signed, R8 enabled, assembleRelease successful

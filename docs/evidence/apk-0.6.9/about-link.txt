@@ -1,0 +1,3 @@
+
+    mResumedActivity: ActivityRecord{3860907 u0 com.github.android/.main.MainActivity t7698}
+

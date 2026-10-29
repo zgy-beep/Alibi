@@ -1,0 +1,12 @@
+Release arm64 install --user 0 -r: Success
+Version: 0.6.9 (26), User 0 installed=true, User 10 installed=true
+Launcher: icon visible; icon click cold-start success; activity icon=0x7f0d0000
+Five densities, regular + round PNG assets: 10 present
+Standard photo: new alibi-photo_20261029_135946_616_ccd406dd.jpg shown in recent photos
+Standard video: recording timer displayed; stop/save -> success snackbar
+Audio: timer displayed; save -> success snackbar
+Settings: audio/video/photo/storage opened; changed audio max duration/video fps/photo strategy and restored
+About: v0.6.9 (26); copied-version snackbar; GitHub app opened
+Floating: background shutter visible; long-press panel; + 1.0x -> 1.3x; - -> 1.0x; close; shutter capture; stop
+Floating photo: new alibi-photo_20261029_140937_140_36051f44.jpg shown in recent photos
+Personal launcher/notifications/screenshots and UI XML remain local in .tmp only

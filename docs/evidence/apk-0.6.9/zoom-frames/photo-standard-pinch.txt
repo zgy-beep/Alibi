@@ -1,0 +1,1 @@
+photo-standard-pinch frames=56 changes=46 centralChanges=34 p95GapMs=37.049 maxRelativeStep=0.06270099 first=1.0 last=2.4990847

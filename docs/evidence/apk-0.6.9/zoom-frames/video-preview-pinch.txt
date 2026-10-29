@@ -1,0 +1,1 @@
+video-preview-pinch frames=93 changes=75 centralChanges=60 p95GapMs=64.097 maxRelativeStep=0.02398932 first=1.0 last=2.0969284

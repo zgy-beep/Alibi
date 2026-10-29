@@ -28,6 +28,8 @@ import kotlinx.coroutines.runBlocking
 import android.util.Log
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import app.myzel394.alibi.services.ZoomCaptureDiagnostics
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -50,22 +52,43 @@ class PhotoZoomInstrumentedTest {
         const val ZOOM_TEST_TAG = "PhotoZoomTest"
     }
 
+    @After fun clearSensorObserver() { ZoomCaptureDiagnostics.onResult = null }
+
     @Test
-    fun rapidZoomInputsAreCoalescedIntoBoundedCameraRequests() {
+    fun rapidZoomInputsArePacedAndReachRealCameraFrames() = verifyContinuousZoom(PhotoCaptureMode.BLACK_SCREEN)
+
+    @Test
+    fun standardPhotoZoomReachesRealCameraFrames() = verifyContinuousZoom(PhotoCaptureMode.STANDARD)
+
+    @Test
+    fun floatingPhotoZoomReachesRealCameraFrames() = verifyContinuousZoom(PhotoCaptureMode.FLOATING)
+
+    private fun verifyContinuousZoom(mode: PhotoCaptureMode) {
+        val sensor = SensorZoomTrace("photo")
+        ZoomCaptureDiagnostics.onResult = sensor::add
         grantCameraPermission()
+        if (mode == PhotoCaptureMode.FLOATING) grantOverlayPermission()
         val service = bindPhotoService()
         try {
-            startSession(PhotoCaptureMode.BLACK_SCREEN)
+            startSession(mode, startInBackground = mode == PhotoCaptureMode.FLOATING)
             assertTrue(
                 "Camera should become ready: ${service.state}",
                 waitUntil(20_000) { service.state.status == PhotoCaptureStatus.READY },
             )
 
-            repeat(60) {
-                instrumentation.runOnMainSync { service.zoomBy(1.03f) }
+            assertTrue("Real capture results should arrive", waitUntil(5_000) { sensor.hasFrames() })
+            instrumentation.runOnMainSync { service.setZoomRatio(1f) }
+            Thread.sleep(700)
+            sensor.clear()
+            val factor = 2.5.toDouble().pow(1.0 / 90).toFloat()
+            repeat(90) {
+                instrumentation.runOnMainSync { service.zoomBy(factor) }
                 Thread.sleep(16)
             }
-            Thread.sleep(1_000)
+            assertTrue("Final sensor ratio must converge, not just the UI", waitUntil(5_000) {
+                sensor.lastRatio()?.let { abs(it - 2.5f) < 0.01f } == true
+            })
+            sensor.assertContinuousAndSave("photo-${mode.name.lowercase()}-pinch")
 
             Log.i(
                 ZOOM_TEST_TAG,
@@ -75,7 +98,7 @@ class PhotoZoomInstrumentedTest {
                     "finalRatio=${service.state.zoomRatio} " +
                     "stalenessMs=${service.lastZoomStalenessMillis}",
             )
-            val expected = (1.03f.toDouble().pow(60)).toFloat()
+            val expected = 2.5f
             assertTrue(
                 "Zoom should approach the accumulated gesture target: " +
                     "expected=$expected actual=${service.state.zoomRatio}",
@@ -83,8 +106,10 @@ class PhotoZoomInstrumentedTest {
             )
             assertTrue(
                 "Gesture samples should be recorded: ${service.zoomInputCount}",
-                service.zoomInputCount >= 40,
+                service.zoomInputCount >= 80,
             )
+            assertTrue("Hardware acknowledgements must not gate new zoom frames: " +
+                "applies=${service.zoomApplyCount}", service.zoomApplyCount >= 25)
             assertTrue(
                 "CameraX requests must be fewer than gesture samples: " +
                     "inputs=${service.zoomInputCount} applies=${service.zoomApplyCount}",
@@ -121,7 +146,10 @@ class PhotoZoomInstrumentedTest {
         )
         try {
             composeRule.waitUntil(15_000) {
-                composeRule.onAllNodesWithText(photoLabel).fetchSemanticsNodes().isNotEmpty()
+                // ActivityScenario can reach RESUMED before its first Compose
+                // root is registered. Keep waiting instead of failing that race.
+                composeRule.onAllNodesWithText(photoLabel)
+                    .fetchSemanticsNodes(atLeastOneRootRequired = false).isNotEmpty()
             }
             composeRule.onAllNodesWithText(photoLabel).onFirst().performClick()
             composeRule.waitUntil(15_000) {
@@ -148,8 +176,8 @@ class PhotoZoomInstrumentedTest {
                         end1 = c + Offset(420f, 0f),
                     )
                 }
-                // The newest pinched ratio is applied right after the previous camera
-                // request finishes; make sure at least one coalesced request is applied.
+                // Multiple eased ratios must be submitted without waiting for
+                // the previous hardware acknowledgement.
                 assertTrue(
                     "Pinch should apply a coalesced camera request: " +
                         "inputs=${service.zoomInputCount} applies=${service.zoomApplyCount}",

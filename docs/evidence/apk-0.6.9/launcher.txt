@@ -1,0 +1,41 @@
+1 activities found:
+  Activity #0:
+    priority=0 preferredOrder=0 match=0x108000 specificIndex=-1 isDefault=false
+    ActivityInfo:
+      name=app.myzel394.alibi.MainActivity
+      packageName=com.zgybeep.alibi
+      labelRes=0x7f0f002c nonLocalizedLabel=null icon=0x7f0d0000 banner=0x0
+      enabled=true exported=true directBootAware=false
+      taskAffinity=com.zgybeep.alibi targetActivity=null persistableMode=PERSIST_ROOT_ONLY
+      launchMode=0 flags=0x200 privateFlags=0x2 theme=0x7f1000f9
+      screenOrientation=-1 configChanges=0x3 softInputMode=0x0
+      lockTaskLaunchMode=LOCK_TASK_LAUNCH_MODE_DEFAULT
+      resizeMode=RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION
+      ApplicationInfo:
+        name=app.myzel394.alibi.UpdateSettingsApp
+        packageName=com.zgybeep.alibi
+        labelRes=0x7f0f002c nonLocalizedLabel=null icon=0x7f0d0000 banner=0x0
+        className=app.myzel394.alibi.UpdateSettingsApp
+        processName=com.zgybeep.alibi
+        taskAffinity=com.zgybeep.alibi
+        uid=10492 flags=0x20c8be44 privateFlags=0x8c001000 theme=0x7f1000f9
+        requiresSmallestWidthDp=0 compatibleWidthLimitDp=0 largestWidthLimitDp=0
+        sourceDir=/data/app/~~NoH4BcSwMPvP3J-Hz31iAg==/com.zgybeep.alibi-pW8p4K3Uiwn6ZtZUbRBNMA==/base.apk
+        seinfo=default:targetSdkVersion=31
+        seinfoUser=:complete
+        dataDir=/data/user/0/com.zgybeep.alibi
+        deviceProtectedDataDir=/data/user_de/0/com.zgybeep.alibi
+        credentialProtectedDataDir=/data/user/0/com.zgybeep.alibi
+        enabled=true minSdkVersion=24 targetSdkVersion=34 versionCode=26 targetSandboxVersion=1
+        supportsRtl=true
+        hwFlags=0x0
+        hw_extra_flags=0x0
+        fullBackupContent=@xml/2131886081
+        dataExtractionRules=@xml/2131886082
+        crossProfile=false
+        HiddenApiEnforcementPolicy=2
+        usesNonSdkApi=false
+        allowsPlaybackCapture=true
+        nativeHeapZeroInitialized=0
+        forceDarkMode=2
+        hasAllowAudioPlaybackCaptureConfig=false

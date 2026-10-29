@@ -7,8 +7,8 @@ repository. Read it before changing code.
 
 1. **每一次用户可见的修复或功能改动，都必须提升版本号并打包发布**，不能只提交代码、不能只留在工作区。
    - Patch 版本：`0.6.x`，`versionCode` 每次 +1。
-   - 当前已发布：`0.6.8 (25)`，tag `v0.6.8`，
-     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.8>。
+   - 当前已发布：`0.6.9 (26)`，tag `v0.6.9`，
+     <https://github.com/zgy-beep/Alibi/releases/tag/v0.6.9>。
 2. 发布流程固定为：
    - 在 `app/build.gradle` 提升 `versionCode` / `versionName`；
    - 新增 `docs/releases/<version>.md` 发布说明；
@@ -46,7 +46,7 @@ repository. Read it before changing code.
   flash、保存路径和内部存储/MediaStore 行为。
 - 变焦约定（0.6.7 起）：
   - 拍照与录像共用的平滑变焦逻辑在 `services/SmoothZoom.kt`（纯 Kotlin、帧率无关缓动）
-    与 `services/ZoomRequestQueue.kt`（latest-wins 合并，最多一个 `setZoomRatio` 在途）。
+    与 `services/ZoomRequestQueue.kt`（0.6.9 起按 32 ms 合并最新倍率；不得等待 `setZoomRatio` Future 完成再发下一帧，绝对输入和收尾帧立即提交）。
   - 相对输入（双指捏合）用 `scaleBy` 在 target 上累加，由 ~16 ms ticker 逐帧推进；
     绝对输入（悬浮窗滑杆/按钮、恢复上次倍率）必须 `snapTo` 立即生效，不能缓动。
   - 录像倍率经 `VideoRecorderModel.handleIntent` 的 `"initialZoom"` extra 传入

@@ -453,8 +453,8 @@ class PhotoCaptureService : LifecycleService() {
     /**
      * Relative pinch input. The accumulated target is eased toward by a ~16 ms
      * ticker, so the preview tracks the fingers continuously instead of
-     * stepping once per touch sample, and at most one CameraX request is in
-     * flight at a time (see [ZoomRequestQueue]).
+     * stepping once per touch sample. Requests are paced independently of
+     * hardware confirmation (see [ZoomRequestQueue]).
      */
     fun zoomBy(scaleFactor: Float) {
         if (!scaleFactor.isFinite() || scaleFactor <= 0f || scaleFactor == 1f) {
@@ -512,7 +512,7 @@ class PhotoCaptureService : LifecycleService() {
         // Even a no-op absolute input flushes the overlay: it may still be
         // showing an eased ratio from an interrupted pinch.
         updateOverlayZoom(ratio = clamped, force = true)
-        submitZoomRequest(clamped)
+        submitZoomRequest(clamped, force = true)
     }
 
     /**
@@ -539,7 +539,7 @@ class PhotoCaptureService : LifecycleService() {
                 val ratio = smoothZoom.advance(elapsedMillis)
                 val settled = smoothZoom.isSettled
                 publishZoomFrame(ratio, force = settled)
-                submitZoomRequest(ratio)
+                submitZoomRequest(ratio, force = settled)
                 if (settled) {
                     // Make sure the final gesture target is persisted even when
                     // the eased value stopped just short of it.
@@ -602,7 +602,7 @@ class PhotoCaptureService : LifecycleService() {
      * Submits one ratio to the latest-wins queue. Duplicate consecutive ratios
      * are dropped so settling does not issue redundant CameraX requests.
      */
-    private fun submitZoomRequest(ratio: Float) {
+    private fun submitZoomRequest(ratio: Float, force: Boolean = false) {
         if (!ratio.isFinite()) {
             return
         }
@@ -611,57 +611,38 @@ class PhotoCaptureService : LifecycleService() {
             lastSubmittedZoomRatio = Float.NaN
             return
         }
-        if (abs(ratio - lastSubmittedZoomRatio) < ZOOM_SUBMIT_EPSILON) {
+        if (!force && abs(ratio - lastSubmittedZoomRatio) < ZOOM_SUBMIT_EPSILON) {
             return
         }
-        lastSubmittedZoomRatio = ratio
-        val immediate = zoomRequests.submit(ratio)
+        val immediate = zoomRequests.submit(ratio, SystemClock.elapsedRealtime(), force)
         if (immediate != null) {
+            lastSubmittedZoomRatio = immediate
             applyZoomRequest(immediate)
         } else {
             zoomCoalescedCount++
         }
     }
 
-    /**
-     * Applies at most one CameraX zoom request at a time and drops intermediate
-     * ratios, so a continuous pinch can never build a request backlog.
-     */
+    /** Hardware completion is observed for diagnostics only; it never schedules another ratio. */
     private fun applyZoomRequest(target: Float) {
-        val control = camera?.cameraControl
-        if (control == null) {
-            zoomRequests.reset()
-            lastSubmittedZoomRatio = Float.NaN
-            return
-        }
+        val control = camera?.cameraControl ?: return
         lastZoomStalenessMillis =
             (SystemClock.elapsedRealtime() - lastZoomInputAtMillis).coerceAtLeast(0L)
         val startedAt = SystemClock.elapsedRealtime()
-        val future = runCatching { control.setZoomRatio(target) }.getOrNull()
-        if (future == null) {
-            applyNextZoomRequest()
+        val future = runCatching { control.setZoomRatio(target) }.getOrElse {
+            Log.w(TAG, "Unable to submit zoom", it)
             return
         }
         zoomApplyCount++
-        future.addListener(
-            {
-                if (BuildConfig.DEBUG) {
-                    Log.d(
-                        TAG,
-                        "zoom applied target=$target latencyMs=" +
-                            (SystemClock.elapsedRealtime() - startedAt),
-                    )
+        if (BuildConfig.DEBUG) {
+            future.addListener({
+                // Newer ratios normally cancel older futures. A completion from
+                // a closed/replaced camera must never alter the new session.
+                if (runCatching { future.get() }.isSuccess) {
+                    Log.d(TAG, "zoom confirmed target=$target latencyMs=" +
+                        (SystemClock.elapsedRealtime() - startedAt))
                 }
-                applyNextZoomRequest()
-            },
-            ContextCompat.getMainExecutor(this),
-        )
-    }
-
-    private fun applyNextZoomRequest() {
-        val next = zoomRequests.complete()
-        if (next != null) {
-            applyZoomRequest(next)
+            }, ContextCompat.getMainExecutor(this))
         }
     }
 
@@ -1317,11 +1298,13 @@ class PhotoCaptureService : LifecycleService() {
                     fastCaptureProfile,
                 )
             }
+            ZoomCaptureDiagnostics.attach(captureBuilder, "photo")
             val capture = captureBuilder.build()
 
             val previewUseCase = Preview.Builder()
                 .setResolutionSelector(previewResolutionSelector(sessionConfig.photoSettings))
                 .setTargetRotation(currentDisplayRotation())
+                .also { ZoomCaptureDiagnostics.attach(it, "photo") }
                 .build()
             // Quality stills use preview + capture only. The extra analysis
             // surface combined with a non-ZSL high-resolution JPEG pipeline
@@ -1351,6 +1334,7 @@ class PhotoCaptureService : LifecycleService() {
                         fastCaptureProfile,
                     )
                 }
+                ZoomCaptureDiagnostics.attach(analysisBuilder, "photo")
                 analysisBuilder
                     .build()
                     .also { useCase ->

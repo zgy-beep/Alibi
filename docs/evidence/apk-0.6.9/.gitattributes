@@ -1,0 +1,2 @@
+# Preserve original evidence bytes, including captured log whitespace, for hashing.
+* -text -whitespace

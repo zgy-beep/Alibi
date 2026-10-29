@@ -1,0 +1,1 @@
+recording-pinch frames=54 changes=47 centralChanges=35 p95GapMs=37.049 maxRelativeStep=0.041390657 first=1.0 last=2.4990847

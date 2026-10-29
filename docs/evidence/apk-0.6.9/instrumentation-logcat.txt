@@ -1,0 +1,38 @@
+--------- beginning of main
+10-29 14:06:03.506 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:03.506 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:04.260 25746 25746 D PhotoCaptureService: zoom confirmed target=1.0 latencyMs=22
+10-29 14:06:07.035 25746 25746 D PhotoCaptureService: zoom confirmed target=2.5000074 latencyMs=347
+10-29 14:06:07.122 25746 25879 I SensorZoomTrace: photo-standard-pinch frames=56 changes=46 centralChanges=34 p95GapMs=37.049 maxRelativeStep=0.06270099 first=1.0 last=2.4990847
+10-29 14:06:07.122 25746 25879 I PhotoZoomTest: coalescing inputs=90 applies=62 coalesced=37 finalRatio=2.5000074 stalenessMs=147
+10-29 14:06:08.182 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:08.182 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:08.422 25746 25879 I PhotoZoomTest: pinch before=1.0 after=2.0664475 inputs=23 applies=2 stalenessMs=40
+10-29 14:06:08.851 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:08.852 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:08.920 25746 25879 I PhotoZoomTest: floating overlay zoom requested ratio=1.8
+10-29 14:06:09.242 25746 25746 D PhotoCaptureService: zoom confirmed target=1.8 latencyMs=324
+10-29 14:06:09.824 25746 25879 I PhotoZoomTest: floating overlay rememberZoom stored=1.8
+10-29 14:06:09.862 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:09.862 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:10.537 25746 25746 D PhotoCaptureService: zoom confirmed target=1.0 latencyMs=31
+10-29 14:06:13.272 25746 25746 D PhotoCaptureService: zoom confirmed target=2.5000074 latencyMs=307
+10-29 14:06:13.302 25746 25879 I SensorZoomTrace: photo-black_screen-pinch frames=54 changes=44 centralChanges=31 p95GapMs=64.097 maxRelativeStep=0.04173231 first=1.0 last=2.4990847
+10-29 14:06:13.302 25746 25879 I PhotoZoomTest: coalescing inputs=90 applies=63 coalesced=35 finalRatio=2.5000074 stalenessMs=143
+10-29 14:06:13.447 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:13.447 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:14.167 25746 25746 D PhotoCaptureService: zoom confirmed target=1.0 latencyMs=36
+10-29 14:06:17.122 25746 25746 D PhotoCaptureService: zoom confirmed target=2.5000074 latencyMs=321
+10-29 14:06:17.147 25746 25879 I SensorZoomTrace: photo-floating-pinch frames=60 changes=46 centralChanges=31 p95GapMs=74.097 maxRelativeStep=0.04482603 first=1.0 last=2.4990847
+10-29 14:06:17.147 25746 25879 I PhotoZoomTest: coalescing inputs=90 applies=62 coalesced=36 finalRatio=2.5000074 stalenessMs=145
+10-29 14:06:21.652 25746 25879 I SensorZoomTrace: video-preview-pinch frames=93 changes=75 centralChanges=60 p95GapMs=64.097 maxRelativeStep=0.02398932 first=1.0 last=2.0969284
+10-29 14:06:23.816 25746 25879 I VideoZoomTest: screenshot saved to /sdcard/video-preview-pinch.png
+10-29 14:06:23.816 25746 25879 I VideoZoomTest: preview pinch before=1.0 after=2.0979028
+10-29 14:06:27.341 25746 25879 I SensorZoomTrace: recording-pinch frames=54 changes=47 centralChanges=35 p95GapMs=37.049 maxRelativeStep=0.041390657 first=1.0 last=2.4990847
+10-29 14:06:28.275 25746 25879 I VideoZoomTest: recording zoom applied=3.0 range=1.0..10.0
+10-29 14:06:28.683 25746 25879 I StandardCameraTest: live recording zoom before=1.0 after=1.4639138 cameraZoom=1.4639138
+10-29 14:06:29.280 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 14:06:29.280 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 14:06:32.542 25746 25746 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=false, CAF=false
+10-29 14:06:32.543 25746 25746 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=7680000 extension=NONE
+10-29 14:06:32.639 25746 25879 I StandardCameraTest: standard photo focus=false lens=0 zoom=1.0 range=1.0..6.0

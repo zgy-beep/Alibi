@@ -1,0 +1,5 @@
+Installed package APK SHA-256: dd06db3aa8633d8d55e2b01bdb30fb5a10056f8ee592fab28a9e0006cb285e3f
+Matches final arm64 release: true
+Owner Debug/test removed; privacy-space installation retained
+Charging stay-awake restored: 0
+Main logcat buffer restored: 256 KiB

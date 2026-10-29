@@ -1,0 +1,8 @@
+--------- beginning of main
+10-29 11:23:59.035 15838 15838 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 11:23:59.036 15838 15838 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 11:23:59.690 15838 15838 D PhotoCaptureService: zoom applied target=1.0072283 latencyMs=497
+10-29 11:24:00.134 15838 15838 D PhotoCaptureService: zoom applied target=2.2262049 latencyMs=445
+10-29 11:24:00.847 15838 15838 D PhotoCaptureService: zoom applied target=4.9366684 latencyMs=712
+10-29 11:24:01.275 15838 15885 I PhotoZoomTest: coalescing inputs=60 applies=4 coalesced=74 finalRatio=5.8915944 stalenessMs=684
+10-29 11:24:01.319 15838 15838 D PhotoCaptureService: zoom applied target=5.8915944 latencyMs=472

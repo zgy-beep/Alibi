@@ -58,7 +58,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
-import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.properties.Delegates
@@ -332,6 +331,7 @@ class VideoRecorderService :
     private fun buildVideoCapture(recorder: Recorder, provider: ProcessCameraProvider) =
         VideoCapture.Builder(recorder)
         .apply {
+            ZoomCaptureDiagnostics.attach(this, "video")
             val frameRate = settings.videoRecorderSettings.targetFrameRate
             if (frameRate != null) {
                 setTargetFrameRate(Range(frameRate, frameRate))
@@ -356,6 +356,7 @@ class VideoRecorderService :
     private fun buildPreviewUseCase(): Preview = Preview.Builder()
         .setResolutionSelector(VIDEO_PREVIEW_RESOLUTION_SELECTOR)
         .setTargetRotation(currentDisplayRotation())
+        .also { ZoomCaptureDiagnostics.attach(it, "video") }
         .build()
 
     /**
@@ -464,7 +465,6 @@ class VideoRecorderService :
 
                     cameraControl = CameraControl(
                         camera = camera!!,
-                        mainExecutor = ContextCompat.getMainExecutor(this@VideoRecorderService),
                     ).also {
                         it.onZoomChanged = { ratio, minRatio, maxRatio ->
                             this@VideoRecorderService.onZoomChanged
@@ -672,14 +672,13 @@ class VideoRecorderService :
      *
      * Recording zoom reuses the photo pipeline: relative inputs accumulate on a
      * [SmoothZoom] target and a ~16 ms main-thread ticker eases the camera
-     * toward it, submitting at most one `setZoomRatio` at a time through
+     * toward it, pacing `setZoomRatio` independently of hardware feedback through
      * [ZoomRequestQueue]. Absolute inputs snap immediately. Because the zoom is
      * applied at camera level it reaches both the live viewfinder and the
      * recorded file.
      */
     class CameraControl(
         val camera: Camera,
-        private val mainExecutor: Executor,
         // Save state for optimistic updates
         var torchEnabled: Boolean = false,
     ) {
@@ -733,7 +732,7 @@ class VideoRecorderService :
             val clamped = smoothZoom.snapTo(ratio)
             zoomRatio = clamped
             publishZoom(clamped, force = true)
-            submitZoom(clamped)
+            submitZoom(clamped, force = true)
         }
 
         /**
@@ -749,7 +748,7 @@ class VideoRecorderService :
             val clamped = smoothZoom.snapTo(target)
             zoomRatio = clamped
             publishZoom(clamped, force = true)
-            submitZoom(clamped)
+            submitZoom(clamped, force = true)
         }
 
         /**
@@ -797,7 +796,7 @@ class VideoRecorderService :
                     // The settled frame is published unconditionally so the zoom
                     // indicator always ends on the exact gesture target.
                     publishZoom(ratio, force = settled)
-                    submitZoom(ratio)
+                    submitZoom(ratio, force = settled)
                     if (settled) {
                         break
                     }
@@ -830,42 +829,26 @@ class VideoRecorderService :
          * Submits one ratio to the latest-wins queue; duplicate consecutive
          * ratios are dropped so settling issues no redundant CameraX requests.
          */
-        private fun submitZoom(ratio: Float) {
+        private fun submitZoom(ratio: Float, force: Boolean = false) {
             if (closed || !ratio.isFinite()) {
                 return
             }
-            if (abs(ratio - lastSubmittedZoomRatio) < ZOOM_SUBMIT_EPSILON) {
+            if (!force && abs(ratio - lastSubmittedZoomRatio) < ZOOM_SUBMIT_EPSILON) {
                 return
             }
-            lastSubmittedZoomRatio = ratio
-            val immediate = zoomRequests.submit(ratio)
+            val immediate = zoomRequests.submit(ratio, SystemClock.elapsedRealtime(), force)
             if (immediate != null) {
+                lastSubmittedZoomRatio = immediate
                 applyZoomRequest(immediate)
             }
         }
 
-        /** Applies one CameraX request at a time; the newest queued ratio goes next. */
+        /** Newer CameraX requests replace unfinished ones; never wait for a capture result. */
         private fun applyZoomRequest(ratio: Float) {
-            if (closed) {
-                zoomRequests.reset()
-                return
+            if (closed) return
+            runCatching { camera.cameraControl.setZoomRatio(ratio) }.onFailure {
+                Log.w("VideoRecorderService", "Unable to submit zoom", it)
             }
-            val future = runCatching { camera.cameraControl.setZoomRatio(ratio) }.getOrNull()
-            if (future == null) {
-                zoomRequests.reset()
-                lastSubmittedZoomRatio = Float.NaN
-                return
-            }
-            future.addListener({
-                if (closed) {
-                    zoomRequests.reset()
-                    return@addListener
-                }
-                val next = zoomRequests.complete()
-                if (next != null) {
-                    applyZoomRequest(next)
-                }
-            }, mainExecutor)
         }
 
         /** Cancels the ticker and rejects every further request; call when the camera closes. */

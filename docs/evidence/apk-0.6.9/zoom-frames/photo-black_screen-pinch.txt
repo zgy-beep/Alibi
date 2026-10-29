@@ -1,0 +1,1 @@
+photo-black_screen-pinch frames=54 changes=44 centralChanges=31 p95GapMs=64.097 maxRelativeStep=0.04173231 first=1.0 last=2.4990847

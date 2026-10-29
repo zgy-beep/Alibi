@@ -1,41 +1,38 @@
 package app.myzel394.alibi.services
 
 /**
- * Latest-wins queue for CameraX zoom requests.
+ * Frame-paced, latest-wins admission for CameraX zoom requests.
  *
- * CameraX applies every [androidx.camera.core.CameraControl.setZoomRatio] request
- * through its camera control pipeline. Sending one request per touch sample
- * makes that pipeline fall behind the fingers and the preview visibly lags the
- * gesture. This queue keeps at most one request in flight and always applies
- * the newest requested ratio next, so the camera never accumulates a backlog.
+ * A CameraX zoom future waits for a repeating capture result, which can take
+ * several hundred milliseconds. It must never gate the next animation frame.
+ * Callers offer the current eased ratio on each ticker frame; samples inside
+ * the admission interval are superseded by the next sample, not buffered.
+ * CameraX itself supersedes the previous unfinished zoom operation.
+ * Absolute inputs and the last animation frame bypass the interval. Futures
+ * have no callback into this class, so stale completions cannot replay targets.
  */
-class ZoomRequestQueue {
-    private var pending: Float? = null
-    private var inFlight = false
+class ZoomRequestQueue(private val intervalMillis: Long = 32L) {
+    private var lastSubmittedAtMillis: Long? = null
+    private var lastRatio = Float.NaN
 
-    /** Returns the ratio that should be applied now, or null when an earlier request is still in flight. */
+    /** Uses a monotonic clock. Hardware acknowledgements never gate admission. */
     @Synchronized
-    fun submit(ratio: Float): Float? {
-        if (inFlight) {
-            pending = ratio
+    fun submit(ratio: Float, nowMillis: Long, force: Boolean = false): Float? {
+        if (!ratio.isFinite() || ratio <= 0f || ratio == lastRatio) {
             return null
         }
-        inFlight = true
+        val lastTime = lastSubmittedAtMillis
+        if (!force && lastTime != null && nowMillis - lastTime < intervalMillis) {
+            return null
+        }
+        lastSubmittedAtMillis = nowMillis
+        lastRatio = ratio
         return ratio
-    }
-
-    /** Marks the in-flight request finished and returns the newest queued ratio, if any. */
-    @Synchronized
-    fun complete(): Float? {
-        val next = pending
-        pending = null
-        inFlight = next != null
-        return next
     }
 
     @Synchronized
     fun reset() {
-        pending = null
-        inFlight = false
+        lastSubmittedAtMillis = null
+        lastRatio = Float.NaN
     }
 }

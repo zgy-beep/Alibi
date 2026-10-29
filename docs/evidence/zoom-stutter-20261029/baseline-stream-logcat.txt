@@ -1,0 +1,10 @@
+--------- beginning of main
+10-29 11:23:24.776 15201 15201 I PhotoCaptureService: Capture profile FAST: ZSL=false, fps=[30, 30], OIS=true, CAF=true
+10-29 11:23:24.776 15201 15201 I PhotoCaptureService: Image capture mode=1 jpegQuality=98 resolution=RECOMMENDED aspect=FOUR_THREE qualityPriority=false hqNoiseReduction=false hqEdge=false softwareJpeg=false hardwareJpegMaxPixels=50331648 extension=NONE
+10-29 11:23:25.413 15201 15201 D PhotoCaptureService: zoom applied target=1.0073569 latencyMs=522
+10-29 11:23:25.949 15201 15201 D PhotoCaptureService: zoom applied target=2.3591342 latencyMs=537
+10-29 11:23:26.684 15201 15201 D PhotoCaptureService: zoom applied target=5.7277594 latencyMs=735
+10-29 11:23:26.972 15201 15245 I PhotoZoomTest: coalescing inputs=60 applies=4 coalesced=73 finalRatio=5.8915944 stalenessMs=826
+10-29 11:23:27.011 15201 15201 D PhotoCaptureService: zoom applied target=5.8915944 latencyMs=327
+10-29 11:23:30.613 15341 15379 I VideoZoomTest: screenshot saved to /sdcard/video-preview-pinch.png
+10-29 11:23:30.613 15341 15379 I VideoZoomTest: preview pinch before=1.0 after=2.9166665

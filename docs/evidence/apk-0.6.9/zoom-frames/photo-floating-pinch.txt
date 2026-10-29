@@ -1,0 +1,1 @@
+photo-floating-pinch frames=60 changes=46 centralChanges=31 p95GapMs=74.097 maxRelativeStep=0.04482603 first=1.0 last=2.4990847

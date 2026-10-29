@@ -37,21 +37,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import app.myzel394.alibi.R
 import app.myzel394.alibi.services.SmoothZoom
 import app.myzel394.alibi.services.ZoomRequestQueue
+import app.myzel394.alibi.services.ZoomCaptureDiagnostics
 import app.myzel394.alibi.ui.utils.getCameraProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executor
 import kotlin.math.abs
 
 /**
@@ -103,12 +101,9 @@ private fun CameraPreviewContent(
     onCameraReady: ((Camera?) -> Unit)?,
     cornerRadius: Dp,
 ) {
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
-    val mainExecutor = remember(context) { ContextCompat.getMainExecutor(context) }
-
-    val binding = remember { CameraPreviewBinding(mainExecutor) }
+    val binding = remember { CameraPreviewBinding() }
     val smoothZoom = remember { SmoothZoom(initialZoom) }
     val zoomRequests = remember { ZoomRequestQueue() }
 
@@ -131,8 +126,8 @@ private fun CameraPreviewContent(
     }
 
     // Eases the current ratio toward the gesture target on every frame and
-    // submits at most one request at a time, so the camera never builds a
-    // backlog of tweens while the fingers move.
+    // admits at most one eased ratio per 32 ms, independently of hardware
+    // acknowledgement latency.
     LaunchedEffect(binding, smoothZoom, zoomRequests) {
         var lastTick = SystemClock.elapsedRealtime()
         while (isActive) {
@@ -146,9 +141,8 @@ private fun CameraPreviewContent(
 
             val ratio = smoothZoom.advance(deltaMillis)
             val lastSubmitted = binding.lastSubmittedRatio
-            if (lastSubmitted.isNaN() || abs(ratio - lastSubmitted) > ZOOM_SUBMIT_EPSILON) {
-                binding.lastSubmittedRatio = ratio
-                submitZoomRequest(binding, zoomRequests, ratio)
+            if (smoothZoom.isSettled || lastSubmitted.isNaN() || abs(ratio - lastSubmitted) > ZOOM_SUBMIT_EPSILON) {
+                submitZoomRequest(binding, zoomRequests, ratio, force = smoothZoom.isSettled)
             }
         }
     }
@@ -196,6 +190,7 @@ private fun CameraPreviewContent(
 
                 val preview = Preview.Builder()
                     .setResolutionSelector(VIEWFINDER_RESOLUTION_SELECTOR)
+                    .also { ZoomCaptureDiagnostics.attach(it, "preview") }
                     .build()
                 binding.preview = preview
                 preview.setSurfaceProvider(previewView.surfaceProvider)
@@ -315,7 +310,7 @@ private fun applyInitialZoom(
 
     val applied = smoothZoom.snapTo(requestedRatio)
     binding.lastSubmittedRatio = applied
-    submitZoomRequest(binding, zoomRequests, applied)
+    submitZoomRequest(binding, zoomRequests, applied, force = true)
     return applied
 }
 
@@ -323,48 +318,17 @@ private fun submitZoomRequest(
     binding: CameraPreviewBinding,
     zoomRequests: ZoomRequestQueue,
     ratio: Float,
+    force: Boolean = false,
 ) {
-    val immediate = zoomRequests.submit(ratio)
-    if (immediate != null) {
-        applyZoomRequest(binding, zoomRequests, immediate)
+    if (binding.released) return
+    val cameraControl = binding.camera?.cameraControl ?: return
+    val admitted = zoomRequests.submit(ratio, SystemClock.elapsedRealtime(), force) ?: return
+    binding.lastSubmittedRatio = admitted
+    // CameraX supersedes unfinished zoom futures. Waiting for them would turn
+    // the easing into large steps on devices with slow capture-result feedback.
+    runCatching { cameraControl.setZoomRatio(admitted) }.onFailure {
+        Log.w(TAG, "Unable to submit zoom", it)
     }
-}
-
-/**
- * Applies one zoom request and only then takes the next (newest) queued ratio.
- * Latest wins: intermediate ratios from a fast pinch are simply dropped.
- */
-private fun applyZoomRequest(
-    binding: CameraPreviewBinding,
-    zoomRequests: ZoomRequestQueue,
-    ratio: Float,
-) {
-    if (binding.released) {
-        zoomRequests.reset()
-        return
-    }
-    val cameraControl = binding.camera?.cameraControl
-    if (cameraControl == null) {
-        zoomRequests.reset()
-        return
-    }
-
-    val future = runCatching { cameraControl.setZoomRatio(ratio) }.getOrNull()
-    if (future == null) {
-        zoomRequests.reset()
-        return
-    }
-
-    future.addListener({
-        if (binding.released) {
-            zoomRequests.reset()
-            return@addListener
-        }
-        val next = zoomRequests.complete()
-        if (next != null) {
-            applyZoomRequest(binding, zoomRequests, next)
-        }
-    }, binding.mainExecutor)
 }
 
 private val Camera.isZoomSupported: Boolean
@@ -373,9 +337,7 @@ private val Camera.isZoomSupported: Boolean
     }.getOrDefault(false)
 
 /** Plain holder: mutating it must not trigger recomposition. */
-private class CameraPreviewBinding(
-    val mainExecutor: Executor,
-) {
+private class CameraPreviewBinding {
     var cameraProvider: ProcessCameraProvider? = null
     var preview: Preview? = null
     var camera: Camera? = null
